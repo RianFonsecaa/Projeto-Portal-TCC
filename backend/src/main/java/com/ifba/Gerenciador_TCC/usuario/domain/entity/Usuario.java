@@ -1,3 +1,5 @@
+package com.ifba.Gerenciador_TCC.usuario.domain.entity;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

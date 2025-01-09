@@ -1,1 +1,8 @@
+com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
+com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
 com\ifba\Gerenciador_TCC\GerenciadorTccApplication.class
+com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.class
+com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
+com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.class
+com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario$UsuarioBuilder.class
+com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.class
