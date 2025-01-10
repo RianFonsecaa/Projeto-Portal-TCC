@@ -36,6 +36,9 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     @NotEmpty(message = "O campo 'email' não pode estar vazio.")
     private String email;
-
+    
+    @Column(nullable = false)
+    @NotEmpty(message = "O campo 'posição' não pode estar vazio.")
+    private String posicao;
 
 }

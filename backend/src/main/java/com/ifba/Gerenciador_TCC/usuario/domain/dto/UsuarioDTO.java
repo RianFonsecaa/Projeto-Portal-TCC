@@ -27,4 +27,7 @@ public class UsuarioDTO {
 
     @NotNull(message = "Email não pode ser vazio")
     private String email;
+
+    @NotNull(message = "Posição não pode ser vazio")
+    private String posicao;
 }
