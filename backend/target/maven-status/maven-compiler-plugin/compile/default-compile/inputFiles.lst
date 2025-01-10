@@ -1,7 +1,10 @@
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\GerenciadorTccApplication.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.java
+C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.java
+C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\UsuarioRepository.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.java
+C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.java
+C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptions\NotFoundException.java
+C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.java
