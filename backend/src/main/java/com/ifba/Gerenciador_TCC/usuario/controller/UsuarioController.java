@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+//Acho que preciso dar uma refinada nisso aqui
+
 @RestController
 @RequestMapping("/dashboard")
 public class UsuarioController implements UsuarioControllerApi {

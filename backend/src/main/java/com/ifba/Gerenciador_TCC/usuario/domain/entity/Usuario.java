@@ -37,6 +37,8 @@ public class Usuario {
     @NotEmpty(message = "O campo 'email' não pode estar vazio.")
     private String email;
     
+    //Talvez seja bom trocar de string para enum
+
     @Column(nullable = false)
     @NotEmpty(message = "O campo 'posição' não pode estar vazio.")
     private String posicao;
