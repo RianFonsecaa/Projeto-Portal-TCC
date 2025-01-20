@@ -1,0 +1,25 @@
+package com.ifba.Gerenciador_TCC.tarefa.service;
+
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public interface TarefaServiceApi {
+
+    TarefaDTO criarTarefa(TarefaDTO tarefaDTO);
+
+    TarefaDTO buscarTarefaPorId(Long id);
+
+    List<TarefaDTO> listarTarefas();
+
+    List<TarefaDTO> listarTarefasPorUsuario(Long idUsuario);
+
+    List<TarefaDTO> listarTarefasPorNome(String nomeTarefa);
+
+    List<TarefaDTO> listarTarefasPorDataEnvio(LocalDate dataEnvio);
+
+    List<TarefaDTO> listarTarefasPorDataFim(LocalDate dataEnvio);
+
+    void deletarTarefa(Long id);
+}
