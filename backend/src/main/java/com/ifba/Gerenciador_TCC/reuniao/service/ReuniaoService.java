@@ -4,6 +4,7 @@ import com.ifba.Gerenciador_TCC.reuniao.domain.dto.ReuniaoDTO;
 import com.ifba.Gerenciador_TCC.reuniao.domain.entity.Reuniao;
 import com.ifba.Gerenciador_TCC.reuniao.domain.mapper.ReuniaoMapper;
 import com.ifba.Gerenciador_TCC.reuniao.domain.repository.ReuniaoRepository;
+import com.ifba.Gerenciador_TCC.reuniao.interfaces.ReuniaoServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

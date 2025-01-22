@@ -1,0 +1,53 @@
+package com.ifba.Gerenciador_TCC.projeto.mapper;
+
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-01-21T21:52:43-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+)
+@Component
+public class ProjetoMapperImpl extends ProjetoMapper {
+
+    @Override
+    public Projeto dtoToProjeto(ProjetoDTO projetoDTO) {
+        if ( projetoDTO == null ) {
+            return null;
+        }
+
+        Projeto.ProjetoBuilder projeto = Projeto.builder();
+
+        projeto.id( projetoDTO.getId() );
+        projeto.idAluno( projetoDTO.getIdAluno() );
+        projeto.idProfessor( projetoDTO.getIdProfessor() );
+        projeto.idTcc( projetoDTO.getIdTcc() );
+        projeto.tituloProjeto( projetoDTO.getTituloProjeto() );
+        projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
+        projeto.dataCadastro( projetoDTO.getDataCadastro() );
+
+        return projeto.build();
+    }
+
+    @Override
+    public ProjetoDTO projetoToDTO(Projeto projeto) {
+        if ( projeto == null ) {
+            return null;
+        }
+
+        ProjetoDTO.ProjetoDTOBuilder projetoDTO = ProjetoDTO.builder();
+
+        projetoDTO.id( projeto.getId() );
+        projetoDTO.idAluno( projeto.getIdAluno() );
+        projetoDTO.idProfessor( projeto.getIdProfessor() );
+        projetoDTO.idTcc( projeto.getIdTcc() );
+        projetoDTO.tituloProjeto( projeto.getTituloProjeto() );
+        projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
+        projetoDTO.dataCadastro( projeto.getDataCadastro() );
+
+        return projetoDTO.build();
+    }
+}
