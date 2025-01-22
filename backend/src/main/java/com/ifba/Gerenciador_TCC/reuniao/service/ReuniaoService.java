@@ -53,7 +53,7 @@ public class ReuniaoService implements ReuniaoServiceApi {
 
     @Override
     public List<ReuniaoDTO> listarReunioesPorNome(String nomeReuniao) {
-        List<Reuniao> reunioes = reuniaoRepository.findByNomeReuniao(tipoReuniao);
+        List<Reuniao> reunioes = reuniaoRepository.findByNomeReuniao(nomeReuniao);
         return reunioes.stream()
                 .map(reuniaoMapper::reuniaoToDTO)
                 .collect(Collectors.toList());

@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.reuniao.domain.mapper;
+package com.ifba.Gerenciador_TCC.reuniao.mapper;
 
 import com.ifba.Gerenciador_TCC.reuniao.domain.dto.ReuniaoDTO;
 import com.ifba.Gerenciador_TCC.reuniao.domain.entity.Reuniao;
