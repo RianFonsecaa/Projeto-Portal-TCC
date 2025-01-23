@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-23T19:55:32-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-01-23T20:23:33-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 @Component
 public class TarefaMapperImpl extends TarefaMapper {
@@ -21,13 +21,13 @@ public class TarefaMapperImpl extends TarefaMapper {
 
         Tarefa.TarefaBuilder tarefa = Tarefa.builder();
 
+        tarefa.id( tarefaDTO.getId() );
+        tarefa.idUsuario( tarefaDTO.getIdUsuario() );
+        tarefa.idDocumento( tarefaDTO.getIdDocumento() );
+        tarefa.nomeTarefa( tarefaDTO.getNomeTarefa() );
+        tarefa.descricao( tarefaDTO.getDescricao() );
         tarefa.dataEnvio( tarefaDTO.getDataEnvio() );
         tarefa.dataFim( tarefaDTO.getDataFim() );
-        tarefa.descricao( tarefaDTO.getDescricao() );
-        tarefa.id( tarefaDTO.getId() );
-        tarefa.idDocumento( tarefaDTO.getIdDocumento() );
-        tarefa.idUsuario( tarefaDTO.getIdUsuario() );
-        tarefa.nomeTarefa( tarefaDTO.getNomeTarefa() );
 
         return tarefa.build();
     }
@@ -40,13 +40,13 @@ public class TarefaMapperImpl extends TarefaMapper {
 
         TarefaDTO.TarefaDTOBuilder tarefaDTO = TarefaDTO.builder();
 
+        tarefaDTO.id( tarefa.getId() );
+        tarefaDTO.idUsuario( tarefa.getIdUsuario() );
+        tarefaDTO.idDocumento( tarefa.getIdDocumento() );
+        tarefaDTO.nomeTarefa( tarefa.getNomeTarefa() );
+        tarefaDTO.descricao( tarefa.getDescricao() );
         tarefaDTO.dataEnvio( tarefa.getDataEnvio() );
         tarefaDTO.dataFim( tarefa.getDataFim() );
-        tarefaDTO.descricao( tarefa.getDescricao() );
-        tarefaDTO.id( tarefa.getId() );
-        tarefaDTO.idDocumento( tarefa.getIdDocumento() );
-        tarefaDTO.idUsuario( tarefa.getIdUsuario() );
-        tarefaDTO.nomeTarefa( tarefa.getNomeTarefa() );
 
         return tarefaDTO.build();
     }

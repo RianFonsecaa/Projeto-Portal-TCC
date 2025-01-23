@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-23T19:51:00-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-01-23T20:23:33-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 @Component
 public class TccMapperImpl implements TccMapper {
@@ -21,14 +21,14 @@ public class TccMapperImpl implements TccMapper {
 
         Tcc.TccBuilder tcc = Tcc.builder();
 
-        tcc.dataEntrega( tccDTO.getDataEntrega() );
-        tcc.dataInicio( tccDTO.getDataInicio() );
-        tcc.descricao( tccDTO.getDescricao() );
         tcc.id( tccDTO.getId() );
+        tcc.titulo( tccDTO.getTitulo() );
+        tcc.descricao( tccDTO.getDescricao() );
+        tcc.dataInicio( tccDTO.getDataInicio() );
+        tcc.dataEntrega( tccDTO.getDataEntrega() );
+        tcc.status( tccDTO.getStatus() );
         tcc.idAluno( tccDTO.getIdAluno() );
         tcc.idOrientador( tccDTO.getIdOrientador() );
-        tcc.status( tccDTO.getStatus() );
-        tcc.titulo( tccDTO.getTitulo() );
 
         return tcc.build();
     }
@@ -41,14 +41,14 @@ public class TccMapperImpl implements TccMapper {
 
         TccDTO.TccDTOBuilder tccDTO = TccDTO.builder();
 
-        tccDTO.dataEntrega( tcc.getDataEntrega() );
-        tccDTO.dataInicio( tcc.getDataInicio() );
-        tccDTO.descricao( tcc.getDescricao() );
         tccDTO.id( tcc.getId() );
+        tccDTO.titulo( tcc.getTitulo() );
+        tccDTO.descricao( tcc.getDescricao() );
+        tccDTO.dataInicio( tcc.getDataInicio() );
+        tccDTO.dataEntrega( tcc.getDataEntrega() );
+        tccDTO.status( tcc.getStatus() );
         tccDTO.idAluno( tcc.getIdAluno() );
         tccDTO.idOrientador( tcc.getIdOrientador() );
-        tccDTO.status( tcc.getStatus() );
-        tccDTO.titulo( tcc.getTitulo() );
 
         return tccDTO.build();
     }
