@@ -2,6 +2,8 @@ package com.ifba.Gerenciador_TCC.documento.domain.mapper;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
+import com.ifba.Gerenciador_TCC.documento.mapper.DocumentoMapper;
+
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 

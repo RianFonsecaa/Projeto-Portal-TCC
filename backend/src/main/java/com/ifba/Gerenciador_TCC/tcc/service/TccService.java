@@ -2,6 +2,7 @@ package com.ifba.Gerenciador_TCC.tcc.service;
 
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
+import com.ifba.Gerenciador_TCC.tcc.interfaces.TccServiceApi;
 import com.ifba.Gerenciador_TCC.tcc.mapper.TccMapper;
 import com.ifba.Gerenciador_TCC.tcc.repository.TccRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.documento.service;
+package com.ifba.Gerenciador_TCC.documento.interfaces;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 

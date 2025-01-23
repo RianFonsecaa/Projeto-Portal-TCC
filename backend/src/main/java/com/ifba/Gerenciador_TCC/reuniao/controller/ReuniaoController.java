@@ -1,6 +1,6 @@
 package com.ifba.Gerenciador_TCC.reuniao.controller;
 
-import com.ifba.Gerenciador_TCC.reuniao.api.ReuniaoControllerApi;
+import com.ifba.Gerenciador_TCC.reuniao.interfaces.ReuniaoControllerApi;
 import com.ifba.Gerenciador_TCC.reuniao.domain.dto.ReuniaoDTO;
 import com.ifba.Gerenciador_TCC.reuniao.service.ReuniaoService;
 import org.springframework.beans.factory.annotation.Autowired;

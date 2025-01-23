@@ -1,6 +1,6 @@
 package com.ifba.Gerenciador_TCC.documento.controller;
 
-import com.ifba.Gerenciador_TCC.documento.api.DocumentoControllerApi;
+import com.ifba.Gerenciador_TCC.documento.interfaces.DocumentoControllerApi;
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 import com.ifba.Gerenciador_TCC.documento.service.DocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;

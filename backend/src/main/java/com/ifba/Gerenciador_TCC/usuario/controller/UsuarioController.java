@@ -5,6 +5,9 @@ import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.security.JwtTokenUtil;
+
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

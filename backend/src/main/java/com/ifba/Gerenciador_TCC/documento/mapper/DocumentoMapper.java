@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.documento.domain.mapper;
+package com.ifba.Gerenciador_TCC.documento.mapper;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;

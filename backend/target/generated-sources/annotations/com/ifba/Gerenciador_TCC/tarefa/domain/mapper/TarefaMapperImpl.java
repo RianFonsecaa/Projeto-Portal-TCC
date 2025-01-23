@@ -2,6 +2,8 @@ package com.ifba.Gerenciador_TCC.tarefa.domain.mapper;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
+import com.ifba.Gerenciador_TCC.tarefa.mapper.TarefaMapper;
+
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 

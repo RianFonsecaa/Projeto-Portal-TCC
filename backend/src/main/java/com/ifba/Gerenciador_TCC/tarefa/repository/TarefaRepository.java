@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.tarefa.domain.repository;
+package com.ifba.Gerenciador_TCC.tarefa.repository;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import org.springframework.data.jpa.repository.JpaRepository;

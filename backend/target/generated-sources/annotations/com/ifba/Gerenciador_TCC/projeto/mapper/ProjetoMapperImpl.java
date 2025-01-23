@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-21T21:52:43-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+    date = "2025-01-23T19:51:00-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 @Component
 public class ProjetoMapperImpl extends ProjetoMapper {
@@ -21,13 +21,13 @@ public class ProjetoMapperImpl extends ProjetoMapper {
 
         Projeto.ProjetoBuilder projeto = Projeto.builder();
 
+        projeto.dataCadastro( projetoDTO.getDataCadastro() );
+        projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
         projeto.id( projetoDTO.getId() );
         projeto.idAluno( projetoDTO.getIdAluno() );
         projeto.idProfessor( projetoDTO.getIdProfessor() );
         projeto.idTcc( projetoDTO.getIdTcc() );
         projeto.tituloProjeto( projetoDTO.getTituloProjeto() );
-        projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
-        projeto.dataCadastro( projetoDTO.getDataCadastro() );
 
         return projeto.build();
     }
@@ -40,13 +40,13 @@ public class ProjetoMapperImpl extends ProjetoMapper {
 
         ProjetoDTO.ProjetoDTOBuilder projetoDTO = ProjetoDTO.builder();
 
+        projetoDTO.dataCadastro( projeto.getDataCadastro() );
+        projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
         projetoDTO.id( projeto.getId() );
         projetoDTO.idAluno( projeto.getIdAluno() );
         projetoDTO.idProfessor( projeto.getIdProfessor() );
         projetoDTO.idTcc( projeto.getIdTcc() );
         projetoDTO.tituloProjeto( projeto.getTituloProjeto() );
-        projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
-        projetoDTO.dataCadastro( projeto.getDataCadastro() );
 
         return projetoDTO.build();
     }

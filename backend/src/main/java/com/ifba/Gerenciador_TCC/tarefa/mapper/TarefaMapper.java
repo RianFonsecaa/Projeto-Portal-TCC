@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.tarefa.domain.mapper;
+package com.ifba.Gerenciador_TCC.tarefa.mapper;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;

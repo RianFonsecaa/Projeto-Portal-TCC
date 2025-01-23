@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.reuniao.api;
+package com.ifba.Gerenciador_TCC.reuniao.interfaces;
 
 public interface ReuniaoControllerApi {
 }

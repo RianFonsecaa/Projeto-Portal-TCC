@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.reuniao.domain.repository;
+package com.ifba.Gerenciador_TCC.reuniao.repository;
 
 import com.ifba.Gerenciador_TCC.reuniao.domain.entity.Reuniao;
 import org.springframework.data.jpa.repository.JpaRepository;

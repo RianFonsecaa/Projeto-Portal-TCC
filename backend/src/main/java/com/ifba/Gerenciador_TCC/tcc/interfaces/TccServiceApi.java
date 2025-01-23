@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.tcc.service;
+package com.ifba.Gerenciador_TCC.tcc.interfaces;
 
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;

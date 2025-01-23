@@ -2,6 +2,8 @@ package com.ifba.Gerenciador_TCC.reuniao.domain.mapper;
 
 import com.ifba.Gerenciador_TCC.reuniao.domain.dto.ReuniaoDTO;
 import com.ifba.Gerenciador_TCC.reuniao.domain.entity.Reuniao;
+import com.ifba.Gerenciador_TCC.reuniao.mapper.ReuniaoMapper;
+
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 

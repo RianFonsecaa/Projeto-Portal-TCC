@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.tarefa.service;
+package com.ifba.Gerenciador_TCC.tarefa.interfaces;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 

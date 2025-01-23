@@ -2,8 +2,9 @@ package com.ifba.Gerenciador_TCC.documento.service;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
-import com.ifba.Gerenciador_TCC.documento.domain.mapper.DocumentoMapper;
-import com.ifba.Gerenciador_TCC.documento.domain.repository.DocumentoRepository;
+import com.ifba.Gerenciador_TCC.documento.interfaces.DocumentoServiceApi;
+import com.ifba.Gerenciador_TCC.documento.mapper.DocumentoMapper;
+import com.ifba.Gerenciador_TCC.documento.repository.DocumentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

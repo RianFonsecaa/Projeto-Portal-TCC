@@ -1,6 +1,6 @@
 package com.ifba.Gerenciador_TCC.tarefa.controller;
 
-import com.ifba.Gerenciador_TCC.tarefa.api.TarefaControllerApi;
+import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaControllerApi;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;

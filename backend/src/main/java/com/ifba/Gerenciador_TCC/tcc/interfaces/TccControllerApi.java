@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.tcc.controller;
+package com.ifba.Gerenciador_TCC.tcc.interfaces;
 
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import org.springframework.http.ResponseEntity;

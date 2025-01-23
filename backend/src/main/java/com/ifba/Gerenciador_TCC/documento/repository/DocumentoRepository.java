@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.documento.domain.repository;
+package com.ifba.Gerenciador_TCC.documento.repository;
 
 import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
 import org.springframework.data.jpa.repository.JpaRepository;

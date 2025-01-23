@@ -1,6 +1,7 @@
 package com.ifba.Gerenciador_TCC.tcc.controller;
 
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
+import com.ifba.Gerenciador_TCC.tcc.interfaces.TccControllerApi;
 import com.ifba.Gerenciador_TCC.tcc.service.TccService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

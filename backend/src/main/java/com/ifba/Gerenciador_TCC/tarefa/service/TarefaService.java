@@ -2,8 +2,9 @@ package com.ifba.Gerenciador_TCC.tarefa.service;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
-import com.ifba.Gerenciador_TCC.tarefa.domain.mapper.TarefaMapper;
-import com.ifba.Gerenciador_TCC.tarefa.domain.repository.TarefaRepository;
+import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaServiceApi;
+import com.ifba.Gerenciador_TCC.tarefa.mapper.TarefaMapper;
+import com.ifba.Gerenciador_TCC.tarefa.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
