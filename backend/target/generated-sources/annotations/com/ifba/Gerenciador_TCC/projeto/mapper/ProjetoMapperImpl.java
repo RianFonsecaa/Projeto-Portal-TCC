@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-23T20:23:33-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+    date = "2025-01-28T14:31:21-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class ProjetoMapperImpl extends ProjetoMapper {
@@ -22,9 +22,6 @@ public class ProjetoMapperImpl extends ProjetoMapper {
         Projeto.ProjetoBuilder projeto = Projeto.builder();
 
         projeto.id( projetoDTO.getId() );
-        projeto.idAluno( projetoDTO.getIdAluno() );
-        projeto.idProfessor( projetoDTO.getIdProfessor() );
-        projeto.idTcc( projetoDTO.getIdTcc() );
         projeto.tituloProjeto( projetoDTO.getTituloProjeto() );
         projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
         projeto.dataCadastro( projetoDTO.getDataCadastro() );
@@ -41,9 +38,6 @@ public class ProjetoMapperImpl extends ProjetoMapper {
         ProjetoDTO.ProjetoDTOBuilder projetoDTO = ProjetoDTO.builder();
 
         projetoDTO.id( projeto.getId() );
-        projetoDTO.idAluno( projeto.getIdAluno() );
-        projetoDTO.idProfessor( projeto.getIdProfessor() );
-        projetoDTO.idTcc( projeto.getIdTcc() );
         projetoDTO.tituloProjeto( projeto.getTituloProjeto() );
         projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
         projetoDTO.dataCadastro( projeto.getDataCadastro() );

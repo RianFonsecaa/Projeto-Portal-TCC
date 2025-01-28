@@ -1,5 +1,7 @@
 package com.ifba.Gerenciador_TCC.projeto.domain.entity;
 
+import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
+import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -22,17 +24,17 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "ID do aluno não pode ser vazio")
-    @Column(name = "id_aluno", nullable = false)
-    private Long idAluno;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id", nullable = false)
+    private Usuario alunoId;
 
-    @NotNull(message = "ID do professor não pode ser vazio")
-    @Column(name = "id_professor", nullable = false)
-    private Long idProfessor;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)
+    private Usuario orientadorId;
 
-    @NotNull(message = "ID do TCC não pode ser vazio")
-    @Column(name = "id_tcc", nullable = false)
-    private Long idTcc;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tcc_id", referencedColumnName = "id", nullable = false)
+    private Tcc tccId;
 
     @NotEmpty(message = "O título do projeto não pode estar vazio")
     @Column(name = "titulo_projeto", nullable = false, length = 200)

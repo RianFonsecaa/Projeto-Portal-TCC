@@ -42,11 +42,4 @@ public class Tcc {
     @Column(name = "status", nullable = false)
     private Boolean status;
 
-    @NotNull(message = "O ID do aluno não pode ser vazio")
-    @Column(name = "id_aluno", nullable = false)
-    private Long idAluno;
-
-    @NotNull(message = "O ID do professor orientador não pode ser vazio")
-    @Column(name = "id_orientador", nullable = false)
-    private Long idOrientador;
 }

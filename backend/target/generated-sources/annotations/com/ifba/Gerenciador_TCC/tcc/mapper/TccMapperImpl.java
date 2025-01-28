@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-23T20:23:33-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+    date = "2025-01-28T14:31:21-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class TccMapperImpl implements TccMapper {
@@ -27,8 +27,6 @@ public class TccMapperImpl implements TccMapper {
         tcc.dataInicio( tccDTO.getDataInicio() );
         tcc.dataEntrega( tccDTO.getDataEntrega() );
         tcc.status( tccDTO.getStatus() );
-        tcc.idAluno( tccDTO.getIdAluno() );
-        tcc.idOrientador( tccDTO.getIdOrientador() );
 
         return tcc.build();
     }
@@ -47,8 +45,6 @@ public class TccMapperImpl implements TccMapper {
         tccDTO.dataInicio( tcc.getDataInicio() );
         tccDTO.dataEntrega( tcc.getDataEntrega() );
         tccDTO.status( tcc.getStatus() );
-        tccDTO.idAluno( tcc.getIdAluno() );
-        tccDTO.idOrientador( tcc.getIdOrientador() );
 
         return tccDTO.build();
     }

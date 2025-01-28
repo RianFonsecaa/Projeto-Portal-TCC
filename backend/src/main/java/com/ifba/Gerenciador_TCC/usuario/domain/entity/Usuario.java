@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.entity;
 
+import com.ifba.Gerenciador_TCC.tipousuario.domain.entity.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -36,11 +37,9 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     @NotEmpty(message = "O campo 'email' não pode estar vazio.")
     private String email;
-    
-    //Talvez seja bom trocar de string para enum
 
-    @Column(nullable = false)
-    @NotEmpty(message = "O campo 'posição' não pode estar vazio.")
-    private String posicao;
+    @ManyToOne
+    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    private TipoUsuario tipoUsuario;
 
 }

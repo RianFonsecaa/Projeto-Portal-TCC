@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-23T20:23:33-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+    date = "2025-01-28T14:31:21-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class DocumentoMapperImpl extends DocumentoMapper {
@@ -22,7 +22,6 @@ public class DocumentoMapperImpl extends DocumentoMapper {
         Documento.DocumentoBuilder documento = Documento.builder();
 
         documento.id( documentoDTO.getId() );
-        documento.idProjeto( documentoDTO.getIdProjeto() );
         documento.nomeDocumento( documentoDTO.getNomeDocumento() );
         documento.tipoDocumento( documentoDTO.getTipoDocumento() );
         documento.descricao( documentoDTO.getDescricao() );
@@ -41,7 +40,6 @@ public class DocumentoMapperImpl extends DocumentoMapper {
         DocumentoDTO.DocumentoDTOBuilder documentoDTO = DocumentoDTO.builder();
 
         documentoDTO.id( documento.getId() );
-        documentoDTO.idProjeto( documento.getIdProjeto() );
         documentoDTO.nomeDocumento( documento.getNomeDocumento() );
         documentoDTO.tipoDocumento( documento.getTipoDocumento() );
         documentoDTO.descricao( documento.getDescricao() );

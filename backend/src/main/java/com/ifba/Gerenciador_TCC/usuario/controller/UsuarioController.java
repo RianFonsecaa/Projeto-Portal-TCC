@@ -45,7 +45,7 @@ public class UsuarioController implements UsuarioControllerApi {
     public ResponseEntity<Void> redirecionar(@RequestParam long id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario != null) {
-            String posicao = usuario.getPosicao();
+            String posicao = usuario.getTipoUsuario().getDescricao();
             return ResponseEntity.status(HttpStatus.FOUND)
                                  .location(URI.create("/dashboard/" + posicao))
                                  .build();

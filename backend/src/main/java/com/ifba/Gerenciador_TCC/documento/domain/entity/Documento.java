@@ -1,6 +1,7 @@
 
 package com.ifba.Gerenciador_TCC.documento.domain.entity;
 
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -23,9 +24,9 @@ public class Documento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "O ID do projeto não pode ser vazio")
-    @Column(name = "id_projeto", nullable = false)
-    private Long idProjeto;
+    @ManyToOne
+    @JoinColumn(name = "projeto_id", nullable = false, referencedColumnName = "id")
+    private Projeto projetoId;
 
     @NotEmpty(message = "O nome do documento não pode estar vazio")
     @Column(name = "nome_documento", nullable = false, length = 200)

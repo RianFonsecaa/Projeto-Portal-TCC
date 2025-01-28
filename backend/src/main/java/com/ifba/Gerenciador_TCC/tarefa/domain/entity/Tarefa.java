@@ -1,6 +1,8 @@
 
 package com.ifba.Gerenciador_TCC.tarefa.domain.entity;
 
+import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
+import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,12 +26,13 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "O ID do usuário não pode estar vazio")
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
+    private Usuario usuarioId;
 
-    @Column(name = "id_documento", nullable = true)
-    private Long idDocumento;
+    @OneToMany
+    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = false)
+    private List<Documento> documentoId;
 
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")
     @Column(name = "nome_tarefa", nullable = false, length = 200)
