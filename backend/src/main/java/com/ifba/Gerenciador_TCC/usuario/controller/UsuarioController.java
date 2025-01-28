@@ -31,7 +31,7 @@ public class UsuarioController implements UsuarioControllerApi {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String senha) {
@@ -47,8 +47,8 @@ public class UsuarioController implements UsuarioControllerApi {
         if (usuario != null) {
             String posicao = usuario.getTipoUsuario().getDescricao();
             return ResponseEntity.status(HttpStatus.FOUND)
-                                 .location(URI.create("/dashboard/" + posicao))
-                                 .build();
+                    .location(URI.create("/dashboard/" + posicao))
+                    .build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

@@ -52,4 +52,9 @@ public class UsuarioService implements UsuarioServiceApi {
             return null;
         return usuario.get();
     }
+
+
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
 }
