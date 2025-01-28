@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +19,8 @@ public class DocumentoDTO {
 
     private Long id;
 
-    @NotNull(message = "O ID do projeto não pode ser vazio")
-    private Long idProjeto;
+    @NotNull(message = "O projeto não pode ser vazio")
+    private ProjetoDTO projeto;  
 
     @NotEmpty(message = "O nome do documento não pode estar vazio")
     private String nomeDocumento;
