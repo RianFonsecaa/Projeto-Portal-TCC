@@ -45,7 +45,7 @@ public class DocumentoService implements DocumentoServiceApi {
 
     @Override
     public List<DocumentoDTO> listarDocumentosPorProjeto(Long idProjeto) {
-        List<Documento> documentos = documentoRepository.findByIdProjeto(idProjeto);
+        List<Documento> documentos = documentoRepository.findByIdProjetoId(idProjeto);
         return documentos.stream()
                 .map(documentoMapper::documentoToDTO)
                 .collect(Collectors.toList());

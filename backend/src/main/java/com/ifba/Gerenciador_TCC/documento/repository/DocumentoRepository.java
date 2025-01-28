@@ -10,5 +10,10 @@ import java.util.List;
 @Repository
 public interface DocumentoRepository extends JpaRepository<Documento, Long> {
 
+    List<Documento> findByIdProjetoId(Long idProjeto);
 
+
+    List<Documento> findByTipoDocumento(String tipoDocumento);
+
+    List<Documento> findByDataEnvioAfter(LocalDate dataEnvio);
 }
