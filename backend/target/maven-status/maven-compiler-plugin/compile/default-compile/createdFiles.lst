@@ -40,6 +40,7 @@ com\ifba\Gerenciador_TCC\tipousuario\domain\entity\TipoUsuario$TipoUsuarioBuilde
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
 com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.class
 com\ifba\Gerenciador_TCC\tcc\repository\TccRepository.class
+com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO$TarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\documento\service\DocumentoService.class
 com\ifba\Gerenciador_TCC\tcc\domain\dto\TccDTO.class
