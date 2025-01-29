@@ -21,6 +21,6 @@ public class TipoUsuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(nullable = false)
-    @NotEmpty(message = "O campo 'senha' não pode estar vazio.")
+    @NotEmpty(message = "O campo 'descrição' não pode estar vazio.")
     private String descricao;
 }
