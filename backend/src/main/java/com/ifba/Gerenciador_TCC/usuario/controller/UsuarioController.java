@@ -4,6 +4,7 @@ import com.ifba.Gerenciador_TCC.security.CustomUserDetailsService;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioControllerApi;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
+import com.ifba.Gerenciador_TCC.login.domain.LoginRequest;
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.security.JwtTokenUtil;
 
@@ -35,16 +36,17 @@ public class UsuarioController implements UsuarioControllerApi {
     private CustomUserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String senha) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getSenha())
+        );
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails.getUsername());
         return ResponseEntity.ok(new JwtResponse(token));
     }
-
     @GetMapping
-    public ResponseEntity<Void> redirecionar(@RequestParam long id) {
-        Usuario usuario = usuarioService.findById(id);
+    public ResponseEntity<Void> redirecionar(@RequestBody RedirecionarRequest redirecionarRequest) {
+        Usuario usuario = usuarioService.findById(redirecionarRequest.getId());
         if (usuario != null) {
             String posicao = usuario.getTipoUsuario().getDescricao();
             return ResponseEntity.status(HttpStatus.FOUND)
