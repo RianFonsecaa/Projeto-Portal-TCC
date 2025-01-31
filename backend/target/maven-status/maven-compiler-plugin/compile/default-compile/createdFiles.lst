@@ -10,6 +10,7 @@ com\ifba\Gerenciador_TCC\reuniao\service\ReuniaoService.class
 com\ifba\Gerenciador_TCC\reuniao\mapper\ReuniaoMapperImpl.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.class
+com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.class
 com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.class
 com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapperImpl.class
 com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoDTO.class
@@ -20,6 +21,7 @@ com\ifba\Gerenciador_TCC\tipousuario\domain\entity\TipoUsuario.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\reuniao\domain\entity\Reuniao$ReuniaoBuilder.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
+com\ifba\Gerenciador_TCC\login\domain\LoginRequest.class
 com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO$ReuniaoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapperImpl.class

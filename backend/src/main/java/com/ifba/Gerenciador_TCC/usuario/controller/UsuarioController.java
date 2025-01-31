@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.usuario.controller;
 
+import com.ifba.Gerenciador_TCC.login.domain.RedirecionarRequest;
 import com.ifba.Gerenciador_TCC.security.CustomUserDetailsService;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioControllerApi;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
