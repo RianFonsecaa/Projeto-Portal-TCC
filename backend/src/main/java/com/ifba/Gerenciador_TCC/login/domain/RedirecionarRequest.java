@@ -1,4 +1,4 @@
-package com.ifba.Gerenciador_TCC.usuario.dto;
+package com.ifba.Gerenciador_TCC.login.domain;
 
 public class RedirecionarRequest {
     private long id;

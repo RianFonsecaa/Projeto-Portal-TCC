@@ -2,6 +2,7 @@ package com.ifba.Gerenciador_TCC.usuario.service;
 
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.usuario.domain.dto.UsuarioDTO;
+import com.ifba.Gerenciador_TCC.login.domain.LoginRequest;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 import com.ifba.Gerenciador_TCC.usuario.mapper.UsuarioMapper;
