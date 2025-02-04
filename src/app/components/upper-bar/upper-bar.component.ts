@@ -1,24 +1,20 @@
-import { CommonModule } from '@angular/common'; // Adicione essa importação
+import { CommonModule } from '@angular/common';
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface Mensagem {
-  nome: String;
-  tituloMensagem: string;
-  temaTcc: string;
-  dataRecebimento: Date;
-}
+import { TccNotificacao } from '../../model/TccNotificacao';
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor, CommonModule], // Adicione o CommonModule aqui
+  imports: [RouterLink, NgIf, NgFor, CommonModule],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
   isModalOpen: boolean = false;
   iconColor: string = '#515151';
+
+  constructor(private renderer: Renderer2) {} // Injetando Renderer2
 
   toggleTheme(toggleButton: HTMLElement) {
     if (toggleButton.classList.contains('translate-x-10')) {
@@ -34,32 +30,42 @@ export class UpperBarComponent {
 
   openModal() {
     this.isModalOpen = true;
-    document.body.classList.add('no-scroll');
+    this.renderer.addClass(document.body, 'overflow-hidden'); // Adicionando classe ao body
   }
 
   closeModal() {
     this.isModalOpen = false;
-    document.body.classList.remove('no-scroll');
+    this.renderer.removeClass(document.body, 'overflow-hidden'); // Removendo classe ao fechar modal
   }
 
-  mensagens: Mensagem[] = [
+  notificacoes: TccNotificacao[] = [
     {
-      nome: 'Clark Kent',
-      tituloMensagem: 'Nova Notificação',
+      quemEnviou: 'Clark Kent',
+      tituloNotificacao: 'Nova Notificação',
       temaTcc: 'Implementação de Assistentes Virtuais com IA',
-      dataRecebimento: new Date('2024-11-26T10:00:00')
+      dataRecebimento: new Date('2024-11-26'),
+      visualizado: true
     },
     {
-      nome: 'Bruce Wayne',
-      tituloMensagem: 'Tarefa Pendentes',
+      quemEnviou: 'Bruce Wayne',
+      tituloNotificacao: 'Tarefa Pendentes',
       temaTcc: 'Plataforma Gamificada para Ensino de Lógica',
-      dataRecebimento: new Date('2024-11-26T14:30:00')
+      dataRecebimento: new Date('2024-11-26'),
+      visualizado: false
     },
     {
-      nome: 'Diana Prince',
-      tituloMensagem: 'Atualização Importante',
+      quemEnviou: 'Diana Prince',
+      tituloNotificacao: 'Atualização Importante',
       temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24T16:45:00')
+      dataRecebimento: new Date('2024-11-24'),
+      visualizado: true
+    },
+    {
+      quemEnviou: 'Gabriel Moreira Bispo dos Santos',
+      tituloNotificacao: 'Atualização Importante',
+      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
+      dataRecebimento: new Date('2024-11-24'),
+      visualizado: false
     }
   ];
 }
