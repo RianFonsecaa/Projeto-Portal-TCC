@@ -10,7 +10,6 @@
             <h1 class="font-russo font-semibold">
                 TCC
             </h1>
-
         </div>
     </button>
 
@@ -47,7 +46,7 @@
         </div>
 
         <div>
-            <button>
+            <button (click)="openModal()">
                 <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_68_887)">
                         <path d="M26.647 3.5996H20.3525V9.5996H26.647V3.5996Z" fill="#FFA400" />
@@ -76,13 +75,100 @@
             </button>
         </div>
 
+<!-- Modal -->
+<div *ngIf="isModalOpen" class="absolute h-screen w-screen inset-0 flex items-center justify-center z-50 m-0">
+  <!-- Camada de fundo -->
+  <div class="fixed bg-black bg-opacity-30 inset-0 h-full w-full z-10"></div>
+
+  <!-- Conteúdo do Modal -->
+  <div class="bg-white w-auto rounded-lg shadow-lg z-20">
+    <!-- Cabeçalho -->
+    <div class="flex justify-between items-center bg-gray-200 px-6 py-4 rounded-t-lg">
+      <div>
+        <div class="flex flex-row items-center gap-2">
+        <h2 class="text-xl font-bold text-[#1D4A24] ">NOTIFICAÇÕES</h2>
+          <svg width="25" height="25" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_68_887)">
+                <path d="M26.647 3.5996H20.3525V9.5996H26.647V3.5996Z" fill="#FFA400" />
+                <path opacity="0.35"
+                    d="M23.5002 46C27.3938 46 30.5502 42.7764 30.5502 38.8C30.5502 34.8235 27.3938 31.6 23.5002 31.6C19.6066 31.6 16.4502 34.8235 16.4502 38.8C16.4502 42.7764 19.6066 46 23.5002 46Z"
+                    fill="black" />
+                <path opacity="0.35" d="M40.7333 34H6.2666V40.4H40.7333V34Z" fill="black" />
+                <path
+                    d="M23.5002 44.4C27.3938 44.4 30.5502 41.1765 30.5502 37.2C30.5502 33.2236 27.3938 30 23.5002 30C19.6066 30 16.4502 33.2236 16.4502 37.2C16.4502 41.1765 19.6066 44.4 23.5002 44.4Z"
+                    fill="#FFA400" />
+                <path
+                    d="M37.5999 33.1996H9.3999V21.246C9.3999 13.2932 15.7128 6.846 23.4999 6.846C31.287 6.846 37.5999 13.2932 37.5999 21.246V33.1996Z"
+                    fill="#FFC400" />
+                <path d="M40.7333 32.4H6.2666V38.8H40.7333V32.4Z" fill="#FFC400" />
+                <ellipse cx="37.5099" cy="19.68" rx="9.49039" ry="10.08" fill="#FF3333" />
+                <path
+                    d="M39.555 14.735L39.255 21.92H37.08L36.78 14.735H39.555ZM38.205 25.76C37.755 25.76 37.385 25.63 37.095 25.37C36.815 25.1 36.675 24.77 36.675 24.38C36.675 23.98 36.815 23.645 37.095 23.375C37.385 23.105 37.755 22.97 38.205 22.97C38.645 22.97 39.005 23.105 39.285 23.375C39.575 23.645 39.72 23.98 39.72 24.38C39.72 24.77 39.575 25.1 39.285 25.37C39.005 25.63 38.645 25.76 38.205 25.76Z"
+                    fill="white" />
+            </g>
+            <defs>
+                <clipPath id="clip0_68_887">
+                    <rect width="47" height="48" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+      </div>
+        <h3 class="text-sm font-medium text-[#515151]">ATUALIZAÇÕES MAIS RECENTES</h3>
+      </div>
+      <button (click)="closeModal()" class="text-gray-600 hover:text-gray-800 text-2xl">&times;</button>
+    </div>
+
+    <!-- Lista de Notificações -->
+    <div class="p-4 max-h-[400px] overflow-y-auto flex items-center w-full">
+      <ul class="space-y-3 w-full">
+        <li *ngFor="let notificacao of notificacoes" class="flex items-center p-3 border-b w-full">
+
+          <div class="flex-1 flex items-center space-x-20 w-full">
+            <div class="flex items-center gap-5">
+              <div class="h-[60px] w-[60px] rounded-full p-1 bg-[#E2E8F0] flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20 7C18.2319 7 16.5362 7.70238 15.286 8.95262C14.0357 10.2029 13.3333 11.8986 13.3333 13.6667C13.3333 15.4348 14.0357 17.1305 15.286 18.3807C16.5362 19.631 18.2319 20.3333 20 20.3333C21.7681 20.3333 23.4638 19.631 24.714 18.3807C25.9643 17.1305 26.6667 15.4348 26.6667 13.6667C26.6667 11.8986 25.9643 10.2029 24.714 8.95262C23.4638 7.70238 21.7681 7 20 7ZM16.6667 22C14.8986 22 13.2029 22.7024 11.9526 23.9526C10.7024 25.2029 10 26.8986 10 28.6667V30.3333C10 31.2174 10.3512 32.0652 10.9763 32.6904C11.6014 33.3155 12.4493 33.6667 13.3333 33.6667H26.6667C27.5507 33.6667 28.3986 33.3155 29.0237 32.6904C29.6488 32.0652 30 31.2174 30 30.3333V28.6667C30 26.8986 29.2976 25.2029 28.0474 23.9526C26.7971 22.7024 25.1014 22 23.3333 22H16.6667Z"
+                    fill="#515151" />
+                </svg>
+              </div>
+
+              <div class="flex-1 flex items-start w-full">
+                <p class="text-start text-sm font-bold w-48 flex-wrap truncate">{{ notificacao.quemEnviou }}</p>
+              </div>
+            </div>
+
+            <div class="flex-1 flex items-start w-full">
+              <p class="text-start text-sm w-80 truncate text-[#515151]">TCC: {{ notificacao.temaTcc }}</p>
+            </div>
+
+            <div class="flex-1 flex items-start w-full">
+              <p class="text-sm text-start w-40 text-[#515151]">{{ notificacao.tituloNotificacao }}</p>
+            </div>
+
+            <!-- Ajuste na estrutura para manter a posição fixa da data -->
+            <div class="flex-1 flex flex-row items-center w-40 gap-10">
+              <p class="text-start text-sm text-[#515151]">{{ notificacao.dataRecebimento | date:'shortDate' }}</p>
+              <div *ngIf="!notificacao.visualizado">
+                <span class="bg-red-500 text-white px-4 py-1 rounded-lg text-2xl shadow-md shadow-gray-400">!</span>
+              </div>
+            </div>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
         <div class="flex flex-row items-center">
             <div class="text-end -space-y-2 mr-2 text-[#515151]">
                 <h1 class="font-medium text-[16px]">Jhon Doe</h1>
-                <p class="text-[14px] font-light">Professor</p>
+                <p class="text-[14px] font-light" >Professor</p>
             </div>
             <div class="h-[60px] w-[60px] rounded-full p-1 bg-[#E2E8F0] flex items-center justify-center">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="60" height="60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M20 7C18.2319 7 16.5362 7.70238 15.286 8.95262C14.0357 10.2029 13.3333 11.8986 13.3333 13.6667C13.3333 15.4348 14.0357 17.1305 15.286 18.3807C16.5362 19.631 18.2319 20.3333 20 20.3333C21.7681 20.3333 23.4638 19.631 24.714 18.3807C25.9643 17.1305 26.6667 15.4348 26.6667 13.6667C26.6667 11.8986 25.9643 10.2029 24.714 8.95262C23.4638 7.70238 21.7681 7 20 7ZM16.6667 22C14.8986 22 13.2029 22.7024 11.9526 23.9526C10.7024 25.2029 10 26.8986 10 28.6667V30.3333C10 31.2174 10.3512 32.0652 10.9763 32.6904C11.6014 33.3155 12.4493 33.6667 13.3333 33.6667H26.6667C27.5507 33.6667 28.3986 33.3155 29.0237 32.6904C29.6488 32.0652 30 31.2174 30 30.3333V28.6667C30 26.8986 29.2976 25.2029 28.0474 23.9526C26.7971 22.7024 25.1014 22 23.3333 22H16.6667Z"
                         fill="#515151" />
@@ -96,6 +182,5 @@
             </button>
         </div>
     </div>
-
-
 </div>
+
