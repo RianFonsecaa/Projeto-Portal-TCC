@@ -1,5 +1,7 @@
 package com.ifba.Gerenciador_TCC.tcc.service;
 
+import com.ifba.Gerenciador_TCC.tcc.builder.TccCardDTOBuilder;
+import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccCardDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
 import com.ifba.Gerenciador_TCC.tcc.interfaces.TccServiceApi;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,4 +56,16 @@ public class TccService implements TccServiceApi {
         Tcc tcc = tccRepository.findById(id).orElseThrow(() -> new RuntimeException("TCC não encontrado"));
         tccRepository.delete(tcc);
     }
+
+    public TccCardDTO criarTccCard(Long id) {
+
+        Optional<Tcc> tccOptional = tccRepository.findById(id);
+        if (tccOptional.isPresent()) {
+            Tcc tcc = tccOptional.get();
+            return TccCardDTOBuilder.buildTccCardDTO(tcc);
+        } else {
+            throw new RuntimeException("TCC não encontrado");
+        }
+    }
+    
 }

@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+import com.ifba.Gerenciador_TCC.quadrodemandas.domain.entity.QuadroDemandas;
+
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,4 +46,11 @@ public class Tcc {
     @Column(name = "status", nullable = false)
     private Boolean status;
 
+  
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "quadro_demandas_id", referencedColumnName = "id")
+    private QuadroDemandas quadroDemandas;
+
+
+    
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-31T15:37:13-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-02-04T15:40:21-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 @Component
 public class UsuarioMapperImpl extends UsuarioMapper {
@@ -21,11 +21,11 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         Usuario.UsuarioBuilder usuario = Usuario.builder();
 
-        usuario.id( usuarioDTO.getId() );
-        usuario.username( usuarioDTO.getUsername() );
-        usuario.senha( usuarioDTO.getSenha() );
-        usuario.nome( usuarioDTO.getNome() );
         usuario.email( usuarioDTO.getEmail() );
+        usuario.id( usuarioDTO.getId() );
+        usuario.nome( usuarioDTO.getNome() );
+        usuario.senha( usuarioDTO.getSenha() );
+        usuario.username( usuarioDTO.getUsername() );
 
         return usuario.build();
     }
@@ -38,11 +38,11 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         UsuarioDTO.UsuarioDTOBuilder usuarioDTO = UsuarioDTO.builder();
 
-        usuarioDTO.id( usuario.getId() );
-        usuarioDTO.username( usuario.getUsername() );
-        usuarioDTO.senha( usuario.getSenha() );
-        usuarioDTO.nome( usuario.getNome() );
         usuarioDTO.email( usuario.getEmail() );
+        usuarioDTO.id( usuario.getId() );
+        usuarioDTO.nome( usuario.getNome() );
+        usuarioDTO.senha( usuario.getSenha() );
+        usuarioDTO.username( usuario.getUsername() );
 
         return usuarioDTO.build();
     }
