@@ -1,0 +1,79 @@
+<main class="flex items-center justify-center min-h-screen bg-[#788673]">
+  <!-- Container principal -->
+  <div class="flex w-max items-col justify-center">
+    <!-- Primeira section -->
+    <section class="w-1/2 flex justify-center rounded-[32px]">
+      <img src="/assets/svg/imagem-principal.svg" alt="Imagem Principal" class="w-full h-auto">
+    </section>
+
+    <!-- Segunda section -->
+    <section class="w-[710px] flex flex-col items-center justify-center bg-white ">
+
+      <img src="/assets/svg/logo-ifba.svg" class="w-[200px] h-[200px] mb-2 relative right-[220px] top-[-40px]">
+
+      <img src="/assets/svg/logo-portal.svg" class="w-[300px] h-[250px] p-4 mb-4 relative right-[50px] bottom-[80px]">
+
+      <h2 class="text-[30px] font-sans w-30 text-[#000000] mb-2 relative right-[65px] bottom-[90px]">{{title}}</h2>
+
+      <div class="bg-green-600 w-[120px] h-1 rounded-[20px] mb-6 relative right-[133px] bottom-[95px]"></div>
+
+      <form class="w-full max-w-sm space-y-6" action="#" method="POST">  
+
+        <div class="relative right-[0px] bottom-[90px]">
+          
+          <label for="email" class="block text-sm font-medium text-gray-900 mb-2 relative left">E-mail</label>
+
+          <div class="flex items-col bg-green-600 w-[100%] rounded-[6px]">
+
+            <div class="flex items-center justify-center w-[50px] h-[50px]">
+              <img src="/assets/svg/logo-email.svg" class="w-[30px]">
+            </div>
+        
+            <!-- Input -->
+            <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              autocomplete="email" 
+              required 
+              class="w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1
+              outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+              placeholder="Digite seu e-mail">
+          </div>
+
+        </div>
+
+        <div class="relative right-[0px] bottom-[90px]">
+
+          <label for="password" class="block text-sm font-medium text-gray-900 mb-2">Senha</label>
+        
+          <div class="flex items-col bg-green-600 w-full rounded-[6px]">
+            <!-- Imagem -->
+            <div class="flex items-center justify-center w-[50px] h-[50px]">
+              <img src="/assets/svg/logo-senha.svg" class="w-[30px]">
+            </div> 
+        
+            <!-- Input -->
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              autocomplete="current-password" 
+              required 
+              class="w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" 
+              placeholder="Digite sua senha">
+          </div>
+        
+        </div>        
+        
+        <div class="relative right-[0px] bottom-[100px] mb-4 pb-4">
+          <a href="#" class="text-green-600 text-sm block text-left font-bold mb-2 underline">{{btnEsqueceuSenha}}</a>
+
+          <button type="submit" 
+            class="w-full bg-green-600 text-white font-semibold h-[50px] rounded-[10px]">{{btnLogin}}</button>
+        </div>
+        
+      </form>
+    </section>
+  </div>
+</main>

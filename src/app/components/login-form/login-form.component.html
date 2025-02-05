@@ -1,0 +1,94 @@
+<main  class="flex items-center justify-center min-h-screen bg-slate-900">
+
+  <div class="flex w-max items-col justify-center">
+
+    <section class="w-1/2 flex justify-center rounded-[32px]">
+      <img src="/assets/svg/imagem-principal.svg" alt="Imagem Principal" class="w-full h-auto">
+    </section>
+
+    <section class="w-[700px] flex flex-col items-center justify-center bg-white ">
+
+      <img src="/assets/svg/logo-ifba.svg" class="w-[200px] h-[200px] mb-2 relative right-[220px] top-[-40px]">
+
+      <img src="/assets/svg/logo-portal.svg" class="w-[300px] h-[250px] p-4 mb-4 relative right-[50px] bottom-[80px]">
+
+      <h2 class="text-[30px] font-sans w-30 text-[#000000] mb-2 relative right-[65px] bottom-[90px]">{{title}}</h2>
+      <div class="bg-green-600 w-[120px] h-1 rounded-[20px] mb-6 relative right-[133px] bottom-[95px]"></div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full max-w-sm space-y-6">
+        <!-- Campo de e-mail -->
+        <div class="relative right-[0px] bottom-[90px]">
+          <div
+          *ngIf="errorMessage"
+          class="flex bg-white dark:bg-gray-900 items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-red-500">
+        <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500 stroke-current" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M12 8V12V8ZM12 16H12.01H12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div class="ml-3">
+            <div class="font-bold text-left text-black dark:text-gray-50">Falha ao realizar login!</div>
+            <div class="w-full text-gray-900 dark:text-gray-300 mt-1">E-mail e/ou senha inválidos.</div>
+        </div>
+      </div>
+          <label for="email" class="block text-sm font-medium text-gray-900 mb-2 relative left">E-mail</label>
+
+          <div class="flex items-col bg-green-600 w-[100%] rounded-[6px]">
+
+            <div class="flex items-center justify-center w-[50px] h-[50px]">
+              <img src="/assets/svg/logo-email.svg" class="w-[30px]">
+            </div>
+
+            <input
+            id="email"
+            controlName="email"
+            type="email"
+            [formControl]="getControl('email')"
+            [maxlength]="254"
+            placeholder="Digite seu e-mail"
+             class="w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1
+              outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+          />
+          <!-- Mensagem de erro para o e-mail -->
+          </div>
+          <p *ngIf="emailIsValid" class="text-red-500 text-sm h-[0px] visible">Por favor, insira um e-mail válido.</p>
+        </div>
+
+        <!-- Campo de senha -->
+        <div class="relative right-[0px] bottom-[80px]">
+
+          <label for="password" for="password" class="block text-sm font-medium text-gray-900 mb-2">Senha</label>
+
+          <div class="flex items-col bg-green-600 w-full rounded-[6px]">
+
+            <div class="flex items-center justify-center w-[50px] h-[50px]">
+              <img src="/assets/svg/logo-senha.svg" class="w-[30px]">
+            </div>
+
+            <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300
+             placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            placeholder="Digite sua senha"
+            >
+
+          </div>
+          <p *ngIf="passwordIsValid" class="text-red-500 text-sm h-[0px] visible">Por favor, insira uma senha válida</p>
+
+        </div>
+        <!-- Botão de envio -->
+        <div class="relative right-[0px] bottom-[70px] mb-4 pb-4">
+          <a href="#" class="text-green-600 text-sm block text-left font-bold mb-3 underline">{{btnEsqueceuSenha}}</a>
+
+          <button type="submit"
+            class="w-full bg-green-600 text-white font-semibold h-[50px] rounded-[10px]">
+            {{btnLogin}}
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
