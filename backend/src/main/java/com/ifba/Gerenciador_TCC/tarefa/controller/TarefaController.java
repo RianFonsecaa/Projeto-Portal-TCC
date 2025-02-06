@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.tarefa.controller;
 
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaControllerApi;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
@@ -64,4 +65,11 @@ public class TarefaController implements TarefaControllerApi {
         tarefaService.deletarTarefa(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Override
+    public ResponseEntity<TarefaDTO> atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO) {
+        return null;
+    }
+
+
 }

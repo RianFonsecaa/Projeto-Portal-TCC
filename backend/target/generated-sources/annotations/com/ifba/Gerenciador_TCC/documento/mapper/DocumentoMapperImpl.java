@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-04T15:40:21-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-06T08:32:24-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class DocumentoMapperImpl extends DocumentoMapper {
@@ -21,11 +21,11 @@ public class DocumentoMapperImpl extends DocumentoMapper {
 
         Documento.DocumentoBuilder documento = Documento.builder();
 
-        documento.dataEnvio( documentoDTO.getDataEnvio() );
-        documento.descricao( documentoDTO.getDescricao() );
         documento.id( documentoDTO.getId() );
         documento.nomeDocumento( documentoDTO.getNomeDocumento() );
         documento.tipoDocumento( documentoDTO.getTipoDocumento() );
+        documento.descricao( documentoDTO.getDescricao() );
+        documento.dataEnvio( documentoDTO.getDataEnvio() );
         documento.urlArquivo( documentoDTO.getUrlArquivo() );
 
         return documento.build();
@@ -39,11 +39,11 @@ public class DocumentoMapperImpl extends DocumentoMapper {
 
         DocumentoDTO.DocumentoDTOBuilder documentoDTO = DocumentoDTO.builder();
 
-        documentoDTO.dataEnvio( documento.getDataEnvio() );
-        documentoDTO.descricao( documento.getDescricao() );
         documentoDTO.id( documento.getId() );
         documentoDTO.nomeDocumento( documento.getNomeDocumento() );
         documentoDTO.tipoDocumento( documento.getTipoDocumento() );
+        documentoDTO.descricao( documento.getDescricao() );
+        documentoDTO.dataEnvio( documento.getDataEnvio() );
         documentoDTO.urlArquivo( documento.getUrlArquivo() );
 
         return documentoDTO.build();

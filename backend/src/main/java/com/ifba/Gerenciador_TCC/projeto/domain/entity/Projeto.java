@@ -27,8 +27,8 @@ public class Projeto {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "aluno_id", referencedColumnName = "id", nullable = false)
-    private Usuario alunoId;
+    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false)
+    private Usuario orientandoId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)

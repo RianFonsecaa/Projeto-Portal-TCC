@@ -27,11 +27,15 @@ public class Tarefa {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-    private Usuario usuarioId;
+    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)
+    private Usuario orientadorId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false)
+    private Usuario orientando_id;
 
     @OneToMany
-    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = true)
     private List<Documento> documentoId;
 
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")

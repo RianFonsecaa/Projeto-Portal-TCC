@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.tarefa.service;
 
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaServiceApi;
@@ -81,5 +82,10 @@ public class TarefaService implements TarefaServiceApi {
             throw new RuntimeException("Tarefa não encontrada com o ID: " + id);
         }
         tarefaRepository.deleteById(id);
+    }
+
+    @Override
+    public TarefaDTO atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO) {
+        return null;
     }
 }
