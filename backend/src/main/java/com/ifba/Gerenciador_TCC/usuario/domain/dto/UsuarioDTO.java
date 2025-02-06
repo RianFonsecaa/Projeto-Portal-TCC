@@ -1,5 +1,7 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.dto;
 
+import com.ifba.Gerenciador_TCC.tipousuario.domain.entity.TipoUsuario;
+
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +30,4 @@ public class UsuarioDTO {
     @NotNull(message = "Email não pode ser vazio")
     private String email;
 
-    @NotNull(message = "Posição não pode ser vazio")
-    private String posicao;
 }
