@@ -21,5 +21,5 @@ public class TipoUsuario {
     private long id;
     @Column(nullable = false)
     @NotEmpty(message = "O campo 'descrição' não pode estar vazio.")
-    private String descricao;
+    private String descricaoTipoUsuario;
 }

@@ -12,7 +12,7 @@ public interface TipoCursoServiceApi {
 
     List<TipoCursoDTO> listarTipoCursos();
 
-    List<TipoCursoDTO> listarTipoCursosPorDescricao(String descricao);
+    List<TipoCursoDTO> listarTipoCursosPorDescricao(String descricaoTipoCurso);
 
     void deletarTipoCurso(Long id);
 }

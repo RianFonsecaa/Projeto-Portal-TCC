@@ -12,7 +12,7 @@ public interface TipoProjetoServiceApi {
 
     List<TipoProjetoDTO> listarTipoProjetos();
 
-    List<TipoProjetoDTO> listarTipoProjetosPorDescricao(String descricao);
+    List<TipoProjetoDTO> listarTipoProjetosPorDescricao(String descricaoTipoProjeto);
 
     void deletarTipoProjeto(Long id);
 }

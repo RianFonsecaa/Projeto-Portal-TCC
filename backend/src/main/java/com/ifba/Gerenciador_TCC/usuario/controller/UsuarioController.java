@@ -21,7 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/api/usuarios")
 public class UsuarioController implements UsuarioControllerApi {
 
     @Autowired
@@ -44,16 +44,5 @@ public class UsuarioController implements UsuarioControllerApi {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails.getUsername());
         return ResponseEntity.ok(new JwtResponse(token));
-    }
-    @GetMapping
-    public ResponseEntity<Void> redirecionar(@RequestBody RedirecionarRequest redirecionarRequest) {
-        Usuario usuario = usuarioService.findById(redirecionarRequest.getId());
-        if (usuario != null) {
-            String posicao = usuario.getTipoUsuario().getDescricao();
-            return ResponseEntity.status(HttpStatus.FOUND)
-                    .location(URI.create("/dashboard/" + posicao))
-                    .build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

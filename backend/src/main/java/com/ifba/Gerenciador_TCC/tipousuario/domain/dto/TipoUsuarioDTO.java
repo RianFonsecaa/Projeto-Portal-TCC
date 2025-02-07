@@ -14,6 +14,6 @@ public class TipoUsuarioDTO {
 
     private Long id;
 
-    @NotEmpty(message = "A descrição do usuario não pode estar vazia")
-    private String descricao;
+    @NotEmpty(message = "A descrição do tipo de usuario não pode estar vazia")
+    private String descricaoTipoUsuario;
 }

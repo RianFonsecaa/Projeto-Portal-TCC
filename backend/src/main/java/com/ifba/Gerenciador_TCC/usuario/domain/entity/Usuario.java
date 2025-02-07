@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.entity;
 
+import com.ifba.Gerenciador_TCC.tipocurso.domain.entity.TipoCurso;
 import com.ifba.Gerenciador_TCC.tipousuario.domain.entity.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -41,5 +42,9 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "tipo_usuario_id", nullable = false)
     private TipoUsuario tipoUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_curso_id")
+    private TipoCurso tipoCurso;
 
 }

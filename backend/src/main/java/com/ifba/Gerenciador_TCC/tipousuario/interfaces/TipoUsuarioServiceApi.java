@@ -12,7 +12,7 @@ public interface TipoUsuarioServiceApi {
 
     List<TipoUsuarioDTO> listarTipoUsuarios();
 
-    List<TipoUsuarioDTO> listarTipoUsuariosPorDescricao(String descricao);
+    List<TipoUsuarioDTO> listarTipoUsuariosPorDescricao(String descricaoTipoUsuario);
 
     void deletarTipoUsuario(Long id);
 }

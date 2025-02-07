@@ -43,8 +43,8 @@ public class TipoCursoService implements TipoCursoServiceApi {
     }
 
     @Override
-    public List<TipoCursoDTO> listarTipoCursosPorDescricao(String descricao) {
-        List<TipoCurso> tipoCursos = tipoCursoRepository.findByDescricaoTipoCurso(descricao);
+    public List<TipoCursoDTO> listarTipoCursosPorDescricao(String descricaoTipoCurso) {
+        List<TipoCurso> tipoCursos = tipoCursoRepository.findByDescricaoTipoCurso(descricaoTipoCurso);
         return tipoCursos.stream()
                 .map(tipoCursoMapper::tipoCursoToDTO)
                 .collect(Collectors.toList());

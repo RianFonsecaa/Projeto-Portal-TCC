@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TipoCursoRepository extends JpaRepository<TipoCurso, Long> {
 
-    List<TipoCurso> findByDescricaoTipoCurso(String descricao);
+    List<TipoCurso> findByDescricaoTipoCurso(String descricaoTipoCurso);
 }

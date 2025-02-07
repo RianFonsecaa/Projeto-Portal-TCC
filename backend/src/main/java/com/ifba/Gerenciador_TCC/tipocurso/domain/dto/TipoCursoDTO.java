@@ -14,6 +14,6 @@ public class TipoCursoDTO {
 
     private Long id;
 
-    @NotEmpty(message = "A descrição do curso não pode estar vazia")
-    private String descricao;
+    @NotEmpty(message = "A descrição do tipo de curso não pode estar vazia")
+    private String descricaoTipoCurso;
 }

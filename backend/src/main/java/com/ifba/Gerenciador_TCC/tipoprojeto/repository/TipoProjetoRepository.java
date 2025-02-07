@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TipoProjetoRepository extends JpaRepository<TipoProjeto, Long> {
 
-    List<TipoProjeto> findByDescricaoTipoProjeto(String descricao);
+    List<TipoProjeto> findByDescricaoTipoProjeto(String descricaoTipoProjeto);
 }

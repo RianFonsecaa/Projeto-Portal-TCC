@@ -14,6 +14,6 @@ public class TipoProjetoDTO {
 
     private Long id;
 
-    @NotEmpty(message = "A descrição do projeto não pode estar vazia")
-    private String descricao;
+    @NotEmpty(message = "A descrição do tipo de projeto não pode estar vazia")
+    private String descricaoTipoProjeto;
 }

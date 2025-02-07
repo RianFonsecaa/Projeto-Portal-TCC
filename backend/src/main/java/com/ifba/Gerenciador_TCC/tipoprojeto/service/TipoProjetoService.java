@@ -43,8 +43,8 @@ public class TipoProjetoService implements TipoProjetoServiceApi {
     }
 
     @Override
-    public List<TipoProjetoDTO> listarTipoProjetosPorDescricao(String descricao) {
-        List<TipoProjeto> tipoProjetos = tipoProjetoRepository.findByDescricaoTipoProjeto(descricao);
+    public List<TipoProjetoDTO> listarTipoProjetosPorDescricao(String descricaoTipoProjeto) {
+        List<TipoProjeto> tipoProjetos = tipoProjetoRepository.findByDescricaoTipoProjeto(descricaoTipoProjeto);
         return tipoProjetos.stream()
                 .map(tipoProjetoMapper::tipoProjetoToDTO)
                 .collect(Collectors.toList());
