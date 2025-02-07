@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TccNotificacao } from '../../model/TccNotificacao';
+import { BaseModalComponent } from '../modais/base-modal/base-modal.component';
+import { Notificacao } from '../../model/Notificacao';
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor, CommonModule],
+  imports: [RouterLink, NgIf, NgFor, CommonModule, BaseModalComponent],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
-  isModalOpen: boolean = false;
   iconColor: string = '#515151';
+  @ViewChild(BaseModalComponent) modal!: BaseModalComponent;
 
-  constructor(private renderer: Renderer2) {} // Injetando Renderer2
+  constructor() { } // Injetando Renderer2
 
   toggleTheme(toggleButton: HTMLElement) {
     if (toggleButton.classList.contains('translate-x-10')) {
@@ -29,28 +30,32 @@ export class UpperBarComponent {
   }
 
   openModal() {
-    this.isModalOpen = true;
-    this.renderer.addClass(document.body, 'overflow-hidden'); // Adicionando classe ao body
+    this.modal.openModal();
   }
 
   closeModal() {
-    this.isModalOpen = false;
-    this.renderer.removeClass(document.body, 'overflow-hidden'); // Removendo classe ao fechar modal
+    this.modal.closeModal();
   }
 
-  notificacoes: TccNotificacao[] = [
+  visualizarNotificacao(notificacao: Notificacao) {
+    notificacao.visualizado = true;
+  }
+
+  notificacoes: Notificacao[] = [
     {
       quemEnviou: 'Clark Kent',
       tituloNotificacao: 'Nova Notificação',
       temaTcc: 'Implementação de Assistentes Virtuais com IA',
       dataRecebimento: new Date('2024-11-26'),
-      visualizado: true
+      horaRecebimento: new Date('2024-11-26T14:30:00'),
+      visualizado: false
     },
     {
       quemEnviou: 'Bruce Wayne',
       tituloNotificacao: 'Tarefa Pendentes',
       temaTcc: 'Plataforma Gamificada para Ensino de Lógica',
       dataRecebimento: new Date('2024-11-26'),
+      horaRecebimento: new Date('2024-11-26T09:15:00'),
       visualizado: false
     },
     {
@@ -58,14 +63,41 @@ export class UpperBarComponent {
       tituloNotificacao: 'Atualização Importante',
       temaTcc: 'Desenvolvimento de Sistemas de Saúde',
       dataRecebimento: new Date('2024-11-24'),
-      visualizado: true
+      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      visualizado: false
+    },
+    {
+      quemEnviou: 'Diana Prince',
+      tituloNotificacao: 'Atualização Importante',
+      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
+      dataRecebimento: new Date('2024-11-24'),
+      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      visualizado: false
+    },
+    {
+      quemEnviou: 'Diana Prince',
+      tituloNotificacao: 'Atualização Importante',
+      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
+      dataRecebimento: new Date('2024-11-24'),
+      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      visualizado: false
+    },
+    {
+      quemEnviou: 'Diana Prince',
+      tituloNotificacao: 'Atualização Importante',
+      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
+      dataRecebimento: new Date('2024-11-24'),
+      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      visualizado: false
     },
     {
       quemEnviou: 'Gabriel Moreira Bispo dos Santos',
       tituloNotificacao: 'Atualização Importante',
       temaTcc: 'Desenvolvimento de Sistemas de Saúde',
       dataRecebimento: new Date('2024-11-24'),
+      horaRecebimento: new Date('2024-11-24T18:10:00'),
       visualizado: false
     }
   ];
+
 }
