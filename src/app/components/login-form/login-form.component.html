@@ -1,0 +1,73 @@
+<main class="flex bg-slate-200">
+
+  <div class="flex w-full h-full fixed">
+
+    <section class="w-3/5 flex justify-center rounded-[32px] h-screen">
+      <img src="/assets/svg/imagem-principal.svg" alt="Imagem Principal" class="w-full h-auto object-cover">
+    </section>
+
+    <section
+      class="w-2/5 max-w-[40vw] h-screen flex flex-col items-center justify-center bg-white px-6 pb-6 border-l border-opacity-30 border-[#444343] shadow-lg shadow-gray-600">
+
+      <div class="w-full flex flex-col items-center mb-4">
+        <img src="../../../assets/img/logo-ifba.png" class="w-[180px] h-[85px] max-w-full object-contain">
+        <img src="../../../assets/img/LOGO FINAL CCOM TEXTO.png" class="w-[220px] h-[120px] max-w-full object-contain">
+      </div>
+
+      <div class="flex flex-col space-y-2 items-start w-[300px] max-w-full">
+        <div class="flex flex-col space-y-2 items-start w-full">
+          <h2 class="text-xl font-medium text-[#444343] text-start">REALIZE SEU LOGIN</h2>
+          <div class="p-[3px] bg-green-600 rounded-lg w-[110px]"></div>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-3 w-full">
+          <div class="w-full">
+            <div *ngIf="errorMessage"
+              class="flex bg-white items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-red-500">
+              <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500 stroke-current" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 8V12V8ZM12 16H12.01H12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <div class="ml-3">
+                <div class="font-bold text-left text-black">Falha ao realizar login!</div>
+                <div class="w-full text-gray-900 mt-1">E-mail e/ou senha inválidos.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-900 mb-2">E-mail</label>
+            <div class="flex items-center w-full">
+              <div class="flex items-center justify-center w-[50px] h-[40px] bg-[#61B668] rounded-l-md">
+                <img src="/assets/svg/logo-email.svg" class="w-[20px] object-contain">
+              </div>
+              <input id="email" controlName="email" type="email" [formControl]="getControl('email')" [maxlength]="254"
+                placeholder="Digite seu e-mail"
+                class="w-full h-[40px] rounded-r-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600" />
+            </div>
+            <p *ngIf="emailIsValid" class="text-red-500 text-sm mt-1">Por favor, insira um e-mail válido.</p>
+
+            <label for="password" class="block text-sm font-medium text-gray-900 mb-2">Senha</label>
+            <div class="flex items-center w-full">
+              <div class="flex items-center justify-center w-[50px] h-[40px] bg-[#61B668] rounded-l-md">
+                <img src="/assets/svg/logo-senha.svg" class="w-[20px] object-contain">
+              </div>
+              <input id="password" type="password" formControlName="password"
+                class="w-full h-[40px] rounded-r-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600"
+                placeholder="Digite sua senha">
+            </div>
+            <p *ngIf="passwordIsValid" class="text-red-500 text-sm mt-1">Por favor, insira uma senha válida.</p>
+          </div>
+
+          <div class="mb-4 pb-4">
+            <a href="#" class="text-[#61B668] text-sm block text-left font-bold mb-3 underline">Esqueceu a senha?</a>
+            <button type="submit"
+              class="w-full bg-green-600 text-white font-semibold h-[40px] rounded-md transition-colors duration-100 hover:bg-green-700">Entrar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>

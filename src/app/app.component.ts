@@ -12,5 +12,5 @@ import { SideBarComponent } from "./components/side-bar/side-bar.component";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'teacher-dashboard';
+  title = 'Portal Tcc';
 }
