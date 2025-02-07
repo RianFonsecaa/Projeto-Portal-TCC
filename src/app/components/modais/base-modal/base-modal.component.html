@@ -1,0 +1,12 @@
+<div class="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50 
+            transition-all duration-300 ease-in-out"
+    [ngClass]="{ 'opacity-0 pointer-events-none': !isModalOpen, 'opacity-100': isModalOpen }">
+
+    <!-- Modal background (overlay) -->
+    <div class="fixed inset-0 bg-black bg-opacity-30 z-10" (click)="closeModal()"></div>
+
+    <!-- Modal content -->
+    <div class="bg-white rounded-lg shadow-lg z-20 p-4 w-auto">
+        <ng-content></ng-content>
+    </div>
+</div>
