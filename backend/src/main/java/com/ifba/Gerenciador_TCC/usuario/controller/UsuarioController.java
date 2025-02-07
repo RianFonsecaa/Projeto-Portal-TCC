@@ -43,6 +43,10 @@ public class UsuarioController implements UsuarioControllerApi {
         );
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails.getUsername());
-        return ResponseEntity.ok(new JwtResponse(token));
+        
+        Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail())
+            .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+        return ResponseEntity.ok(new JwtResponse(token, usuario));
     }
 }

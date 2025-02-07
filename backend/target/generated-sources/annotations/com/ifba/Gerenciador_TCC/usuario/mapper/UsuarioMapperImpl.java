@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-06T23:01:11-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-07T14:35:04-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class UsuarioMapperImpl extends UsuarioMapper {
@@ -25,13 +25,13 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         Usuario.UsuarioBuilder usuario = Usuario.builder();
 
-        usuario.email( usuarioDTO.getEmail() );
         usuario.id( usuarioDTO.getId() );
-        usuario.nome( usuarioDTO.getNome() );
-        usuario.senha( usuarioDTO.getSenha() );
-        usuario.tipoCurso( tipoCursoDTOToTipoCurso( usuarioDTO.getTipoCurso() ) );
-        usuario.tipoUsuario( tipoUsuarioDTOToTipoUsuario( usuarioDTO.getTipoUsuario() ) );
         usuario.username( usuarioDTO.getUsername() );
+        usuario.senha( usuarioDTO.getSenha() );
+        usuario.nome( usuarioDTO.getNome() );
+        usuario.email( usuarioDTO.getEmail() );
+        usuario.tipoUsuario( tipoUsuarioDTOToTipoUsuario( usuarioDTO.getTipoUsuario() ) );
+        usuario.tipoCurso( tipoCursoDTOToTipoCurso( usuarioDTO.getTipoCurso() ) );
 
         return usuario.build();
     }
@@ -44,30 +44,15 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         UsuarioDTO.UsuarioDTOBuilder usuarioDTO = UsuarioDTO.builder();
 
-        usuarioDTO.email( usuario.getEmail() );
         usuarioDTO.id( usuario.getId() );
-        usuarioDTO.nome( usuario.getNome() );
-        usuarioDTO.senha( usuario.getSenha() );
-        usuarioDTO.tipoCurso( tipoCursoToTipoCursoDTO( usuario.getTipoCurso() ) );
-        usuarioDTO.tipoUsuario( tipoUsuarioToTipoUsuarioDTO( usuario.getTipoUsuario() ) );
         usuarioDTO.username( usuario.getUsername() );
+        usuarioDTO.senha( usuario.getSenha() );
+        usuarioDTO.nome( usuario.getNome() );
+        usuarioDTO.email( usuario.getEmail() );
+        usuarioDTO.tipoUsuario( tipoUsuarioToTipoUsuarioDTO( usuario.getTipoUsuario() ) );
+        usuarioDTO.tipoCurso( tipoCursoToTipoCursoDTO( usuario.getTipoCurso() ) );
 
         return usuarioDTO.build();
-    }
-
-    protected TipoCurso tipoCursoDTOToTipoCurso(TipoCursoDTO tipoCursoDTO) {
-        if ( tipoCursoDTO == null ) {
-            return null;
-        }
-
-        TipoCurso.TipoCursoBuilder tipoCurso = TipoCurso.builder();
-
-        tipoCurso.descricaoTipoCurso( tipoCursoDTO.getDescricaoTipoCurso() );
-        if ( tipoCursoDTO.getId() != null ) {
-            tipoCurso.id( tipoCursoDTO.getId() );
-        }
-
-        return tipoCurso.build();
     }
 
     protected TipoUsuario tipoUsuarioDTOToTipoUsuario(TipoUsuarioDTO tipoUsuarioDTO) {
@@ -77,25 +62,27 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         TipoUsuario.TipoUsuarioBuilder tipoUsuario = TipoUsuario.builder();
 
-        tipoUsuario.descricaoTipoUsuario( tipoUsuarioDTO.getDescricaoTipoUsuario() );
         if ( tipoUsuarioDTO.getId() != null ) {
             tipoUsuario.id( tipoUsuarioDTO.getId() );
         }
+        tipoUsuario.descricaoTipoUsuario( tipoUsuarioDTO.getDescricaoTipoUsuario() );
 
         return tipoUsuario.build();
     }
 
-    protected TipoCursoDTO tipoCursoToTipoCursoDTO(TipoCurso tipoCurso) {
-        if ( tipoCurso == null ) {
+    protected TipoCurso tipoCursoDTOToTipoCurso(TipoCursoDTO tipoCursoDTO) {
+        if ( tipoCursoDTO == null ) {
             return null;
         }
 
-        TipoCursoDTO.TipoCursoDTOBuilder tipoCursoDTO = TipoCursoDTO.builder();
+        TipoCurso.TipoCursoBuilder tipoCurso = TipoCurso.builder();
 
-        tipoCursoDTO.descricaoTipoCurso( tipoCurso.getDescricaoTipoCurso() );
-        tipoCursoDTO.id( tipoCurso.getId() );
+        if ( tipoCursoDTO.getId() != null ) {
+            tipoCurso.id( tipoCursoDTO.getId() );
+        }
+        tipoCurso.descricaoTipoCurso( tipoCursoDTO.getDescricaoTipoCurso() );
 
-        return tipoCursoDTO.build();
+        return tipoCurso.build();
     }
 
     protected TipoUsuarioDTO tipoUsuarioToTipoUsuarioDTO(TipoUsuario tipoUsuario) {
@@ -105,9 +92,22 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         TipoUsuarioDTO.TipoUsuarioDTOBuilder tipoUsuarioDTO = TipoUsuarioDTO.builder();
 
-        tipoUsuarioDTO.descricaoTipoUsuario( tipoUsuario.getDescricaoTipoUsuario() );
         tipoUsuarioDTO.id( tipoUsuario.getId() );
+        tipoUsuarioDTO.descricaoTipoUsuario( tipoUsuario.getDescricaoTipoUsuario() );
 
         return tipoUsuarioDTO.build();
+    }
+
+    protected TipoCursoDTO tipoCursoToTipoCursoDTO(TipoCurso tipoCurso) {
+        if ( tipoCurso == null ) {
+            return null;
+        }
+
+        TipoCursoDTO.TipoCursoDTOBuilder tipoCursoDTO = TipoCursoDTO.builder();
+
+        tipoCursoDTO.id( tipoCurso.getId() );
+        tipoCursoDTO.descricaoTipoCurso( tipoCurso.getDescricaoTipoCurso() );
+
+        return tipoCursoDTO.build();
     }
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-06T23:01:11-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-07T14:35:04-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class TipoUsuarioMapperImpl extends TipoUsuarioMapper {
@@ -21,10 +21,10 @@ public class TipoUsuarioMapperImpl extends TipoUsuarioMapper {
 
         TipoUsuario.TipoUsuarioBuilder tipoUsuario = TipoUsuario.builder();
 
-        tipoUsuario.descricaoTipoUsuario( tipoUsuarioDTO.getDescricaoTipoUsuario() );
         if ( tipoUsuarioDTO.getId() != null ) {
             tipoUsuario.id( tipoUsuarioDTO.getId() );
         }
+        tipoUsuario.descricaoTipoUsuario( tipoUsuarioDTO.getDescricaoTipoUsuario() );
 
         return tipoUsuario.build();
     }
@@ -37,8 +37,8 @@ public class TipoUsuarioMapperImpl extends TipoUsuarioMapper {
 
         TipoUsuarioDTO.TipoUsuarioDTOBuilder tipoUsuarioDTO = TipoUsuarioDTO.builder();
 
-        tipoUsuarioDTO.descricaoTipoUsuario( tipoUsuario.getDescricaoTipoUsuario() );
         tipoUsuarioDTO.id( tipoUsuario.getId() );
+        tipoUsuarioDTO.descricaoTipoUsuario( tipoUsuario.getDescricaoTipoUsuario() );
 
         return tipoUsuarioDTO.build();
     }

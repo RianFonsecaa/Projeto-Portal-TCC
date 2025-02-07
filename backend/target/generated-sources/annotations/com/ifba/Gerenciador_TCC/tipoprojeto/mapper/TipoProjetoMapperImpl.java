@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-06T23:01:11-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-07T14:35:04-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class TipoProjetoMapperImpl extends TipoProjetoMapper {
@@ -21,10 +21,10 @@ public class TipoProjetoMapperImpl extends TipoProjetoMapper {
 
         TipoProjeto.TipoProjetoBuilder tipoProjeto = TipoProjeto.builder();
 
-        tipoProjeto.descricaoTipoProjeto( tipoProjetoDTO.getDescricaoTipoProjeto() );
         if ( tipoProjetoDTO.getId() != null ) {
             tipoProjeto.id( tipoProjetoDTO.getId() );
         }
+        tipoProjeto.descricaoTipoProjeto( tipoProjetoDTO.getDescricaoTipoProjeto() );
 
         return tipoProjeto.build();
     }
@@ -37,8 +37,8 @@ public class TipoProjetoMapperImpl extends TipoProjetoMapper {
 
         TipoProjetoDTO.TipoProjetoDTOBuilder tipoProjetoDTO = TipoProjetoDTO.builder();
 
-        tipoProjetoDTO.descricaoTipoProjeto( tipoProjeto.getDescricaoTipoProjeto() );
         tipoProjetoDTO.id( tipoProjeto.getId() );
+        tipoProjetoDTO.descricaoTipoProjeto( tipoProjeto.getDescricaoTipoProjeto() );
 
         return tipoProjetoDTO.build();
     }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-06T23:01:12-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-07T14:35:04-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class TipoCursoMapperImpl extends TipoCursoMapper {
@@ -21,10 +21,10 @@ public class TipoCursoMapperImpl extends TipoCursoMapper {
 
         TipoCurso.TipoCursoBuilder tipoCurso = TipoCurso.builder();
 
-        tipoCurso.descricaoTipoCurso( tipoCursoDTO.getDescricaoTipoCurso() );
         if ( tipoCursoDTO.getId() != null ) {
             tipoCurso.id( tipoCursoDTO.getId() );
         }
+        tipoCurso.descricaoTipoCurso( tipoCursoDTO.getDescricaoTipoCurso() );
 
         return tipoCurso.build();
     }
@@ -37,8 +37,8 @@ public class TipoCursoMapperImpl extends TipoCursoMapper {
 
         TipoCursoDTO.TipoCursoDTOBuilder tipoCursoDTO = TipoCursoDTO.builder();
 
-        tipoCursoDTO.descricaoTipoCurso( tipoCurso.getDescricaoTipoCurso() );
         tipoCursoDTO.id( tipoCurso.getId() );
+        tipoCursoDTO.descricaoTipoCurso( tipoCurso.getDescricaoTipoCurso() );
 
         return tipoCursoDTO.build();
     }
