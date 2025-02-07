@@ -1,10 +1,10 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.entity;
 
-import com.ifba.Gerenciador_TCC.tipocurso.domain.entity.TipoCurso;
-import com.ifba.Gerenciador_TCC.tipousuario.domain.entity.TipoUsuario;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,12 +39,12 @@ public class Usuario {
     @NotEmpty(message = "O campo 'email' não pode estar vazio.")
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoUsuario tipoUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_curso_id")
+    @Enumerated(EnumType.STRING)
+    @Column
     private TipoCurso tipoCurso;
 
 }

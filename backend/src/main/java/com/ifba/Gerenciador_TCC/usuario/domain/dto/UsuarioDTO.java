@@ -1,14 +1,13 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.dto;
 
-import com.ifba.Gerenciador_TCC.tipocurso.domain.dto.TipoCursoDTO;
-import com.ifba.Gerenciador_TCC.tipousuario.domain.dto.TipoUsuarioDTO;
-import com.ifba.Gerenciador_TCC.tipousuario.domain.entity.TipoUsuario;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +24,6 @@ public class UsuarioDTO {
     @NotNull(message = "Username não pode estar vazio")
     private String username;
 
-    @NotNull(message = "Senha não pode estar vazia")
-    private String senha;
-
     @NotNull(message = "Nome não pode estar vazio")
     private String nome;
 
@@ -35,11 +31,15 @@ public class UsuarioDTO {
     @Email(message = "Formato de email inválido")
     private String email;
 
-    @NotNull
-    @JoinColumn
-    private TipoUsuarioDTO tipoUsuario;
+    @NotNull(message = "Senha não pode estar vazia")
+    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
+    private String senha;
 
-    @JoinColumn
-    private TipoCursoDTO tipoCurso;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoUsuario tipoUsuario;
+
+    @Enumerated(EnumType.STRING)
+    private TipoCurso tipoCurso;
 
 }

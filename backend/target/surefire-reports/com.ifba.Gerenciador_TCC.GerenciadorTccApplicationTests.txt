@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ifba.Gerenciador_TCC.GerenciadorTccApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.907 s -- in com.ifba.Gerenciador_TCC.GerenciadorTccApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.241 s -- in com.ifba.Gerenciador_TCC.GerenciadorTccApplicationTests
