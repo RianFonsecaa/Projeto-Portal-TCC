@@ -14,9 +14,6 @@ import { LoginRequest } from 'src/app/model/login-request.model';
   styles: []
 })
 export class LoginFormComponent {
-  @Input() title : string ="";
-  @Input() btnLogin : string="";
-  @Input() btnEsqueceuSenha : string="";
   loginForm: FormGroup;
   errorMessage: boolean = false;
   loginInformation: LoginRequest = { email: '', senha: '' };
@@ -59,7 +56,7 @@ export class LoginFormComponent {
         next: (response) => {
           console.log(response);
           localStorage.setItem(token, response.jwtToken);
-          console.log('Direcionando para outra página',localStorage.getItem(token));
+          console.log('Direcionando para outra página', localStorage.getItem(token));
           this.errorMessage = false;
         },
         error: (error) => {
