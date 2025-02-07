@@ -8,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class UsuarioDTO {
     @NotNull(message = "Email não pode estar vazio")
     @Email(message = "Formato de email inválido")
     private String email;
-
+    
     @NotNull(message = "Senha não pode estar vazia")
     @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
     private String senha;
