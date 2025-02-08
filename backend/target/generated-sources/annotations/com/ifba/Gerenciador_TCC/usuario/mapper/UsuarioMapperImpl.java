@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-04T15:40:21-0300",
+    date = "2025-02-07T16:00:57-0300",
     comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 @Component
@@ -25,6 +25,8 @@ public class UsuarioMapperImpl extends UsuarioMapper {
         usuario.id( usuarioDTO.getId() );
         usuario.nome( usuarioDTO.getNome() );
         usuario.senha( usuarioDTO.getSenha() );
+        usuario.tipoCurso( usuarioDTO.getTipoCurso() );
+        usuario.tipoUsuario( usuarioDTO.getTipoUsuario() );
         usuario.username( usuarioDTO.getUsername() );
 
         return usuario.build();
@@ -42,6 +44,8 @@ public class UsuarioMapperImpl extends UsuarioMapper {
         usuarioDTO.id( usuario.getId() );
         usuarioDTO.nome( usuario.getNome() );
         usuarioDTO.senha( usuario.getSenha() );
+        usuarioDTO.tipoCurso( usuario.getTipoCurso() );
+        usuarioDTO.tipoUsuario( usuario.getTipoUsuario() );
         usuarioDTO.username( usuario.getUsername() );
 
         return usuarioDTO.build();

@@ -2,8 +2,8 @@ package com.ifba.Gerenciador_TCC.projeto.domain.entity;
 
 
 import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
-import com.ifba.Gerenciador_TCC.tipoprojeto.domain.entity.TipoProjeto;
-import com.ifba.Gerenciador_TCC.tipocurso.domain.entity.TipoCurso;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoProjeto;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -57,12 +57,12 @@ public class Projeto {
     @Column(name = "progresso", nullable = false)
     private int progresso;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_projeto_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column
     private TipoProjeto tipoProjeto;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_curso_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column
     private TipoCurso tipoCurso;
   
 
