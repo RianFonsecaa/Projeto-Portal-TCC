@@ -32,7 +32,7 @@ public class Tarefa {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false)
-    private Usuario orientando_id;
+    private Usuario orientandoId;
 
     @OneToMany
     @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = true)

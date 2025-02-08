@@ -46,7 +46,7 @@ public class TarefaService implements TarefaServiceApi {
 
     @Override
     public List<TarefaDTO> listarTarefasPorUsuario(Long idUsuario) {
-        List<Tarefa> tarefas = tarefaRepository.findByIdUsuario(idUsuario);
+        List<Tarefa> tarefas = tarefaRepository.findByOrientandoId(idUsuario);
         return tarefas.stream()
                 .map(tarefaMapper::tarefaToDTO)
                 .collect(Collectors.toList());

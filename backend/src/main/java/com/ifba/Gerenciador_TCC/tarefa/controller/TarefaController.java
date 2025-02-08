@@ -66,8 +66,8 @@ public class TarefaController implements TarefaControllerApi {
         return ResponseEntity.noContent().build();
     }
 
-    @Override
-    public ResponseEntity<TarefaDTO> atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO) {
+    @PostMapping
+    public ResponseEntity<TarefaDTO> atribuirTarefa(@RequestBody AtribuirTarefaDTO atribuirTarefaDTO) {
         return null;
     }
 

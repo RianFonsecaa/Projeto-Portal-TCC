@@ -7,6 +7,7 @@ import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 import com.ifba.Gerenciador_TCC.usuario.mapper.UsuarioMapper;
 import com.ifba.Gerenciador_TCC.usuario.repository.UsuarioRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 public class UsuarioService implements UsuarioServiceApi {
 
     private final UsuarioMapper usuarioMapper;
