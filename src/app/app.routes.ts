@@ -4,11 +4,20 @@ import { DocumentosEFormulariosComponent } from './pages/documentos-e-formulario
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { DashboardOrientadorComponent } from './pages/dashboard-orientador/dashboard-orientador.component';
 
 export const routes: Routes = [
-    { path: "", component: HomeComponent },
-    { path: "login", component: LoginComponent },
-    { path: 'agenda', component: AgendaComponent },
-    { path: 'documentos-formularios', component: DocumentosEFormulariosComponent },
-    { path: 'mensagens', component: MensagensComponent }
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redireciona a raiz para /home
+    {
+        path: 'home',
+        component: HomeComponent,
+        children: [
+            { path: '', redirectTo: '/home/(dashboard:dashboardHome)', pathMatch: 'full' },
+            { path: 'dashboardHome', component: DashboardOrientadorComponent, outlet: 'dashboard' },
+            { path: 'agenda', component: AgendaComponent, outlet: 'dashboard' },
+            { path: 'documentos-formularios', component: DocumentosEFormulariosComponent, outlet: 'dashboard' },
+            { path: 'mensagens', component: MensagensComponent, outlet: 'dashboard' }
+        ]
+    },
+    { path: 'login', component: LoginComponent }
 ];

@@ -1,5 +1,5 @@
 <div class="flex flex-row justify-between items-center bg-slate-100 shadow-lg shadow-slate-300 p-2 h-[75px]">
-    <button class="flex flex-row items-center group" [routerLink]="['/']">
+    <button class="flex flex-row items-center group" [routerLink]="[{ outlets: { dashboard: ['dashboardHome'] } }]">
         <img src="../../../assets/img/LOGO FINAL.png"
             class="h-[60px] w-18 transition-all duration-100 group-hover:scale-105">
         <div
