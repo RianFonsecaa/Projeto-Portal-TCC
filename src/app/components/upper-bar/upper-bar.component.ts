@@ -16,6 +16,11 @@ export class UpperBarComponent {
 
   constructor(private themeService: ThemeService) { }
 
+
+  ngOnInit() {
+    this.themeService.isDarkTheme;
+  }
+
   toggle() {
     this.themeService.toggleTheme();
     this.updateButtonPosition();
@@ -48,4 +53,6 @@ export class UpperBarComponent {
       this.menuOpen = false;
     }
   }
+
+  
 }
