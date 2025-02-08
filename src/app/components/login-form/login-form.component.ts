@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 import { LoginService } from './../../services/login.service';
 import { BasicInputComponent } from '../basic-input/basic-input.component';
-import { LoginRequest } from 'src/app/model/login-request.model';
+import { LoginRequest } from '../../model/login-request.model';
 
 @Component({
   selector: 'app-login-form',
