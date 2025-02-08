@@ -11,10 +11,10 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class UpperBarComponent {
 
-  @ViewChild('toggleButton') toggleButton!: ElementRef; 
-  menuOpen: boolean = false; 
+  @ViewChild('toggleButton') toggleButton!: ElementRef;
+  menuOpen: boolean = false;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService) { }
 
   toggle() {
     this.themeService.toggleTheme();
@@ -26,7 +26,7 @@ export class UpperBarComponent {
 
   private updateButtonPosition() {
     if (this.isDarkMode) {
-      this.toggleButton.nativeElement.classList.remove('translate-x-0');
+      this.toggleButton.nativeElement.classList.remove('translate-x-10');
       this.toggleButton.nativeElement.classList.add('translate-x-10');
     } else {
       this.toggleButton.nativeElement.classList.remove('translate-x-10');
@@ -41,9 +41,9 @@ export class UpperBarComponent {
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-    const menuElement = document.querySelector('nav'); 
-    const buttonElement = document.querySelector('button'); 
-    
+    const menuElement = document.querySelector('nav');
+    const buttonElement = document.querySelector('button');
+
     if (menuElement && buttonElement && !menuElement.contains(event.target as Node) && !buttonElement.contains(event.target as Node)) {
       this.menuOpen = false;
     }

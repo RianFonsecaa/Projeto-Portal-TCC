@@ -3,37 +3,13 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
-
-body.dark .bg-slate-100 {
-  background-color: #1a1818 !important; 
-  color: #ffffff !important;
-}
-
-body.dark {
-    background-color: #292828; 
-    color: #ffffff; 
-  }
-   
-  body.dark .bg-white {
-    background-color: #1a1a1a !important; 
-    color: #ffffff !important; 
-  }
-
-  body.dark .text-gray-800 {
-    color: #f3f4f6 !important; 
-  }
-
-  body.dark .bg-gray-50 {
-    background-color: #1a1a1a !important; 
-    color: #ffffff !important; 
-  }
