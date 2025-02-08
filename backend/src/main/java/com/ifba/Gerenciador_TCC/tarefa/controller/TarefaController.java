@@ -19,7 +19,7 @@ public class TarefaController implements TarefaControllerApi {
     private TarefaService tarefaService;
 
     @PostMapping
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO tarefaDTO) {
+    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody AtribuirTarefaDTO tarefaDTO) {
         TarefaDTO tarefaCriado = tarefaService.criarTarefa(tarefaDTO);
         return ResponseEntity.ok(tarefaCriado);
     }
@@ -66,9 +66,10 @@ public class TarefaController implements TarefaControllerApi {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping
+    @PostMapping("/atribuir")
     public ResponseEntity<TarefaDTO> atribuirTarefa(@RequestBody AtribuirTarefaDTO atribuirTarefaDTO) {
-        return null;
+        TarefaDTO tarefaAtribuidaDTO = tarefaService.atribuirTarefa(atribuirTarefaDTO);
+        return ResponseEntity.ok(tarefaAtribuidaDTO);
     }
 
 

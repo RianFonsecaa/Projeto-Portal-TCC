@@ -28,7 +28,6 @@ C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipo
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodemandas\domain\entity\QuadroDemandas.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\mapper\TarefaMapper.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\SecurityConfig.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipousuario\domain\entity\TipoUsuario.java
 C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\domain\dto\TccDTO.java

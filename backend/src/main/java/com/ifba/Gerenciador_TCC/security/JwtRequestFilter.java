@@ -34,7 +34,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
-        if (request.getServletPath().equals("/dashboard/login")) {
+        if (request.getServletPath().equals("/api/tarefas/atribuir")) {
             chain.doFilter(request, response);
             return;
         }

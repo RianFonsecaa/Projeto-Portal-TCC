@@ -26,12 +26,12 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientadorId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientandoId;
 
     @OneToMany
