@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-07T16:00:57-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-10T19:12:29-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class TccMapperImpl implements TccMapper {
@@ -21,12 +21,12 @@ public class TccMapperImpl implements TccMapper {
 
         Tcc.TccBuilder tcc = Tcc.builder();
 
-        tcc.dataEntrega( tccDTO.getDataEntrega() );
-        tcc.dataInicio( tccDTO.getDataInicio() );
-        tcc.descricao( tccDTO.getDescricao() );
         tcc.id( tccDTO.getId() );
-        tcc.status( tccDTO.getStatus() );
         tcc.titulo( tccDTO.getTitulo() );
+        tcc.descricao( tccDTO.getDescricao() );
+        tcc.dataInicio( tccDTO.getDataInicio() );
+        tcc.dataEntrega( tccDTO.getDataEntrega() );
+        tcc.status( tccDTO.getStatus() );
 
         return tcc.build();
     }
@@ -39,12 +39,12 @@ public class TccMapperImpl implements TccMapper {
 
         TccDTO.TccDTOBuilder tccDTO = TccDTO.builder();
 
-        tccDTO.dataEntrega( tcc.getDataEntrega() );
-        tccDTO.dataInicio( tcc.getDataInicio() );
-        tccDTO.descricao( tcc.getDescricao() );
         tccDTO.id( tcc.getId() );
-        tccDTO.status( tcc.getStatus() );
         tccDTO.titulo( tcc.getTitulo() );
+        tccDTO.descricao( tcc.getDescricao() );
+        tccDTO.dataInicio( tcc.getDataInicio() );
+        tccDTO.dataEntrega( tcc.getDataEntrega() );
+        tccDTO.status( tcc.getStatus() );
 
         return tccDTO.build();
     }
