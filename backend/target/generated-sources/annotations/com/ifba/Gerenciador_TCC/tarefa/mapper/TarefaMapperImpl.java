@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-07T16:00:57-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-10T19:12:29-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
 )
 @Component
 public class TarefaMapperImpl extends TarefaMapper {
@@ -21,11 +21,11 @@ public class TarefaMapperImpl extends TarefaMapper {
 
         Tarefa.TarefaBuilder tarefa = Tarefa.builder();
 
-        tarefa.dataEnvio( tarefaDTO.getDataEnvio() );
-        tarefa.dataFim( tarefaDTO.getDataFim() );
-        tarefa.descricao( tarefaDTO.getDescricao() );
         tarefa.id( tarefaDTO.getId() );
         tarefa.nomeTarefa( tarefaDTO.getNomeTarefa() );
+        tarefa.descricao( tarefaDTO.getDescricao() );
+        tarefa.dataEnvio( tarefaDTO.getDataEnvio() );
+        tarefa.dataFim( tarefaDTO.getDataFim() );
 
         return tarefa.build();
     }
@@ -38,11 +38,11 @@ public class TarefaMapperImpl extends TarefaMapper {
 
         TarefaDTO.TarefaDTOBuilder tarefaDTO = TarefaDTO.builder();
 
-        tarefaDTO.dataEnvio( tarefa.getDataEnvio() );
-        tarefaDTO.dataFim( tarefa.getDataFim() );
-        tarefaDTO.descricao( tarefa.getDescricao() );
         tarefaDTO.id( tarefa.getId() );
         tarefaDTO.nomeTarefa( tarefa.getNomeTarefa() );
+        tarefaDTO.descricao( tarefa.getDescricao() );
+        tarefaDTO.dataEnvio( tarefa.getDataEnvio() );
+        tarefaDTO.dataFim( tarefa.getDataFim() );
 
         return tarefaDTO.build();
     }
