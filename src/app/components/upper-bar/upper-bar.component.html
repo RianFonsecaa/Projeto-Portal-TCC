@@ -15,9 +15,9 @@
     </div>
   </button>
 
-  <div class="flex items-center justify-end space-x-16">
+  <div class="flex items-center justify-end space-x-16 mr-6">
     <div
-      class="flex align-middle bg-[#E2E8F0] dark:bg-gray-600 rounded-l-full rounded-r-full w-[80px] h-[35px] items-center">
+      class="flex align-middle bg-[#E2E8F0] dark:bg-gray-800 rounded-l-full rounded-r-full w-[80px] h-[35px] items-center">
       <button (click)="this.toggleDarkMode()" class="h-full">
         <svg #themeIcon class="transition-transform duration-300 w-full h-full" viewBox="0 0 50 40"
           [ngClass]="{'translate-x-10': themeService.darkMode()}" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,44 +88,43 @@
             fill="#515151" />
         </svg>
       </div>
-      <button (click)="toggleMenu($event)" class="relative">
+
+      <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="relative" type="button">
         <svg width="42" height="40" viewBox="0 0 49 47" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16.3335 19.5833L24.5002 27.4167L32.6668 19.5833" stroke="#515151" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
 
-      <nav *ngIf="menuOpen"
-        class="absolute right-0 mt-40 w-40 mr-2 bg-white text-black rounded-md  shadow-lg dark:bg-[#0f0f0f]">
+      <!-- Dropdown menu -->
+      <div id="dropdownDivider"
+        class="z-10 hidden bg-slate-50 border border-gray-200 divide-gray-200 shadow-md rounded-lg text-medium w-32 dark:bg-gray-800 dark:border-gray-600">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+          <li
+            class="flex flex-row align-middle justify-start px-2 items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-5 h-5 text-gray-800 dark:text-white align-middle" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z"
+                clip-rule="evenodd" />
+            </svg>
 
-        <button routerLink="/perfil"
-          class="flex flex-row align-middle space-x-1 justify-center px-4 py-2 w-full text-sm hover:bg-[#47924F] hover:rounded-md hover:text-white dark:text-white dark:hover:bg-[#272727]">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path fill-rule="evenodd"
-              d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z"
-              clip-rule="evenodd" />
-          </svg>
-          <span>
-            Perfil
-          </span>
-        </button>
+            <a href="#" class="block px-2 py-2">Meu
+              perfil</a>
+          </li>
+          <div class="border-b border-gray-200 dark:border-gray-600"></div>
+          <li
+            class="flex flex-row align-middle justify-start px-2 items-center hover:bg-gray-100 dark:hover:bg-gray-600">
+            <svg class="w-5 h-5 text-red-600 align-middle" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
+            </svg>
 
-        <div class="w-full border-b border-gray-200 bg-black rounded-lg"></div>
-
-        <button
-          class="flex flex-row align-middle space-x-1 justify-center w-full px-4 py-2 text-sm hover:bg-[#47924F] hover:rounded-md hover:text-white dark:text-white dark:hover:bg-[#272727]">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
-          </svg>
-          <span>
-            Sair
-          </span>
-
-        </button>
-      </nav>
+            <a href="#" class="block px-2 py-2 text-sm text-red-600">Sair</a>
+          </li>
+        </ul>
+      </div>
 
 
     </div>

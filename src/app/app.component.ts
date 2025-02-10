@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { UpperBarComponent } from "./components/upper-bar/upper-bar.component";
 import { SideBarComponent } from "./components/side-bar/side-bar.component";
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +13,7 @@ import { SideBarComponent } from "./components/side-bar/side-bar.component";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'teacher-dashboard';
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
