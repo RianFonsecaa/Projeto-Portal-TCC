@@ -1,12 +1,12 @@
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ThemeService } from '../../services/theme.service';
+import { ThemeService } from '../../service/theme.service';
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, NgClass],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
@@ -14,29 +14,10 @@ export class UpperBarComponent {
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   menuOpen: boolean = false;
 
-  constructor(private themeService: ThemeService) { }
+  constructor(public themeService: ThemeService) { }
 
-
-  ngOnInit() {
-    this.themeService.isDarkTheme;
-  }
-
-  toggle() {
-    this.themeService.toggleTheme();
-    this.updateButtonPosition();
-  }
-  get isDarkMode(): boolean {
-    return this.themeService.isDarkTheme();
-  }
-
-  private updateButtonPosition() {
-    if (this.isDarkMode) {
-      this.toggleButton.nativeElement.classList.remove('translate-x-10');
-      this.toggleButton.nativeElement.classList.add('translate-x-10');
-    } else {
-      this.toggleButton.nativeElement.classList.remove('translate-x-10');
-      this.toggleButton.nativeElement.classList.add('translate-x-0');
-    }
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
   }
 
   toggleMenu(event: MouseEvent) {
@@ -54,5 +35,5 @@ export class UpperBarComponent {
     }
   }
 
-  
+
 }
