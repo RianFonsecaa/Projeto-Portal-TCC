@@ -1,10 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
-import { LoginService } from './../../services/login.service';
-import { BasicInputComponent } from '../basic-input/basic-input.component';
-import { LoginRequest } from '../../model/login-request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -16,9 +14,10 @@ import { LoginRequest } from '../../model/login-request.model';
 export class LoginFormComponent {
   loginForm: FormGroup;
   errorMessage: boolean = false;
-  loginInformation: LoginRequest = { email: '', senha: '' };
+  private usuarioMock = { email: 'teste@exemplo.com', senha: '123456' };
+  private fakeJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockToken12345';
 
-  constructor(private loginService: LoginService) {
+  constructor(private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.email, Validators.required],
@@ -47,27 +46,26 @@ export class LoginFormComponent {
 
   onSubmit() {
     const token = 'jwtToken';
+    const email = this.loginForm.get('email')?.value;
+    const senha = this.loginForm.get('password')?.value;
 
     if (this.loginForm.valid) {
-      this.loginInformation.email = this.loginForm.get('email')?.value;
-      this.loginInformation.senha = this.loginForm.get('password')?.value;
-
-      this.loginService.login(this.loginInformation).subscribe({
-        next: (response) => {
-          console.log(response);
-          localStorage.setItem(token, response.jwtToken);
-          console.log('Direcionando para outra página', localStorage.getItem(token));
-          this.errorMessage = false;
-        },
-        error: (error) => {
-          console.log('Erro ao realizar login:', error);
-          this.errorMessage = true;
-        }
-      });
+      if (email === this.usuarioMock.email && senha === this.usuarioMock.senha) {
+        localStorage.setItem(token, this.fakeJwtToken);
+        console.log('Login bem-sucedido. Token armazenado:', localStorage.getItem(token));
+        this.errorMessage = false;
+        this.router.navigate(['/home', { outlets: { dashboard: 'dashboardHome' } }]).then(() => {
+          window.location.reload();
+        });
+      } else {
+        console.log('Credenciais inválidas');
+        this.errorMessage = true;
+      }
     } else {
       console.warn('Formulário inválido!');
     }
   }
+
   getControl(name: string): FormControl {
     return this.loginForm.get(name) as FormControl;
   }

@@ -1,6 +1,6 @@
 import { DatePipe, NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../service/theme.service';
 import { BaseModalComponent } from '../modais/base-modal/base-modal.component';
 import { Notificacao } from '../../model/Notificacao';
@@ -16,10 +16,15 @@ export class UpperBarComponent {
   @ViewChild(BaseModalComponent) modal!: BaseModalComponent;
   darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png'
-  constructor(public themeService: ThemeService) { }
+  constructor(public themeService: ThemeService, private router: Router) { }
 
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
+  }
+  
+  Logout(){
+    localStorage.clear;
+    this.router.navigate(['/login']);
   }
 
   openModal() {
