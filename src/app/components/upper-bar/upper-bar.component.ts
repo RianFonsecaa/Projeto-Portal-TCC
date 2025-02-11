@@ -1,32 +1,25 @@
-import { CommonModule } from '@angular/common';
-import { NgFor, NgIf } from '@angular/common';
-import { Component, Renderer2, ViewChild } from '@angular/core';
+import { DatePipe, NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ThemeService } from '../../service/theme.service';
 import { BaseModalComponent } from '../modais/base-modal/base-modal.component';
 import { Notificacao } from '../../model/Notificacao';
+
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor, CommonModule, BaseModalComponent],
+  imports: [RouterLink, NgIf, NgClass, NgFor, BaseModalComponent, DatePipe],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
-  iconColor: string = '#515151';
   @ViewChild(BaseModalComponent) modal!: BaseModalComponent;
+  darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
+  lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png'
+  constructor(public themeService: ThemeService) { }
 
-  constructor() { } // Injetando Renderer2
-
-  toggleTheme(toggleButton: HTMLElement) {
-    if (toggleButton.classList.contains('translate-x-10')) {
-      toggleButton.classList.remove('translate-x-10');
-      toggleButton.classList.add('translate-x-0');
-      this.iconColor = '#515151';
-    } else {
-      toggleButton.classList.remove('translate-x-0');
-      toggleButton.classList.add('translate-x-10');
-      this.iconColor = '#61B668';
-    }
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
   }
 
   openModal() {

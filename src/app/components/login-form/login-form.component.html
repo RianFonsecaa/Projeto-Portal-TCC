@@ -45,7 +45,7 @@
               </div>
               <input id="email" controlName="email" type="email" [formControl]="getControl('email')" [maxlength]="254"
                 placeholder="Digite seu e-mail"
-                class="w-full h-[40px] rounded-r-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600" />
+                class="w-full h-[40px] rounded-r-md border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600" />
             </div>
             <p *ngIf="emailIsValid" class="text-red-500 text-sm mt-1">Por favor, insira um e-mail válido.</p>
 
@@ -55,7 +55,7 @@
                 <img src="/assets/svg/logo-senha.svg" class="w-[20px] object-contain">
               </div>
               <input id="password" type="password" formControlName="password"
-                class="w-full h-[40px] rounded-r-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600"
+                class="w-full h-[40px] rounded-r-md bg-white border-gray-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600"
                 placeholder="Digite sua senha">
             </div>
             <p *ngIf="passwordIsValid" class="text-red-500 text-sm mt-1">Por favor, insira uma senha válida.</p>
