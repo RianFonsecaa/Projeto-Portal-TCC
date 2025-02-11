@@ -21,6 +21,7 @@ com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO$QuadroDeman
 com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoControllerApi.class
 com\ifba\Gerenciador_TCC\quadrodemandas\controller\QuadroDemandasController.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO$UsuarioDTOBuilder.class
+com\ifba\Gerenciador_TCC\notificacao\controller\EmailController.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\reuniao\domain\entity\Reuniao$ReuniaoBuilder.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
@@ -85,6 +86,7 @@ com\ifba\Gerenciador_TCC\tcc\domain\entity\Tcc.class
 com\ifba\Gerenciador_TCC\reuniao\mapper\ReuniaoMapper.class
 com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.class
 com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.class
+com\ifba\Gerenciador_TCC\notificacao\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\repository\QuadroDemandasRepository.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.class
