@@ -17,8 +17,11 @@ public class TarefaDTO {
 
     private Long id;
 
-    @NotNull(message = "O ID do usuário não pode estar vazio")
-    private Long idUsuario;
+    @NotNull(message = "O ID do orientador não pode estar vazio")
+    private Long orientadorId;
+
+    @NotNull(message = "O ID do orientando não pode estar vazio")
+    private Long orientandoId;
 
     private Long idDocumento;
 

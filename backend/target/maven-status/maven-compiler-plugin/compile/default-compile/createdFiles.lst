@@ -13,6 +13,7 @@ com\ifba\Gerenciador_TCC\reuniao\mapper\ReuniaoMapperImpl.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.class
 com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.class
+com\ifba\Gerenciador_TCC\tarefa\builder\AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.class
 com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapperImpl.class
 com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoDTO.class
@@ -36,6 +37,7 @@ com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.class
 com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO$TccCardDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.class
 com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.class
+com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.class
 com\ifba\Gerenciador_TCC\tcc\builder\TccCardDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
@@ -60,6 +62,7 @@ com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO$ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\tcc\mapper\TccMapper.class
 com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
+com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO$AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoServiceApi.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\reuniao\repository\ReuniaoRepository.class
@@ -75,7 +78,6 @@ com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto.class
 com\ifba\Gerenciador_TCC\projeto\controller\ProjetoControllerImpl.class
 com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoDTO$DocumentoDTOBuilder.class
 com\ifba\Gerenciador_TCC\reuniao\domain\entity\Reuniao.class
-com\ifba\Gerenciador_TCC\tarefa\mapper\TarefaMapperImpl.class
 com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapper.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\entity\QuadroDemandas.class
 com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaControllerApi.class
@@ -90,4 +92,3 @@ com\ifba\Gerenciador_TCC\notificacao\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\repository\QuadroDemandasRepository.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.class
-com\ifba\Gerenciador_TCC\tarefa\mapper\TarefaMapper.class

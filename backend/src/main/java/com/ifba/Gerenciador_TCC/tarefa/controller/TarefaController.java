@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.tarefa.controller;
 
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaControllerApi;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
@@ -18,7 +19,7 @@ public class TarefaController implements TarefaControllerApi {
     private TarefaService tarefaService;
 
     @PostMapping
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO tarefaDTO) {
+    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody AtribuirTarefaDTO tarefaDTO) {
         TarefaDTO tarefaCriado = tarefaService.criarTarefa(tarefaDTO);
         return ResponseEntity.ok(tarefaCriado);
     }
@@ -64,4 +65,12 @@ public class TarefaController implements TarefaControllerApi {
         tarefaService.deletarTarefa(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/atribuir")
+    public ResponseEntity<TarefaDTO> atribuirTarefa(@RequestBody AtribuirTarefaDTO atribuirTarefaDTO) {
+        TarefaDTO tarefaAtribuidaDTO = tarefaService.atribuirTarefa(atribuirTarefaDTO);
+        return ResponseEntity.ok(tarefaAtribuidaDTO);
+    }
+
+
 }
