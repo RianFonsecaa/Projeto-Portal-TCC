@@ -23,8 +23,12 @@ com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO$QuadroDeman
 com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoControllerApi.class
 com\ifba\Gerenciador_TCC\quadrodemandas\controller\QuadroDemandasController.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO$UsuarioDTOBuilder.class
+<<<<<<< HEAD
 com\ifba\Gerenciador_TCC\tipousuario\domain\entity\TipoUsuario.class
 com\ifba\Gerenciador_TCC\tipoprojeto\domain\entity\TipoProjeto$TipoProjetoBuilder.class
+=======
+com\ifba\Gerenciador_TCC\notificacao\controller\EmailController.class
+>>>>>>> main
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\reuniao\domain\entity\Reuniao$ReuniaoBuilder.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
@@ -35,6 +39,10 @@ com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO$ReuniaoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapperImpl.class
 com\ifba\Gerenciador_TCC\tcc\interfaces\TccServiceApi.class
+<<<<<<< HEAD
+=======
+com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.class
+>>>>>>> main
 com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO$TccCardDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.class
 com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.class
@@ -52,7 +60,6 @@ com\ifba\Gerenciador_TCC\tcc\service\TccService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO.class
 com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
 com\ifba\Gerenciador_TCC\documento\domain\entity\Documento$DocumentoBuilder.class
-com\ifba\Gerenciador_TCC\tipousuario\domain\entity\TipoUsuario$TipoUsuarioBuilder.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
 com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.class
 com\ifba\Gerenciador_TCC\tcc\repository\TccRepository.class
@@ -66,6 +73,7 @@ com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO$AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoServiceApi.class
+com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\reuniao\repository\ReuniaoRepository.class
 com\ifba\Gerenciador_TCC\documento\repository\DocumentoRepository.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapper.class
@@ -90,6 +98,12 @@ com\ifba\Gerenciador_TCC\tcc\domain\entity\Tcc.class
 com\ifba\Gerenciador_TCC\reuniao\mapper\ReuniaoMapper.class
 com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.class
 com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.class
+<<<<<<< HEAD
 com\ifba\Gerenciador_TCC\quadrodemandas\repository\QuadroDemandasRepository.class
 com\ifba\Gerenciador_TCC\tipoprojeto\domain\entity\TipoProjeto.class
+=======
+com\ifba\Gerenciador_TCC\notificacao\service\EmailService.class
+com\ifba\Gerenciador_TCC\quadrodemandas\repository\QuadroDemandasRepository.class
+com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.class
+>>>>>>> main
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.class

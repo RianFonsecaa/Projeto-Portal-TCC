@@ -3,6 +3,8 @@ package com.ifba.Gerenciador_TCC.usuario.service;
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.usuario.domain.dto.UsuarioDTO;
 import com.ifba.Gerenciador_TCC.login.domain.LoginRequest;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 import com.ifba.Gerenciador_TCC.usuario.mapper.UsuarioMapper;
@@ -59,8 +61,15 @@ public class UsuarioService implements UsuarioServiceApi {
         return usuario.get();
     }
 
-
     public Optional<Usuario> findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
+    }
+
+    public Optional<Usuario> findByTipoUsuario(TipoUsuario tipoUsuario) {
+        return usuarioRepository.findByTipoUsuario(tipoUsuario);
+    }
+
+    public Optional<Usuario> findByTipoCurso(TipoCurso tipoCurso) {
+        return usuarioRepository.findByTipoCurso(tipoCurso);
     }
 }

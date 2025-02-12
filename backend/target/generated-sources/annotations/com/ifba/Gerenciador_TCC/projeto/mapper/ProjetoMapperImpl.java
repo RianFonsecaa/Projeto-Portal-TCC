@@ -1,14 +1,16 @@
 package com.ifba.Gerenciador_TCC.projeto.mapper;
 
+import javax.annotation.processing.Generated;
+
+import org.springframework.stereotype.Component;
+
 import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
-import javax.annotation.processing.Generated;
-import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-08T16:38:21-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
+    date = "2025-02-04T15:40:33-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 @Component
 public class ProjetoMapperImpl extends ProjetoMapper {
