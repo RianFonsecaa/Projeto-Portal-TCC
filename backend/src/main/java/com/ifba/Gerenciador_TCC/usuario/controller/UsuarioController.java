@@ -49,4 +49,11 @@ public class UsuarioController implements UsuarioControllerApi {
 
         return ResponseEntity.ok(new JwtResponse(token, usuario));
     }
+
+        @GetMapping("/login")
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+        List<Usuario> usuarios = usuarioService.findAll();
+        return ResponseEntity.ok(usuarios);
+    }
+    
 }
