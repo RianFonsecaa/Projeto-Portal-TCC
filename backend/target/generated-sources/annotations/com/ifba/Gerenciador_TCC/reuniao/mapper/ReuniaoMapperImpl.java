@@ -1,16 +1,14 @@
 package com.ifba.Gerenciador_TCC.reuniao.mapper;
 
-import javax.annotation.processing.Generated;
-
-import org.springframework.stereotype.Component;
-
 import com.ifba.Gerenciador_TCC.reuniao.domain.dto.ReuniaoDTO;
 import com.ifba.Gerenciador_TCC.reuniao.domain.entity.Reuniao;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-04T15:40:21-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T10:23:03-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class ReuniaoMapperImpl extends ReuniaoMapper {

@@ -48,7 +48,7 @@ public class SecurityConfig {
     public DefaultSecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/tarefas/atribuir").permitAll()
+                        .requestMatchers("/api/usuarios/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

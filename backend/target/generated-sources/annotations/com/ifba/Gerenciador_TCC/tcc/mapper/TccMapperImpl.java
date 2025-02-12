@@ -1,16 +1,14 @@
 package com.ifba.Gerenciador_TCC.tcc.mapper;
 
-import javax.annotation.processing.Generated;
-
-import org.springframework.stereotype.Component;
-
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-04T15:44:14-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T10:23:04-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
 public class TccMapperImpl implements TccMapper {
