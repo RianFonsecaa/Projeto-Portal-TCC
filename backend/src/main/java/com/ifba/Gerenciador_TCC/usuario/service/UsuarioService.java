@@ -9,7 +9,9 @@ import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 import com.ifba.Gerenciador_TCC.usuario.mapper.UsuarioMapper;
 import com.ifba.Gerenciador_TCC.usuario.repository.UsuarioRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +19,12 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 public class UsuarioService implements UsuarioServiceApi {
 
+    @Autowired
     private final UsuarioMapper usuarioMapper;
+    @Autowired
     private final UsuarioRepository usuarioRepository;
 
     @Override

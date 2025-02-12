@@ -26,12 +26,16 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-    private Usuario usuarioId;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false, unique = false)
+    private Usuario orientadorId;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false, unique = false)
+    private Usuario orientandoId;
 
     @OneToMany
-    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = true)
     private List<Documento> documentoId;
 
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")

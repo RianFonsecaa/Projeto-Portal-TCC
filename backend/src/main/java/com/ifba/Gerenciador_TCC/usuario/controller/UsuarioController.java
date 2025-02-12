@@ -10,6 +10,7 @@ import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.security.JwtTokenUtil;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,4 +50,11 @@ public class UsuarioController implements UsuarioControllerApi {
 
         return ResponseEntity.ok(new JwtResponse(token, usuario));
     }
+
+        @GetMapping("/login")
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+        List<Usuario> usuarios = usuarioService.findAll();
+        return ResponseEntity.ok(usuarios);
+    }
+    
 }
