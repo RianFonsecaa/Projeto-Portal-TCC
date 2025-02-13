@@ -12,11 +12,10 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
-    @PostMapping("/enviar")
-    public String enviarEmail(@RequestParam String para, 
-                              @RequestParam String assunto, 
-                              @RequestParam String mensagem) {
-        emailService.enviarEmail(para, assunto, mensagem);
-        return "E-mail enviado com sucesso!";
+    @PostMapping("/teste")
+    public String testarEnvioEmail(@RequestParam String para, 
+                                   @RequestParam String assunto, 
+                                   @RequestParam String mensagem) {
+        return emailService.enviarEmailTexto(para, assunto, mensagem);
     }
 }
