@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.tcc.controller;
 
+import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccCardDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
 import com.ifba.Gerenciador_TCC.tcc.interfaces.TccControllerApi;
 import com.ifba.Gerenciador_TCC.tcc.service.TccService;
@@ -50,4 +51,11 @@ public class TccController implements TccControllerApi {
         tccService.deletarTcc(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/card/{id}")
+    public ResponseEntity<TccCardDTO> buscarTccCard(@PathVariable Long id) {
+        TccCardDTO tccCard = tccService.criarTccCard(id);
+        return ResponseEntity.ok(tccCard);
+    }
+
 }

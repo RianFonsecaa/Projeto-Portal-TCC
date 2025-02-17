@@ -1,5 +1,9 @@
 package com.ifba.Gerenciador_TCC.tcc.service;
 
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
+import com.ifba.Gerenciador_TCC.projeto.repository.ProjetoRepository;
+import com.ifba.Gerenciador_TCC.quadrodemandas.domain.dto.QuadroDemandasDTO;
+import com.ifba.Gerenciador_TCC.quadrodemandas.interfaces.QuadroDemandasServiceApi;
 import com.ifba.Gerenciador_TCC.tcc.builder.TccCardDTOBuilder;
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccCardDTO;
 import com.ifba.Gerenciador_TCC.tcc.domain.dto.TccDTO;
@@ -17,12 +21,17 @@ import java.util.stream.Collectors;
 @Service
 public class TccService implements TccServiceApi {
 
-    @Autowired
+ @Autowired
     private TccRepository tccRepository;
 
     @Autowired
     private TccMapper tccMapper;
 
+    @Autowired
+    private ProjetoRepository projetoRepository;
+
+    @Autowired
+    private QuadroDemandasServiceApi quadroDemandasService;
     @Override
     public TccDTO criarTcc(TccDTO tccDTO) {
         Tcc tcc = tccMapper.dtoToTcc(tccDTO);
@@ -57,15 +66,16 @@ public class TccService implements TccServiceApi {
         tccRepository.delete(tcc);
     }
 
+     
     public TccCardDTO criarTccCard(Long id) {
-
-        Optional<Tcc> tccOptional = tccRepository.findById(id);
-        if (tccOptional.isPresent()) {
-            Tcc tcc = tccOptional.get();
-            return TccCardDTOBuilder.buildTccCardDTO(tcc);
-        } else {
-            throw new RuntimeException("TCC não encontrado");
-        }
-    }
+        Tcc tcc = tccRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("TCC não encontrado"));
     
+        Projeto projeto = projetoRepository.findByTccId_Id(tcc.getId())
+                .orElseThrow(() -> new RuntimeException("Projeto não encontrado para o TCC"));
+    
+        QuadroDemandasDTO quadroDemandas = quadroDemandasService.buscarQuadroDemandasPorId(projeto.getId());
+    
+        return TccCardDTOBuilder.buildTccCardDTO(tcc, projeto, quadroDemandas);
+    }
 }
