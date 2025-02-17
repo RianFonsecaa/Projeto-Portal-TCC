@@ -12,7 +12,7 @@ export const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         children: [
-            { path: '', redirectTo: '/home/(dashboard:dashboardHome)', pathMatch: 'full' },
+            { path: '', redirectTo: '/login', pathMatch: 'full' },
             { path: 'dashboardHome', component: DashboardOrientadorComponent, outlet: 'dashboard' },
             { path: 'agenda', component: AgendaComponent, outlet: 'dashboard' },
             { path: 'documentos-formularios', component: DocumentosEFormulariosComponent, outlet: 'dashboard' },

@@ -1,7 +1,5 @@
 <main class="flex bg-slate-200">
-
   <div class="flex w-full h-full fixed">
-
     <section class="w-3/5 flex justify-center rounded-[32px] h-screen">
       <img src="../../../assets/img/Background-login.png" alt="Imagem Principal" class="w-full h-auto object-cover">
     </section>
@@ -22,21 +20,25 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-3 w-full">
           <div class="w-full">
+            <!-- Toast de erro -->
             <div *ngIf="errorMessage"
-              class="flex bg-white items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-red-500">
-              <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500 stroke-current" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 8V12V8ZM12 16H12.01H12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <div class="ml-3">
-                <div class="font-bold text-left text-black">Falha ao realizar login!</div>
-                <div class="w-full text-gray-900 mt-1">E-mail e/ou senha inválidos.</div>
+              class="fixed top-0 right-0 z-50 flex items-center w-full max-w-xs p-4 mb-4 text-black bg-white rounded-lg shadow-xl border-0.5 border-gray-600"
+              role="alert">
+              <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+                </svg>
+                <span class="sr-only">Error icon</span>
               </div>
+              <div class="ms-3 text-sm font-normal text-rose-500">{{ errorMessage }}</div>
+              <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close" (click)="dismissToast()">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+              </button>
             </div>
           </div>
-
           <div class="flex flex-col space-y-2">
             <label for="email" class="block text-sm font-medium text-gray-900 mb-2">E-mail</label>
             <div class="flex items-center w-full">
@@ -45,18 +47,20 @@
               </div>
               <input id="email" controlName="email" type="email" [formControl]="getControl('email')" [maxlength]="254"
                 placeholder="Digite seu e-mail"
-                class="w-full h-[40px] rounded-r-md border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600" />
+                class="w-full h-[40px] rounded-r-md border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600"
+                [ngClass]="{'border-red-500': emailIsValid}" />
             </div>
             <p *ngIf="emailIsValid" class="text-red-500 text-sm mt-1">Por favor, insira um e-mail válido.</p>
 
             <label for="password" class="block text-sm font-medium text-gray-900 mb-2">Senha</label>
-            <div class="flex items-center w-full">
+            <div class="flex items-center w-full" [ngClass]="{'border-red-500': passwordIsValid }" >
               <div class="flex items-center justify-center w-[50px] h-[40px] bg-[#61B668] rounded-l-md">
                 <img src="/assets/svg/logo-senha.svg" class="w-[20px] object-contain">
               </div>
               <input id="password" type="password" formControlName="password"
                 class="w-full h-[40px] rounded-r-md bg-white border-gray-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-1 focus:outline-indigo-600"
-                placeholder="Digite sua senha">
+                placeholder="Digite sua senha"
+                [ngClass]="{'border-red-500': passwordIsValid}" />
             </div>
             <p *ngIf="passwordIsValid" class="text-red-500 text-sm mt-1">Por favor, insira uma senha válida.</p>
           </div>

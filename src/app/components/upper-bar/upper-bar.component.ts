@@ -21,10 +21,9 @@ export class UpperBarComponent {
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
   }
-  
   Logout(){
     localStorage.clear;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'])
   }
 
   openModal() {
