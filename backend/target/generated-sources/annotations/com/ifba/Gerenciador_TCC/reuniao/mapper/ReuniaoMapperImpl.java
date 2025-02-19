@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-13T15:59:48-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-17T13:52:47-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
 public class ReuniaoMapperImpl extends ReuniaoMapper {
@@ -21,11 +21,11 @@ public class ReuniaoMapperImpl extends ReuniaoMapper {
 
         Reuniao.ReuniaoBuilder reuniao = Reuniao.builder();
 
-        reuniao.dataReuniao( reuniaoDTO.getDataReuniao() );
-        reuniao.descricao( reuniaoDTO.getDescricao() );
         reuniao.id( reuniaoDTO.getId() );
         reuniao.idUsuario( reuniaoDTO.getIdUsuario() );
         reuniao.nomeReuniao( reuniaoDTO.getNomeReuniao() );
+        reuniao.descricao( reuniaoDTO.getDescricao() );
+        reuniao.dataReuniao( reuniaoDTO.getDataReuniao() );
 
         return reuniao.build();
     }
@@ -38,11 +38,11 @@ public class ReuniaoMapperImpl extends ReuniaoMapper {
 
         ReuniaoDTO.ReuniaoDTOBuilder reuniaoDTO = ReuniaoDTO.builder();
 
-        reuniaoDTO.dataReuniao( reuniao.getDataReuniao() );
-        reuniaoDTO.descricao( reuniao.getDescricao() );
         reuniaoDTO.id( reuniao.getId() );
         reuniaoDTO.idUsuario( reuniao.getIdUsuario() );
         reuniaoDTO.nomeReuniao( reuniao.getNomeReuniao() );
+        reuniaoDTO.descricao( reuniao.getDescricao() );
+        reuniaoDTO.dataReuniao( reuniao.getDataReuniao() );
 
         return reuniaoDTO.build();
     }
