@@ -14,6 +14,7 @@ C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\mappe
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\repository\TccRepository.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoControllerApi.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.java
+C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\repository\NotificacaoRepository.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodemandas\interfaces\QuadroDemandasServiceApi.java
@@ -24,6 +25,7 @@ C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\do
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoServiceApi.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\UsuarioRepository.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.java
+C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\service\NotificacaoService.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\controller\ProjetoControllerImpl.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodemandas\controller\QuadroDemandasController.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO.java
@@ -38,6 +40,7 @@ C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodem
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\reuniao\domain\entity\Reuniao.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\reuniao\controller\ReuniaoController.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\domain\entity\Tcc.java
+C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptions\NotFoundException.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\service\EmailService.java
@@ -55,6 +58,7 @@ C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\do
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\EmailController.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\controller\TarefaController.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaControllerApi.java
+C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\NotificacaoController.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\entity\Documento.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.java
