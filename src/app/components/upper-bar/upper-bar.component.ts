@@ -15,13 +15,21 @@ import { Notificacao } from '../../model/Notificacao';
 export class UpperBarComponent {
   @ViewChild(BaseModalComponent) modal!: BaseModalComponent;
   darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
-  lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png'
+  lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
+  iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
+  iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
+  selectedTab: string = 'Dashboard'; // Aba inicial selecionada
+
+  selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
+
   constructor(public themeService: ThemeService, private router: Router) { }
 
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
   }
-  Logout(){
+  Logout() {
     localStorage.clear;
     this.router.navigate(['/login'])
   }
@@ -40,59 +48,57 @@ export class UpperBarComponent {
 
   notificacoes: Notificacao[] = [
     {
-      quemEnviou: 'Clark Kent',
-      tituloNotificacao: 'Nova Notificação',
-      temaTcc: 'Implementação de Assistentes Virtuais com IA',
-      dataRecebimento: new Date('2024-11-26'),
-      horaRecebimento: new Date('2024-11-26T14:30:00'),
+      remetente: 'Jhon Doe',
+      mensagem: 'Atualizou o status da tarefa “Pesquisa de referencial teórico e metodologia”. Confira no quadro Kanban.',
+      data: new Date('2024-11-26T14:30:00'),
       visualizado: false
     },
     {
-      quemEnviou: 'Bruce Wayne',
-      tituloNotificacao: 'Tarefa Pendentes',
-      temaTcc: 'Plataforma Gamificada para Ensino de Lógica',
-      dataRecebimento: new Date('2024-11-26'),
-      horaRecebimento: new Date('2024-11-26T09:15:00'),
+      remetente: 'Clark Kent',
+      mensagem: 'Enviou a primeira versão do TCC "Implementação de Assistentes Virtuais com IA" para revisão.',
+      data: new Date('2024-11-26T09:15:00'),
+      visualizado: true
+    },
+    {
+      remetente: 'Bruce Wayne',
+      mensagem: 'Atualizou o status da tarefa “Análise de ferramentas para plataforma gamificada”. Verifique no Kanban.',
+      data: new Date('2024-11-24T18:45:00'),
+      visualizado: true
+    },
+    {
+      remetente: 'Diana Prince',
+      mensagem: 'Atualizou o progresso da tarefa “Introdução e Objetivos” do TCC "Desenvolvimento de Sistemas de Saúde".',
+      data: new Date('2024-11-24T18:45:00'),
       visualizado: false
     },
     {
-      quemEnviou: 'Diana Prince',
-      tituloNotificacao: 'Atualização Importante',
-      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24'),
-      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      remetente: 'Gabriel Moreira',
+      mensagem: 'Enviou a versão 2 do TCC “Desenvolvimento de Sistemas de Saúde” para revisão.',
+      data: new Date('2024-11-24T18:45:00'),
+      visualizado: true
+    },
+    {
+      remetente: 'Jhon Doe',
+      mensagem: 'Solicitou reunião para discutir o progresso do TCC “Pesquisa de referencial teórico e metodologia”.',
+      data: new Date('2024-11-24T18:45:00'),
       visualizado: false
     },
     {
-      quemEnviou: 'Diana Prince',
-      tituloNotificacao: 'Atualização Importante',
-      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24'),
-      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      remetente: 'Gabriel Moreira',
+      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
+      data: new Date('2024-11-24T18:10:00'),
       visualizado: false
     },
     {
-      quemEnviou: 'Diana Prince',
-      tituloNotificacao: 'Atualização Importante',
-      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24'),
-      horaRecebimento: new Date('2024-11-24T18:45:00'),
+      remetente: 'Gabriel Moreira',
+      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
+      data: new Date('2024-11-24T18:10:00'),
       visualizado: false
     },
     {
-      quemEnviou: 'Diana Prince',
-      tituloNotificacao: 'Atualização Importante',
-      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24'),
-      horaRecebimento: new Date('2024-11-24T18:45:00'),
-      visualizado: false
-    },
-    {
-      quemEnviou: 'Gabriel Moreira Bispo dos Santos',
-      tituloNotificacao: 'Atualização Importante',
-      temaTcc: 'Desenvolvimento de Sistemas de Saúde',
-      dataRecebimento: new Date('2024-11-24'),
-      horaRecebimento: new Date('2024-11-24T18:10:00'),
+      remetente: 'Gabriel Moreira',
+      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
+      data: new Date('2024-11-24T18:10:00'),
       visualizado: false
     }
   ];

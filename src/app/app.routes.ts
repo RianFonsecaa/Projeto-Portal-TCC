@@ -7,13 +7,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardOrientadorComponent } from './pages/dashboard-orientador/dashboard-orientador.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redireciona a raiz para /home
+    { path: '', redirectTo: '/home/(dashboard:dashboardOrientador)', pathMatch: 'full' }, // Correção aqui
     {
         path: 'home',
         component: HomeComponent,
         children: [
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
-            { path: 'dashboardHome', component: DashboardOrientadorComponent, outlet: 'dashboard' },
+            { path: 'dashboardOrientador', component: DashboardOrientadorComponent, outlet: 'dashboard' },
             { path: 'agenda', component: AgendaComponent, outlet: 'dashboard' },
             { path: 'documentos-formularios', component: DocumentosEFormulariosComponent, outlet: 'dashboard' },
             { path: 'mensagens', component: MensagensComponent, outlet: 'dashboard' }

@@ -1,8 +1,6 @@
 export interface Notificacao {
-  quemEnviou: string;
-  temaTcc: string;
-  tituloNotificacao: string;
-  dataRecebimento: Date;
-  horaRecebimento: Date;
+  remetente: string;
+  mensagem: string;
+  data: Date;
   visualizado: boolean;
 }
