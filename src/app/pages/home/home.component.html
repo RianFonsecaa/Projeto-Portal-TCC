@@ -1,8 +1,9 @@
-<app-upper-bar></app-upper-bar>
-<section class="flex flex-row h-full">
-    <app-side-bar class="h-full"></app-side-bar>
-
-    <body class="w-full p-6 dark:bg-[#201e1e]">
-        <router-outlet name="dashboard"></router-outlet>
-    </body>
+<app-upper-bar class="w-screen h-[60px]"></app-upper-bar>
+<section class="flex flex-col h-screen w-full overflow-hidden">
+    <div class="flex flex-row w-screen overflow-hidden">
+        <app-side-bar class="h-full"></app-side-bar>
+        <div class="h-full w-screen min-w-0 p-6 dark:bg-[#201e1e]">
+            <router-outlet name="dashboard"></router-outlet>
+        </div>
+    </div>
 </section>

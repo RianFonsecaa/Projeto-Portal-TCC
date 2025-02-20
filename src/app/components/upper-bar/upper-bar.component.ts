@@ -18,7 +18,7 @@ export class UpperBarComponent {
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
   iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
   iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
-  selectedTab: string = 'Dashboard'; // Aba inicial selecionada
+  selectedTab: string = 'Dashboard';
 
   selectTab(tab: string) {
     this.selectedTab = tab;

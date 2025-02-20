@@ -66,8 +66,12 @@ export class LoginFormComponent {
           switch (response.usuario.tipoUsuario) {
             case 'COORDENADOR':
             case 'ALUNO':
+              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardAluno' } }]).then(() => {
+                window.location.reload();
+              });
+              break;
             case 'PROFESSOR':
-              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardHome' } }]).then(() => {
+              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardOrientador' } }]).then(() => {
                 window.location.reload();
               });
               break;
