@@ -16,6 +16,7 @@ com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapperImpl.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.class
 com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO$TccCardDTOBuilder.class
+com\ifba\Gerenciador_TCC\notificacao\domain\tipoenum\TipoMensagem.class
 com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
 com\ifba\Gerenciador_TCC\tcc\mapper\TccMapperImpl.class

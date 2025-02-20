@@ -64,6 +64,7 @@ C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\do
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tcc\builder\TccCardDTOBuilder.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.java
+C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\tipoenum\TipoMensagem.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\reuniao\service\ReuniaoService.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.java
 C:\Code\gerenciador-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoDTO.java
