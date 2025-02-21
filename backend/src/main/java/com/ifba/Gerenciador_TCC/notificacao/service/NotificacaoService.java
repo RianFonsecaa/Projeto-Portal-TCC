@@ -1,18 +1,31 @@
-package com.ifba.Gerenciador_TCC.notificacao.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
+package com.ifba.Gerenciador_TCC.notificacao.service;
 
 import com.ifba.Gerenciador_TCC.notificacao.domain.entity.Notificacao;
 import com.ifba.Gerenciador_TCC.notificacao.repository.NotificacaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Date;
+import java.util.List;
+
 
 @Service
 public class NotificacaoService {
 
     @Autowired
     private NotificacaoRepository notificacaoRepository;
+
+    
+    public Notificacao criarNotificacao(String remetente, String mensagem) {
+        Notificacao notificacao = Notificacao.builder()
+                .remetente(remetente)
+                .mensagem(mensagem.replace("\n", " ")) 
+                .data(new Date())
+                .visualizado(false)
+                .build();
+
+        return notificacaoRepository.save(notificacao);
+    }
 
     public Notificacao salvarNotificacao(Notificacao notificacao) {
         return notificacaoRepository.save(notificacao);
@@ -21,9 +34,8 @@ public class NotificacaoService {
     public List<Notificacao> listarNotificacoes() {
         return notificacaoRepository.findAll();
     }
-    
+
     public Notificacao buscarPorId(Long id) {
-        Optional<Notificacao> optional = notificacaoRepository.findById(id);
-        return optional.orElse(null);
+        return notificacaoRepository.findById(id).orElse(null);
     }
 }

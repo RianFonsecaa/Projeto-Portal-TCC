@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-20T13:45:52-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2025-02-21T14:50:13-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 @Component
 public class UsuarioMapperImpl extends UsuarioMapper {
@@ -21,13 +21,13 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         Usuario.UsuarioBuilder usuario = Usuario.builder();
 
-        usuario.id( usuarioDTO.getId() );
-        usuario.username( usuarioDTO.getUsername() );
-        usuario.senha( usuarioDTO.getSenha() );
-        usuario.nome( usuarioDTO.getNome() );
         usuario.email( usuarioDTO.getEmail() );
-        usuario.tipoUsuario( usuarioDTO.getTipoUsuario() );
+        usuario.id( usuarioDTO.getId() );
+        usuario.nome( usuarioDTO.getNome() );
+        usuario.senha( usuarioDTO.getSenha() );
         usuario.tipoCurso( usuarioDTO.getTipoCurso() );
+        usuario.tipoUsuario( usuarioDTO.getTipoUsuario() );
+        usuario.username( usuarioDTO.getUsername() );
 
         return usuario.build();
     }
@@ -40,13 +40,13 @@ public class UsuarioMapperImpl extends UsuarioMapper {
 
         UsuarioDTO.UsuarioDTOBuilder usuarioDTO = UsuarioDTO.builder();
 
-        usuarioDTO.id( usuario.getId() );
-        usuarioDTO.username( usuario.getUsername() );
-        usuarioDTO.nome( usuario.getNome() );
         usuarioDTO.email( usuario.getEmail() );
+        usuarioDTO.id( usuario.getId() );
+        usuarioDTO.nome( usuario.getNome() );
         usuarioDTO.senha( usuario.getSenha() );
-        usuarioDTO.tipoUsuario( usuario.getTipoUsuario() );
         usuarioDTO.tipoCurso( usuario.getTipoCurso() );
+        usuarioDTO.tipoUsuario( usuario.getTipoUsuario() );
+        usuarioDTO.username( usuario.getUsername() );
 
         return usuarioDTO.build();
     }
