@@ -7,7 +7,7 @@ import com.ifba.Gerenciador_TCC.notificacao.domain.entity.Notificacao;
 import com.ifba.Gerenciador_TCC.notificacao.service.NotificacaoService;
 
 @RestController
-@RequestMapping("/notificacoes")
+@RequestMapping("/api/notificacoes")
 public class NotificacaoController {
 
     @Autowired

@@ -1,8 +1,8 @@
 package com.ifba.Gerenciador_TCC.notificacao.domain.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Date;
 
 @Entity
@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder 
 public class Notificacao {
 
     @Id
@@ -19,7 +20,6 @@ public class Notificacao {
     private Long id;
 
     private String remetente;
-    
     private String mensagem;
 
     @Temporal(TemporalType.TIMESTAMP)
