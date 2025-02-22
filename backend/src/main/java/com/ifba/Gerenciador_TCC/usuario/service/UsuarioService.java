@@ -6,7 +6,6 @@ import com.ifba.Gerenciador_TCC.security.JwtTokenUtil;
 import com.ifba.Gerenciador_TCC.usuario.controller.JwtResponse;
 import com.ifba.Gerenciador_TCC.usuario.domain.dto.UsuarioDTO;
 import com.ifba.Gerenciador_TCC.login.domain.LoginRequest;
-import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
 import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
@@ -80,10 +79,6 @@ public class UsuarioService implements UsuarioServiceApi {
 
     public Optional<Usuario> findByTipoUsuario(TipoUsuario tipoUsuario) {
         return usuarioRepository.findByTipoUsuario(tipoUsuario);
-    }
-
-    public Optional<Usuario> findByTipoCurso(TipoCurso tipoCurso) {
-        return usuarioRepository.findByTipoCurso(tipoCurso);
     }
 
     public ResponseEntity<?> login(LoginRequest loginRequest){

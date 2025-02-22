@@ -21,5 +21,5 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
     List<Tarefa> findByDataEnvio(LocalDate dataEnvio);
 
-    List<Tarefa> findByDataFim(LocalDate dataFim);
+    List<Tarefa> findByPrazo(LocalDate dataFim);
 }
