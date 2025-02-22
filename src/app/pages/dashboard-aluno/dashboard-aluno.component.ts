@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-import { ThemeService } from '../../service/theme.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-dashboard-aluno',

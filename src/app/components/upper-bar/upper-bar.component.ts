@@ -1,51 +1,24 @@
 import { DatePipe, NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ThemeService } from '../../service/theme.service';
-import { BaseModalComponent } from '../modais/base-modal/base-modal.component';
+import { ThemeService } from '../../services/theme.service';
 import { Notificacao } from '../../model/Notificacao';
+import { ModalService } from '../../services/modal.service';
+import { ModalNotificacaoComponent } from '../modais/modal-notificacao/modal-notificacao.component';
+import { ModalPerfilOrientadorComponent } from "../modais/modal-perfil-orientador/modal-perfil-orientador.component";
 
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgIf, NgClass, NgFor, BaseModalComponent, DatePipe],
+  imports: [RouterLink, NgIf, NgClass, NgFor, DatePipe, ModalNotificacaoComponent, ModalPerfilOrientadorComponent],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
-  @ViewChild(BaseModalComponent) modal!: BaseModalComponent;
   darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
   iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
   iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
-  selectedTab: string = 'Dashboard';
-
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
-  constructor(public themeService: ThemeService, private router: Router) { }
-
-  toggleDarkMode() {
-    this.themeService.toggleDarkMode();
-  }
-  Logout() {
-    localStorage.clear;
-    this.router.navigate(['/login'])
-  }
-
-  openModal() {
-    this.modal.openModal();
-  }
-
-  closeModal() {
-    this.modal.closeModal();
-  }
-
-  visualizarNotificacao(notificacao: Notificacao) {
-    notificacao.visualizado = true;
-  }
-
   notificacoes: Notificacao[] = [
     {
       remetente: 'Jhon Doe',
@@ -102,5 +75,21 @@ export class UpperBarComponent {
       visualizado: false
     }
   ];
+
+  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router) { }
+  
+  Logout() {
+    localStorage.clear;
+    this.router.navigate(['/login'])
+  }
+
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
+  }
+
+  abrirModal(nomeModal: string) {
+    this.modalService.abrir(nomeModal);
+  }
+
 
 }
