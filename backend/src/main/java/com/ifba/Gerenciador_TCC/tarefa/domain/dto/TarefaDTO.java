@@ -23,8 +23,6 @@ public class TarefaDTO {
     @NotNull(message = "O ID do orientando não pode estar vazio")
     private Long orientandoId;
 
-    private Long idDocumento;
-
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")
     private String nomeTarefa;
 
@@ -34,5 +32,5 @@ public class TarefaDTO {
     @NotNull(message = "A data de envio não pode ser vazia")
     private LocalDate dataEnvio;
 
-    private LocalDate dataFim;
+    private LocalDate prazo;
 }

@@ -30,5 +30,5 @@ public class AtribuirTarefaDTO {
     @NotNull(message = "A data de envio não pode ser vazia")
     private LocalDate dataEnvio;
 
-    private LocalDate dataFim;
+    private LocalDate prazo;
 }

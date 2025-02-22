@@ -16,11 +16,12 @@ com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapperImpl.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.class
 com\ifba\Gerenciador_TCC\tcc\domain\dto\TccCardDTO$TccCardDTOBuilder.class
-com\ifba\Gerenciador_TCC\notificacao\domain\tipoenum\TipoMensagem.class
+com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao$NotificacaoBuilder.class
 com\ifba\Gerenciador_TCC\reuniao\domain\dto\ReuniaoDTO.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
 com\ifba\Gerenciador_TCC\tcc\mapper\TccMapperImpl.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa$TarefaBuilder.class
+com\ifba\Gerenciador_TCC\email\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
 com\ifba\Gerenciador_TCC\tcc\repository\TccRepository.class
@@ -60,13 +61,13 @@ com\ifba\Gerenciador_TCC\projeto\repository\ProjetoRepository.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO$QuadroDemandasDTOBuilder.class
 com\ifba\Gerenciador_TCC\documento\interfaces\DocumentoControllerApi.class
 com\ifba\Gerenciador_TCC\quadrodemandas\controller\QuadroDemandasController.class
-com\ifba\Gerenciador_TCC\notificacao\controller\EmailController.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
 com\ifba\Gerenciador_TCC\quadrodemandas\mapper\QuadroDemandasMapperImpl.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\entity\QuadroDemandas$QuadroDemandasBuilder.class
 com\ifba\Gerenciador_TCC\tcc\interfaces\TccServiceApi.class
 com\ifba\Gerenciador_TCC\notificacao\service\NotificacaoService.class
+com\ifba\Gerenciador_TCC\email\controller\EmailController.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.class
@@ -87,6 +88,7 @@ com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\documento\mapper\DocumentoMapper.class
 com\ifba\Gerenciador_TCC\reuniao\interfaces\ReuniaoControllerApi.class
+com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.class
 com\ifba\Gerenciador_TCC\security\JwtTokenUtil.class
 com\ifba\Gerenciador_TCC\reuniao\interfaces\ReuniaoServiceApi.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario$UsuarioBuilder.class
@@ -94,6 +96,5 @@ com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoDTO$DocumentoDTOBuilder.c
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\entity\QuadroDemandas.class
 com\ifba\Gerenciador_TCC\tcc\domain\entity\Tcc$TccBuilder.class
 com\ifba\Gerenciador_TCC\exceptions\NotFoundException.class
-com\ifba\Gerenciador_TCC\notificacao\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\repository\QuadroDemandasRepository.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.class

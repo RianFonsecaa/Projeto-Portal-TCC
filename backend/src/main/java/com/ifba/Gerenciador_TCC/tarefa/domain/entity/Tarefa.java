@@ -50,5 +50,5 @@ public class Tarefa {
     private LocalDate dataEnvio;
 
     @Column(name = "data_fim", nullable = true)
-    private LocalDate dataFim;
+    private LocalDate prazo;
 }
