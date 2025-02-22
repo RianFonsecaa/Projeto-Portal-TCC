@@ -8,8 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TarefaControllerApi {
-
-    public ResponseEntity<TarefaDTO> criarTarefa( AtribuirTarefaDTO tarefaDTO);
+    
     public ResponseEntity<TarefaDTO> buscarTarefaPorId( Long id);
     public ResponseEntity<List<TarefaDTO>> listarTarefas();
     public ResponseEntity<List<TarefaDTO>> listarTarefasPorUsuario( Long idUsuario);
