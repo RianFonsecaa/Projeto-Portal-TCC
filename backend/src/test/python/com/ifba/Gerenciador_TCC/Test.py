@@ -3,7 +3,9 @@ import pytest
 from TestData import test_data
 @pytest.mark.parametrize("endpoint, entity, method, use_json", [
     ("/api/tarefas", "tarefa", "GET", False),
+    ("/api/tarefas/atribuir", "tarefa", "POST", True,),
     ("/api/usuarios", "usuario", "GET", False),
+    ("/api/usuarios", "usuario", "POST", True),
     ("/api/email/enviar", "email", "POST", False),
     ("/api/notificacoes", "notificacao", "GET", False)
 ])
