@@ -1,0 +1,36 @@
+<div class="relative w-full">
+  <!-- Input Container -->
+  <div class="flex items-center h-12 border border-gray-500 rounded-lg bg-white relative shadow-sm" (click)="showDropdown()">
+    <!-- Itens selecionados -->
+    <span *ngIf="isEmptySelection()" class="block text-lg p-2 text-gray-700">Escolha a classificação</span>
+
+    <ng-container *ngFor="let item of items">
+        <div *ngIf="item.selected" class="flex  rounded-lg items-center m-1 px-3 py-1 bg-blue-100 text-sm">
+            <span class=" font-semibold text-[14px] to-gray-100 leading-[24px] tracking-normal" [ngStyle]="{ 'color': '#515151' }">{{ item.name }}</span>
+            <button (click)="removeItem(item, $event)" class="ml-2 text-blue-500 text-lg">x</button>
+        </div>
+            <span *ngIf="items.length === 0" class="text-gray-400 absolute left-2">Escolha a classificação</span>
+    </ng-container>
+
+    <svg class="absolute right-2" width="12" height="10" viewBox="0 0 19 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+        <path d="M1 1L9.16667 8.83333L17.3333 1" stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+
+
+
+  <!-- Dropdown -->
+  <div *ngIf="isDropdownVisible" class="absolute w-full max-h-48 overflow-y-auto bg-white border border-blue-500 rounded-b shadow-md">
+      <ng-container *ngFor="let item of filteredItems">
+          <div (click)="toggleItem(item, $event)" class="flex items-center p-2 cursor-pointer hover:bg-blue-100">
+              <!-- Checkbox -->
+              <span class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-2" [class.bg-blue-500]="item.selected" [class.border-blue-500]="item.selected">
+                  <span *ngIf="item.selected" class="text-white text-sm">✓</span>
+              </span>
+              <!-- Nome do item -->
+              <span>{{ item.name }}</span>
+          </div>
+      </ng-container>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="relative w-full">
+  <!-- Input Container -->
+  <div class="flex items-center  h-12 border border-gray-500 rounded-lg bg-white relative shadow-sm" (click)="showDropdown()">
+    <!-- Itens selecionados -->
+    <span *ngIf="isEmptySelection()" class=" p-2 block text-lg text-gray-700">{{ placeholder }}</span>
+
+    <ng-container *ngFor="let item of items">
+      <div *ngIf="item.selected" class="flex rounded-lg content-start items-center m-1 px-3 py-1 bg-blue-100 text-sm">
+        <div class="gap-1 flex flex-row items-center" >
+          <div *ngIf="getSelectedColor()" class=" rounded-lg flex items-center m-1 px-0.5 py-2" [ngStyle]="{ 'background-color': item.color }"></div>
+          <span class=" font-semibold text-[14px] to-gray-100 leading-[24px] tracking-normal" [ngStyle]="{ 'color': '#515151' }">{{ item.name }}</span>
+        </div>
+        <button (click)="removeItem(item, $event)" class="ml-2 text-blue-500 text-lg">x</button>
+      </div>
+    </ng-container>
+
+    <svg class="absolute right-2" width="14" height="10" viewBox="0 0 19 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+      <path d="M1 1L9.16667 8.83333L17.3333 1" stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Dropdown -->
+  <div *ngIf="isDropdownVisible" class="absolute w-full max-h-48 overflow-y-auto bg-white border border-blue-500 rounded-b shadow-md z-50">
+    <ng-container *ngFor="let item of filteredItems">
+      <div (click)="toggleItem(item, $event)" class="flex items-center p-2 cursor-pointer hover:bg-blue-100">
+        <!-- Checkbox -->
+        <!-- <span class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-2" [class.bg-blue-500]="item.selected" [class.border-blue-500]="item.selected">
+          <span *ngIf="item.selected" class="text-white text-sm">✓</span>
+        </span>
+        Nome do item -->
+        <span>{{ item.name }}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

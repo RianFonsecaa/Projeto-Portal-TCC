@@ -53,7 +53,7 @@ export class DashboardOrientadorComponent {
       progresso: 80,
     }
   ];
-
+  
   toggleProjetoInfo(projetoInfoDiv: HTMLElement) {
     if (projetoInfoDiv.classList.contains('max-w-full')) {
       projetoInfoDiv.classList.remove('max-w-full', 'p-3', 'border', 'border-gray-200');
