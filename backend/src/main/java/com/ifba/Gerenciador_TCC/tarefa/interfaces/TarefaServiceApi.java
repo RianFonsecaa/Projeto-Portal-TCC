@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface TarefaServiceApi {
 
+    TarefaDTO criarTarefa(AtribuirTarefaDTO tarefaDTO);
+
     TarefaDTO buscarTarefaPorId(Long id);
 
     List<TarefaDTO> listarTarefas();
@@ -23,4 +25,7 @@ public interface TarefaServiceApi {
     void deletarTarefa(Long id);
 
     TarefaDTO atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO);
+
+    List<TarefaDTO> listarTarefasPorProjeto(Long projetoId);
+
 }
