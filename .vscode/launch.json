@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GerenciadorTccApplication<Gerenciador-TCC>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ifba.Gerenciador_TCC.GerenciadorTccApplication",
+            "projectName": "Gerenciador-TCC",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
