@@ -1,7 +1,7 @@
 
 package com.ifba.Gerenciador_TCC.tarefa.domain.entity;
 
-import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
+
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Prioridade;
@@ -45,10 +45,6 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusTarefa status;
-
-    @OneToMany
-    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = true)
-    private List<Documento> documentoId;
 
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")
     @Column(name = "nome_tarefa", nullable = false, length = 200)

@@ -33,8 +33,3 @@ VALUES (1, '2024-02-10', '2024-02-20', 'Finalizar a mockagem das classes', 'Mock
 (2, '2024-02-11', '2024-02-25', 'Desenvolver a API de notificação', 'Desenvolvimento da API', 2, 3, 'ANDAMENTO', 1, 'MEDIA', 'PESQUISA', true, '2024-02-22')
 ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO public.documento (id, data_envio, descricao, nome_documento,
-tipo_documento, url_arquivo, projeto_id, documento_id) VALUES 
-(1, '2024-02-10', 'Ata da Reunião', 'reunião.docx', 'DOCX', 'https://gerenciadortcc.com/reuniao.docx', 1, 1),
-(2, '2024-02-10', 'Relatório final', 'relatorio.pdf', 'PDF', 'https://gerenciadortcc/relatorio.pdf', 2, 2)
-ON CONFLICT (id) DO NOTHING;
