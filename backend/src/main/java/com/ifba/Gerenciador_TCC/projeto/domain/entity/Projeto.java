@@ -1,5 +1,7 @@
 package com.ifba.Gerenciador_TCC.projeto.domain.entity;
 
+
+import com.ifba.Gerenciador_TCC.tcc.domain.entity.Tcc;
 import com.ifba.Gerenciador_TCC.tipoenum.TipoProjeto;
 import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
@@ -31,6 +33,10 @@ public class Projeto {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)
     private Usuario orientadorId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tcc_id", referencedColumnName = "id", nullable = false)
+    private Tcc tccId;
 
     @NotEmpty(message = "O título do projeto não pode estar vazio")
     @Column(name = "titulo_projeto", nullable = false, length = 200)

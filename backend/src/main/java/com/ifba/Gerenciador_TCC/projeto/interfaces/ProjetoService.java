@@ -16,4 +16,6 @@ public interface ProjetoService {
     Projeto atualizarProjeto(Long id, Projeto projeto);
 
     void deletarProjeto(Long id);
+
+    Projeto findById(long projetoId);
 }

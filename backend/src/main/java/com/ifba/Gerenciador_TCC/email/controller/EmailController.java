@@ -14,8 +14,9 @@ public class EmailController {
 
     @PostMapping("/enviar")
     public String enviarEmail(@RequestParam String para,
+                              @RequestParam String assunto,
                               @RequestParam TipoMensagem tipo,
                               @RequestParam String remetenteNotificacao) {
-        return emailService.enviarEmail(para, tipo, remetenteNotificacao);
+        return emailService.enviarEmail(para, assunto, tipo, remetenteNotificacao);
     }
 }

@@ -23,6 +23,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    @NotEmpty(message = "O campo 'username' não pode estar vazio.")
+    private String username;
+
     @Column(nullable = false)
     @NotEmpty(message = "O campo 'senha' não pode estar vazio.")
     private String senha;
@@ -38,4 +42,9 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipoUsuario;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private TipoCurso tipoCurso;
+
 }
