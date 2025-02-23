@@ -12,5 +12,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByTipoUsuario(TipoUsuario tipoUsuario);
 
-    Optional<Usuario> findByTipoCurso(TipoCurso tipoCurso);
 }

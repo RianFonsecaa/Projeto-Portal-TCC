@@ -24,7 +24,7 @@ public class ProjetoServiceImpl implements ProjetoService {
     @Override
     public Projeto obterProjetoPorId(Long id) {
         Optional<Projeto> projeto = projetoRepository.findById(id);
-        if (projeto.isEmpty())
+        if (!projeto.isPresent())
             throw new NotFoundException("Projeto Não Encontrado");
         return projeto.get();
     }
@@ -49,11 +49,4 @@ public class ProjetoServiceImpl implements ProjetoService {
             projetoRepository.deleteById(id);
         }
     }
-
-    @Override
-    public Projeto findById(long projetoId) {
-    return projetoRepository.findById(projetoId)
-        .orElseThrow(() -> new NotFoundException("Projeto não encontrado com ID: " + projetoId));
-    }
-
 }
