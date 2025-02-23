@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-21T14:50:13-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-22T15:22:50-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 @Component
 public class QuadroDemandasMapperImpl extends QuadroDemandasMapper {
@@ -21,10 +21,10 @@ public class QuadroDemandasMapperImpl extends QuadroDemandasMapper {
 
         QuadroDemandas.QuadroDemandasBuilder quadroDemandas = QuadroDemandas.builder();
 
+        quadroDemandas.id( quadroDemandasDTO.getId() );
         quadroDemandas.demandasAtribuidas( quadroDemandasDTO.getDemandasAtribuidas() );
         quadroDemandas.demandasEmAndamento( quadroDemandasDTO.getDemandasEmAndamento() );
         quadroDemandas.demandasResolvidas( quadroDemandasDTO.getDemandasResolvidas() );
-        quadroDemandas.id( quadroDemandasDTO.getId() );
 
         return quadroDemandas.build();
     }
@@ -37,10 +37,10 @@ public class QuadroDemandasMapperImpl extends QuadroDemandasMapper {
 
         QuadroDemandasDTO.QuadroDemandasDTOBuilder quadroDemandasDTO = QuadroDemandasDTO.builder();
 
+        quadroDemandasDTO.id( quadroDemandas.getId() );
         quadroDemandasDTO.demandasAtribuidas( quadroDemandas.getDemandasAtribuidas() );
         quadroDemandasDTO.demandasEmAndamento( quadroDemandas.getDemandasEmAndamento() );
         quadroDemandasDTO.demandasResolvidas( quadroDemandas.getDemandasResolvidas() );
-        quadroDemandasDTO.id( quadroDemandas.getId() );
 
         return quadroDemandasDTO.build();
     }
