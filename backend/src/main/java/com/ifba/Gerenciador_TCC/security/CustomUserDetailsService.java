@@ -1,7 +1,6 @@
 package com.ifba.Gerenciador_TCC.security;
 
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
-import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -16,13 +15,13 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UsuarioServiceApi usuarioService;
+    private UsuarioService usuarioService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Usuario> usuarioOptional = usuarioService.findByEmail(email);
 
-        if (!usuarioOptional.isPresent()) {
+        if (usuarioOptional.isEmpty()) {
             throw new UsernameNotFoundException("Usuário não encontrado com o email: " + email);
         }
 

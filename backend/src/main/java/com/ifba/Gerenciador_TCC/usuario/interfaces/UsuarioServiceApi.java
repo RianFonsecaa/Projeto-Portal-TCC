@@ -4,7 +4,6 @@ import com.ifba.Gerenciador_TCC.usuario.domain.dto.UsuarioDTO;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UsuarioServiceApi {
     Usuario create(UsuarioDTO usuarioDTO);
@@ -16,7 +15,5 @@ public interface UsuarioServiceApi {
     List<Usuario> findAll();
 
     Usuario findById(long id);
-
-    Optional<Usuario> findByEmail(String email);
 
 }
