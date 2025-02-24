@@ -57,9 +57,6 @@ public class Tarefa {
     @Column(name = "data_envio", nullable = false)
     private LocalDate dataEnvio;
 
-    @Column(name = "data_fim", nullable = true)
-    private LocalDate dataFim;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "prioridade", nullable = false)
     private Prioridade prioridade;

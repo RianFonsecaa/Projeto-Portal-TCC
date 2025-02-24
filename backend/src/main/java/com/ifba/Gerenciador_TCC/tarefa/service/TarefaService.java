@@ -75,7 +75,7 @@ public class TarefaService implements TarefaServiceApi {
 
     @Override
     public List<TarefaDTO> listarTarefasPorDataFim(LocalDate dataFim) {
-        List<Tarefa> tarefas = tarefaRepository.findByDataFim(dataFim);
+        List<Tarefa> tarefas = tarefaRepository.findByPrazo(dataFim);
         return tarefas.stream()
                 .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
                 .collect(Collectors.toList());

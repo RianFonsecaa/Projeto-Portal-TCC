@@ -22,9 +22,6 @@ public class UsuarioDTO {
 
     private Long id;
 
-    @NotNull(message = "Username não pode estar vazio")
-    private String username;
-
     @NotNull(message = "Nome não pode estar vazio")
     private String nome;
 

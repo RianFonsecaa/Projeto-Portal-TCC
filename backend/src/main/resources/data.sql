@@ -6,8 +6,12 @@ ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orientador
 (area_pesquisa, cargo, orientador_disponivel, projetos_em_orientacao, id)
-VALUES('Interligencia Artificial', 'Professor', false,2, 1),
-('Testes', 'Professor', false,1, 3)
+VALUES('Interligencia Artificial', 'Professor', false,2, 1)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO orientando
+(tipo_curso, id)
+VALUES('ADS', 3)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO public.quadro_demandas (id, demandas_atribuidas, demandas_em_andamento,
@@ -23,8 +27,8 @@ tipo_curso, tipo_projeto, orientando_id, orientador_id) VALUES
 'Aplicação de IA em diagnósticos médicos', '2024-02-10', 15, 70, 'REDES', 'ARTIGO', 2, 1)
 ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO public.tarefa (id, data_envio, data_fim, descricao, nome_tarefa, orientador_id, orientando_id, status, projeto_id, prioridade, classificacao, prazo)
-VALUES (1, '2024-02-10', '2024-02-20', 'Finalizar a mockagem das classes', 'Mock das Classes', 1, 2, 'PENDENTE', 1, 'ALTA', 'DESENVOLVIMENTO', '2024-02-18'),
-(2, '2024-02-11', '2024-02-25', 'Desenvolver a API de notificação', 'Desenvolvimento da API', 2, 3, 'ANDAMENTO', 1, 'MEDIA', 'PESQUISA', '2024-02-22')
+INSERT INTO public.tarefa (id, data_envio, descricao, nome_tarefa, orientador_id, orientando_id, status, projeto_id, prioridade, classificacao, prazo)
+VALUES (1, '2024-02-10', 'Finalizar a mockagem das classes', 'Mock das Classes', 1, 2, 'PENDENTE', 1, 'ALTA', 'DESENVOLVIMENTO', '2024-02-18'),
+(2, '2024-02-11', 'Desenvolver a API de notificação', 'Desenvolvimento da API', 2, 3, 'ANDAMENTO', 1, 'MEDIA', 'PESQUISA', '2024-02-22')
 ON CONFLICT (id) DO NOTHING;
 

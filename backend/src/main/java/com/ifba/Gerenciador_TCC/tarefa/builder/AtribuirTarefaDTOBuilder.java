@@ -30,7 +30,6 @@ public class AtribuirTarefaDTOBuilder {
         return TarefaDTO.builder()
                 .id(tarefa.getId())
                 .nomeTarefa(tarefa.getNomeTarefa())
-                .dataFim(tarefa.getDataFim())
                 .dataEnvio(tarefa.getDataEnvio())
                 .descricao(tarefa.getDescricao())
                 .orientadorId(tarefa.getOrientadorId().getId())
