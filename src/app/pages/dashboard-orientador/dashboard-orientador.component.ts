@@ -1,59 +1,58 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { UpperBarComponent } from '../../components/upper-bar/upper-bar.component';
-import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { TccCard } from '../../model/TccCard';
+import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable, forkJoin } from 'rxjs';
+import { Projeto } from '../../model/Projeto';
+import { tap, mergeMap } from 'rxjs/operators';
+import { Demandas } from '../../model/demandas';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, UpperBarComponent, SideBarComponent, NgFor],
+  imports: [CommonModule, NgFor],
   templateUrl: './dashboard-orientador.component.html',
 })
 export class DashboardOrientadorComponent {
-  tccCards: TccCard[] = [
-    {
-      titulo: "Projeto A",
-      autor: "João Silva",
-      cursoAutor: "Análise e Desenvolvimento de Sistemas",
-      backgroundUrl: "../../../assets/img/adem-ay-Tk9m_HP4rgQ-unsplash.jpg",
-      tipoProjeto: "Pesquisa Científica",
-      horasOrientacao: 45,
-      demandasAtribuidas: 5,
-      demandasEmAndamento: 2,
-      demandasResolvidas: 3,
-      dataUltimaAtualizacao: "28/01/2025",
-      progresso: 45,
-    },
-    {
-      titulo: "Projeto B",
-      autor: "Maria Oliveira",
-      cursoAutor: "Redes de Computadores",
-      backgroundUrl: "../../../assets/img/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg",
-      tipoProjeto: "Desenvolvimento de Software",
-      horasOrientacao: 30,
-      demandasAtribuidas: 6,
-      demandasEmAndamento: 3,
-      demandasResolvidas: 3,
-      dataUltimaAtualizacao: "26/01/2025",
-      progresso: 50,
-    },
-    {
-      titulo: "Projeto C",
-      autor: "Carlos Souza",
-      cursoAutor: "Produção Multimídia",
-      backgroundUrl: "../../../assets/img/photo-1515879218367-8466d910aaa4.avif",
-      tipoProjeto: "Pesquisa Aplicada",
-      horasOrientacao: 60,
-      demandasAtribuidas: 8,
-      demandasEmAndamento: 4,
-      demandasResolvidas: 4,
-      dataUltimaAtualizacao: "20/01/2025",
-      progresso: 80,
-    }
-  ];
-  
+  tccCards: TccCard[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit() {
+    this.getProjetos()
+      .pipe(
+        tap((response: TccCard[]) => {
+          console.log("Response da API:", response);
+          this.tccCards = response;
+        }),
+        mergeMap((tccCards) => {
+          // Criando um array de requisições para pegar as demandas
+          const requisicoes = tccCards.map(card =>
+            this.getDemandasPorId(card.id).pipe(
+              tap((demandas) => {
+                // Associando as demandas ao respectivo card
+                card.demandas = demandas;
+              })
+            )
+          );
+          return forkJoin(requisicoes); // Aguarda todas as requisições serem concluídas
+        })
+      )
+      .subscribe({
+        next: () => console.log("Todos os dados foram carregados com sucesso."),
+        error: (error) => console.error("Erro ao buscar dados:", error)
+      });
+  }
+
+  getProjetos(): Observable<TccCard[]> {
+    return this.http.get<TccCard[]>('http://127.0.0.1:8080/api/projetos');
+  }
+
+  getDemandasPorId(id: number): Observable<Demandas> {
+    return this.http.get<Demandas>(`http://127.0.0.1:8080/api/quadro-demandas/${id}`);
+  }
+
   toggleProjetoInfo(projetoInfoDiv: HTMLElement) {
     if (projetoInfoDiv.classList.contains('max-w-full')) {
       projetoInfoDiv.classList.remove('max-w-full', 'p-3', 'border', 'border-gray-200');
@@ -62,5 +61,9 @@ export class DashboardOrientadorComponent {
       projetoInfoDiv.classList.remove('max-w-0');
       projetoInfoDiv.classList.add('max-w-full', 'p-3', 'border', 'border-gray-200');
     }
+  }
+
+  navegarParaDemanda(ID: number): void {
+    this.router.navigate(['/home', { outlets: { dashboard: ['dashboardAluno', ID] } }]);
   }
 }

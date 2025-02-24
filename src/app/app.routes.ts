@@ -8,7 +8,7 @@ import { DashboardOrientadorComponent } from './pages/dashboard-orientador/dashb
 import { DashboardAlunoComponent } from './pages/dashboard-aluno/dashboard-aluno.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home/(dashboard:dashboardOrientador)', pathMatch: 'full' }, // Correção aqui
+    { path: '', redirectTo: '/login', pathMatch: 'full' }, // Correção aqui
     {
         path: 'home',
         component: HomeComponent,

@@ -59,24 +59,28 @@ export class LoginFormComponent {
 
       this.loginService.login(loginInfo).subscribe({
         next: (response) => {
+
+          console.log(response);
           localStorage.clear;
           localStorage.setItem('jwtToken', response.jwtToken);
-          localStorage.setItem('idUsuario', response.usuario.id.toString());
+          localStorage.setItem('idUsuario', response.usuarioId);
 
-          switch (response.usuario.tipoUsuario) {
+          console.log(localStorage.getItem('idUsuario'))
+
+          switch (response.tipoUsuario) {
             case 'COORDENADOR':
-            case 'ALUNO':
+            case 'ORIENTANDO':
               this.router.navigate(['/home', { outlets: { dashboard: 'dashboardAluno' } }]).then(() => {
                 window.location.reload();
               });
               break;
-            case 'PROFESSOR':
+            case 'ORIENTADOR':
               this.router.navigate(['/home', { outlets: { dashboard: 'dashboardOrientador' } }]).then(() => {
                 window.location.reload();
               });
               break;
             default:
-              console.warn('Tipo de usuário desconhecido:', response.usuario.tipoUsuario);
+              console.warn('Tipo de usuário desconhecido:', response.tipoUsuario);
           }
         },
         error: (error) => {

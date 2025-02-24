@@ -6,6 +6,8 @@ import { Notificacao } from '../../model/Notificacao';
 import { ModalService } from '../../services/modal.service';
 import { ModalNotificacaoComponent } from '../modais/modal-notificacao/modal-notificacao.component';
 import { ModalPerfilOrientadorComponent } from "../modais/modal-perfil-orientador/modal-perfil-orientador.component";
+import { HttpClient } from '@angular/common/http';
+import { Usuario } from '../../model/Usuario';
 
 
 @Component({
@@ -76,8 +78,26 @@ export class UpperBarComponent {
     }
   ];
 
-  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router) { }
-  
+  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router,  private http: HttpClient) { }
+  usuario!: Usuario;
+  ngOnInit(): void {
+
+    const idUsuario = localStorage.getItem('idUsuario');
+
+    if (idUsuario) {
+      this.http.get<Usuario>(`http://127.0.0.1:8080/api/usuarios/${idUsuario}`)
+        .subscribe({
+          next: (response) => {
+            this.usuario = response;
+            console.log("Dados do usuário:", this.usuario);
+          },
+          error: (error) => console.error("Erro ao buscar usuário:", error)
+        });
+    } else {
+      console.warn("Nenhum idUsuario encontrado no localStorage.");
+    }
+  }
+
   Logout() {
     localStorage.clear;
     this.router.navigate(['/login'])
