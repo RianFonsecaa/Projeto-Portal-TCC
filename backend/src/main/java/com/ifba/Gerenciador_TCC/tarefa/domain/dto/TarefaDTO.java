@@ -42,15 +42,11 @@ public class TarefaDTO {
     @NotNull(message = "A data de envio não pode ser vazia")
     private LocalDate dataEnvio;
 
-    private LocalDate dataFim;
-
     @NotNull(message = "O status da tarefa é obrigatório")
     private StatusTarefa status;
 
-
     @NotNull(message = "A prioridade é obrigatória")
     private Prioridade prioridade;
-
 
     @NotNull(message = "A classificação é obrigatória")
     private Classificacao classificacao;

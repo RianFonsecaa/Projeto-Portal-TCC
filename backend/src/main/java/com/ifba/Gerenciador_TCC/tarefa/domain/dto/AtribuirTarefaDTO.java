@@ -38,8 +38,6 @@ public class AtribuirTarefaDTO {
     @NotNull(message = "A data de envio não pode ser vazia")
     private LocalDate dataEnvio;
 
-    private LocalDate dataFim;
-
     @NotNull(message = "O status da tarefa é obrigatório")
     private StatusTarefa status;
 
@@ -48,7 +46,6 @@ public class AtribuirTarefaDTO {
 
     @NotNull(message = "A classificação é obrigatória")
     private Classificacao classificacao;
-
 
     @NotNull(message = "O prazo da tarefa é obrigatório")
     private LocalDate prazo;
