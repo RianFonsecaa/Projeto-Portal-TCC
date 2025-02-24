@@ -6,26 +6,27 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } 
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-modal-demandas-orientador',
+  selector: 'app-modal-demandas',
   standalone: true,
   imports: [NgClass, ReactiveFormsModule, FormsModule, NgFor, NgIf],
-  templateUrl: './modal-demandas-orientador.component.html',
+  templateUrl: './modal-demandas.component.html',
 })
-export class ModalDemandasOrientador {
-  nomesDisponiveis = [
-    { nome: 'Pesquisa', selected: false },
+export class ModalDemandas {
+  classificacoesDemanda = [
+    { nome: 'Bibliografia', selected: false },
+    { nome: 'Redação', selected: false },
     { nome: 'Desenvolvimento', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
-    { nome: 'Leitura', selected: false },
+    { nome: 'Manutenção', selected: false },
+    { nome: 'Pesquisa', selected: false },
+    { nome: 'Estudo', selected: false },
+    { nome: 'Planejamento', selected: false },
+    { nome: 'Revisão', selected: false },
+    { nome: 'Documentação', selected: false },
+    { nome: 'Apresentação', selected: false }
   ];
 
   dropdownVisible: boolean = false;
-  isRotated: boolean = false; // Variável para controlar a rotação
+  isRotated: boolean = false;
   nomesSelecionados: string[] = [];
 
   demandasOrientador = {
@@ -41,23 +42,15 @@ export class ModalDemandasOrientador {
     public modalService: ModalService,
     public themeService: ThemeService,
     private fb: FormBuilder
-  ) {}
-
-  fecharModal() {
-    this.modalService.fechar('modalDemandasOrientador');
-  }
-
-  abrirModal(nomeModal: string) {
-    this.modalService.abrir(nomeModal);
-  }
+  ) { }
 
   toggleDropdown() {
     this.dropdownVisible = !this.dropdownVisible;
-    this.isRotated = !this.isRotated; // Alterna a rotação do ícone
+    this.isRotated = !this.isRotated;
   }
 
   updateLista() {
-    this.nomesSelecionados = this.nomesDisponiveis
+    this.nomesSelecionados = this.classificacoesDemanda
       .filter(nome => nome.selected)
       .map(nome => nome.nome);
   }
