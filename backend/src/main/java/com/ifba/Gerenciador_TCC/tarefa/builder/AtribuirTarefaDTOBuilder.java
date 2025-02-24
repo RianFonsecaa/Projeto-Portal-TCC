@@ -22,7 +22,6 @@ public class AtribuirTarefaDTOBuilder {
                     .status(atribuirTarefaDTO.getStatus())
                     .prioridade(atribuirTarefaDTO.getPrioridade())
                     .classificacao(atribuirTarefaDTO.getClassificacao())
-                    .alerta(atribuirTarefaDTO.isAlerta())
                     .prazo(atribuirTarefaDTO.getPrazo())
                     .build();
     }
@@ -40,7 +39,6 @@ public class AtribuirTarefaDTOBuilder {
                 .status(tarefa.getStatus())
                 .prioridade(tarefa.getPrioridade())
                 .classificacao(tarefa.getClassificacao())
-                .alerta(tarefa.isAlerta())
                 .prazo(tarefa.getPrazo())
                 .build();
     }

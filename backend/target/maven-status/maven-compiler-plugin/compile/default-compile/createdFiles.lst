@@ -2,6 +2,7 @@ com\ifba\Gerenciador_TCC\usuario\repository\UsuarioRepository.class
 com\ifba\Gerenciador_TCC\GerenciadorTccApplication.class
 com\ifba\Gerenciador_TCC\quadrodemandas\mapper\QuadroDemandasMapper.class
 com\ifba\Gerenciador_TCC\quadrodemandas\service\QuadroDemandasService.class
+com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientando.class
 com\ifba\Gerenciador_TCC\security\SecurityConfig.class
 com\ifba\Gerenciador_TCC\tarefa\controller\TarefaController.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.class
@@ -16,6 +17,7 @@ com\ifba\Gerenciador_TCC\projeto\repository\ProjetoRepository.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO$QuadroDemandasDTOBuilder.class
 com\ifba\Gerenciador_TCC\quadrodemandas\controller\QuadroDemandasController.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO$UsuarioDTOBuilder.class
+com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
 com\ifba\Gerenciador_TCC\quadrodemandas\mapper\QuadroDemandasMapperImpl.class
@@ -36,6 +38,7 @@ com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa$TarefaBuilder.class
 com\ifba\Gerenciador_TCC\email\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO.class
 com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
+com\ifba\Gerenciador_TCC\usuario\domain\dto\RetornarUsuaioDTO.class
 com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
 com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.class

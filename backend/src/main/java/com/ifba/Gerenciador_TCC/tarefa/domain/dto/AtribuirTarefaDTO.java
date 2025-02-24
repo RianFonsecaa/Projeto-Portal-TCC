@@ -49,8 +49,6 @@ public class AtribuirTarefaDTO {
     @NotNull(message = "A classificação é obrigatória")
     private Classificacao classificacao;
 
-    @NotNull(message = "O alerta é obrigatório")
-    private boolean alerta;
 
     @NotNull(message = "O prazo da tarefa é obrigatório")
     private LocalDate prazo;

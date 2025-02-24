@@ -91,6 +91,6 @@ public class UsuarioService implements UsuarioServiceApi {
         Usuario usuario = findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
 
-        return ResponseEntity.ok(new JwtResponse(token, usuario));
+        return ResponseEntity.ok(new JwtResponse(token, usuario.getId()));
     }
 }

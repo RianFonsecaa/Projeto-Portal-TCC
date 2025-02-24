@@ -68,9 +68,6 @@ public class Tarefa {
     @Column(name = "classificacao", nullable = false)
     private Classificacao classificacao;
 
-    @Column(name = "alerta", nullable = false)
-    private boolean alerta;
-
     @Column(name = "prazo", nullable = true)
     private LocalDate prazo;
 }

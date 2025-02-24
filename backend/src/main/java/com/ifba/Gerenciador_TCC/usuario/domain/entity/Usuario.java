@@ -1,8 +1,6 @@
 package com.ifba.Gerenciador_TCC.usuario.domain.entity;
 
-import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
 import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -17,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "usuario")
 @Builder
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
     @Id
