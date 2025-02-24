@@ -18,4 +18,5 @@ public interface TarefaControllerApi {
     public ResponseEntity<List<TarefaDTO>> listarTarefasPorDataFim( LocalDate dataFim);
     public ResponseEntity<Void> deletarTarefa( Long id);
     public ResponseEntity<TarefaDTO> atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO);
+    ResponseEntity<List<TarefaDTO>> listarTarefasPorProjeto(Long projetoId);
 }

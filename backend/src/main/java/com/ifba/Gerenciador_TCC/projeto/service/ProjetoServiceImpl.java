@@ -49,4 +49,10 @@ public class ProjetoServiceImpl implements ProjetoService {
             projetoRepository.deleteById(id);
         }
     }
+
+    @Override
+    public Projeto findById(long projetoId) {
+    return projetoRepository.findById(projetoId)
+        .orElseThrow(() -> new NotFoundException("Projeto não encontrado com ID: " + projetoId));
+    }
 }
