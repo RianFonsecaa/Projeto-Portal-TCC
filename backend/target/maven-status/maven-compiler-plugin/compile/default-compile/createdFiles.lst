@@ -37,7 +37,6 @@ com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
 com\ifba\Gerenciador_TCC\security\JwtRequestFilter.class
 com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.class
-com\ifba\Gerenciador_TCC\quadrodemandas\builder\QuadroDemandasBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa$TarefaBuilder.class
 com\ifba\Gerenciador_TCC\email\service\EmailService.class
 com\ifba\Gerenciador_TCC\quadrodemandas\domain\dto\QuadroDemandasDTO.class
@@ -49,12 +48,14 @@ com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.class
 com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO$TarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO$ProjetoDTOBuilder.class
+com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO$AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.class
 com\ifba\Gerenciador_TCC\security\JwtTokenUtil.class
+com\ifba\Gerenciador_TCC\quadrodemandas\builder\QuadroDemandasDTOBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario$UsuarioBuilder.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto.class

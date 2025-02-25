@@ -12,7 +12,6 @@ C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.java
-C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodemandas\builder\QuadroDemandasBuilder.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientadorBuilder.java
@@ -44,6 +43,7 @@ C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptio
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientandoDTO.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
+C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientadorRepository.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtRequestFilter.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaControllerApi.java
@@ -55,6 +55,7 @@ C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\Gerencia
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\builder\AtribuirTarefaDTOBuilder.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapper.java
+C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\quadrodemandas\builder\QuadroDemandasDTOBuilder.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\NotificacaoController.java
 C:\Users\g10\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.java

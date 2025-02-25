@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.projeto.controller;
 
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoController;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
@@ -33,8 +34,8 @@ public class ProjetoControllerImpl implements ProjetoController {
 
     @Override
     @GetMapping("/orientador/{id}")
-    public ResponseEntity<List<Projeto>> listarProjetosPorOrientador(@PathVariable Long id) {
-        List<Projeto> projetos = projetoService.listarProjetosPorOrientador(id);
+    public ResponseEntity<List<ProjetoDTO>> listarProjetosPorOrientador(@PathVariable Long id) {
+        List<ProjetoDTO> projetos = projetoService.listarProjetosDTOPorOrientador(id);
         return ResponseEntity.ok(projetos);
     }
 

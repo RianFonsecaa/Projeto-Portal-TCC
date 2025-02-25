@@ -2,10 +2,9 @@ package com.ifba.Gerenciador_TCC.quadrodemandas.service;
 
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
-import com.ifba.Gerenciador_TCC.quadrodemandas.builder.QuadroDemandasBuilder;
+import com.ifba.Gerenciador_TCC.quadrodemandas.builder.QuadroDemandasDTOBuilder;
 import com.ifba.Gerenciador_TCC.quadrodemandas.domain.dto.QuadroDemandasDTO;
 import com.ifba.Gerenciador_TCC.quadrodemandas.interfaces.QuadroDemandasServiceApi;
-import com.ifba.Gerenciador_TCC.tarefa.builder.AtribuirTarefaDTOBuilder;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class QuadroDemandasService implements QuadroDemandasServiceApi {
     public List<QuadroDemandasDTO> buscarQuadroPorOrientador(Long idOrientador){
         List<Projeto> projetos = projetoService.listarProjetosPorOrientador(idOrientador);
         return projetos.stream()
-                .map(QuadroDemandasBuilder::buildQuadroDemandas)
+                .map(QuadroDemandasDTOBuilder::buildQuadroDemandas)
                 .collect(Collectors.toList());
     }
 
@@ -34,7 +33,7 @@ public class QuadroDemandasService implements QuadroDemandasServiceApi {
         if (!projeto.isPresent())
             return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(QuadroDemandasBuilder.buildQuadroDemandas(projeto.get()));
+        return ResponseEntity.ok(QuadroDemandasDTOBuilder.buildQuadroDemandas(projeto.get()));
     }
 
 }
