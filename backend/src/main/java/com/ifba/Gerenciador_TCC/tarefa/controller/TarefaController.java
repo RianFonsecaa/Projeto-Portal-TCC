@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tarefas")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TarefaController implements TarefaControllerApi {
 
     @Autowired

@@ -4,7 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "orientador")
 public class Orientador extends Usuario {
@@ -21,6 +23,10 @@ public class Orientador extends Usuario {
     private boolean orientadorDisponivel;
 
     @Column(name = "projetos_em_orientacao", nullable = false)
-    @NotEmpty(message = "O campo 'orientadorDisponivel' não pode estar vazio.")
+    @NotEmpty(message = "O campo 'projetosEmOrientacao' não pode estar vazio.")
     private Long projetosEmOrientacao;
+
+    @Column(name = "resumo", nullable = false)
+    @NotEmpty(message = "O campo 'projetosEmOrientacao' não pode estar vazio.")
+    private String resumo;
 }

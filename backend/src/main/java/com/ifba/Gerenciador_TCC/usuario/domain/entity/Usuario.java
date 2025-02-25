@@ -34,6 +34,10 @@ public class Usuario {
     @NotEmpty(message = "O campo 'email' não pode estar vazio.")
     private String email;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "O campo 'telefone' não pode estar vazio.")
+    private String telefone;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipoUsuario;

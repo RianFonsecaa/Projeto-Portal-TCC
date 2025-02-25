@@ -1,12 +1,12 @@
-INSERT INTO usuario (id, nome, email, senha, tipo_usuario)
-VALUES (1, 'Alex', 'Alex@gmail.com', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTADOR'),
-(2, 'Leandro', 'Leandro@gmail.com', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'COORDENADOR'),
-(3, 'Rian', 'Rian@gmail.com', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
+INSERT INTO usuario (id, nome, email, telefone, senha, tipo_usuario)
+VALUES (1, 'Alex', 'Alex@gmail.com','75999999999','$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTADOR'),
+(2, 'Leandro', 'Leandro@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'COORDENADOR'),
+(3, 'Rian', 'Rian@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orientador
-(area_pesquisa, cargo, orientador_disponivel, projetos_em_orientacao, id)
-VALUES('Interligencia Artificial', 'Professor', false,2, 1)
+(area_pesquisa, cargo, orientador_disponivel, projetos_em_orientacao, id, resumo)
+VALUES('Interligencia Artificial', 'Professor', false,2, 1, 'Resumo')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orientando

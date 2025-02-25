@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController implements UsuarioControllerApi {
 
     @Autowired
@@ -47,7 +48,12 @@ public class UsuarioController implements UsuarioControllerApi {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id){
         return ResponseEntity.ok(usuarioService.findById(id));
+    }
+
+    @GetMapping("/dados/{id}")
+    public ResponseEntity<?> findAllDataById(@PathVariable Long id){
+        return usuarioService.findAllDataById(id);
     }
 }

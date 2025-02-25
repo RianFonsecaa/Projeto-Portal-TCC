@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/projetos")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProjetoControllerImpl implements ProjetoController {
 
     @Autowired

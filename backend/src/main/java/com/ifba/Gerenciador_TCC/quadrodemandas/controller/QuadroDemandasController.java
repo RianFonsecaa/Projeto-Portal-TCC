@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/quadro-demandas")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QuadroDemandasController {
 
     @Autowired
