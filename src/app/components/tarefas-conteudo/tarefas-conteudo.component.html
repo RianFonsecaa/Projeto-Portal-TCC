@@ -1,0 +1,20 @@
+
+    <div class="mt-2 space-y-4 hover:bg-yellow-600 dark:bg-[#2c2828] dark:text-white my-2 rounded-lg">
+      <div class="bg-gray-100 p-4 rounded-lg border-solid shadow dark:bg-[#2c2828] dark:text-white">
+        <h4 class="font-bold ">{{ titulo }}</h4>
+        <img [src]="imgSource" alt="" class="mt-2">
+        <p class="text-sm text-gray-600 mt-2">
+          {{ descricao }}
+        </p>
+        <p class="text-green-600 text-sm font-medium hover:text-gray-600 py-1">
+          {{prioridade}}
+        </p>
+        <div class="flex justify-between items-center mt-2">
+          <p>Criado em {{dataCriacao | date:'dd/MM/yyyy'}}</p>  
+          <button [ngClass]="prazoColor" class="text-sm font-medium">
+            {{status}}
+          </button>
+          
+        </div>
+      </div>
+    </div>

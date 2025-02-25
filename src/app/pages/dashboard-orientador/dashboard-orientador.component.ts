@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { Projeto } from '../../model/Projeto';
 import { tap, mergeMap } from 'rxjs/operators';
-import { Demandas } from '../../model/demandas';
+import { Demandas } from '../../model/Demandas';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +15,11 @@ import { Demandas } from '../../model/demandas';
   templateUrl: './dashboard-orientador.component.html',
 })
 export class DashboardOrientadorComponent {
-  tccCards: TccCard[] = [];
+  tccCards: TccCard[];
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+    this.tccCards =[];
+  }
 
   ngOnInit() {
     this.getProjetos()
@@ -27,11 +29,11 @@ export class DashboardOrientadorComponent {
           this.tccCards = response;
         }),
         mergeMap((tccCards) => {
-          // Criando um array de requisições para pegar as demandas
+          // criamos um array de requisições para pegar as demandas
           const requisicoes = tccCards.map(card =>
             this.getDemandasPorId(card.id).pipe(
               tap((demandas) => {
-                // Associando as demandas ao respectivo card
+                // associamos as demandas ao respectivo card
                 card.demandas = demandas;
               })
             )
@@ -63,7 +65,7 @@ export class DashboardOrientadorComponent {
     }
   }
 
-  navegarParaDemanda(ID: number): void {
-    this.router.navigate(['/home', { outlets: { dashboard: ['dashboardAluno', ID] } }]);
+  navegarParaDemanda(id: number): void {
+    this.router.navigate(['/home', { outlets: { dashboard: ['demanda', id] } }]);
   }
 }

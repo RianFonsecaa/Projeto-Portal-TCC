@@ -1,4 +1,4 @@
-import { Demandas } from "./demandas";
+import { Demandas } from "./Demandas";
 
 export interface TccCard {
     id: number;
