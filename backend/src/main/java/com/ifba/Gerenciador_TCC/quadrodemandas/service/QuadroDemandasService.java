@@ -8,9 +8,11 @@ import com.ifba.Gerenciador_TCC.quadrodemandas.interfaces.QuadroDemandasServiceA
 import com.ifba.Gerenciador_TCC.tarefa.builder.AtribuirTarefaDTOBuilder;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +26,15 @@ public class QuadroDemandasService implements QuadroDemandasServiceApi {
         return projetos.stream()
                 .map(QuadroDemandasBuilder::buildQuadroDemandas)
                 .collect(Collectors.toList());
+    }
+
+    public ResponseEntity<?> buscarQuadroPorProjeto(Long idOrientador){
+        Optional<Projeto> projeto = Optional.ofNullable(projetoService.obterProjetoPorId(idOrientador));
+
+        if (!projeto.isPresent())
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(QuadroDemandasBuilder.buildQuadroDemandas(projeto.get()));
     }
 
 }

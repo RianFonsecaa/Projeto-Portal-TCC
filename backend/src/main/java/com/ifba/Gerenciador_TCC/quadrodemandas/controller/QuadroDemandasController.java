@@ -20,4 +20,9 @@ public class QuadroDemandasController {
         return ResponseEntity.ok(quadroDemandasService.buscarQuadroPorOrientador(id));
     }
 
+    @GetMapping("/projeto/{id}")
+    private ResponseEntity<?> buscarQuadroPorProjeto(@PathVariable Long id){
+        return quadroDemandasService.buscarQuadroPorProjeto(id);
+    }
+
 }
