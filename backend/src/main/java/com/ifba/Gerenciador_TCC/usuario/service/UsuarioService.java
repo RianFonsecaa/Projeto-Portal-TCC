@@ -86,27 +86,12 @@ public class UsuarioService implements UsuarioServiceApi {
     }
 
     public ResponseEntity<?> findAllDataById(long id) {
-        Optional<Usuario> usuario = this.usuarioRepository.findById(id);
-        if (!usuario.isPresent())
-            return null;
-
-        Usuario usuario1 = usuario.get();
-
-        if (usuario1.getTipoUsuario() == TipoUsuario.ORIENTADOR){
-            Optional<Orientador> orientador = orientadorRepository.findById(usuario1.getId());
-            if (!orientador.isPresent())
-                return ResponseEntity.internalServerError().build();
-
-            return ResponseEntity.ok(UsuarioOrientadorBuilder.buildUsuarioOrientadorDTO(usuario1, orientador.get()));
-        } else if (usuario1.getTipoUsuario() == TipoUsuario.ORIENTANDO) {
-            Optional<Orientando> orientando = orientandoRepository.findById(usuario1.getId());
-            if (!orientando.isPresent())
-                return ResponseEntity.internalServerError().build();
-
-            return ResponseEntity.ok(UsuarioOrientandoBuilder.buildUsuarioOrientandoDTO(usuario1, orientando.get()));
+        Optional<Usuario> usuario = usuarioRepository.findByIdWithDetails(id);
+        if (!usuario.isPresent()) {
+            return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(usuario.get());
     }
 
     public Optional<Usuario> findByEmail(String email) {
@@ -117,10 +102,9 @@ public class UsuarioService implements UsuarioServiceApi {
         return usuarioRepository.findByTipoUsuario(tipoUsuario);
     }
 
-    public ResponseEntity<?> login(LoginRequest loginRequest){
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getSenha())
-        );
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getSenha()));
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails.getUsername());
 
