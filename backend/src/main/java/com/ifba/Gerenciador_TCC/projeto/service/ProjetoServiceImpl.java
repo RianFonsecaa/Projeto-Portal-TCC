@@ -4,6 +4,8 @@ import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.projeto.repository.ProjetoRepository;
+import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
+import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,16 @@ public class ProjetoServiceImpl implements ProjetoService {
 
     @Autowired
     private ProjetoRepository projetoRepository;
-
+    @Autowired
+    private UsuarioServiceApi usuarioService;
     @Override
     public List<Projeto> listarProjetos() {
         return projetoRepository.findAll();
+    }
+
+    @Override
+    public List<Projeto> listarProjetosPorOrientador(Long idOrientador) {
+        return projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
     }
 
     @Override
@@ -35,9 +43,8 @@ public class ProjetoServiceImpl implements ProjetoService {
     }
 
     @Override
-    public Projeto atualizarProjeto(Long id, Projeto projeto) {
-        if (projetoRepository.existsById(id)) {
-            projeto.setId(id);
+    public Projeto atualizarProjeto(Projeto projeto) {
+        if (projetoRepository.existsById(projeto.getId())) {
             return projetoRepository.save(projeto);
         }
         return null;

@@ -14,10 +14,6 @@ INSERT INTO orientando
 VALUES('ADS', 3)
 ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO public.quadro_demandas (id, demandas_atribuidas, demandas_em_andamento,
-demandas_resolvidas) VALUES (1, 10, 5, 3), (2, 15, 7, 5)
-ON CONFLICT (id) DO NOTHING;
-
 INSERT INTO public.projeto (id, data_cadastro, descricao_projeto, id_aluno, id_professor,
 id_tcc, titulo_projeto, data_ultima_atualizacao, horas_orientacao, progresso,
 tipo_curso, tipo_projeto, orientando_id, orientador_id) VALUES

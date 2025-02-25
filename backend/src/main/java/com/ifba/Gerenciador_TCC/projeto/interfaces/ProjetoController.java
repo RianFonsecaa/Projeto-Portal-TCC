@@ -16,7 +16,7 @@ public interface ProjetoController {
 
     ResponseEntity<Projeto> criarProjeto(Projeto projeto);
 
-    ResponseEntity<Projeto> atualizarProjeto(Long id, Projeto projeto);
+    ResponseEntity<Projeto> atualizarProjeto(Projeto projeto);
 
     ResponseEntity<Void> deletarProjeto(Long id);
 }

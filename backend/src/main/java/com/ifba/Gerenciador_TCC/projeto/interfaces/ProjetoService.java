@@ -9,11 +9,13 @@ public interface ProjetoService {
 
     List<Projeto> listarProjetos();
 
+    List<Projeto> listarProjetosPorOrientador(Long idOrientador);
+
     Projeto obterProjetoPorId(Long id);
 
     Projeto criarProjeto(Projeto projeto);
 
-    Projeto atualizarProjeto(Long id, Projeto projeto);
+    Projeto atualizarProjeto(Projeto projeto);
 
     void deletarProjeto(Long id);
 

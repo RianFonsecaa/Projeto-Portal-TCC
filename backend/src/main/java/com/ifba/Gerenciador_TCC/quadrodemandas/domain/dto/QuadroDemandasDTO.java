@@ -1,6 +1,7 @@
 package com.ifba.Gerenciador_TCC.quadrodemandas.domain.dto;
 
-
+import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoProjeto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class QuadroDemandasDTO {
-    private Long id;
-    private int demandasAtribuidas;
-    private int demandasEmAndamento;
-    private int demandasResolvidas;
+
+    private long id;
+    private String titulo;
+    private String nomeAutor;
+    private TipoCurso cursoAutor;
+    private TipoProjeto tipoProjeto;
+    private int horasOrientacao;
+    private int progresso;
+
 }

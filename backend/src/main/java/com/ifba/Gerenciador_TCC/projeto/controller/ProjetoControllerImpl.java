@@ -2,6 +2,7 @@ package com.ifba.Gerenciador_TCC.projeto.controller;
 
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoController;
+import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.projeto.repository.ProjetoRepository;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
 
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class ProjetoControllerImpl implements ProjetoController {
 
     @Autowired
-    private ProjetoRepository projetoRepository;
+    private ProjetoService projetoService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -26,51 +27,42 @@ public class ProjetoControllerImpl implements ProjetoController {
     @Override
     @GetMapping
     public ResponseEntity<List<Projeto>> listarProjetos() {
-        List<Projeto> projetos = projetoRepository.findAll();
+        List<Projeto> projetos = projetoService.listarProjetos();
         return ResponseEntity.ok(projetos);
     }
 
     @Override
     @GetMapping("/orientador/{id}")
-    public ResponseEntity<List<Projeto>> listarProjetosPorOrientador(@PathVariable Long idOrientador) {
-        List<Projeto> projetos = projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
+    public ResponseEntity<List<Projeto>> listarProjetosPorOrientador(@PathVariable Long id) {
+        List<Projeto> projetos = projetoService.listarProjetosPorOrientador(id);
         return ResponseEntity.ok(projetos);
     }
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<Projeto> obterProjetoPorId(@PathVariable Long id) {
-        Optional<Projeto> projeto = projetoRepository.findById(id);
+        Optional<Projeto> projeto = Optional.ofNullable(projetoService.obterProjetoPorId(id));
         return projeto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
     @PostMapping
     public ResponseEntity<Projeto> criarProjeto(@RequestBody Projeto projeto) {
-        Projeto projetoSalvo = projetoRepository.save(projeto);
+        Projeto projetoSalvo = projetoService.criarProjeto(projeto);
         return ResponseEntity.ok(projetoSalvo);
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<Projeto> atualizarProjeto(@PathVariable Long id, @RequestBody Projeto projeto) {
-        if (projetoRepository.existsById(id)) {
-            projeto.setId(id);
-            Projeto projetoAtualizado = projetoRepository.save(projeto);
-            return ResponseEntity.ok(projetoAtualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Projeto> atualizarProjeto(@RequestBody Projeto projeto) {
+        Projeto projetoSalvo = projetoService.atualizarProjeto(projeto);
+        return ResponseEntity.ok(projetoSalvo);
     }
 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarProjeto(@PathVariable Long id) {
-        if (projetoRepository.existsById(id)) {
-            projetoRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        projetoService.deletarProjeto(id);
+        return ResponseEntity.noContent().build();
     }
 }
