@@ -1,9 +1,11 @@
 package com.ifba.Gerenciador_TCC.tarefa.service;
 
+import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.builder.AtribuirTarefaDTOBuilder;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaServiceApi;
 import com.ifba.Gerenciador_TCC.tarefa.repository.TarefaRepository;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
@@ -23,12 +25,8 @@ public class TarefaService implements TarefaServiceApi {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Override
-    public TarefaDTO criarTarefa(AtribuirTarefaDTO tarefaDTO) {
-        Tarefa tarefa = AtribuirTarefaDTOBuilder.buildTarefa(tarefaDTO, usuarioService);
-        Tarefa tarefaSalvo = tarefaRepository.save(tarefa);
-        return AtribuirTarefaDTOBuilder.buildTarefaDTO(tarefaSalvo);
-    }
+    @Autowired
+    private ProjetoService projetoService;
 
     @Override
     public TarefaDTO buscarTarefaPorId(Long id) {
@@ -46,7 +44,7 @@ public class TarefaService implements TarefaServiceApi {
     }
 
     @Override
-    public List<TarefaDTO> listarTarefasPorUsuario(Long idUsuario) {
+    public List<TarefaDTO> listarTarefasPorOrientando(Long idUsuario) {
         List<Tarefa> tarefas = tarefaRepository.findByOrientandoId(idUsuario);
         return tarefas.stream()
                 .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
@@ -71,7 +69,7 @@ public class TarefaService implements TarefaServiceApi {
 
     @Override
     public List<TarefaDTO> listarTarefasPorDataFim(LocalDate dataFim) {
-        List<Tarefa> tarefas = tarefaRepository.findByDataFim(dataFim);
+        List<Tarefa> tarefas = tarefaRepository.findByPrazo(dataFim);
         return tarefas.stream()
                 .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
                 .collect(Collectors.toList());
@@ -87,8 +85,23 @@ public class TarefaService implements TarefaServiceApi {
 
     @Override
     public TarefaDTO atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO) {
-        Tarefa tarefa = AtribuirTarefaDTOBuilder.buildTarefa(atribuirTarefaDTO, usuarioService);
+        Tarefa tarefa = AtribuirTarefaDTOBuilder.buildTarefa(atribuirTarefaDTO, usuarioService, projetoService);
         Tarefa tarefasalva = tarefaRepository.save(tarefa);
         return AtribuirTarefaDTOBuilder.buildTarefaDTO(tarefasalva);
+    }
+
+    @Override
+    public List<TarefaDTO> listarTarefasPorProjeto(Long projetoId) {
+        List<Tarefa> tarefas = tarefaRepository.findByProjetoId(projetoId);
+        return tarefas.stream()
+                .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<TarefaDTO> listarTarefaPorStatus(StatusTarefa statusTarefa){
+        List<Tarefa> tarefas = tarefaRepository.findByStatus(statusTarefa);
+        return tarefas.stream()
+                .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
+                .collect(Collectors.toList());
     }
 }

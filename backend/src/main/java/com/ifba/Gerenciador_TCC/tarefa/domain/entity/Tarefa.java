@@ -1,7 +1,11 @@
 
 package com.ifba.Gerenciador_TCC.tarefa.domain.entity;
 
-import com.ifba.Gerenciador_TCC.documento.domain.entity.Documento;
+
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Prioridade;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -26,6 +30,10 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "projeto_id", nullable = false)
+    private Projeto projeto;
+    
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientadorId;
@@ -34,9 +42,9 @@ public class Tarefa {
     @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientandoId;
 
-    @OneToMany
-    @JoinColumn(name = "documento_id", referencedColumnName = "id", nullable = true)
-    private List<Documento> documentoId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusTarefa status;
 
     @NotEmpty(message = "O nome da tarefa não pode estar vazio")
     @Column(name = "nome_tarefa", nullable = false, length = 200)
@@ -49,6 +57,14 @@ public class Tarefa {
     @Column(name = "data_envio", nullable = false)
     private LocalDate dataEnvio;
 
-    @Column(name = "data_fim", nullable = true)
-    private LocalDate dataFim;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "prioridade", nullable = false)
+    private Prioridade prioridade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "classificacao", nullable = false)
+    private Classificacao classificacao;
+
+    @Column(name = "prazo", nullable = true)
+    private LocalDate prazo;
 }

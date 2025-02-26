@@ -13,16 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tarefas")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TarefaController implements TarefaControllerApi {
 
     @Autowired
     private TarefaService tarefaService;
-
-    @PostMapping
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody AtribuirTarefaDTO tarefaDTO) {
-        TarefaDTO tarefaCriado = tarefaService.criarTarefa(tarefaDTO);
-        return ResponseEntity.ok(tarefaCriado);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TarefaDTO> buscarTarefaPorId(@PathVariable Long id) {
@@ -38,7 +33,7 @@ public class TarefaController implements TarefaControllerApi {
 
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<TarefaDTO>> listarTarefasPorUsuario(@PathVariable Long idUsuario) {
-        List<TarefaDTO> tarefas = tarefaService.listarTarefasPorUsuario(idUsuario);
+        List<TarefaDTO> tarefas = tarefaService.listarTarefasPorOrientando(idUsuario);
         return ResponseEntity.ok(tarefas);
     }
 
@@ -72,5 +67,10 @@ public class TarefaController implements TarefaControllerApi {
         return ResponseEntity.ok(tarefaAtribuidaDTO);
     }
 
+    @GetMapping("/projeto/{projetoId}")
+    public ResponseEntity<List<TarefaDTO>> listarTarefasPorProjeto(@PathVariable Long projetoId) {
+    List<TarefaDTO> tarefas = tarefaService.listarTarefasPorProjeto(projetoId);
+    return ResponseEntity.ok(tarefas);
+    }
 
 }

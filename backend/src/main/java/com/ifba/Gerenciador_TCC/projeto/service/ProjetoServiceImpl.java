@@ -1,24 +1,43 @@
 package com.ifba.Gerenciador_TCC.projeto.service;
 
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
+import com.ifba.Gerenciador_TCC.projeto.builder.ProjetoDTOBuilder;
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.projeto.repository.ProjetoRepository;
+import com.ifba.Gerenciador_TCC.quadrodemandas.builder.QuadroDemandasDTOBuilder;
+import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
+import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProjetoServiceImpl implements ProjetoService {
 
     @Autowired
     private ProjetoRepository projetoRepository;
-
+    @Autowired
+    private UsuarioServiceApi usuarioService;
     @Override
     public List<Projeto> listarProjetos() {
         return projetoRepository.findAll();
+    }
+
+    @Override
+    public List<Projeto> listarProjetosPorOrientador(Long idOrientador) {
+        return projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
+    }
+
+    public List<ProjetoDTO> listarProjetosDTOPorOrientador(Long idOrientador) {
+        List<Projeto> projetos = projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
+        return projetos.stream()
+                .map(ProjetoDTOBuilder::buildProjetoDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -35,9 +54,8 @@ public class ProjetoServiceImpl implements ProjetoService {
     }
 
     @Override
-    public Projeto atualizarProjeto(Long id, Projeto projeto) {
-        if (projetoRepository.existsById(id)) {
-            projeto.setId(id);
+    public Projeto atualizarProjeto(Projeto projeto) {
+        if (projetoRepository.existsById(projeto.getId())) {
             return projetoRepository.save(projeto);
         }
         return null;
@@ -48,5 +66,11 @@ public class ProjetoServiceImpl implements ProjetoService {
         if (projetoRepository.existsById(id)) {
             projetoRepository.deleteById(id);
         }
+    }
+
+    @Override
+    public Projeto findById(long projetoId) {
+    return projetoRepository.findById(projetoId)
+        .orElseThrow(() -> new NotFoundException("Projeto não encontrado com ID: " + projetoId));
     }
 }
