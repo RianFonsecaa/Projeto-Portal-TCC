@@ -39,7 +39,7 @@
                     <div class="flex flex-col justify-between relative w-full h-full pb-4 pt-16 bg-cover bg-center">
                         <h1
                             class="text-center relative p-1 text-xl font-bold rounded-md mx-4 bg-green-600 bg-opacity-20 text-white backdrop-blur-md">
-                            {{tcc.tituloProjeto}}
+                            {{tcc.titulo}}
                         </h1>
 
                         <div
@@ -55,8 +55,8 @@
                                     </svg>
                                 </div>
                                 <div class="text-start ml-2 text-white">
-                                    <h1 class="font-medium text-[14px]">{{tcc.orientandoId.nome}}</h1>
-                                    <p class="text-[11px] font-light">{{tcc.tipoCurso}}</p>
+                                    <h1 class="font-medium text-[14px]">{{tcc.nomeAutor}}</h1>
+                                    <p class="text-[11px] font-light">{{tcc.cursoAutor}}</p>
                                 </div>
                             </div>
                             <div class="flex flex-nowrap text-white space-x-2">
@@ -92,7 +92,7 @@
 
                         <div class="w-full flex justify-between">
                             <span class="text-[11px] text-[#515151] dark:text-[#858585]">Última atualização {{
-                                tcc.dataUltimaAtualizacao
+                                tcc.dataUltimaAlteracao
                                 }}</span>
                             <button (click)="toggleProjetoInfo(projetoInfoDiv)">
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -133,21 +133,21 @@
                                     <span class="font-medium flex-nowrap">Atribuídas</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandas?.demandasAtribuidas}}
+                                        tcc.demandasAtribuidas}}
                                     </span>
                                 </div>
                                 <div class="flex flex-col items-center border border-gray-100 shadow-md px-3 py-1">
                                     <span class="font-medium flex-nowrap">Em Andamento</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandas?.demandasEmAndamento}}
+                                        tcc.demandasEmAndamento}}
                                     </span>
                                 </div>
                                 <div class="flex flex-col items-center border border-gray-100 shadow-md px-3 py-1">
                                     <span class="font-medium flex-nowrap">Resolvidas</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandas?.demandasResolvidas }}
+                                        tcc.demandasResolvidas }}
                                     </span>
                                 </div>
                             </div>

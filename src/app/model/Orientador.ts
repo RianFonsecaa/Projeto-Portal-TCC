@@ -1,9 +1,13 @@
-export interface Orientador{
+export interface Orientador {
+  id: number;
+  senha: string;
+  nome: string;
+  email: string;
+  telefone: string;
+  tipoUsuario: string;
   areaPesquisa: string;
   cargo: string;
   orientadorDisponivel: boolean;
   projetosEmOrientacao: number;
-  
-  telefone: string;
-  id: number;
+  resumo: string;
 }

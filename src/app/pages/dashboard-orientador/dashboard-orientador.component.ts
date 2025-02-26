@@ -4,9 +4,8 @@ import { TccCard } from '../../model/TccCard';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
-import { Projeto } from '../../model/Projeto';
 import { tap, mergeMap } from 'rxjs/operators';
-import { Demandas } from '../../model/Demandas';
+import { TccCardService } from '../../services/Requisicoes/tccCard.service';
 
 @Component({
   selector: 'app-home',
@@ -17,42 +16,19 @@ import { Demandas } from '../../model/Demandas';
 export class DashboardOrientadorComponent {
   tccCards: TccCard[];
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private TccCardService: TccCardService) {
     this.tccCards =[];
   }
 
   ngOnInit() {
-    this.getProjetos()
-      .pipe(
-        tap((response: TccCard[]) => {
-          console.log("Response da API:", response);
-          this.tccCards = response;
-        }),
-        mergeMap((tccCards) => {
-          // criamos um array de requisições para pegar as demandas
-          const requisicoes = tccCards.map(card =>
-            this.getDemandasPorId(card.id).pipe(
-              tap((demandas) => {
-                // associamos as demandas ao respectivo card
-                card.demandas = demandas;
-              })
-            )
-          );
-          return forkJoin(requisicoes); // Aguarda todas as requisições serem concluídas
-        })
-      )
-      .subscribe({
-        next: () => console.log("Todos os dados foram carregados com sucesso."),
-        error: (error) => console.error("Erro ao buscar dados:", error)
-      });
-  }
-
-  getProjetos(): Observable<TccCard[]> {
-    return this.http.get<TccCard[]>('http://127.0.0.1:8080/api/projetos');
-  }
-
-  getDemandasPorId(id: number): Observable<Demandas> {
-    return this.http.get<Demandas>(`http://127.0.0.1:8080/api/quadro-demandas/${id}`);
+    this.TccCardService.getProjetosPorOrientador().subscribe({
+      next: (response: TccCard[]) => {
+        this.tccCards = response;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar projetos:', err);
+      },
+    });
   }
 
   toggleProjetoInfo(projetoInfoDiv: HTMLElement) {

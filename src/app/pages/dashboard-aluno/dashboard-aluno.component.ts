@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Demanda } from '../../model/AlunoDemanda';
 import { Subscription } from 'rxjs';
 import { TarefasConteudoComponent } from '../../components/tarefas-conteudo/tarefas-conteudo.component';
+import { TarefasService } from '../../services/Requisicoes/tarefas.service';
+
 
 @Component({
   selector: 'app-dashboard-aluno',
@@ -35,7 +37,8 @@ export class DashboardAlunoComponent implements OnInit, OnDestroy {
 
   constructor(
     private demandaService: DemandasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tarefasService: TarefasService
   ) {}
 
   selectTab(tab: string) {
@@ -50,6 +53,19 @@ export class DashboardAlunoComponent implements OnInit, OnDestroy {
         this.carregarDemandas();
       }
     });
+
+    //Requisição utlizando o service de tarefas
+    // this.tarefasService.getTarefasPorProjeto(idProjeto).subscribe({
+    //   next: (tarefas) => {
+    //     console.log('Tarefas do projeto:', tarefas);
+    //   },
+    //   error: (err) => {
+    //     console.error('Erro ao buscar tarefas:', err);
+    //   },
+    //   complete: () => {
+    //     console.log('Requisição concluída.');
+    //   }
+    // });
   }
 
   carregarDemandas(): void {
@@ -65,15 +81,15 @@ export class DashboardAlunoComponent implements OnInit, OnDestroy {
 
   adicionarNovaDemanda(): void {
     if (this.novaDemanda.nomeTarefa && this.novaDemanda.descricao) {
-      this.novaDemanda.alunoId = this.alunoId; 
+      this.novaDemanda.alunoId = this.alunoId;
       this.demandaService.adicionarDemanda(this.novaDemanda).subscribe(() => {
         this.carregarDemandas();
-        this.novaDemanda = { 
-          id: 0, 
-          nomeTarefa: '', 
-          descricao: '', 
-          prazo: new Date(), 
-          prioridade: 'MEDIA', 
+        this.novaDemanda = {
+          id: 0,
+          nomeTarefa: '',
+          descricao: '',
+          prazo: new Date(),
+          prioridade: 'MEDIA',
           status: 'PENDENTE',
           alunoId: this.alunoId
         };
@@ -84,6 +100,6 @@ export class DashboardAlunoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routeSubscription.unsubscribe(); 
+    this.routeSubscription.unsubscribe();
   }
 }
