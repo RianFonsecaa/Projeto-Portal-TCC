@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from '../../services/Requisicoes/login.service';
 import { LoginRequest } from '../../model/login-request.model';
 import { CommonModule } from '@angular/common';
 

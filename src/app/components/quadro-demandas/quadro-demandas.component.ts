@@ -6,7 +6,7 @@ import { TarefasService } from '../../services/Requisicoes/tarefas.service';
 import { Subscription } from 'rxjs';
 import { NgClass, NgFor } from '@angular/common';
 import { TarefasConteudoComponent } from '../tarefas-conteudo/tarefas-conteudo.component';
-import { Tarefa } from '../../model/Tarefas';
+import { Tarefa } from '../../model/tarefas';
 
 @Component({
   selector: 'app-quadro-demandas',
@@ -15,9 +15,10 @@ import { Tarefa } from '../../model/Tarefas';
   templateUrl: './quadro-demandas.component.html',
 })
 export class QuadroDemandasComponent {
-  tarefasPendentes: Tarefa[] = [];
+  tarefasPendentes:   Tarefa[] = [];
   tarefasEmAndamento: Tarefa[] = [];
-  tarefasConcluidas: Tarefa[] = [];
+  tarefasConcluidas:  Tarefa[] = [];
+  tarefasBacklog:     Tarefa[] = [];
   tarefas: Tarefa[] = [];
   alunoId: number = 0;
   projetoId: string | null = null;
@@ -42,17 +43,21 @@ export class QuadroDemandasComponent {
     this.tarefasService.getTarefasPorProjeto(this.projetoId).subscribe({
       next: (tarefas) => {
         this.tarefas = tarefas;
-        console.log('Tarefas do projeto:', tarefas);
+        this.separarTarefasPorStatus();
+
       },
       error: (err) => {
         console.error('Erro ao buscar tarefas:', err);
       },
-      complete: () => {
-        console.log('Requisição concluída.');
-      }
     });
   };
 
+  separarTarefasPorStatus(): void {
+    this.tarefasPendentes   = this.tarefas.filter(tarefa => tarefa.status === 'PENDENTE');
+    this.tarefasEmAndamento = this.tarefas.filter(tarefa => tarefa.status === 'ANDAMENTO');
+    this.tarefasConcluidas  = this.tarefas.filter(tarefa => tarefa.status === 'CONCLUIDO');
+    this.tarefasBacklog     = this.tarefas.filter(tarefa => tarefa.status === '');
+  }
 
   adicionarNovaDemanda(): void {
   }

@@ -23,7 +23,7 @@ export class UpperBarComponent {
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
   iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
   iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
-  usuario!: Usuario;
+  usuario: Usuario = {} as Usuario;
   notificacoes: Notificacao[] = [
     {
       remetente: 'Jhon Doe',

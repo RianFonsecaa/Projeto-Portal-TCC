@@ -1,4 +1,4 @@
-import { Tarefa } from '../../model/Tarefas';
+import { Tarefa } from './../../model/tarefas';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

@@ -16,7 +16,7 @@ export const routes: Routes = [
         children: [
             { path: 'dashboardOrientador', component: DashboardOrientadorComponent, outlet: 'dashboard' },
             { path: 'dashboardAluno', component: DashboardAlunoComponent, outlet: 'dashboard' },
-            { path: 'projeto', component: QuadroDemandasComponent, outlet: 'dashboard' },
+            { path: 'projeto/:projetoId', component: QuadroDemandasComponent, outlet: 'dashboard' },
             { path: 'agenda', component: AgendaComponent, outlet: 'dashboard' },
             { path: 'documentos-formularios', component: DocumentosEFormulariosComponent, outlet: 'dashboard' },
             { path: 'mensagens', component: MensagensComponent, outlet: 'dashboard' }
