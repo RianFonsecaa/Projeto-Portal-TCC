@@ -9,7 +9,7 @@ import pytest
 ])
 
 def test_get(endpoint):
-    url = f"http://localhost:8080{endpoint}"
+    url = f"http://localhost:8081{endpoint}"
     try:
         response = requests.get(url)
     except Exception as e:

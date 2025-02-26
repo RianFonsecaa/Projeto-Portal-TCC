@@ -24,12 +24,12 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientandoId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false, unique = false)
     private Usuario orientadorId;
 
     @NotEmpty(message = "O título do projeto não pode estar vazio")
