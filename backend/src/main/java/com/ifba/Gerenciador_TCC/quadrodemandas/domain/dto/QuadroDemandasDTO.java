@@ -2,10 +2,13 @@ package com.ifba.Gerenciador_TCC.quadrodemandas.domain.dto;
 
 import com.ifba.Gerenciador_TCC.tipoenum.TipoCurso;
 import com.ifba.Gerenciador_TCC.tipoenum.TipoProjeto;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +23,9 @@ public class QuadroDemandasDTO {
     private TipoProjeto tipoProjeto;
     private int horasOrientacao;
     private int progresso;
+    private LocalDate dataUltimaAtualizacao;
+    private int demandasAtribuidas;
+    private int demandasEmAndamento;
+    private int demandasResolvidas;
 
 }

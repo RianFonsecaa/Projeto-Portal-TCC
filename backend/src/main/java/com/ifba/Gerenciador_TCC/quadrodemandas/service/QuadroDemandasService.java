@@ -23,7 +23,7 @@ public class QuadroDemandasService implements QuadroDemandasServiceApi {
     public List<QuadroDemandasDTO> buscarQuadroPorOrientador(Long idOrientador){
         List<Projeto> projetos = projetoService.listarProjetosPorOrientador(idOrientador);
         return projetos.stream()
-                .map(QuadroDemandasDTOBuilder::buildQuadroDemandas)
+                .map(projeto -> QuadroDemandasDTOBuilder.buildQuadroDemandas(projeto, tarefaService))
                 .collect(Collectors.toList());
     }
 
@@ -33,7 +33,7 @@ public class QuadroDemandasService implements QuadroDemandasServiceApi {
         if (!projeto.isPresent())
             return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(QuadroDemandasDTOBuilder.buildQuadroDemandas(projeto.get()));
+        return ResponseEntity.ok(QuadroDemandasDTOBuilder.buildQuadroDemandas(projeto.get(), tarefaService));
     }
 
 }

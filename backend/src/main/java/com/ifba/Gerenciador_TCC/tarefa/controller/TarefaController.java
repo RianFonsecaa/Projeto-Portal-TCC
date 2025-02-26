@@ -19,12 +19,6 @@ public class TarefaController implements TarefaControllerApi {
     @Autowired
     private TarefaService tarefaService;
 
-    @PostMapping
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody AtribuirTarefaDTO tarefaDTO) {
-        TarefaDTO tarefaCriado = tarefaService.criarTarefa(tarefaDTO);
-        return ResponseEntity.ok(tarefaCriado);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<TarefaDTO> buscarTarefaPorId(@PathVariable Long id) {
         TarefaDTO tarefa = tarefaService.buscarTarefaPorId(id);
@@ -39,7 +33,7 @@ public class TarefaController implements TarefaControllerApi {
 
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<TarefaDTO>> listarTarefasPorUsuario(@PathVariable Long idUsuario) {
-        List<TarefaDTO> tarefas = tarefaService.listarTarefasPorUsuario(idUsuario);
+        List<TarefaDTO> tarefas = tarefaService.listarTarefasPorOrientando(idUsuario);
         return ResponseEntity.ok(tarefas);
     }
 

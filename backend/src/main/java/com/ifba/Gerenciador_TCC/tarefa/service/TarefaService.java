@@ -5,6 +5,7 @@ import com.ifba.Gerenciador_TCC.tarefa.builder.AtribuirTarefaDTOBuilder;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaServiceApi;
 import com.ifba.Gerenciador_TCC.tarefa.repository.TarefaRepository;
 import com.ifba.Gerenciador_TCC.usuario.service.UsuarioService;
@@ -28,13 +29,6 @@ public class TarefaService implements TarefaServiceApi {
     private ProjetoService projetoService;
 
     @Override
-    public TarefaDTO criarTarefa(AtribuirTarefaDTO tarefaDTO) {
-        Tarefa tarefa = AtribuirTarefaDTOBuilder.buildTarefa(tarefaDTO, usuarioService, projetoService);
-        Tarefa tarefaSalvo = tarefaRepository.save(tarefa);
-        return AtribuirTarefaDTOBuilder.buildTarefaDTO(tarefaSalvo);
-    }
-
-    @Override
     public TarefaDTO buscarTarefaPorId(Long id) {
         Tarefa tarefa = tarefaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tarefa não encontrado com o ID: " + id));
@@ -50,7 +44,7 @@ public class TarefaService implements TarefaServiceApi {
     }
 
     @Override
-    public List<TarefaDTO> listarTarefasPorUsuario(Long idUsuario) {
+    public List<TarefaDTO> listarTarefasPorOrientando(Long idUsuario) {
         List<Tarefa> tarefas = tarefaRepository.findByOrientandoId(idUsuario);
         return tarefas.stream()
                 .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
@@ -99,6 +93,13 @@ public class TarefaService implements TarefaServiceApi {
     @Override
     public List<TarefaDTO> listarTarefasPorProjeto(Long projetoId) {
         List<Tarefa> tarefas = tarefaRepository.findByProjetoId(projetoId);
+        return tarefas.stream()
+                .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<TarefaDTO> listarTarefaPorStatus(StatusTarefa statusTarefa){
+        List<Tarefa> tarefas = tarefaRepository.findByStatus(statusTarefa);
         return tarefas.stream()
                 .map(AtribuirTarefaDTOBuilder::buildTarefaDTO)
                 .collect(Collectors.toList());
