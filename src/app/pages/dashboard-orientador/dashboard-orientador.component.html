@@ -17,7 +17,7 @@
         <div class="flex flex-col text-[#515151] dark:text-white">
             <h1 class="text-[21px] font-bold">Dashboard do Professor</h1>
             <p class="text-[16px] font-medium"><span
-                    class="bg-[#61B668] text-white font-bold mr-2 px-1 rounded-md">{{tccCards.length}}</span>TCCs
+                    class="bg-[#61B668] text-white font-bold mr-2 px-1 rounded-md">{{tccCards.length}}</span>projetos
                 EM
                 ORIENTAÇÃO
             </p>
@@ -29,9 +29,9 @@
     <div>
         <div class="flex flex-row space-x-8">
             <div class="w-1/3 h-80 bg-gray-100 rounded-md shadow-lg shadow-slate-400 relative overflow-visible dark:shadow-none"
-                *ngFor="let tcc of tccCards">
+                *ngFor="let projeto of tccCards">
                 <img [src]="'assets/img/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg'" alt="Imagem do card"
-                class="absolute inset-0 w-full h-full object-cover rounded-md">
+                    class="absolute inset-0 w-full h-full object-cover rounded-md">
 
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent rounded-md"></div>
 
@@ -39,7 +39,7 @@
                     <div class="flex flex-col justify-between relative w-full h-full pb-4 pt-16 bg-cover bg-center">
                         <h1
                             class="text-center relative p-1 text-xl font-bold rounded-md mx-4 bg-green-600 bg-opacity-20 text-white backdrop-blur-md">
-                            {{tcc.titulo}}
+                            {{projeto.titulo}}
                         </h1>
 
                         <div
@@ -55,8 +55,8 @@
                                     </svg>
                                 </div>
                                 <div class="text-start ml-2 text-white">
-                                    <h1 class="font-medium text-[14px]">{{tcc.nomeAutor}}</h1>
-                                    <p class="text-[11px] font-light">{{tcc.cursoAutor}}</p>
+                                    <h1 class="font-medium text-[14px]">{{projeto.nomeAutor}}</h1>
+                                    <p class="text-[11px] font-light">{{projeto.cursoAutor}}</p>
                                 </div>
                             </div>
                             <div class="flex flex-nowrap text-white space-x-2">
@@ -72,15 +72,15 @@
 
                                 </button>
                                 <button class="transition-transform duration-200 hover:scale-110"
-                                (click)="navegarParaDemanda(tcc.id)">
-                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778" />
-                            </svg>
-                        </button>
+                                    [routerLink]="['/home', { outlets: { dashboard: ['projeto', projeto.id] } }]">
+                                    <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
 
                         <div class="w-full flex justify-between">
                             <span class="text-[11px] text-[#515151] dark:text-[#858585]">Última atualização {{
-                                tcc.dataUltimaAlteracao
+                                projeto.dataUltimaAlteracao
                                 }}</span>
                             <button (click)="toggleProjetoInfo(projetoInfoDiv)">
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -107,22 +107,23 @@
                         <div class="flex flex-col w-full text-[12px]">
                             <div class="flex justify-between mb-1">
                                 <span class="font-medium">Progresso:</span>
-                                <span class="font-semibold text-green-600">{{ tcc.progresso }}%</span>
+                                <span class="font-semibold text-green-600">{{ projeto.progresso }}%</span>
                             </div>
                             <div class="w-full bg-gray-300 rounded-full h-2.5">
-                                <div class="bg-green-600 h-2.5 rounded-full" [style.width.%]="tcc.progresso"></div>
+                                <div class="bg-green-600 h-2.5 rounded-full" [style.width.%]="projeto.progresso"></div>
                             </div>
                         </div>
                         <div class="border-b border-green-700"></div>
                         <div class="flex justify-between text-[12px]">
                             <span class="font-medium">Horas de orientação:</span>
                             <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">{{
-                                tcc.horasOrientacao }}h</span>
+                                projeto.horasOrientacao }}h</span>
                         </div>
                         <div class="border-b border-green-700"></div>
                         <div class="flex justify-between text-[12px]">
                             <span class="font-medium">Tipo:</span>
-                            <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">{{ tcc.tipoProjeto
+                            <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">{{
+                                projeto.tipoProjeto
                                 }}</span>
                         </div>
                         <div class="border-b border-green-700"></div>
@@ -133,21 +134,21 @@
                                     <span class="font-medium flex-nowrap">Atribuídas</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandasAtribuidas}}
+                                        projeto.demandasAtribuidas}}
                                     </span>
                                 </div>
                                 <div class="flex flex-col items-center border border-gray-100 shadow-md px-3 py-1">
                                     <span class="font-medium flex-nowrap">Em Andamento</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandasEmAndamento}}
+                                        projeto.demandasEmAndamento}}
                                     </span>
                                 </div>
                                 <div class="flex flex-col items-center border border-gray-100 shadow-md px-3 py-1">
                                     <span class="font-medium flex-nowrap">Resolvidas</span>
                                     <span class="font-semibold text-white bg-green-600 rounded-md px-2 w-fit">
                                         {{
-                                        tcc.demandasResolvidas }}
+                                        projeto.demandasResolvidas }}
                                     </span>
                                 </div>
                             </div>

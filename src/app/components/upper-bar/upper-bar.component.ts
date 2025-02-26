@@ -1,3 +1,4 @@
+import { Usuario } from './../../model/Usuario';
 import { DatePipe, NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
@@ -17,10 +18,12 @@ import { PerfilService } from '../../services/Requisicoes/perfil.service';
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
+  @ViewChild(ModalPerfilOrientadorComponent) modal!: ModalPerfilOrientadorComponent;
   darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
   iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
   iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
+  usuario!: Usuario;
   notificacoes: Notificacao[] = [
     {
       remetente: 'Jhon Doe',
@@ -78,12 +81,12 @@ export class UpperBarComponent {
     }
   ];
 
-  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router,  private http: HttpClient, private PerfilService: PerfilService) { }
+  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router, private http: HttpClient, private PerfilService: PerfilService) { }
 
   ngOnInit(): void {
     this.PerfilService.getDadosUsuario().subscribe({
       next: (response) => {
-        console.log('Dados do usuário:', response);
+        this.usuario = response;
       },
       error: (err) => {
         console.error('Erro ao buscar dados do usuário:', err);
@@ -91,18 +94,27 @@ export class UpperBarComponent {
     });
   }
 
-  Logout() {
-    localStorage.clear;
-    this.router.navigate(['/login'])
+  Logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
-  toggleDarkMode() {
+  toggleDarkMode(): void {
     this.themeService.toggleDarkMode();
   }
 
-  abrirModal(nomeModal: string) {
-    this.modalService.abrir(nomeModal);
+  abrirModal(nomeModal: string): void {
+    if (nomeModal == 'modalPerfilOrientador') {
+      this.modal.abrirModal();
+    } else {
+      this.modalService.abrir(nomeModal);
+    }
   }
 
-
+  private carregarNotificacoes(): Notificacao[] {
+    return [
+      { remetente: 'Jhon Doe', mensagem: 'Atualizou o status da tarefa...', data: new Date(), visualizado: false },
+      { remetente: 'Clark Kent', mensagem: 'Enviou a primeira versão do TCC...', data: new Date(), visualizado: true }
+    ];
+  }
 }

@@ -10,20 +10,22 @@ import { TccCardService } from '../../services/Requisicoes/tccCard.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NgFor],
+  imports: [CommonModule, NgFor, RouterLink],
   templateUrl: './dashboard-orientador.component.html',
 })
 export class DashboardOrientadorComponent {
-  tccCards: TccCard[];
 
-  constructor(private router: Router, private http: HttpClient, private TccCardService: TccCardService) {
-    this.tccCards =[];
+  tccCards: TccCard[] = [];
+
+  constructor(private TccCardService: TccCardService) {
+    this.tccCards = [];
   }
 
   ngOnInit() {
     this.TccCardService.getProjetosPorOrientador().subscribe({
       next: (response: TccCard[]) => {
         this.tccCards = response;
+        console.log(response);
       },
       error: (err) => {
         console.error('Erro ao buscar projetos:', err);
@@ -41,7 +43,4 @@ export class DashboardOrientadorComponent {
     }
   }
 
-  navegarParaDemanda(id: number): void {
-    this.router.navigate(['/home', { outlets: { dashboard: ['demanda', id] } }]);
-  }
 }

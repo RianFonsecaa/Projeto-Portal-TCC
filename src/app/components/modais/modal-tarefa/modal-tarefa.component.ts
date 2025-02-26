@@ -1,17 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
 import { NgClass } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-modal-demandas',
+  selector: 'app-modal-tarefa',
   standalone: true,
   imports: [NgClass, ReactiveFormsModule, FormsModule, NgFor, NgIf],
-  templateUrl: './modal-demandas.component.html',
+  templateUrl: './modal-tarefa.component.html',
 })
-export class ModalDemandas {
+export class ModalTarefa {
   classificacoesDemanda = [
     { nome: 'Bibliografia', selected: false },
     { nome: 'Redação', selected: false },

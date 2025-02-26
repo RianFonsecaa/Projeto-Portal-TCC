@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Orientador } from '../../model/Orientador';
 import { environment } from '../../../environments/environment.development';
+import { Usuario } from '../../model/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,14 @@ import { environment } from '../../../environments/environment.development';
 export class PerfilService {
   private baseUrl = environment.perfilURL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getDadosUsuario(): Observable<Orientador> {
+  getDadosUsuario(): Observable<Usuario> {
     const idUsuario = localStorage.getItem('idUsuario');
     if (!idUsuario) {
       throw new Error('ID do usuário não encontrado no localStorage');
     }
     const url = `${this.baseUrl}${idUsuario}`;
-    return this.http.get<Orientador>(url);
+    return this.http.get<Usuario>(url);
   }
 }

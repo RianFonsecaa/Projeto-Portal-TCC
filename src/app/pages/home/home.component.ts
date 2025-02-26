@@ -12,5 +12,5 @@ import { SideBarComponent } from "../../components/side-bar/side-bar.component";
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  title = 'teacher-dashboard';
+  title = 'Portal Tcc';
 }

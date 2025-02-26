@@ -13,12 +13,12 @@ export class DemandasService {
 
   constructor(private http: HttpClient) {
     this.carregarDemandas();
-    console.log('demandas: '+this.demandas)
+    console.log('demandas: ' + this.demandas)
   }
 
   private demandasSubject = new BehaviorSubject<Demanda[]>([]);
-  demandas$ = this.demandasSubject.asObservable(); 
- 
+  demandas$ = this.demandasSubject.asObservable();
+
 
   private carregarDemandas() {
     this.http.get<Demanda[]>(this.apiUrl).subscribe(demandas => {
@@ -36,22 +36,22 @@ export class DemandasService {
     if (demandaIndex !== -1) { //caso nao encontre o id da demanda ele retorna false
       demandasAtuais[demandaIndex].status = novoStatus;
       this.demandasSubject.next([...demandasAtuais]);
-    }else{
+    } else {
       alert('Demanda não encontrada !');
     }
   }
   getDemandas(): Observable<Demanda[]> {
-    return of(this.demandas); 
+    return of(this.demandas);
   }
 
   getDemandasPorStatus(status: string): Demanda[] {
     return this.demandasSubject.value.filter(d => d.status === status);
   }
 
-  getDemandasPorIdProjeto(idProjeto: number): Observable<Demanda[]> {
+  getDemandasPorIdProjeto(idProjeto: string): Observable<Demanda[]> {
     const url = `${this.apiUrl}/projeto/${idProjeto}`;
     return this.http.get<Demanda[]>(url);
   }
-  
-  
+
+
 }
