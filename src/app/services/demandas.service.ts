@@ -30,6 +30,7 @@ export class DemandasService {
     return this.http.post<Demanda>(this.apiUrl, demanda);
   }
 
+
   atualizarStatus(id: number, novoStatus: string): void {
     const demandasAtuais = this.demandasSubject.value;
     const demandaIndex = demandasAtuais.findIndex(d => d.id === id);

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
 import { NgClass } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
+import { Route } from '@angular/router';
+import { TarefasService } from '../../../services/Requisicoes/tarefas.service';
+import { Tarefa } from '../../../model/tarefas';
 
 @Component({
   selector: 'app-modal-tarefa',
@@ -12,6 +15,8 @@ import { NgIf, NgFor } from '@angular/common';
   templateUrl: './modal-tarefa.component.html',
 })
 export class ModalTarefa {
+  mensagem: string | null = null;
+
   classificacoesDemanda = [
     { nome: 'Bibliografia', selected: false },
     { nome: 'Redação', selected: false },
@@ -25,9 +30,24 @@ export class ModalTarefa {
     { nome: 'Apresentação', selected: false }
   ];
 
+  tarefa: Tarefa ={
+    id:0,
+    orientadorId: 0,
+    orientandoId: 0,
+    projetoId: 0,
+    idDocumento: 0,
+    nomeTarefa: '',
+    descricao: '',
+    dataEnvio: '',
+    status: '',
+    prioridade: '',
+    classificacao: [] =[],
+    prazo: ''
+  };
+
   dropdownVisible: boolean = false;
   isRotated: boolean = false;
-  nomesSelecionados: string[] = [];
+  classificacoes: string[] = [];
 
   demandasOrientador = {
     titulo: '',
@@ -41,7 +61,8 @@ export class ModalTarefa {
   constructor(
     public modalService: ModalService,
     public themeService: ThemeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private tarefaService : TarefasService
   ) { }
 
   toggleDropdown() {
@@ -50,8 +71,25 @@ export class ModalTarefa {
   }
 
   updateLista() {
-    this.nomesSelecionados = this.classificacoesDemanda
+    this.classificacoes = this.classificacoesDemanda
       .filter(nome => nome.selected)
       .map(nome => nome.nome);
+
+      this.tarefa.classificacao = this.classificacoesDemanda
+      .filter(nome => nome.selected)
+      .map(nome => nome.nome);
+  }
+
+  salvarTarefa(){
+    this.tarefaService.adicionarTarefa(this.tarefa).subscribe({
+      next: (res) => {
+        this.mensagem = "Tarefa salva com sucesso!";
+        console.log("Tarefa salva:", res);
+      },
+      error: (err) => {
+        this.mensagem = "Erro ao salvar a tarefa!";
+        console.error("Erro:", err);
+      }
+    });
   }
 }

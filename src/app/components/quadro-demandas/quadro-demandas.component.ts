@@ -61,9 +61,5 @@ export class QuadroDemandasComponent {
 
   adicionarNovaDemanda(): void {
   }
-
-  ngOnDestroy(): void {
-    this.routeSubscription.unsubscribe();
-  }
 }
 

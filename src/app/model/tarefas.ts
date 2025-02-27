@@ -9,6 +9,6 @@ export interface Tarefa {
   dataEnvio: string;
   status: string;
   prioridade: string;
-  classificacao: string;
+  classificacao: string[];
   prazo: string;
 }
