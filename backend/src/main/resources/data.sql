@@ -3,7 +3,11 @@ VALUES (1, 'Alex', 'Alex@gmail.com','75999999999','$2y$10$Zi2DIVYzxXYmmNvtGJE9WO
 (2, 'Leandro', 'Leandro@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'COORDENADOR'),
 (3, 'Rian', 'Rian@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
 (4, 'Lauro', 'Lauro@gmail.com','75999999999','$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTADOR'),
-(5, 'Pedro', 'Pedro@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
+(5, 'Pedro', 'Pedro@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
+(6, 'Arlei', 'Arlei@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
+(7, 'Gabriel', 'Gabriel@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
+(8, 'Guilherme', 'Guilherme@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
+(9, 'Yuri', 'Yuri@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orientador
@@ -14,7 +18,7 @@ ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orientando
 (tipo_curso, id)
-VALUES('ADS', 3), ('REDES', 5)
+VALUES ('ADS', 3), ('REDES', 5), ('MULTIMIDIA', 6), ('ADS', 7), ('REDES', 8), ('MULTIMIDIA', 9)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO public.projeto (id, data_cadastro, descricao_projeto, titulo_projeto,
@@ -25,28 +29,51 @@ orientador_id) VALUES
 (2, '2024-02-12', 'Aplicação de Inteligência Artificial na Detecção de Doenças',
 'Aplicação de IA em Diagnósticos Médicos', '2024-02-15', 15, 70, 'REDES', 'ARTIGO', 5, 1),
 (3, '2024-02-14', 'Desenvolvimento de um Sistema Web para Gestão de Atividades Complementares',
-'Sistema de Atividades Complementares', '2024-02-17', 5, 25, 'ADS', 'TCC', 3, 4),
+'Sistema de Atividades Complementares', '2024-02-17', 5, 25, 'MULTIMIDIA', 'TCC', 6, 4),
 (4, '2024-02-16', 'Implementação e Análise de Desempenho de uma Rede SDN em Ambiente Corporativo',
-'Rede SDN em Ambiente Corporativo', '2024-02-19', 20, 60, 'REDES', 'ARTIGO', 5, 4),
+'Rede SDN em Ambiente Corporativo', '2024-02-19', 20, 60, 'ADS', 'ARTIGO', 7, 4),
 (5, '2024-02-18', 'Aplicação de Inteligência Artificial na Detecção de Fraudes em Transações Online',
-'IA na Detecção de Fraudes', '2024-02-21', 18, 76, 'ADS', 'TCC', 3, 1),
+'IA na Detecção de Fraudes', '2024-02-21', 18, 76, 'REDES', 'TCC', 8, 1),
 (6, '2024-02-20', 'Segurança em Redes sem Fio: Avaliação e Mitigação de Vulnerabilidades em Ambientes Empresariais',
-'Segurança em Redes sem Fio', '2024-02-23', 27, 99, 'REDES', 'ARTIGO', 5, 1)
+'Segurança em Redes sem Fio', '2024-02-23', 27, 99, 'MULTIMIDIA', 'ARTIGO', 9, 1)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO public.tarefa (id, data_envio, descricao, nome_tarefa, orientador_id, orientando_id, status, projeto_id, prioridade, classificacao, prazo)
-VALUES (1, '2024-02-10', 'Finalizar a mockagem das classes', 'Mock das Classes', 4, 3, 'PENDENTE', 1, 'ALTA', 'PESQUISA', '2024-02-18'),
-(2, '2024-02-11', 'Desenvolver a API de notificação', 'Desenvolvimento da API', 4, 3, 'ANDAMENTO', 1, 'MEDIA', 'DESENVOLVIMENTO', '2024-02-22'),
-(3, '2024-02-12', 'Pesquisar cinco tipos de doenças', 'Pesquisa de Doenças', 1, 5, 'PENDENTE', 2, 'ALTA', 'PESQUISA', '2024-02-26'),
-(4, '2024-02-13', 'Desenvolver protótipo da IA médica', 'Desenvolvimento do Protótipo', 1, 5, 'ANDAMENTO', 2, 'MEDIA', 'DESENVOLVIMENTO', '2024-03-02'),
-(5, '2024-02-14', 'Finalizar leitura do regimento de horas complementares', 'Finalizar Leitura', 4, 3, 'PENDENTE', 3, 'ALTA', 'PESQUISA', '2024-03-06'),
-(6, '2024-02-15', 'Desenvolver a tela inicial do projeto', 'Desenvolvimento de Tela', 4, 3, 'ANDAMENTO', 3, 'MEDIA', 'DESENVOLVIMENTO', '2024-03-10'),
-(7, '2024-02-16', 'Finalizar pesquisa do conceito de SDN', 'Pesquisa de SDN', 4, 5, 'PENDENTE', 4, 'ALTA', 'PESQUISA', '2024-03-14'),
-(8, '2024-02-17', 'Desenvolver protótipo no cisco packet tracer', 'Desenvolvimento do Protótipo', 4, 5, 'ANDAMENTO', 4, 'MEDIA', 'DESENVOLVIMENTO', '2024-03-18'),
-(9, '2024-02-18', 'Finalizar a pesquisa de fraudes transacionais comuns', 'Pesquisa de Fraudes', 1, 3, 'PENDENTE', 5, 'ALTA', 'PESQUISA', '2024-03-22'),
-(10, '2024-02-19', 'Desenvolver protótipo da IA de detecção', 'Desenvolvimento do Protótipo', 1, 3, 'ANDAMENTO', 5, 'MEDIA', 'DESENVOLVIMENTO', '2024-03-26'),
-(11, '2024-02-20', 'Finalizar pesquisa de vulnerabilidades empresariais', 'Pesquisa de Vulnerabilidades', 1, 5, 'PENDENTE', 6, 'ALTA', 'PESQUISA', '2024-03-30'),
-(12, '2024-02-21', 'Desenvolver protótipo no cisco packet tracer', 'Desenvolvimento do Protótipo', 1, 5, 'ANDAMENTO', 6, 'MEDIA', 'DESENVOLVIMENTO', '2024-04-03')
+VALUES (1, '2024-02-10', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 3, 'PENDENTE', 1, 'ALTA', 'DESENVOLVIMENTO', '2024-02-18'),
+(2, '2024-02-10', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 3, 'ANDAMENTO', 1, 'MEDIA', 'PESQUISA', '2024-02-22'),
+(3, '2024-02-10', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 3, 'ANDAMENTO', 1, 'ALTA', 'BIBLIOGRAFIA', '2024-02-18'),
+(4, '2024-02-10', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 3, 'CONCLUIDA', 1, 'ALTA', 'DESENVOLVIMENTO', '2024-02-22'),
+(5, '2024-02-10', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 3, 'BACKLOG', 1, 'BAIXA', 'DOCUMENTACAO', '2024-02-18'),
+
+(6, '2024-02-12', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 5, 'PENDENTE', 2, 'ALTA', 'DESENVOLVIMENTO', '2024-02-20'),
+(7, '2024-02-12', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 5, 'ANDAMENTO', 2, 'MEDIA', 'PESQUISA', '2024-02-24'),
+(8, '2024-02-12', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 5, 'ANDAMENTO', 2, 'ALTA', 'BIBLIOGRAFIA', '2024-02-20'),
+(9, '2024-02-12', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 5, 'CONCLUIDA', 2, 'ALTA', 'DESENVOLVIMENTO', '2024-02-24'),
+(10, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 5, 'BACKLOG', 2, 'BAIXA', 'DOCUMENTACAO', '2024-02-20'),
+
+(11, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 6, 'PENDENTE', 3, 'ALTA', 'DESENVOLVIMENTO', '2024-02-22'),
+(12, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 6, 'ANDAMENTO', 3, 'MEDIA', 'PESQUISA', '2024-02-26'),
+(13, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 6, 'ANDAMENTO', 3, 'ALTA', 'BIBLIOGRAFIA', '2024-02-22'),
+(14, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 6, 'CONCLUIDA', 3, 'ALTA', 'DESENVOLVIMENTO', '2024-02-26'),
+(15, '2024-02-14', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 6, 'BACKLOG', 3, 'BAIXA', 'DOCUMENTACAO', '2024-02-22'),
+
+(16, '2024-02-16', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 7, 'PENDENTE', 4, 'ALTA', 'DESENVOLVIMENTO', '2024-02-24'),
+(17, '2024-02-16', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 7, 'ANDAMENTO', 4, 'MEDIA', 'PESQUISA', '2024-02-28'),
+(18, '2024-02-16', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 7, 'ANDAMENTO', 4, 'ALTA', 'BIBLIOGRAFIA', '2024-02-24'),
+(19, '2024-02-16', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 7, 'CONCLUIDA', 4, 'ALTA', 'DESENVOLVIMENTO', '2024-02-28'),
+(20, '2024-02-16', 'Descrição da Tarefa', 'Nome da Tarefa', 4, 7, 'BACKLOG', 4, 'BAIXA', 'DOCUMENTACAO', '2024-02-24'),
+
+(21, '2024-02-18', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 8, 'PENDENTE', 5, 'ALTA', 'DESENVOLVIMENTO', '2024-02-26'),
+(22, '2024-02-18', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 8, 'ANDAMENTO', 5, 'MEDIA', 'PESQUISA', '2024-03-02'),
+(23, '2024-02-18', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 8, 'ANDAMENTO', 5, 'ALTA', 'BIBLIOGRAFIA', '2024-02-26'),
+(24, '2024-02-18', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 8, 'CONCLUIDA', 5, 'ALTA', 'DESENVOLVIMENTO', '2024-03-02'),
+(25, '2024-02-18', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 8, 'BACKLOG', 5, 'BAIXA', 'DOCUMENTACAO', '2024-02-26'),
+
+(26, '2024-02-20', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 9, 'PENDENTE', 6, 'ALTA', 'DESENVOLVIMENTO', '2024-02-28'),
+(27, '2024-02-20', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 9, 'ANDAMENTO', 6, 'MEDIA', 'PESQUISA', '2024-03-04'),
+(28, '2024-02-20', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 9, 'ANDAMENTO', 6, 'ALTA', 'BIBLIOGRAFIA', '2024-02-28'),
+(29, '2024-02-20', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 9, 'CONCLUIDA', 6, 'ALTA', 'DESENVOLVIMENTO', '2024-03-04'),
+(30, '2024-02-20', 'Descrição da Tarefa', 'Nome da Tarefa', 1, 9, 'BACKLOG', 6, 'BAIXA', 'DOCUMENTACAO', '2024-02-28')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO public.notificacoes (id, data, mensagem, remetente, visualizado) 
