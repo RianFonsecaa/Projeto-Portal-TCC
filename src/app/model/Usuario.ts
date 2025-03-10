@@ -10,4 +10,5 @@ export interface Usuario {
   projetosEmOrientacao: number;
   resumo: string;
   tipoCurso: string,
+  tituloProjeto: string
 }

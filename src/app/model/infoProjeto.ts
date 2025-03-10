@@ -1,4 +1,4 @@
-export interface TccCard {
+export interface infoProjeto {
   id: number;
   titulo: string;
   nomeAutor: string;
@@ -10,4 +10,5 @@ export interface TccCard {
   demandasAtribuidas: number;
   demandasEmAndamento: number;
   demandasResolvidas: number;
+  urlImagemCard: string;
 }

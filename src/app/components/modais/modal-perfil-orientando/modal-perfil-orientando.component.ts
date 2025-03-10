@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
+import { Usuario } from '../../../model/Usuario';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
 import { NgClass, NgIf } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Usuario } from '../../../model/Usuario';
 
 @Component({
-  selector: 'app-modal-perfil-orientador',
+  selector: 'app-modal-perfil-orientando',
   standalone: true,
   imports: [NgClass, ReactiveFormsModule, NgIf],
-  templateUrl: './modal-perfil-orientador.component.html',
+  templateUrl: './modal-perfil-orientando.component.html',
 })
-export class ModalPerfilOrientadorComponent {
+export class ModalPerfilOrientandoComponent {
   @Input() perfilUsuario!: Usuario;
 
   isDisabled: boolean = true;
@@ -26,10 +26,7 @@ export class ModalPerfilOrientadorComponent {
       email: new FormControl({ disabled: false }),
       telefone: new FormControl({ disabled: false }),
       tipoUsuario: new FormControl({ disabled: false }),
-      areaPesquisa: new FormControl({ disabled: false }),
-      cargo: new FormControl({ disabled: false }),
-      disponibilidadeOrientacao: new FormControl({ disabled: false }),
-      projetosEmOrientacao: new FormControl({ disabled: false })
+      curso: new FormControl({ disabled: false})
     });
     this.perfilForm.disable();
   }
@@ -44,36 +41,19 @@ export class ModalPerfilOrientadorComponent {
         email: this.perfilUsuario.email,
         telefone: this.perfilUsuario.telefone,
         tipoUsuario: this.perfilUsuario.tipoUsuario,
-        areaPesquisa: this.perfilUsuario.areaPesquisa,
-        cargo: this.perfilUsuario.cargo,
-        disponibilidadeOrientacao: this.perfilUsuario.orientadorDisponivel ? 'Disponível' : 'Indisponível',
-        projetosEmOrientacao: this.perfilUsuario.projetosEmOrientacao,
+        curso: this.perfilUsuario.tipoCurso,
       });
-    }
-  }
-
-  toggleEdicao(): void {
-    this.isDisabled = !this.isDisabled;
-
-    if (this.isDisabled) {
-      this.perfilForm.disable();
-      this.perfilForm.patchValue(this.perfilUsuario);
-    } else {
-      this.perfilForm.enable();
     }
     this.aplicarRegexTelefone();
   }
 
   abrirModal(): void {
-    this.modalService.abrir('modalPerfilOrientador');
+    this.modalService.abrir('modalPerfilOrientando');
     this.aplicarRegexTelefone();
   }
 
   fecharModal(): void {
-    this.isDisabled = true;
-    this.perfilForm.disable();
-    this.carregaValues();
-    this.modalService.fechar('modalPerfilOrientador');
+    this.modalService.fechar('modalPerfilOrientando');
   }
 
   aplicarRegexTelefone(): void {
@@ -84,3 +64,4 @@ export class ModalPerfilOrientadorComponent {
     }
   }
 }
+

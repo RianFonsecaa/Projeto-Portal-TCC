@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/Requisicoes/login.service';
 import { LoginRequest } from '../../model/login-request.model';
 import { CommonModule } from '@angular/common';
+import {projetoService } from '../../services/Requisicoes/projetoService';
+import { infoProjeto } from '../../model/infoProjeto';
 
 @Component({
   selector: 'app-login-form',
@@ -17,8 +19,9 @@ import { CommonModule } from '@angular/common';
 export class LoginFormComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
+  projetoId!: number;
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private projetoService: projetoService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.email, Validators.required],
@@ -70,14 +73,10 @@ export class LoginFormComponent {
           switch (response.tipoUsuario) {
             case 'COORDENADOR':
             case 'ORIENTANDO':
-              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardAluno' } }]).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/home', { outlets: { dashboard: ['dashboardOrientando'] } }]);
               break;
             case 'ORIENTADOR':
-              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardOrientador' } }]).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/home', { outlets: { dashboard: 'dashboardOrientador' } }]);
               break;
             default:
               console.warn('Tipo de usuário desconhecido:', response.tipoUsuario);

@@ -5,7 +5,7 @@ import { AgendaComponent } from './pages/agenda/agenda.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardOrientadorComponent } from './pages/dashboard-orientador/dashboard-orientador.component';
-import { DashboardAlunoComponent } from './pages/dashboard-aluno/dashboard-aluno.component';
+import { DashboardOrientandoComponent } from './pages/dashboard-orientando/dashboard-orientando.component';
 import { QuadroDemandasComponent } from './components/quadro-demandas/quadro-demandas.component';
 
 export const routes: Routes = [
@@ -15,7 +15,7 @@ export const routes: Routes = [
         component: HomeComponent,
         children: [
             { path: 'dashboardOrientador', component: DashboardOrientadorComponent, outlet: 'dashboard' },
-            { path: 'dashboardAluno', component: DashboardAlunoComponent, outlet: 'dashboard' },
+            { path: 'dashboardOrientando', component: DashboardOrientandoComponent, outlet: 'dashboard' },
             { path: 'projeto/:projetoId', component: QuadroDemandasComponent, outlet: 'dashboard' },
             { path: 'agenda', component: AgendaComponent, outlet: 'dashboard' },
             { path: 'documentos-formularios', component: DocumentosEFormulariosComponent, outlet: 'dashboard' },

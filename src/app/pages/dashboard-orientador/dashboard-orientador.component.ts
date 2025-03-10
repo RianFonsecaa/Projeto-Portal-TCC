@@ -1,11 +1,11 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { TccCard } from '../../model/TccCard';
-import { Router, RouterLink } from '@angular/router';
+import { infoProjeto } from '../../model/infoProjeto';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { tap, mergeMap } from 'rxjs/operators';
-import { TccCardService } from '../../services/Requisicoes/tccCard.service';
+import { projetoService } from '../../services/Requisicoes/projetoService';
 
 @Component({
   selector: 'app-home',
@@ -15,22 +15,26 @@ import { TccCardService } from '../../services/Requisicoes/tccCard.service';
 })
 export class DashboardOrientadorComponent {
 
-  tccCards: TccCard[] = [];
+  infoProjetos: infoProjeto[] = [];
 
-  constructor(private TccCardService: TccCardService) {
-    this.tccCards = [];
+  constructor(private projetoService: projetoService,private router: Router) {
   }
 
   ngOnInit() {
-    this.TccCardService.getProjetosPorOrientador().subscribe({
-      next: (response: TccCard[]) => {
-        this.tccCards = response;
+    this.projetoService.buscarInfoProjetoPorOrientador().subscribe({
+      next: (response: infoProjeto[]) => {
+        this.infoProjetos = response;
         console.log(response);
       },
       error: (err) => {
         console.error('Erro ao buscar projetos:', err);
       },
     });
+  }
+
+  navegaParaProjeto(projeto: infoProjeto){
+    this.projetoService.setInfoProjeto(projeto);
+    this.router.navigate(['/home', { outlets: { dashboard: ['projeto', projeto.id ] } }]);
   }
 
   toggleProjetoInfo(projetoInfoDiv: HTMLElement) {

@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { NgClass, NgFor } from '@angular/common';
 import { TarefasConteudoComponent } from '../tarefas-conteudo/tarefas-conteudo.component';
 import { Tarefa } from '../../model/tarefas';
+import { projetoService } from '../../services/Requisicoes/projetoService';
+import { infoProjeto } from '../../model/infoProjeto';
 
 @Component({
   selector: 'app-quadro-demandas',
@@ -20,16 +22,15 @@ export class QuadroDemandasComponent {
   tarefasConcluidas:  Tarefa[] = [];
   tarefasBacklog:     Tarefa[] = [];
   tarefas: Tarefa[] = [];
-  alunoId: number = 0;
   projetoId: string | null = null;
+  infoProjeto: infoProjeto = {} as infoProjeto;
 
   selectedTab: string = 'Quadro de Demandas';
-  private routeSubscription!: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
     private tarefasService: TarefasService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    public projetoService: projetoService
   ) { }
 
   selectTab(tab: string) {
@@ -37,26 +38,28 @@ export class QuadroDemandasComponent {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.projetoId = params.get('projetoId');
-    });
-    this.tarefasService.getTarefasPorProjeto(this.projetoId).subscribe({
-      next: (tarefas) => {
-        this.tarefas = tarefas;
-        this.separarTarefasPorStatus();
+    this.infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
 
-      },
-      error: (err) => {
-        console.error('Erro ao buscar tarefas:', err);
-      },
-    });
-  };
+    if (this.infoProjeto.id) {
+      this.tarefasService.getTarefasPorProjeto(this.infoProjeto.id).subscribe({
+        next: (tarefas) => {
+          this.tarefas = tarefas;
+          this.separarTarefasPorStatus();
+        },
+        error: (err) => {
+          console.error('Erro ao buscar tarefas:', err);
+        },
+      });
+    } else {
+      console.error('ID do projeto não encontrado');
+    }
+  }
 
   separarTarefasPorStatus(): void {
+    this.tarefasBacklog  = this.tarefas.filter(tarefa => tarefa.status === 'BACKLOG');
     this.tarefasPendentes   = this.tarefas.filter(tarefa => tarefa.status === 'PENDENTE');
     this.tarefasEmAndamento = this.tarefas.filter(tarefa => tarefa.status === 'ANDAMENTO');
-    this.tarefasConcluidas  = this.tarefas.filter(tarefa => tarefa.status === 'CONCLUIDO');
-    this.tarefasBacklog     = this.tarefas.filter(tarefa => tarefa.status === '');
+    this.tarefasConcluidas  = this.tarefas.filter(tarefa => tarefa.status === 'CONCLUIDA');
   }
 
   adicionarNovaDemanda(): void {

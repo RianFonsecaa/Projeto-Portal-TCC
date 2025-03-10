@@ -12,16 +12,16 @@ export class TarefasService {
 
   constructor(private http: HttpClient) { }
 
-  getTarefasPorProjeto(idProjeto: string | null): Observable<Tarefa[]> {
+  getTarefasPorProjeto(idProjeto: number): Observable<Tarefa[]> {
     const url = `${this.baseUrl}${idProjeto}`;
     return this.http.get<Tarefa[]>(url);
   }
 
-    adicionarTarefa(tarefa: Tarefa): Observable<Tarefa> {
+  adicionarTarefa(tarefa: Tarefa): Observable<Tarefa> {
       if (!tarefa.prazo || !tarefa.descricao || !tarefa.nomeTarefa) {
         alert('Preencha todos os campos obrigatórios!');
         throwError(() => new Error('Preencha todos os campos obrigatórios!'));
       }
       return this.http.post<Tarefa>(this.baseUrl, tarefa);
-    }
+  }
 }

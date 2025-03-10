@@ -9,21 +9,25 @@ import { ModalNotificacaoComponent } from '../modais/modal-notificacao/modal-not
 import { ModalPerfilOrientadorComponent } from "../modais/modal-perfil-orientador/modal-perfil-orientador.component";
 import { HttpClient } from '@angular/common/http';
 import { PerfilService } from '../../services/Requisicoes/perfil.service';
+import { ModalPerfilOrientandoComponent } from '../modais/modal-perfil-orientando/modal-perfil-orientando.component';
+import { DropdownComponent } from "../dropdown/dropdown.component";
 
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgClass, ModalNotificacaoComponent, ModalPerfilOrientadorComponent],
+  imports: [RouterLink, NgClass, ModalNotificacaoComponent, ModalPerfilOrientadorComponent, ModalPerfilOrientandoComponent, NgIf, DropdownComponent],
   templateUrl: './upper-bar.component.html',
 })
 export class UpperBarComponent {
-  @ViewChild(ModalPerfilOrientadorComponent) modal!: ModalPerfilOrientadorComponent;
   darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
   lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
+
   iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
   iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
+
   usuario: Usuario = {} as Usuario;
+  tipoPerfilModal: string = '';
   notificacoes: Notificacao[] = [
     {
       remetente: 'Jhon Doe',
@@ -81,12 +85,19 @@ export class UpperBarComponent {
     }
   ];
 
-  constructor(public themeService: ThemeService, public modalService: ModalService, private router: Router, private http: HttpClient, private PerfilService: PerfilService) { }
+  @ViewChild(DropdownComponent) dropdown: DropdownComponent = {} as DropdownComponent;
+
+  constructor(public themeService: ThemeService, public modalService: ModalService, private PerfilService: PerfilService, private router: Router) { }
 
   ngOnInit(): void {
     this.PerfilService.getDadosUsuario().subscribe({
       next: (response) => {
         this.usuario = response;
+        if(response.tipoUsuario == 'ORIENTADOR'){
+          this.tipoPerfilModal = 'modalPerfilOrientador'
+        } else if(response.tipoUsuario == 'ORIENTANDO'){
+          this.tipoPerfilModal = 'modalPerfilOrientando'
+        }
       },
       error: (err) => {
         console.error('Erro ao buscar dados do usuário:', err);
@@ -94,27 +105,17 @@ export class UpperBarComponent {
     });
   }
 
-  Logout(): void {
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
-
   toggleDarkMode(): void {
     this.themeService.toggleDarkMode();
   }
 
-  abrirModal(nomeModal: string): void {
-    if (nomeModal == 'modalPerfilOrientador') {
-      this.modal.abrirModal();
-    } else {
-      this.modalService.abrir(nomeModal);
-    }
+  abrirDropdown(){
+    this.dropdown.abrir();
   }
 
-  private carregarNotificacoes(): Notificacao[] {
-    return [
-      { remetente: 'Jhon Doe', mensagem: 'Atualizou o status da tarefa...', data: new Date(), visualizado: false },
-      { remetente: 'Clark Kent', mensagem: 'Enviou a primeira versão do TCC...', data: new Date(), visualizado: true }
-    ];
+  navegarParaDashboard(): void {
+    const rota = this.usuario.tipoUsuario === 'ORIENTADOR' ? 'dashboardOrientador' : 'dashboardOrientando';
+    this.router.navigate(['/home', { outlets: { dashboard: [rota]} } ]);
   }
+
 }
