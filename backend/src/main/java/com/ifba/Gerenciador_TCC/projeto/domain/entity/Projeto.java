@@ -50,6 +50,9 @@ public class Projeto {
     
     @Column(name = "progresso", nullable = false)
     private int progresso;
+    
+    @Column(name = "url_imagem", nullable = false)
+    private String urlImagemCard; 
 
     @Enumerated(EnumType.STRING)
     @Column
@@ -58,6 +61,6 @@ public class Projeto {
     @Enumerated(EnumType.STRING)
     @Column
     private TipoCurso tipoCurso;
-  
 
+  
 }

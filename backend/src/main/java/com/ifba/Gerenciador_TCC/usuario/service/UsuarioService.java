@@ -64,7 +64,7 @@ public class UsuarioService implements UsuarioServiceApi {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         if (!this.usuarioRepository.existsById(id))
             throw new NotFoundException("Usuario não encontrado");
         this.orientadorRepository.deleteById(id);
@@ -78,7 +78,7 @@ public class UsuarioService implements UsuarioServiceApi {
     }
 
     @Override
-    public Usuario findById(long id) {
+    public Usuario findById(Long id) {
         Optional<Usuario> usuario = this.usuarioRepository.findById(id);
         if (!usuario.isPresent())
             return null;

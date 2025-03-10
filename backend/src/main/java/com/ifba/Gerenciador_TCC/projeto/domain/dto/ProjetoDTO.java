@@ -26,4 +26,5 @@ public class ProjetoDTO {
     private int progresso;
     private TipoProjeto tipoProjeto;
     private TipoCurso tipoCurso;
+    
 }

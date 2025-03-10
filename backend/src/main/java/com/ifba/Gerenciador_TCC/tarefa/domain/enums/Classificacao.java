@@ -4,5 +4,11 @@ public enum Classificacao {
     PESQUISA,
     DOCUMENTACAO,
     BIBLIOGRAFIA,
+    REDACAO,
+    MANUTENCAO,
+    ESTUDO,
+    PLANEJAMENTO,
+    REVISAO,
+    APRESENTACAO,
     DESENVOLVIMENTO;
 }

@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
     List<Projeto> findByOrientadorId(Usuario orientador);
+
+    Projeto findByOrientandoId(Usuario orientando);
 }
