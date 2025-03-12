@@ -33,14 +33,6 @@ public class Tarefa {
     @ManyToOne
     @JoinColumn(name = "projeto_id", nullable = false)
     private Projeto projeto;
-    
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "orientador_id", referencedColumnName = "id", nullable = false, unique = false)
-    private Usuario orientadorId;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "orientando_id", referencedColumnName = "id", nullable = false, unique = false)
-    private Usuario orientandoId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -52,10 +44,6 @@ public class Tarefa {
 
     @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
-
-    @NotNull(message = "A data de envio não pode ser vazia")
-    @Column(name = "data_envio", nullable = false)
-    private LocalDate dataEnvio;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "prioridade", nullable = false)

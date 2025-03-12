@@ -17,7 +17,7 @@ public class InfoProjetoDTOBuilder {
                 .titulo(projeto.getTituloProjeto())
                 .nomeAutor(projeto.getOrientandoId().getNome())
                 .urlImagemCard(projeto.getUrlImagemCard())
-                .demandasAtribuidas(tarefaService.listarTarefasPorOrientando(projeto.getOrientandoId().getId()).size())
+                .demandasAtribuidas(tarefaService.listarTarefasPorProjeto(projeto.getId()).size())
                 .demandasEmAndamento(tarefaService.listarTarefaPorStatus(StatusTarefa.ANDAMENTO).size())
                 .demandasResolvidas(tarefaService.listarTarefaPorStatus(StatusTarefa.CONCLUIDA).size())
                 .build();

@@ -9,7 +9,6 @@ com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.class
 com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao.class
 com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.class
-com\ifba\Gerenciador_TCC\tarefa\builder\AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.class
 com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapperImpl.class
 com\ifba\Gerenciador_TCC\tarefa\domain\enums\Classificacao.class
@@ -31,7 +30,6 @@ com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientandoDTO.class
 com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao$NotificacaoBuilder.class
 com\ifba\Gerenciador_TCC\email\controller\EmailController.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.class
-com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO.class
 com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.class
 com\ifba\Gerenciador_TCC\projeto\builder\InfoProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
@@ -43,6 +41,7 @@ com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.class
 com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
 com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
+com\ifba\Gerenciador_TCC\tarefa\builder\TarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.class
 com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.class
 com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO$TarefaDTOBuilder.class
@@ -50,7 +49,6 @@ com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO$ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
-com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO$AtribuirTarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.class
 com\ifba\Gerenciador_TCC\security\JwtTokenUtil.class

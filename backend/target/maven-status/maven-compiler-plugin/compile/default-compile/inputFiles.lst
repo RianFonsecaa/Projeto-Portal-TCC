@@ -2,8 +2,6 @@ C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptions\NotFoundException.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.java
-C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\AtribuirTarefaDTO.java
-C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\builder\AtribuirTarefaDTOBuilder.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientandoBuilder.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapper.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.java
@@ -55,4 +53,5 @@ C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\SecurityConfig.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\Prioridade.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\builder\TarefaDTOBuilder.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.java

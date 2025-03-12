@@ -7,12 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-10T16:25:58-0300",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.41.0.z20250213-2037, environment: Java 21.0.6 (Eclipse Adoptium)"
-=======
-    date = "2025-02-28T07:42:47-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)"
->>>>>>> cf3b292ce74d6bf7858113b254eba405cea99179
+    date = "2025-03-12T14:41:13-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.3 (Oracle Corporation)"
 )
 @Component
 public class ProjetoMapperImpl extends ProjetoMapper {
@@ -25,14 +21,14 @@ public class ProjetoMapperImpl extends ProjetoMapper {
 
         Projeto.ProjetoBuilder projeto = Projeto.builder();
 
-        projeto.dataCadastro( projetoDTO.getDataCadastro() );
-        projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
-        projeto.horasOrientacao( projetoDTO.getHorasOrientacao() );
         projeto.id( projetoDTO.getId() );
-        projeto.progresso( projetoDTO.getProgresso() );
-        projeto.tipoCurso( projetoDTO.getTipoCurso() );
-        projeto.tipoProjeto( projetoDTO.getTipoProjeto() );
         projeto.tituloProjeto( projetoDTO.getTituloProjeto() );
+        projeto.descricaoProjeto( projetoDTO.getDescricaoProjeto() );
+        projeto.dataCadastro( projetoDTO.getDataCadastro() );
+        projeto.horasOrientacao( projetoDTO.getHorasOrientacao() );
+        projeto.progresso( projetoDTO.getProgresso() );
+        projeto.tipoProjeto( projetoDTO.getTipoProjeto() );
+        projeto.tipoCurso( projetoDTO.getTipoCurso() );
 
         return projeto.build();
     }
@@ -45,14 +41,14 @@ public class ProjetoMapperImpl extends ProjetoMapper {
 
         ProjetoDTO.ProjetoDTOBuilder projetoDTO = ProjetoDTO.builder();
 
-        projetoDTO.dataCadastro( projeto.getDataCadastro() );
-        projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
-        projetoDTO.horasOrientacao( projeto.getHorasOrientacao() );
         projetoDTO.id( projeto.getId() );
-        projetoDTO.progresso( projeto.getProgresso() );
-        projetoDTO.tipoCurso( projeto.getTipoCurso() );
-        projetoDTO.tipoProjeto( projeto.getTipoProjeto() );
         projetoDTO.tituloProjeto( projeto.getTituloProjeto() );
+        projetoDTO.descricaoProjeto( projeto.getDescricaoProjeto() );
+        projetoDTO.dataCadastro( projeto.getDataCadastro() );
+        projetoDTO.horasOrientacao( projeto.getHorasOrientacao() );
+        projetoDTO.progresso( projeto.getProgresso() );
+        projetoDTO.tipoProjeto( projeto.getTipoProjeto() );
+        projetoDTO.tipoCurso( projeto.getTipoCurso() );
 
         return projetoDTO.build();
     }
