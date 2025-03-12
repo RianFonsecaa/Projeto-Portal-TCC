@@ -87,21 +87,17 @@ export class UpperBarComponent {
 
   @ViewChild(DropdownComponent) dropdown: DropdownComponent = {} as DropdownComponent;
 
-  constructor(public themeService: ThemeService, public modalService: ModalService, private PerfilService: PerfilService, private router: Router) { }
+  constructor(public themeService: ThemeService, public modalService: ModalService, private perfilService: PerfilService, private router: Router) { }
 
   ngOnInit(): void {
-    this.PerfilService.getDadosUsuario().subscribe({
-      next: (response) => {
-        this.usuario = response;
-        if(response.tipoUsuario == 'ORIENTADOR'){
-          this.tipoPerfilModal = 'modalPerfilOrientador'
-        } else if(response.tipoUsuario == 'ORIENTANDO'){
-          this.tipoPerfilModal = 'modalPerfilOrientando'
-        }
+    this.perfilService.getDadosUsuario().subscribe({
+      next: (usuario) => {
+        this.usuario = usuario;
+        this.tipoPerfilModal = usuario.tipoUsuario === 'ORIENTADOR'
+          ? 'modalPerfilOrientador'
+          : 'modalPerfilOrientando';
       },
-      error: (err) => {
-        console.error('Erro ao buscar dados do usuário:', err);
-      },
+      error: (err) => console.error('Erro ao carregar usuário:', err)
     });
   }
 

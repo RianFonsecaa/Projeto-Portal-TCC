@@ -1,8 +1,10 @@
 <section class="flex flex-col h-full space-y-3 pr-4">
     <div class="flex flex-row items-center space-x-2">
-        <div class="flex flex-col h-auto w-full text-[#515151] dark:text-white">
+        <div class="flex flex-row justify-between h-auto w-full text-[#515151] dark:text-white">
 
             <p class="text-[16px] font-medium w-full text-wrap"><span class="font-bold">{{infoProjeto.tipoProjeto}}</span>- {{infoProjeto.titulo}}</p>
+            <p *ngIf="usuario.tipoUsuario === 'ORIENTADOR'" class="text-[16px] font-medium w-full text-wrap text-end">Autor: {{infoProjeto.nomeAutor}}- {{infoProjeto.cursoAutor}}</p>
+
         </div>
     </div>
 

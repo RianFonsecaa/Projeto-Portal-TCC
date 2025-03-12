@@ -20,7 +20,7 @@
     </div>
 
     <!-- Div principal flex horizontal -->
-    <div class="flex h-full space-x-6 mt-4">
+    <form [formGroup]="tarefaForm" class="flex h-full space-x-6 mt-4">
       <!-- Título e Descrição em blocos verticais -->
       <div class="flex flex-col h-full space-y-4 w-1/2">
         <div>
@@ -32,8 +32,7 @@
             </svg>
             <label class="block text-lg font-medium text-gray-700">Título</label>
           </div>
-          <input type="text" class="w-full border h-12 border-gray-300 rounded-lg p-2 focus:border-blue-500"
-                 [(ngModel)]="tarefa.nomeTarefa"
+          <input name="nomeTarefa" formControlName="nomeTarefa" type="text" class="w-full border h-12 border-gray-300 rounded-lg p-2 focus:border-blue-500"    
             placeholder="Digite o título">
         </div>
 
@@ -46,8 +45,8 @@
             <label class="block text-lg font-medium text-gray-700">Descrição</label>
           </div>
           <textarea
+            formControlName="descricao"
             class="w-full flex-grow border border-gray-300 rounded-lg p-2 mt-1 resize-none focus:border-blue-500"
-            [(ngModel)]="tarefa.descricao"
             placeholder="Digite a descrição"></textarea>
         </div>
       </div>
@@ -68,7 +67,7 @@
             </div>
             <div class="flex flex-row justify-between space-x-3 items-center align-middle w-full p-1 text-[14px]">
               <div class="flex space-x-2 items-center mb-4 w-full">
-                <input id="default-radio-1" type="radio" value="baixa" name="default-radio-1" [(ngModel)]="tarefa.prioridade"
+                <input name="prioridade" formControlName="prioridade" id="default-radio-1" type="radio" value="BAIXA"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-yellow-400"></span>
@@ -76,7 +75,7 @@
                 </div>
               </div>
               <div class="flex space-x-2 items-center mb-4 w-full">
-                <input id="default-radio-2" type="radio" value="media" name="default-radio-1" [(ngModel)]="tarefa.prioridade"
+                <input name="prioridade" formControlName="prioridade" id="default-radio-2" type="radio" value="MEDIA"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-orange-500"></span>
@@ -84,7 +83,7 @@
                 </div>
               </div>
               <div class="flex space-x-2 items-center mb-4 w-full">
-                <input id="default-radio-3" type="radio" value="alta" name="default-radio-1" [(ngModel)]="tarefa.prioridade"
+                <input name="prioridade" formControlName="prioridade" id="default-radio-3" type="radio" value="ALTA"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-red-500"></span>
@@ -109,7 +108,7 @@
 
             <div class="flex flex-row justify-between space-x-3 items-center align-middle w-full p-1 text-[14px]">
               <div class="flex space-x-2 items-center mb-4 w-full">
-                <input id="default-radio-2" type="radio" value="paraFazer" name="default-radio-2" [(ngModel)]="tarefa.status"
+                <input name="status" formControlName="status" id="default-radio-2" type="radio" value="PENDENTE"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-blue-500"></span>
@@ -117,7 +116,7 @@
                 </div>
               </div>
               <div class="flex space-x-2 items-center mb-4 w-full text-[12px]">
-                <input id="default-radio-3" type="radio" value="emAndamento" name="default-radio-2" [(ngModel)]="tarefa.status"
+                <input name="status" formControlName="status" id="default-radio-3" type="radio" value="ANDAMENTO"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-orange-300"></span>
@@ -125,7 +124,7 @@
                 </div>
               </div>
               <div class="flex space-x-2 items-center mb-4 w-full">
-                <input id="default-radio-3" type="radio" value="concluído" name="default-radio-2" [(ngModel)]="tarefa.status"
+                <input name="status" formControlName="status" id="default-radio-3" type="radio" value="CONCLUIDA"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
                   <span class="h-[15px] w-[5px] align-middle rounded-md bg-green-600"></span>
@@ -136,59 +135,26 @@
           </div>
         </div>
 
-        <!-- Classificação -->
-        <div class="flex flex-col w-full">
-          <div class="flex items-center gap-2">
-            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.4408 1H13M4.4408 6H13M4.4408 11H13M1.00856 1H1.01712M1 6H1.00856M1.00856 11H1.01712"
-                stroke="#828282" stroke-width="2" stroke-linecap="round" />
-            </svg>
-            <label class="block text-md font-medium text-gray-700">Classificação</label>
-          </div>
-          <div class="flex flex-row ">
-            <div class="flex flex-row h-12 border border-gray-200 rounded-md p-1  space-x-2 text-[14px]">
-
-              <div
-                class="flex just flex-row  relative pr-6 overflow-x-hidden w-[487px] rounded-md p-1 space-x-2 text-[14px]">
-                <!-- Usando ngFor para iterar sobre a lista de nomes -->
-                <div *ngFor="let nome of classificacoes" class=" bg-blue-100  px-2 p-1 rounded-md">
-                  {{ nome }}
-                </div>
-                <label *ngIf="classificacoes.length === 0" class="p-1 text-[16px] rounded-md">Escolha as
-                  classificações</label>
-              </div>
-
-              <div class=" -space-l-4 p-1  right-0 "><span class="font-bold text-gray-600">...</span></div>
-            </div>
-
-
-            <!-- Botão para abrir o dropdown -->
-            <button class="bg-gray-200 ml-2 h-full p-2 rounded-md" (click)="toggleDropdown()">
-              <svg [ngClass]="{'rotate-45': isRotated}" class="transform transition-transform duration-200" width="18"
-                height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="18" height="18" fill="url(#pattern0_305_334)" />
-                <defs>
-                  <pattern id="pattern0_305_334" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_305_334" transform="scale(0.05)" />
-                  </pattern>
-                </defs>
-              </svg>
-            </button>
-
-          </div>
-
-          <!-- Dropdown -->
-          <div *ngIf="dropdownVisible"
-            class="absolute mt-16 bg-white border border-gray-200 rounded-md p-2 w-[490px] h-[250px] overflow-y-auto  shadow-lg">
-            <div *ngFor="let classificacao of classificacoesDemanda"
-              class="flex items-center hover:bg-gray-100 border border-gray-200">
-              <label class="flex items-center w-full space-x-2 pl-4">
-                <input type="checkbox" [(ngModel)]="classificacao.selected" (change)="updateLista()" />
-                <span class="py-2">{{ classificacao.nome }}</span>
-              </label>
-            </div>
-          </div>
-        </div>
+<!-- Classificação -->
+<div class="flex flex-col w-full">
+  <div class="flex items-center gap-2">
+    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.4408 1H13M4.4408 6H13M4.4408 11H13M1.00856 1H1.01712M1 6H1.00856M1.00856 11H1.01712"
+        stroke="#828282" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <label class="block text-md font-medium text-gray-700">Classificação</label>
+  </div>
+  
+  <!-- Select para Classificação com FormControl -->
+  <div class="flex flex-row">
+    <select formControlName="classificacao" class="w-full border border-gray-200 rounded-md p-2 text-[14px]">
+      <option value="" disabled selected>Escolha a classificação</option>
+      <option *ngFor="let classificacao of classificacoes" [value]="classificacao.nome">
+        {{ classificacao.nome }}
+      </option>
+    </select>
+  </div>
+</div>
 
 
         <!-- Prazo -->
@@ -201,10 +167,10 @@
             </svg>
             <label class="block text-md font-medium text-gray-700">Prazo</label>
           </div>
-          <input type="date" class="w-full border border-gray-200 h-12 rounded-lg p-2 text-[14px]" [(ngModel)]="tarefa.prazo">
+          <input name="prazo" formControlName="prazo" type="date" class="w-full border border-gray-200 h-12 rounded-lg p-2 text-[14px]">
         </div>
       </div>
-    </div>
+    </form>
 
     <!-- Botões de ação -->
     <div class="flex justify-end items-center border-t border-gray-200 pt-4 mt-6">

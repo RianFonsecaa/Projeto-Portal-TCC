@@ -9,7 +9,7 @@ import { DashboardOrientandoComponent } from './pages/dashboard-orientando/dashb
 import { QuadroDemandasComponent } from './components/quadro-demandas/quadro-demandas.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' }, // Correção aqui
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     {
         path: 'home',
         component: HomeComponent,

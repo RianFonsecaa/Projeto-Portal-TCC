@@ -1,27 +1,45 @@
-import { Tarefa } from './../../model/tarefas';
+import { Tarefa } from './../../model/Tarefa';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { infoProjeto } from '../../model/infoProjeto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
+  private tarefasSubject = new BehaviorSubject<Tarefa[]>([]);
+  tarefas$ = this.tarefasSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getTarefasPorProjeto(idProjeto: number): Observable<Tarefa[]> {
-    const url = `${this.baseUrl}${idProjeto}`;
-    return this.http.get<Tarefa[]>(url);
+  listaTarefasPorProjeto() {
+    const infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
+    if (!infoProjeto.id) {
+      console.error('Projeto não encontrado');
+      return;
+    }
+
+    this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
+      next: (tarefas) => {
+        this.tarefasSubject.next(tarefas);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar tarefas:', err);
+      }
+    });
   }
 
-  adicionarTarefa(tarefa: Tarefa): Observable<Tarefa> {
-      if (!tarefa.prazo || !tarefa.descricao || !tarefa.nomeTarefa) {
-        alert('Preencha todos os campos obrigatórios!');
-        throwError(() => new Error('Preencha todos os campos obrigatórios!'));
+  adicionarTarefa(novaTarefa: Tarefa): void {
+    this.http.post<Tarefa>(`${this.baseUrl}`, novaTarefa).subscribe({
+      next: () => {
+        this.listaTarefasPorProjeto();
+      },
+      error: (err) => {
+        console.error('Erro ao cadastrar tarefa:', err);
       }
-      return this.http.post<Tarefa>(this.baseUrl, tarefa);
+    });
   }
 }
