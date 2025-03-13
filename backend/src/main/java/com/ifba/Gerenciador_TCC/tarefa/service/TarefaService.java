@@ -36,10 +36,19 @@ public class TarefaService implements TarefaServiceApi {
     }
 
     @Override
-    public TarefaDTO atribuirTarefa(TarefaDTO novaTarefa) {
+    public TarefaDTO criarTarefa(TarefaDTO novaTarefa) {
         Tarefa tarefa = TarefaDTOBuilder.buildTarefa(novaTarefa, usuarioService, projetoService);
         Tarefa tarefasalva = tarefaRepository.save(tarefa);
         return TarefaDTOBuilder.buildTarefaDTO(tarefasalva);
+    }
+
+    
+    @Override
+    public TarefaDTO editarTarefa(TarefaDTO tarefa) {
+        if (!tarefaRepository.existsById(tarefa.getId())) {
+            throw new RuntimeException("Tarefa não encontrada com o ID: " + tarefa.getId());
+        }
+        return criarTarefa(tarefa);
     }
 
     @Override

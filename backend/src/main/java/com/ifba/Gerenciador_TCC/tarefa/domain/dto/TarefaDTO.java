@@ -31,9 +31,6 @@ public class TarefaDTO {
     @NotEmpty(message = "A descrição da tarefa não pode estar vazia")
     private String descricao;
 
-    @NotNull(message = "A data de envio não pode ser vazia")
-    private LocalDate dataEnvio;
-
     @NotNull(message = "O status da tarefa é obrigatório")
     private StatusTarefa status;
 

@@ -8,6 +8,7 @@ import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioServiceApi;
 public class TarefaDTOBuilder {
     public static Tarefa buildTarefa(TarefaDTO tarefaDTO, UsuarioServiceApi usuarioService, ProjetoService projetoService) {
         return Tarefa.builder()
+                    .id(tarefaDTO.getId())
                     .projeto(projetoService.findById(tarefaDTO.getProjetoId()))
                     .nomeTarefa(tarefaDTO.getNomeTarefa())
                     .descricao(tarefaDTO.getDescricao())

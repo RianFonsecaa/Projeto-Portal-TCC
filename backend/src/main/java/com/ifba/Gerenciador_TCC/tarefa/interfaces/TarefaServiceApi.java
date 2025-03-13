@@ -11,7 +11,9 @@ public interface TarefaServiceApi {
 
     void deletarTarefa(Long id);
 
-    TarefaDTO atribuirTarefa(TarefaDTO tarefaDTO);
+    TarefaDTO criarTarefa(TarefaDTO novaTarefa);
+
+    TarefaDTO editarTarefa(TarefaDTO tarefa);
 
     List<TarefaDTO> listarTarefasPorProjeto(Long projetoId);
 
