@@ -47,7 +47,7 @@ export class QuadroDemandasComponent {
       },
       error: (err) => console.error('Erro ao carregar usuário:', err)
     });
-  
+
     this.tarefasService.listaTarefasPorProjeto();
     this.tarefasService.tarefas$.subscribe({
       next: (tarefas) => {
@@ -59,13 +59,15 @@ export class QuadroDemandasComponent {
   }
 
   separarTarefasPorStatus(){
-    this.tarefasBacklog  = this.tarefas.filter(tarefa => tarefa.status === 'BACKLOG');
+    this.tarefasBacklog     = this.tarefas.filter(tarefa => tarefa.status === 'BACKLOG');
     this.tarefasPendentes   = this.tarefas.filter(tarefa => tarefa.status === 'PENDENTE');
     this.tarefasEmAndamento = this.tarefas.filter(tarefa => tarefa.status === 'ANDAMENTO');
     this.tarefasConcluidas  = this.tarefas.filter(tarefa => tarefa.status === 'CONCLUIDA');
   }
 
-  adicionarNovaDemanda(){
+
+  PreencherTarefa(tarefa: Tarefa) {
+    this.modalService.abrir('modalTarefa', tarefa);
   }
 }
 

@@ -42,4 +42,15 @@ export class TarefasService {
       }
     });
   }
+
+  atualizarTarefa(tarefaModificada: Tarefa): void{
+    this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}`, tarefaModificada).subscribe({
+      next: () => {
+        this.listaTarefasPorProjeto();
+      },
+      error: (err) => {
+        console.error('Erro ao atulizar tarefa', err);
+      }
+    });
+  }
 }

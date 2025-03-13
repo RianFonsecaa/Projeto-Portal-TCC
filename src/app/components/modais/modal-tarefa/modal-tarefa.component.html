@@ -3,14 +3,15 @@
   [ngClass]="{ 'opacity-0 pointer-events-none': !modalService.isVisivel('modalTarefa'), 'opacity-100': modalService.isVisivel('modalTarefa') }">
 
   <!-- Modal background (overlay) -->
-  <div class="fixed inset-0 bg-black bg-opacity-30 z-10" (click)="modalService.fechar('modalTarefa')"></div>
+  <div class="fixed inset-0 bg-black bg-opacity-30 z-10" (click)="fecharModal()"></div>
 
   <!-- Modal content -->
   <div
     class="bg-white overflow-hidden rounded-lg shadow-lg z-20 flex flex-col space-y-6 w-[1000px] h-[560px] p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
     <div class="flex justify-between items-center border-b pb-2">
-      <h2 class="text-lg font-semibold">Nova Tarefa / Detalhes da Tarefa</h2>
-      <button (click)="modalService.fechar('modalTarefa')">
+      <h2 *ngIf="this.alterar" class="text-lg font-semibold">Detalhes da Tarefa</h2>
+      <h2 *ngIf="!this.alterar" class="text-lg font-semibold">Nova Tarefa</h2>
+      <button (click)="fecharModal()">
         <svg width="16" height="16" viewBox="0 0 12 13" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 11.1541L10.95 1M11 11.1541L1.05 1" [attr.stroke]="themeService.darkMode() ? 'white' : '#515151'"
             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -18,7 +19,6 @@
 
       </button>
     </div>
-
     <!-- Div principal flex horizontal -->
     <form [formGroup]="tarefaForm" class="flex h-full space-x-6 mt-4">
       <!-- Título e Descrição em blocos verticais -->
@@ -32,7 +32,7 @@
             </svg>
             <label class="block text-lg font-medium text-gray-700">Título</label>
           </div>
-          <input name="nomeTarefa" formControlName="nomeTarefa" type="text" class="w-full border h-12 border-gray-300 rounded-lg p-2 focus:border-blue-500"    
+          <input name="nomeTarefa" formControlName="nomeTarefa" type="text" class="w-full border h-12 border-gray-300 rounded-lg p-2 focus:border-blue-500"
             placeholder="Digite o título">
         </div>
 
@@ -144,7 +144,7 @@
     </svg>
     <label class="block text-md font-medium text-gray-700">Classificação</label>
   </div>
-  
+
   <!-- Select para Classificação com FormControl -->
   <div class="flex flex-row">
     <select formControlName="classificacao" class="w-full border border-gray-200 rounded-md p-2 text-[14px]">
@@ -175,7 +175,7 @@
     <!-- Botões de ação -->
     <div class="flex justify-end items-center border-t border-gray-200 pt-4 mt-6">
       <div class="flex gap-2">
-        <button class="px-4 py-2 bg-gray-300 rounded-lg"  (click)="modalService.fechar('modalTarefa')">Cancelar</button>
+        <button class="px-4 py-2 bg-gray-300 rounded-lg"  (click)="fecharModal()">Cancelar</button>
         <button class="px-4 py-2 bg-green-500 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
       </div>
     </div>

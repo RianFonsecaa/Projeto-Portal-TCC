@@ -1,34 +1,44 @@
-import { Injectable, Signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Tarefa } from '../model/Tarefa';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
   private modais = new Map<string, BehaviorSubject<boolean>>();
+  private tarefaSelecionada = new BehaviorSubject<Tarefa | null>(null);
+  tarefaSelecionada$ = this.tarefaSelecionada.asObservable();
 
-  abrir(modalId: string) {
+  constructor() {}
+
+  abrir(modalId: string, tarefa?: Tarefa) {
     if (!this.modais.has(modalId)) {
-      this.modais.set(modalId, new BehaviorSubject<boolean>(false)); // Inicializa com false
+      this.modais.set(modalId, new BehaviorSubject<boolean>(false));
     }
-    this.modais.get(modalId)?.next(true); // Muda para 'true' quando o modal é aberto
+
+    if (tarefa) {
+      this.tarefaSelecionada.next(tarefa);
+    }
+
+    this.modais.get(modalId)?.next(true);
   }
 
   fechar(modalId: string) {
     if (this.modais.has(modalId)) {
-      this.modais.get(modalId)?.next(false); // Muda para 'false' quando o modal é fechado
+      this.modais.get(modalId)?.next(false);
     }
+    this.tarefaSelecionada.next(null);
   }
 
   isVisivel(modalId: string): boolean {
-    return this.modais.get(modalId)?.getValue() ?? false; // Retorna o valor atual, ou 'false' se não existir
+    return this.modais.get(modalId)?.getValue() ?? false;
   }
 
-  // Método para escutar a visibilidade de um modal
   getModalVisibility(modalId: string) {
     if (!this.modais.has(modalId)) {
-      this.modais.set(modalId, new BehaviorSubject<boolean>(false)); // Inicializa com false, caso não tenha sido aberto
+      this.modais.set(modalId, new BehaviorSubject<boolean>(false));
     }
-    return this.modais.get(modalId)?.asObservable(); // Retorna um Observable
+    return this.modais.get(modalId)?.asObservable();
   }
 }

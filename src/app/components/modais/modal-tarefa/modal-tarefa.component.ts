@@ -1,18 +1,17 @@
+import { Tarefa } from './../../../model/Tarefa';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
-import { NgClass } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormsModule, FormGroup, Validators } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
-import { Route } from '@angular/router';
 import { TarefasService } from '../../../services/Requisicoes/tarefas.service';
-import { Tarefa } from '../../../model/Tarefa';
 import { infoProjeto } from '../../../model/infoProjeto';
+import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modal-tarefa',
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, FormsModule, NgFor, NgIf],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './modal-tarefa.component.html',
 })
 export class ModalTarefa {
@@ -29,10 +28,25 @@ export class ModalTarefa {
     { nome: 'Apresentação' }
   ];
 
+  classificacoesMap: { [key: string]: string } = {
+    BIBLIOGRAFIA: 'Bibliografia',
+    REDACAO: 'Redação',
+    DESENVOLVIMENTO: 'Desenvolvimento',
+    MANUTENCAO: 'Manutenção',
+    PESQUISA: 'Pesquisa',
+    ESTUDO: 'Estudo',
+    PLANEJAMENTO: 'Planejamento',
+    REVISAO: 'Revisão',
+    DOCUMENTACAO: 'Documentação',
+    APRESENTACAO: 'Apresentação',
+  };
+
   dropdownVisible: boolean = false;
   isRotated: boolean = false;
   infoProjeto: infoProjeto = {} as infoProjeto;
   tarefaForm: FormGroup;
+  private subscription: Subscription | null = null;
+  alterar: boolean = false;
 
   constructor(
     public modalService: ModalService,
@@ -41,15 +55,40 @@ export class ModalTarefa {
     private tarefaService: TarefasService
   ) {
     this.tarefaForm = this.fb.group({
+      id: [0],
       nomeTarefa: ['', Validators.required],
       descricao: ['', Validators.required],
       prioridade: ['', Validators.required],
       status: ['', Validators.required],
       classificacao: ['', Validators.required],
-      prazo: ['', Validators.required] 
+      prazo: ['', Validators.required]
     });
 
     this.infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
+  }
+
+  ngOnInit() {
+    this.subscription = this.modalService.tarefaSelecionada$.subscribe(tarefa => {
+      if (tarefa) {
+        console.log(tarefa);
+        this.alterar = true;
+
+        this.tarefaForm.patchValue({
+          id: tarefa.id,
+          nomeTarefa: tarefa.nomeTarefa,
+          descricao: tarefa.descricao,
+          prioridade: tarefa.prioridade,
+          status: tarefa.status,
+          classificacao: this.classificacoesMap[tarefa.classificacao],
+          prazo: tarefa.prazo
+        });
+      } else {
+        this.tarefaForm.reset({
+          classificacao: ''
+        });
+        this.alterar = false;
+      }
+    });
   }
 
   toggleDropdown() {
@@ -58,9 +97,41 @@ export class ModalTarefa {
   }
 
   salvarTarefa() {
-    console.log(this.tarefaForm.value);
+
+    if (this.tarefaForm.value.status === null || this.tarefaForm.value.status === '') {
+      this.tarefaForm.value.status = 'BACKLOG';
+    }
+
     const tarefa: Tarefa = this.tarefaForm.value;
     tarefa.projetoId = this.infoProjeto.id;
-    this.tarefaService.adicionarTarefa(tarefa);
+    console.log(tarefa)
+    console.log(this.alterar)
+    if (this.alterar) {
+      this.tarefaService.atualizarTarefa(tarefa);
+    } else {
+
+      this.tarefaService.adicionarTarefa(tarefa);
+    }
+
+    this.fecharModal();
+  }
+
+  fecharModal() {
+    this.modalService.fechar('modalTarefa');
+    this.limparFormulario();
+  }
+
+  limparFormulario() {
+
+    this.tarefaForm.reset({
+      classificacao: ''
+    });
+    this.alterar = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

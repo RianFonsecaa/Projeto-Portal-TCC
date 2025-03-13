@@ -140,7 +140,8 @@
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
                   [status]="tarefa.status"
-                  imgSource="">
+                  imgSource=""
+                  (click)="PreencherTarefa(tarefa)">
                 </app-tarefas-conteudo>
             </div>
         </div>
@@ -172,12 +173,13 @@
                 </div>
             </div>
             <div class="flex flex-col overflow-y-auto dark:bg-[#201e1e]">
-                <app-tarefas-conteudo *ngFor="let tarefa of tarefasPendentes"
+                <app-tarefas-conteudo class="cursor-pointer " *ngFor="let tarefa of tarefasPendentes"
                   [titulo]="tarefa.nomeTarefa"
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
                   [status]="tarefa.status"
-                  imgSource="">
+                  imgSource=""
+                  (click)="PreencherTarefa(tarefa)">
                 </app-tarefas-conteudo>
             </div>
         </div>
@@ -215,7 +217,9 @@
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
                   [status]="tarefa.status"
-                  imgSource="">
+                  imgSource=""
+                  (click)="PreencherTarefa(tarefa)"
+                  >
                 </app-tarefas-conteudo>
             </div>
         </div>
@@ -252,7 +256,10 @@
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
                   [status]="tarefa.status"
-                  imgSource="">
+                  imgSource=""
+                  (click)="PreencherTarefa(tarefa)"
+                  >
+
                   </app-tarefas-conteudo>
             </div>
         </div>
