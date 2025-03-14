@@ -1,19 +1,19 @@
 package com.ifba.Gerenciador_TCC.projeto.interfaces;
 
 
-import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import java.util.List;
-import java.util.Optional;
+
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.InfoProjetoDTO;
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 
 public interface ProjetoService {
 
-    List<Projeto> listarProjetos();
+    InfoProjetoDTO buscarInfoProjetoPorOrientando(Long idOrientando);
 
-    Projeto obterProjetoPorId(Long id);
+    List<ProjetoDTO> listarProjetosPorOrientador(Long idOrientador);
 
-    Projeto criarProjeto(Projeto projeto);
+    List<InfoProjetoDTO> buscarInfoProjetoPorOrientador(Long idOrientador);
 
-    Projeto atualizarProjeto(Long id, Projeto projeto);
-
-    void deletarProjeto(Long id);
+    Projeto findById(Long id);
 }

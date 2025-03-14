@@ -1,21 +1,15 @@
 package com.ifba.Gerenciador_TCC.usuario.controller;
 
-import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
+import com.ifba.Gerenciador_TCC.tipoenum.TipoUsuario;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
 public class JwtResponse {
     private final String jwtToken;
-    private final Usuario usuario;
+    private final Long usuarioId;
+    private final TipoUsuario tipoUsuario;
 
-    public JwtResponse(String jwtToken, Usuario usuario) {
-        this.jwtToken = jwtToken;
-        this.usuario = usuario;
-    }
-
-    public String getJwtToken() {
-        return jwtToken;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
 }

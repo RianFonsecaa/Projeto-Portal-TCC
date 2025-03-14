@@ -1,18 +1,22 @@
 package com.ifba.Gerenciador_TCC.projeto.interfaces;
 
-import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
-import org.springframework.http.ResponseEntity;
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.InfoProjetoDTO;
+import com.ifba.Gerenciador_TCC.projeto.domain.dto.ProjetoDTO;
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 
 public interface ProjetoController {
 
-    ResponseEntity<List<Projeto>> listarProjetos();
+    ResponseEntity<InfoProjetoDTO> buscarInfoProjetoPorOrientando(Long idOrientando);
 
-    ResponseEntity<Projeto> obterProjetoPorId(Long id);
+    ResponseEntity<List<ProjetoDTO>> listarProjetosPorOrientador(Long idOrientador);
 
-    ResponseEntity<Projeto> criarProjeto(Projeto projeto);
+    ResponseEntity<List<InfoProjetoDTO>> buscarInfoProjetoPorOrientador(Long idOrientador);
 
-    ResponseEntity<Projeto> atualizarProjeto(Long id, Projeto projeto);
+    ResponseEntity<Projeto> findById(Long id);
 
-    ResponseEntity<Void> deletarProjeto(Long id);
+
 }

@@ -31,7 +31,7 @@ public class EmailService {
     public String enviarEmail(String destinatario, TipoMensagem tipo, String remetenteNotificacao) {
         try {
             String mensagem = construirMensagem(tipo, remetenteNotificacao);
-            String assunto = tipo.getAssunto(); // Obtém o assunto automático do enum
+            String assunto = tipo.getAssunto(); 
 
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom(remetente);

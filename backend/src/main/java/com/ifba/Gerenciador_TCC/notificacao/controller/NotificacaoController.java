@@ -8,6 +8,7 @@ import com.ifba.Gerenciador_TCC.notificacao.service.NotificacaoService;
 
 @RestController
 @RequestMapping("/api/notificacoes")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NotificacaoController {
 
     @Autowired

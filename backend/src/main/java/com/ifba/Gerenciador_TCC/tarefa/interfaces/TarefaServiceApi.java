@@ -1,26 +1,20 @@
 package com.ifba.Gerenciador_TCC.tarefa.interfaces;
 
-import com.ifba.Gerenciador_TCC.tarefa.domain.dto.AtribuirTarefaDTO;
-import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
-
-import java.time.LocalDate;
 import java.util.List;
+
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
+import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
 
 public interface TarefaServiceApi {
 
-    TarefaDTO buscarTarefaPorId(Long id);
-
-    List<TarefaDTO> listarTarefas();
-
-    List<TarefaDTO> listarTarefasPorUsuario(Long idUsuario);
-
-    List<TarefaDTO> listarTarefasPorNome(String nomeTarefa);
-
-    List<TarefaDTO> listarTarefasPorDataEnvio(LocalDate dataEnvio);
-
-    List<TarefaDTO> listarTarefasPorDataFim(LocalDate dataEnvio);
+    List<TarefaDTO> listarTarefaPorStatus(StatusTarefa statusTarefa);
 
     void deletarTarefa(Long id);
 
-    TarefaDTO atribuirTarefa(AtribuirTarefaDTO atribuirTarefaDTO);
+    TarefaDTO criarTarefa(TarefaDTO novaTarefa);
+
+    TarefaDTO editarTarefa(TarefaDTO tarefa);
+
+    List<TarefaDTO> listarTarefasPorProjeto(Long projetoId);
+
 }

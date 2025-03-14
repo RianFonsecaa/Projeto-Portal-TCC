@@ -20,6 +20,8 @@ public class Notificacao {
     private Long id;
 
     private String remetente;
+
+    @Column(columnDefinition = "TEXT") 
     private String mensagem;
 
     @Temporal(TemporalType.TIMESTAMP)
