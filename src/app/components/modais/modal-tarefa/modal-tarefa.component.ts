@@ -68,7 +68,7 @@ export class ModalTarefa {
   }
 
   ngOnInit() {
-    this.subscription = this.modalService.tarefaSelecionada$.subscribe(tarefa => {
+    this.subscription = this.tarefaService.tarefaSelecionada$.subscribe(tarefa => {
       if (tarefa) {
         console.log(tarefa);
         this.alterar = true;

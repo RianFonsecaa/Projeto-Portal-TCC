@@ -67,7 +67,8 @@ export class QuadroDemandasComponent {
 
 
   PreencherTarefa(tarefa: Tarefa) {
-    this.modalService.abrir('modalTarefa', tarefa);
+    this.tarefasService.selecionarTarefa(tarefa);
+    this.modalService.abrir('modalTarefa');
   }
 }
 

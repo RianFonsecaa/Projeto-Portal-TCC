@@ -1,9 +1,8 @@
 import { Tarefa } from './../../model/Tarefa';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject} from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { infoProjeto } from '../../model/infoProjeto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,9 @@ import { infoProjeto } from '../../model/infoProjeto';
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
   private tarefasSubject = new BehaviorSubject<Tarefa[]>([]);
+  private tarefaSelecionada = new BehaviorSubject<Tarefa | null>(null);
   tarefas$ = this.tarefasSubject.asObservable();
+  tarefaSelecionada$ = this.tarefaSelecionada.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -43,14 +44,18 @@ export class TarefasService {
     });
   }
 
-  atualizarTarefa(tarefaModificada: Tarefa): void{
+  atualizarTarefa(tarefaModificada: Tarefa): void {
     this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}`, tarefaModificada).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
       },
       error: (err) => {
-        console.error('Erro ao atulizar tarefa', err);
+        console.error('Erro ao atualizar tarefa', err);
       }
     });
+  }
+
+  selecionarTarefa(tarefa: Tarefa | null) {
+    this.tarefaSelecionada.next(tarefa);
   }
 }

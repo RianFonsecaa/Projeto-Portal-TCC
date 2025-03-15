@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="flex flex-col ">
-                <app-tarefas-conteudo *ngFor="let tarefa of tarefasBacklog"
+                <app-tarefas-conteudo class="cursor-pointer" *ngFor="let tarefa of tarefasBacklog"
                   [titulo]="tarefa.nomeTarefa"
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
@@ -173,7 +173,7 @@
                 </div>
             </div>
             <div class="flex flex-col overflow-y-auto dark:bg-[#201e1e]">
-                <app-tarefas-conteudo class="cursor-pointer " *ngFor="let tarefa of tarefasPendentes"
+                <app-tarefas-conteudo class="cursor-pointer" *ngFor="let tarefa of tarefasPendentes"
                   [titulo]="tarefa.nomeTarefa"
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
@@ -212,7 +212,7 @@
                 </div>
             </div>
             <div class="flex flex-col overflow-auto dark:bg-[#201e1e]">
-                <app-tarefas-conteudo *ngFor="let tarefa of tarefasEmAndamento"
+                <app-tarefas-conteudo class="cursor-pointer" *ngFor="let tarefa of tarefasEmAndamento"
                   [titulo]="tarefa.nomeTarefa"
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
@@ -251,7 +251,7 @@
                 </div>
             </div>
             <div class="flex flex-col overflow-auto dark:bg-[#201e1e]">
-                <app-tarefas-conteudo *ngFor="let tarefa of tarefasConcluidas"
+                <app-tarefas-conteudo class="cursor-pointer" *ngFor="let tarefa of tarefasConcluidas"
                   [titulo]="tarefa.nomeTarefa"
                   [prioridade]="tarefa.prioridade"
                   [descricao]="tarefa.descricao"
