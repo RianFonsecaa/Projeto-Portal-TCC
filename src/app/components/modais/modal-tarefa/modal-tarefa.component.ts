@@ -116,6 +116,11 @@ export class ModalTarefa {
     this.fecharModal();
   }
 
+  deletarTarefa(){
+    this.modalService.fechar('modalTarefa');
+    this.tarefaService.deletarTarefa();
+  }
+
   fecharModal() {
     this.modalService.fechar('modalTarefa');
     this.limparFormulario();

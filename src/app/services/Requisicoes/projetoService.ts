@@ -32,4 +32,8 @@ export class projetoService {
   setInfoProjeto(infoProjeto: infoProjeto) {
     localStorage.setItem('infoProjeto', JSON.stringify(infoProjeto))
   }
+
+  getInfoProjeto(): infoProjeto{
+    return JSON.parse(localStorage.getItem('infoProjeto') || '{}');
+  }
 } 

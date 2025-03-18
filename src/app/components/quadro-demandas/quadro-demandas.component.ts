@@ -41,6 +41,7 @@ export class QuadroDemandasComponent {
   }
 
   ngOnInit() {
+    this.infoProjeto = this.projetoService.getInfoProjeto();
     this.perfilService.getDadosUsuario().subscribe({
       next: (usuario) => {
         this.usuario = usuario;
@@ -66,7 +67,7 @@ export class QuadroDemandasComponent {
   }
 
 
-  PreencherTarefa(tarefa: Tarefa) {
+  abrirTarefa(tarefa: Tarefa) {
     this.tarefasService.selecionarTarefa(tarefa);
     this.modalService.abrir('modalTarefa');
   }

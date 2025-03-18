@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
+import { projetoService } from './projetoService';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export class TarefasService {
   tarefas$ = this.tarefasSubject.asObservable();
   tarefaSelecionada$ = this.tarefaSelecionada.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private projetoService: projetoService) {}
 
   listaTarefasPorProjeto() {
-    const infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
+    const infoProjeto = this.projetoService.getInfoProjeto();
     if (!infoProjeto.id) {
       console.error('Projeto não encontrado');
       return;
@@ -52,6 +53,14 @@ export class TarefasService {
       error: (err) => {
         console.error('Erro ao atualizar tarefa', err);
       }
+    });
+  }
+
+  deletarTarefa(){
+    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada.getValue()?.id}`).subscribe({
+      next: () =>{
+        this.listaTarefasPorProjeto();
+      },
     });
   }
 
