@@ -7,4 +7,5 @@ export interface Tarefa {
   prioridade: string;
   classificacao: string;
   prazo: string;
+  ultimaAtualizacao: string;
 }

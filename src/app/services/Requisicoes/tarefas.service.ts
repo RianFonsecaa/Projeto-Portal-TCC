@@ -26,12 +26,19 @@ export class TarefasService {
 
     this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
       next: (tarefas) => {
-        this.tarefasSubject.next(tarefas);
+        this.ordenarTarefasPorData(tarefas);
       },
       error: (err) => {
         console.error('Erro ao buscar tarefas:', err);
       }
     });
+  }
+
+  private ordenarTarefasPorData(tarefas: Tarefa[]) {
+    const tarefasOrdenadas = tarefas.sort((a, b) => 
+      new Date(b.ultimaAtualizacao).getTime() - new Date(a.ultimaAtualizacao).getTime()
+    );
+    this.tarefasSubject.next(tarefasOrdenadas);
   }
 
   adicionarTarefa(novaTarefa: Tarefa): void {
@@ -56,9 +63,9 @@ export class TarefasService {
     });
   }
 
-  deletarTarefa(){
+  deletarTarefa() {
     this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada.getValue()?.id}`).subscribe({
-      next: () =>{
+      next: () => {
         this.listaTarefasPorProjeto();
       },
     });

@@ -7,8 +7,10 @@ export interface infoProjeto {
   horasOrientacao: number;
   progresso: number;
   dataUltimaAlteracao: Date;
-  demandasAtribuidas: number;
-  demandasEmAndamento: number;
-  demandasResolvidas: number;
+  tarefasAtribuidas: number;
+  tarefasBacklog: number;
+  tarefasPendentes: number;
+  tarefasAndamento: number;
+  tarefasConcluidas: number;
   urlImagemCard: string;
 }

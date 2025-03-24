@@ -145,15 +145,18 @@
     <label class="block text-md font-medium text-gray-700">Classificação</label>
   </div>
 
-  <!-- Select para Classificação com FormControl -->
-  <div class="flex flex-row">
-    <select formControlName="classificacao" class="w-full border border-gray-200 rounded-md p-2 text-[14px]">
-      <option value="" disabled selected>Escolha a classificação</option>
-      <option *ngFor="let classificacao of classificacoes" [value]="classificacao.nome">
-        {{ classificacao.nome }}
-      </option>
-    </select>
-  </div>
+<!-- Select para Classificação com FormControl -->
+<div class="flex flex-row">
+  <select
+    formControlName="classificacao"
+    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+  >
+    <option value="" disabled selected class="text-gray-400">Escolha a classificação</option>
+    <option *ngFor="let classificacao of classificacoes" [value]="classificacao[1]">
+      {{ classificacao[1] }}
+    </option>
+  </select>
+</div>
 </div>
 
 

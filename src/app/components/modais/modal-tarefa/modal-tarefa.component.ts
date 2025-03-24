@@ -1,5 +1,5 @@
 import { Tarefa } from './../../../model/Tarefa';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
 import { FormBuilder, ReactiveFormsModule, FormsModule, FormGroup, Validators } from '@angular/forms';
@@ -15,18 +15,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal-tarefa.component.html',
 })
 export class ModalTarefa {
-  classificacoes = [
-    { nome: 'Bibliografia' },
-    { nome: 'Redação' },
-    { nome: 'Desenvolvimento' },
-    { nome: 'Manutenção' },
-    { nome: 'Pesquisa' },
-    { nome: 'Estudo' },
-    { nome: 'Planejamento' },
-    { nome: 'Revisão' },
-    { nome: 'Documentação' },
-    { nome: 'Apresentação' }
-  ];
 
   classificacoesMap: { [key: string]: string } = {
     BIBLIOGRAFIA: 'Bibliografia',
@@ -40,6 +28,7 @@ export class ModalTarefa {
     DOCUMENTACAO: 'Documentação',
     APRESENTACAO: 'Apresentação',
   };
+  classificacoes: [string, string][] = Object.entries(this.classificacoesMap);
 
   dropdownVisible: boolean = false;
   isRotated: boolean = false;
@@ -97,22 +86,24 @@ export class ModalTarefa {
   }
 
   salvarTarefa() {
-
     if (this.tarefaForm.value.status === null || this.tarefaForm.value.status === '') {
       this.tarefaForm.value.status = 'BACKLOG';
     }
-
+  
     const tarefa: Tarefa = this.tarefaForm.value;
     tarefa.projetoId = this.infoProjeto.id;
-    console.log(tarefa)
-    console.log(this.alterar)
+  
+    // Formatar a data para o formato "yyyy-MM-ddTHH:mm:ss"
+    tarefa.ultimaAtualizacao = new Date().toLocaleString('sv-SE'); // Formato correto
+  
+    console.log('DATA: ' + tarefa.ultimaAtualizacao);
+  
     if (this.alterar) {
       this.tarefaService.atualizarTarefa(tarefa);
     } else {
-
       this.tarefaService.adicionarTarefa(tarefa);
     }
-
+  
     this.fecharModal();
   }
 
