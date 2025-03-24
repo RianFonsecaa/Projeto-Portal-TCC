@@ -24,8 +24,10 @@ public class InfoProjetoDTO {
     private int horasOrientacao;
     private int progresso;
     private LocalDate dataUltimaAtualizacao;
-    private int demandasAtribuidas;
-    private int demandasEmAndamento;
-    private int demandasResolvidas;
+    private int tarefasAtribuidas;
+    private int tarefasBacklog;
+    private int tarefasPendentes;
+    private int tarefasAndamento;
+    private int tarefasConcluidas;
     private String urlImagemCard; 
 }

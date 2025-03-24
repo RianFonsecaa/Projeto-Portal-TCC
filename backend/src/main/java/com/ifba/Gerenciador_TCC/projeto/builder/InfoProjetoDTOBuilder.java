@@ -17,9 +17,11 @@ public class InfoProjetoDTOBuilder {
                 .titulo(projeto.getTituloProjeto())
                 .nomeAutor(projeto.getOrientandoId().getNome())
                 .urlImagemCard(projeto.getUrlImagemCard())
-                .demandasAtribuidas(tarefaService.listarTarefasPorProjeto(projeto.getId()).size())
-                .demandasEmAndamento(tarefaService.listarTarefaPorStatus(StatusTarefa.ANDAMENTO).size())
-                .demandasResolvidas(tarefaService.listarTarefaPorStatus(StatusTarefa.CONCLUIDA).size())
+                .tarefasAtribuidas(tarefaService.listarTarefasPorProjeto(projeto.getId()).size())
+                .tarefasBacklog(tarefaService.listarTarefaPorStatus(StatusTarefa.BACKLOG).size())
+                .tarefasPendentes(tarefaService.listarTarefaPorStatus(StatusTarefa.PENDENTE).size())
+                .tarefasAndamento(tarefaService.listarTarefaPorStatus(StatusTarefa.ANDAMENTO).size())
+                .tarefasConcluidas(tarefaService.listarTarefaPorStatus(StatusTarefa.CONCLUIDA).size())
                 .build();
     }
 }

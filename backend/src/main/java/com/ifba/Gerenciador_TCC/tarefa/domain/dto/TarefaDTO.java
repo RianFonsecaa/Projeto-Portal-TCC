@@ -9,7 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Prioridade;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
@@ -42,5 +44,9 @@ public class TarefaDTO {
 
     @NotNull(message = "O prazo da tarefa é obrigatório")
     private LocalDate prazo;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd' 'HH:mm:ss")
+    private LocalDateTime  ultimaAtualizacao;
     
 }

@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -55,4 +56,7 @@ public class Tarefa {
 
     @Column(name = "prazo", nullable = true)
     private LocalDate prazo;
+
+    @Column(name = "ultimaAtualizacao", nullable = true)
+    private LocalDateTime ultimaAtualizacao;
 }

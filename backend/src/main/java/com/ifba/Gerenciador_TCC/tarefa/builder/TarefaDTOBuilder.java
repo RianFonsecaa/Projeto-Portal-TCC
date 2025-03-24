@@ -16,6 +16,7 @@ public class TarefaDTOBuilder {
                     .prioridade(tarefaDTO.getPrioridade())
                     .classificacao(tarefaDTO.getClassificacao())
                     .prazo(tarefaDTO.getPrazo())
+                    .ultimaAtualizacao(tarefaDTO.getUltimaAtualizacao())
                     .build();
     }
 
@@ -29,6 +30,7 @@ public class TarefaDTOBuilder {
                 .prioridade(tarefa.getPrioridade())
                 .classificacao(tarefa.getClassificacao())
                 .prazo(tarefa.getPrazo())
+                .ultimaAtualizacao(tarefa.getUltimaAtualizacao())
                 .build();
     }
 }
