@@ -5,7 +5,7 @@ from TestData import test_data
 
 @pytest.mark.parametrize("endpoint, entity", [
     ("/api/usuarios", "usuario"),
-    #("/api/projetos", "projeto"),
+    ("/api/projetos", "projeto"),
     ("/api/tarefas/atribuir", "tarefa")
 ])
 
