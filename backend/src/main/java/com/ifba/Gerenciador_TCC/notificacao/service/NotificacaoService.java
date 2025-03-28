@@ -40,4 +40,9 @@ public class NotificacaoService {
     public Notificacao buscarPorId(Long id) {
         return notificacaoRepository.findById(id).orElse(null);
     }
+
+    public List<Notificacao> listarNotificacoesPorUsuario(String emailUsuario) {
+        return notificacaoRepository.findByDestinatario(emailUsuario);
+    }
+    
 }

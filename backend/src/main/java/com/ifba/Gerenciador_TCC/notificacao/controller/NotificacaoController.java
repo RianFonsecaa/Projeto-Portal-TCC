@@ -36,5 +36,9 @@ public class NotificacaoController {
         return notificacaoService.salvarNotificacao(notificacao);
     }
     
+    @GetMapping("/{emailUsuario}")
+    public List<Notificacao> listarNotificacoesPorUsuario(@PathVariable String emailUsuario) {
+        return notificacaoService.listarNotificacoesPorUsuario(emailUsuario);
+    }
     
 }

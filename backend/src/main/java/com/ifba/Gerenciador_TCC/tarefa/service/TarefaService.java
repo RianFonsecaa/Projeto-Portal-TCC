@@ -74,7 +74,6 @@ public class TarefaService implements TarefaServiceApi {
             throw new RuntimeException("Tarefa não encontrada com o ID: " + tarefa.getId());
         }
       
-
         Projeto projeto = projetoService.findById(tarefa.getProjetoId());
 
         enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
