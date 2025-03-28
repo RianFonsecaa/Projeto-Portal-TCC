@@ -32,20 +32,21 @@ public class EmailService {
         try {
             String mensagem = construirMensagem(tipo, remetenteNotificacao);
             String assunto = tipo.getAssunto(); 
-
+    
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom(remetente);
             simpleMailMessage.setTo(destinatario);
             simpleMailMessage.setSubject(assunto);
             simpleMailMessage.setText(mensagem);
-
+    
             mailSender.send(simpleMailMessage);
-            notificacaoService.criarNotificacao(remetenteNotificacao, mensagem);
-
+            notificacaoService.criarNotificacao(remetenteNotificacao, destinatario, mensagem);
+    
             return "E-mail enviado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao enviar e-mail: " + e.getMessage();
         }
     }
+    
 }

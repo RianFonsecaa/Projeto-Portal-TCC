@@ -16,16 +16,18 @@ public class NotificacaoService {
     private NotificacaoRepository notificacaoRepository;
 
     
-    public Notificacao criarNotificacao(String remetente, String mensagem) {
+    public Notificacao criarNotificacao(String remetente, String destinatario, String mensagem) {
         Notificacao notificacao = Notificacao.builder()
                 .remetente(remetente)
+                .destinatario(destinatario) 
                 .mensagem(mensagem.replace("\n", " ")) 
                 .data(new Date())
                 .visualizado(false)
                 .build();
-
+    
         return notificacaoRepository.save(notificacao);
     }
+    
 
     public Notificacao salvarNotificacao(Notificacao notificacao) {
         return notificacaoRepository.save(notificacao);

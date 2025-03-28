@@ -20,6 +20,8 @@ public class NotificacaoDTO {
 
     private String remetente;
     
+    private String destinatario; 
+    
     private String mensagem;
 
     @Temporal(TemporalType.TIMESTAMP)

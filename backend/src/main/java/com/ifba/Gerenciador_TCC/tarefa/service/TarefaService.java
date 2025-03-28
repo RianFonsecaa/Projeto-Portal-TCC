@@ -48,17 +48,7 @@ public class TarefaService implements TarefaServiceApi {
         Projeto projeto = tarefa.getProjeto();
 
 
-        emailService.enviarEmail(
-            projeto.getOrientadorId().getEmail(),  
-            TipoMensagem.ADVERTENCIA,              
-            projeto.getOrientadorId().getNome()    
-        );
-    
-        emailService.enviarEmail(
-            projeto.getOrientandoId().getEmail(), 
-            TipoMensagem.ADVERTENCIA,              
-            projeto.getOrientadorId().getNome()   
-        );
+        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
     
         tarefaRepository.deleteById(id);
     }
@@ -70,18 +60,7 @@ public class TarefaService implements TarefaServiceApi {
 
         Projeto projeto = tarefaSalva.getProjeto();
     
-        emailService.enviarEmail(
-            projeto.getOrientadorId().getEmail(), 
-            TipoMensagem.INFORMACAO, 
-            projeto.getOrientandoId().getNome()  
-        );
-    
-     
-        emailService.enviarEmail(
-            projeto.getOrientandoId().getEmail(), 
-            TipoMensagem.INFORMACAO, 
-            projeto.getOrientadorId().getNome() 
-        );
+        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
     
 
         return TarefaDTOBuilder.buildTarefaDTO(tarefaSalva);
@@ -98,17 +77,7 @@ public class TarefaService implements TarefaServiceApi {
 
         Projeto projeto = projetoService.findById(tarefa.getProjetoId());
 
-        emailService.enviarEmail(
-            projeto.getOrientadorId().getEmail(), 
-            TipoMensagem.ATUALIZACAO, 
-            projeto.getOrientandoId().getNome()  
-        );
-
-        emailService.enviarEmail(
-            projeto.getOrientandoId().getEmail(),
-            TipoMensagem.ATUALIZACAO,
-            projeto.getOrientadorId().getNome()
-        );
+        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
     
         
         return criarTarefa(tarefa);  
@@ -135,5 +104,18 @@ public class TarefaService implements TarefaServiceApi {
                 .collect(Collectors.toList());
     }
 
+    private void enviarEmailsProjeto(Projeto projeto, TipoMensagem tipoMensagem) {
+        emailService.enviarEmail(
+            projeto.getOrientadorId().getEmail(),
+            tipoMensagem,
+            projeto.getOrientadorId().getNome()
+        );
+
+        emailService.enviarEmail(
+            projeto.getOrientandoId().getEmail(),
+            tipoMensagem,
+            projeto.getOrientadorId().getNome()
+        );
+    }
     
 }

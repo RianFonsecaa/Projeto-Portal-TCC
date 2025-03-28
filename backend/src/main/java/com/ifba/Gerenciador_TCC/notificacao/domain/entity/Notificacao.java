@@ -21,6 +21,8 @@ public class Notificacao {
 
     private String remetente;
 
+    private String destinatario;
+
     @Column(columnDefinition = "TEXT") 
     private String mensagem;
 

@@ -35,4 +35,6 @@ public class NotificacaoController {
         notificacao.setVisualizado(false);
         return notificacaoService.salvarNotificacao(notificacao);
     }
+    
+    
 }
