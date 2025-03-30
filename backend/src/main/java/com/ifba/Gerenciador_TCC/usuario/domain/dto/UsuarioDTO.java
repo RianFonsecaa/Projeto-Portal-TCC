@@ -37,7 +37,7 @@ public class UsuarioDTO {
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
-    @Enumerated(EnumType.STRING)
-    private TipoCurso tipoCurso;
+    @NotNull(message = "Telefone não pode estar vazio")
+    private String telefone;
 
 }
