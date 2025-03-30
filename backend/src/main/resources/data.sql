@@ -10,6 +10,8 @@ VALUES
 (8, 'Yuri Pepe', 'yuri@gmail.com', '75998678901', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
 ON CONFLICT (id) DO NOTHING;
 
+ALTER SEQUENCE usuario_id_seq RESTART WITH 9;
+
 INSERT INTO orientador (area_pesquisa, cargo, orientador_disponivel, projetos_em_orientacao, id, resumo)
 VALUES ('Machine Learning', 'Professor', false,6, 2, 'Professor e Doutor pela Universidade Federal da Bahia, com especialização em Inteligência Artificial e Machine Learning.')
 ON CONFLICT (id) DO NOTHING;
@@ -41,6 +43,7 @@ orientador_id) VALUES
 'Segurança em Redes sem Fio', '2024-02-23', 27, 99, 'assets/img/adem-ay-Tk9m_HP4rgQ-unsplash.jpg', 'REDES', 'ARTIGO', 7, 1)
 ON CONFLICT (id) DO NOTHING;
 
+ALTER SEQUENCE projeto_id_seq RESTART WITH 7;
 
 INSERT INTO public.notificacoes (id, data, mensagem, remetente, visualizado) 
 VALUES 
@@ -51,3 +54,5 @@ VALUES
 (5, '2025-02-26T18:59:57.484+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Pedro@gmail.com', 'Pedro@gmail.com', false),
 (6, '2025-02-26T19:00:06.010+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 16:00  Atenciosamente, Gabriel@gmail.com', 'Gabriel@gmail.com', false)
 ON CONFLICT (id) DO NOTHING;
+
+ALTER SEQUENCE notificacoes_id_seq RESTART WITH 7;

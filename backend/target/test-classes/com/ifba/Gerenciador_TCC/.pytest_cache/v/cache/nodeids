@@ -1,0 +1,4 @@
+[
+  "test_PostJson.py::test_post_json[/api/notificacoes-notificacao]",
+  "test_PostJson.py::test_post_json[/api/usuarios-usuario]"
+]
