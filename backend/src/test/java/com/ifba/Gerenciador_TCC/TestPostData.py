@@ -8,7 +8,7 @@ from TestData import test_data
 ])
 
 def test_post_data(endpoint, entity):
-    url = f"http://localhost:8081{endpoint}"
+    url = f"http://localhost:8080{endpoint}"
     payload = test_data[entity]
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     try:

@@ -6,18 +6,14 @@ import pytest
     "/api/usuarios",
     "/api/usuarios/1",
     "/api/usuarios/dados/1",
-    "/api/projetos",
     "/api/projetos/1",
     "/api/projetos/orientador/1",
-    "/api/tarefas",
-    "/api/tarefas/1",
-    "/api/tarefas/usuario/3",
-    "/api/quadro-demandas/orientador/1",
-    "/api/quadro-demandas/projeto/1"
+    "/api/projetos/info-projeto-orientando/3",
+    "/api/projetos/info-projeto-orientador/1",
 ])
 
 def test_get(endpoint):
-    url = f"http://localhost:8081{endpoint}"
+    url = f"http://localhost:8080{endpoint}"
     try:
         response = requests.get(url)
     except Exception as e:

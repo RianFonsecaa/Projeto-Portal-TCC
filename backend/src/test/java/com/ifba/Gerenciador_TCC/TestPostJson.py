@@ -5,12 +5,11 @@ from TestData import test_data
 
 @pytest.mark.parametrize("endpoint, entity", [
     ("/api/usuarios", "usuario"),
-    ("/api/projetos", "projeto"),
-    ("/api/tarefas/atribuir", "tarefa")
+    ("/api/notificacoes", "notificacao")
 ])
 
 def test_post_json(endpoint, entity):
-    url = f"http://localhost:8081{endpoint}"
+    url = f"http://localhost:8080{endpoint}"
     payload = test_data[entity]
     headers = {"Content-Type": "application/json"}
     try:
