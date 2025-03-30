@@ -25,7 +25,7 @@ public class EmailService {
 
     private String construirMensagem(TipoMensagem tipo, String remetenteNotificacao) {
         String dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-        return tipo.getMensagem() + "\n\n📅 Data: " + dataAtual + "\n\nAtenciosamente,\n" + remetenteNotificacao;
+        return tipo.gerarMensagem() + "\n\n📅 Data: " + dataAtual + "\n\nAtenciosamente,\n" + remetenteNotificacao;
     }
 
     public String enviarEmail(String destinatario, TipoMensagem tipo, String remetenteNotificacao) {
@@ -48,5 +48,4 @@ public class EmailService {
             return "Erro ao enviar e-mail: " + e.getMessage();
         }
     }
-    
 }

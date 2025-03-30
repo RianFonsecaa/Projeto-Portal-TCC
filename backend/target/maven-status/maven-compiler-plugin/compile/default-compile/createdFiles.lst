@@ -20,6 +20,7 @@ com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO$UsuarioDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.class
+com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemComum.class
 com\ifba\Gerenciador_TCC\login\domain\LoginRequest.class
 com\ifba\Gerenciador_TCC\projeto\domain\dto\InfoProjetoDTO$InfoProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO$UsuarioOrientadorDTOBuilder.class
@@ -38,10 +39,12 @@ com\ifba\Gerenciador_TCC\projeto\builder\InfoProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapperImpl.class
 com\ifba\Gerenciador_TCC\security\JwtRequestFilter.class
 com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.class
+com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa$TarefaBuilder.class
 com\ifba\Gerenciador_TCC\email\service\EmailService.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.class
 com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
+com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa$TipoTarefa.class
 com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.class
 com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.class
 com\ifba\Gerenciador_TCC\tarefa\builder\TarefaDTOBuilder.class

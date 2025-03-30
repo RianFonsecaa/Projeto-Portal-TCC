@@ -31,12 +31,14 @@ C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notifi
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.java
+C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientadorBuilder.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\security\SecurityConfig.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientandoDTO.java
+C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemComum.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientando.java
 C:\Code\Projeto-Portal-TCC\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\InfoProjetoDTOBuilder.java

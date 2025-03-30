@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.ifba.Gerenciador_TCC.email.service.EmailService;
 import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagem;
+import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagemTarefa;
+import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagemTarefa.TipoTarefa;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.builder.TarefaDTOBuilder;
@@ -48,7 +50,9 @@ public class TarefaService implements TarefaServiceApi {
         Projeto projeto = tarefa.getProjeto();
 
 
-        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
+     
+        TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.DELETAR_TAREFA, tarefa);
+        enviarEmailsProjeto(projeto, mensagem);
     
         tarefaRepository.deleteById(id);
     }
@@ -60,7 +64,9 @@ public class TarefaService implements TarefaServiceApi {
 
         Projeto projeto = tarefaSalva.getProjeto();
     
-        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
+      
+       TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.CRIAR_TAREFA, tarefaSalva);
+       enviarEmailsProjeto(projeto, mensagem);
     
 
         return TarefaDTOBuilder.buildTarefaDTO(tarefaSalva);
@@ -76,7 +82,9 @@ public class TarefaService implements TarefaServiceApi {
       
         Projeto projeto = projetoService.findById(tarefa.getProjetoId());
 
-        enviarEmailsProjeto(projeto, TipoMensagem.ADVERTENCIA);
+   
+        TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.EDITAR_TAREFA, tarefa);    
+        enviarEmailsProjeto(projeto, mensagem);
     
         
         return criarTarefa(tarefa);  
@@ -107,7 +115,7 @@ public class TarefaService implements TarefaServiceApi {
         emailService.enviarEmail(
             projeto.getOrientadorId().getEmail(),
             tipoMensagem,
-            projeto.getOrientadorId().getNome()
+            projeto.getOrientandoId().getNome()
         );
 
         emailService.enviarEmail(

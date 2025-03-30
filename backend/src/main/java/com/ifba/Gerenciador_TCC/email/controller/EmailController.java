@@ -1,7 +1,7 @@
 package com.ifba.Gerenciador_TCC.email.controller;
 
 import com.ifba.Gerenciador_TCC.email.service.EmailService;
-import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagem;
+import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagemComum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +15,13 @@ public class EmailController {
 
     @PostMapping("/enviar")
     public String enviarEmail(@RequestParam String para,
-                              @RequestParam TipoMensagem tipo,
+                              @RequestParam String tipo,  
                               @RequestParam String remetenteNotificacao) {
-        return emailService.enviarEmail(para, tipo, remetenteNotificacao);
+
+       
+        TipoMensagemComum tipoMensagemComum = new TipoMensagemComum(tipo);
+
+        
+        return emailService.enviarEmail(para, tipoMensagemComum, remetenteNotificacao);
     }
 }
