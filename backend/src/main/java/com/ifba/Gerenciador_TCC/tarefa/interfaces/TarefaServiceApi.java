@@ -9,12 +9,11 @@ public interface TarefaServiceApi {
 
     List<TarefaDTO> listarTarefaPorStatus(StatusTarefa statusTarefa);
 
-    void deletarTarefa(Long id);
+    void deletarTarefa(Long id, Long idUsuario);
 
-    TarefaDTO criarTarefa(TarefaDTO novaTarefa);
+    TarefaDTO criarTarefa(TarefaDTO novaTarefa, Long idUsuario);
 
-    TarefaDTO editarTarefa(TarefaDTO tarefa);
+    TarefaDTO editarTarefa(TarefaDTO tarefa, Long idUsuario);
 
     List<TarefaDTO> listarTarefasPorProjeto(Long projetoId);
-
 }

@@ -1,13 +1,13 @@
 INSERT INTO usuario (id, nome, email, telefone, senha, tipo_usuario)
 VALUES 
 (1, 'Leandro', 'Leandro@gmail.com', '75999999999', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'COORDENADOR'),
-(2, 'Alex', 'Alex@gmail.com','75999999999','$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTADOR'),
+(2, 'Alex', 'ifbanotificacao@gmail.com','75999999999','$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTADOR'),
 (3, 'Rian Fonseca', 'rian@gmail.com', '75998123456', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
 (4, 'Pedro Carlos', 'pedro@gmail.com', '75998234567', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
 (5, 'Guilherme Sampaio', 'guilherme@gmail.com', '75998345678', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
 (6, 'Gabriel Moreira', 'gabriel@gmail.com', '75998456789', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
 (7, 'Árlei Nóbrega', 'arlei@gmail.com', '75998567890', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO'),
-(8, 'Yuri Pepe', 'yuri@gmail.com', '75998678901', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
+(8, 'Yuri Pepe', 'pepeyuri2003@gmail.com', '75998678901', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
 ON CONFLICT (id) DO NOTHING;
 
 ALTER SEQUENCE usuario_id_seq RESTART WITH 9;
