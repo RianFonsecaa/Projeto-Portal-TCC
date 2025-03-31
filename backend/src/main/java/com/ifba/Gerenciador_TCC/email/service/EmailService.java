@@ -25,23 +25,23 @@ public class EmailService {
 
     private String construirMensagem(TipoMensagem tipo, String remetenteNotificacao) {
         String dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-        return tipo.getMensagem() + "\n\n📅 Data: " + dataAtual + "\n\nAtenciosamente,\n" + remetenteNotificacao;
+        return tipo.gerarMensagem() + "\n\n📅 Data: " + dataAtual + "\n\nAtenciosamente,\n" + remetenteNotificacao;
     }
 
     public String enviarEmail(String destinatario, TipoMensagem tipo, String remetenteNotificacao) {
         try {
             String mensagem = construirMensagem(tipo, remetenteNotificacao);
-            String assunto = tipo.getAssunto(); // Obtém o assunto automático do enum
-
+            String assunto = tipo.getAssunto(); 
+    
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom(remetente);
             simpleMailMessage.setTo(destinatario);
             simpleMailMessage.setSubject(assunto);
             simpleMailMessage.setText(mensagem);
-
+    
             mailSender.send(simpleMailMessage);
-            notificacaoService.criarNotificacao(remetenteNotificacao, mensagem);
-
+            notificacaoService.criarNotificacao(remetenteNotificacao, destinatario, mensagem);
+    
             return "E-mail enviado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
