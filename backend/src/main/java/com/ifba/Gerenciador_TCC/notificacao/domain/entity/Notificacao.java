@@ -26,6 +26,8 @@ public class Notificacao {
     @Column(columnDefinition = "TEXT") 
     private String mensagem;
 
+    private String assunto;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 

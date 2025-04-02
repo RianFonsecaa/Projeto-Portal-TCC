@@ -1,6 +1,5 @@
 package com.ifba.Gerenciador_TCC.notificacao.repository;
 
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +11,5 @@ public interface NotificacaoRepository extends JpaRepository<Notificacao, Long> 
 
     List<Notificacao> findByDestinatario(String destinatario);
     
+    Long countByDestinatarioAndVisualizadoFalse(String destinatario);
 }

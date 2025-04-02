@@ -40,7 +40,7 @@ public class EmailService {
             simpleMailMessage.setText(mensagem);
     
             mailSender.send(simpleMailMessage);
-            notificacaoService.criarNotificacao(remetenteNotificacao, destinatario, mensagem);
+            notificacaoService.criarNotificacao(remetenteNotificacao, destinatario, assunto, mensagem);
     
             return "E-mail enviado com sucesso!";
         } catch (Exception e) {
