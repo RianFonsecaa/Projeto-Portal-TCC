@@ -5,109 +5,108 @@ import { ThemeService } from '../../../services/theme.service';
 import { FormBuilder, ReactiveFormsModule, FormsModule, FormGroup, Validators } from '@angular/forms';
 import { TarefasService } from '../../../services/Requisicoes/tarefas.service';
 import { infoProjeto } from '../../../model/infoProjeto';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { TarefaClassificacaoService } from './model/TarefaClassificacoes.service';
+import { DropdownService } from '../../../services/dropdown.service';
+import { DropdownClassificacaoComponent } from "../../dropdown/dropdown-classificacao/dropdown-classificacao.component";
+import { DropdownEtapaComponent } from "../../dropdown/dropdown-etapa/dropdown-etapa.component";
+import { TarefaEtapaService } from './model/TarefaEtapa.service';
+import { DropdownPrioridadeComponent } from "../../dropdown/dropdown-prioridade/dropdown-prioridade.component";
+import { DropdownStatusComponent } from "../../dropdown/dropdown-status/dropdown-status.component";
+import { TarefaStatusService } from './model/TarefaStatus.service';
+import { TarefaPrioridadeService } from './model/TarefaPrioridade.service';
+import { PerfilService } from '../../../services/Requisicoes/perfil.service';
+import { Usuario } from '../../../model/Usuario';
 
 @Component({
   selector: 'app-modal-tarefa',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, DropdownClassificacaoComponent, DropdownEtapaComponent, DropdownPrioridadeComponent, DropdownStatusComponent],
   templateUrl: './modal-tarefa.component.html',
 })
+
 export class ModalTarefa {
-
-  classificacoesMap: { [key: string]: string } = {
-    BIBLIOGRAFIA: 'Bibliografia',
-    REDACAO: 'Redação',
-    DESENVOLVIMENTO: 'Desenvolvimento',
-    MANUTENCAO: 'Manutenção',
-    PESQUISA: 'Pesquisa',
-    ESTUDO: 'Estudo',
-    PLANEJAMENTO: 'Planejamento',
-    REVISAO: 'Revisão',
-    DOCUMENTACAO: 'Documentação',
-    APRESENTACAO: 'Apresentação',
-  };
-  classificacoes: [string, string][] = Object.entries(this.classificacoesMap);
-
-  dropdownVisible: boolean = false;
-  isRotated: boolean = false;
-  infoProjeto: infoProjeto = {} as infoProjeto;
   tarefaForm: FormGroup;
-  private subscription: Subscription | null = null;
   alterar: boolean = false;
+  tarefaSelecionada = this.tarefaService.getTarefaSelecionada()();
+  usuarioAtual!: Usuario;
 
   constructor(
     public modalService: ModalService,
     public themeService: ThemeService,
     private fb: FormBuilder,
-    private tarefaService: TarefasService
+    private tarefaService: TarefasService,
+    private perfilService: PerfilService,
+    public dropdownService: DropdownService,
+    private classificacaoService: TarefaClassificacaoService,
+    private etapaService: TarefaEtapaService,
+    private statusService: TarefaStatusService,
+    private prioridadeService: TarefaPrioridadeService
   ) {
     this.tarefaForm = this.fb.group({
       id: [0],
-      nomeTarefa: ['', Validators.required],
+      projetoId: [null, Validators.required],
+      titulo: ['', Validators.required],
       descricao: ['', Validators.required],
-      prioridade: ['', Validators.required],
       status: ['', Validators.required],
+      prioridade: ['', Validators.required],
+      etapa: ['', Validators.required],
       classificacao: ['', Validators.required],
-      prazo: ['', Validators.required]
+      ultimaAtualizacaoEm: [new Date()],
+      ultimaAtualizacaoPor: [''],
+      criacaoEm: [new Date()],
+      criacaoPor: [''],
+      dataInicio: [null, Validators.required],
+      dataFim: [null, Validators.required]
     });
-
-    this.infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
   }
 
   ngOnInit() {
-    this.subscription = this.tarefaService.tarefaSelecionada$.subscribe(tarefa => {
-      if (tarefa) {
-        console.log(tarefa);
-        this.alterar = true;
-
-        this.tarefaForm.patchValue({
-          id: tarefa.id,
-          nomeTarefa: tarefa.nomeTarefa,
-          descricao: tarefa.descricao,
-          prioridade: tarefa.prioridade,
-          status: tarefa.status,
-          classificacao: this.classificacoesMap[tarefa.classificacao],
-          prazo: tarefa.prazo
-        });
-      } else {
-        this.tarefaForm.reset({
-          classificacao: ''
-        });
-        this.alterar = false;
+    this.patchForm();
+    this.perfilService.getDadosUsuario().subscribe(usuario => {
+      if (usuario){
+        this.usuarioAtual = usuario;
       }
     });
   }
 
-  toggleDropdown() {
-    this.dropdownVisible = !this.dropdownVisible;
-    this.isRotated = !this.isRotated;
+  private patchForm() {
+    if (this.tarefaSelecionada) {
+      this.alterar = true;
+      this.classificacaoService.selecionarClassificacao(this.tarefaSelecionada.classificacao);
+      this.prioridadeService.selecionarPrioridade(this.tarefaSelecionada.prioridade);
+      this.statusService.selecionarStatus(this.tarefaSelecionada.status);
+      this.etapaService.selecionarEtapa(this.tarefaSelecionada.etapa);
+      this.tarefaForm.patchValue(this.tarefaSelecionada);
+    }
   }
 
   salvarTarefa() {
-    if (this.tarefaForm.value.status === null || this.tarefaForm.value.status === '') {
-      this.tarefaForm.value.status = 'BACKLOG';
-    }
-  
+    const infoProjeto = JSON.parse(localStorage.getItem('infoProjeto') || '{}');
     const tarefa: Tarefa = this.tarefaForm.value;
-    tarefa.projetoId = this.infoProjeto.id;
-  
-    // Formatar a data para o formato "yyyy-MM-ddTHH:mm:ss"
-    tarefa.ultimaAtualizacao = new Date().toLocaleString('sv-SE'); // Formato correto
-  
-    console.log('DATA: ' + tarefa.ultimaAtualizacao);
-  
+
+    tarefa.projetoId = infoProjeto.id;
+    tarefa.classificacao = this.classificacaoService.getClassificacaoSelecionada()();
+    tarefa.etapa = this.etapaService.getEtapaSelecionada()();
+    tarefa.status = this.statusService.getStatusSelecionado()();
+    tarefa.prioridade = this.prioridadeService.getPrioridadeSelecionada()();
+    
+    tarefa.ultimaAtualizacaoEm = new Date().toLocaleString('sv-SE');
+    tarefa.ultimaAtualizacaoPor = this.usuarioAtual.nome;
+
     if (this.alterar) {
       this.tarefaService.atualizarTarefa(tarefa);
     } else {
+      tarefa.criacaoEm = new Date().toLocaleString('sv-SE');
+      tarefa.criacaoPor = this.usuarioAtual.nome;
       this.tarefaService.adicionarTarefa(tarefa);
     }
-  
+
+    console.log(tarefa);
     this.fecharModal();
   }
 
-  deletarTarefa(){
+  deletarTarefa() {
     this.modalService.fechar('modalTarefa');
     this.tarefaService.deletarTarefa();
   }
@@ -118,16 +117,12 @@ export class ModalTarefa {
   }
 
   limparFormulario() {
-
-    this.tarefaForm.reset({
-      classificacao: ''
-    });
+    this.tarefaForm.reset();
+    this.tarefaService.removerSelecaoTarefa();
+    this.classificacaoService.limparClassificacao();
+    this.etapaService.limparEtapa();
+    this.statusService.limparStatus();
+    this.prioridadeService.limparPrioridade();
     this.alterar = false;
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

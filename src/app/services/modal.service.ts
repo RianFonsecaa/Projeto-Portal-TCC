@@ -26,11 +26,5 @@ export class ModalService {
     return this.modais.get(modalId)?.getValue() ?? false;
   }
 
-  getModalVisibility(modalId: string) {
-    if (!this.modais.has(modalId)) {
-      this.modais.set(modalId, new BehaviorSubject<boolean>(false));
-    }
-    return this.modais.get(modalId)?.asObservable();
-  }
 }
   

@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         russo: ['"Russo One"', 'sans-serif'],
+        poppins: ["Poppins", "sans-serif"],
       }
     },
   },

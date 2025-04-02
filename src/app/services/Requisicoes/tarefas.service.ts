@@ -1,19 +1,18 @@
 import { Tarefa } from './../../model/Tarefa';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { computed, Injectable, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { projetoService } from './projetoService';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
-  private tarefasSubject = new BehaviorSubject<Tarefa[]>([]);
-  private tarefaSelecionada = new BehaviorSubject<Tarefa | null>(null);
-  tarefas$ = this.tarefasSubject.asObservable();
-  tarefaSelecionada$ = this.tarefaSelecionada.asObservable();
+
+  private _tarefas = signal<Tarefa[]>([]);
+  public tarefas = this._tarefas.asReadonly();
+
+  private _tarefaSelecionada = signal<Tarefa | null>(null);
+  public tarefaSelecionada = this._tarefaSelecionada.asReadonly();
 
   constructor(private http: HttpClient, private projetoService: projetoService) {}
 
@@ -36,9 +35,9 @@ export class TarefasService {
 
   private ordenarTarefasPorData(tarefas: Tarefa[]) {
     const tarefasOrdenadas = tarefas.sort((a, b) => 
-      new Date(b.ultimaAtualizacao).getTime() - new Date(a.ultimaAtualizacao).getTime()
+      new Date(b.ultimaAtualizacaoEm).getTime() - new Date(a.ultimaAtualizacaoEm).getTime()
     );
-    this.tarefasSubject.next(tarefasOrdenadas);
+    this._tarefas.set(tarefasOrdenadas);
   }
 
   adicionarTarefa(novaTarefa: Tarefa): void {
@@ -64,14 +63,22 @@ export class TarefasService {
   }
 
   deletarTarefa() {
-    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada.getValue()?.id}`).subscribe({
+    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada()?.id}`).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
       },
     });
   }
 
+  getTarefaSelecionada(){
+    return this._tarefaSelecionada.asReadonly();
+  }
+
   selecionarTarefa(tarefa: Tarefa | null) {
-    this.tarefaSelecionada.next(tarefa);
+    this._tarefaSelecionada.set(tarefa);
+  }
+
+  removerSelecaoTarefa(){
+    this._tarefaSelecionada.set(null);
   }
 }

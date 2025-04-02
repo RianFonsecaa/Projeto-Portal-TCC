@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, effect, Inject, Injector, OnInit, runInInjectionContext, Signal, ViewChild } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { ModalTarefa } from '../modais/modal-tarefa/modal-tarefa.component';
 import { TarefasService } from '../../services/Requisicoes/tarefas.service';
@@ -29,44 +29,43 @@ export class QuadroDemandasComponent implements OnInit {
   ]);
 
   colunasIds = this.quadroTarefas.colunas.map(c => c.id);
-  
-  tarefas: Tarefa[] = [];
-  infoProjeto: any = {};
-  usuario: any = {};
+  infoProjeto: infoProjeto = {} as infoProjeto;
+  usuario: Usuario = {} as Usuario;
   selectedTab: string = 'Quadro de Demandas';
 
   constructor(
-    private tarefasService: TarefasService,
+    @Inject(TarefasService) private tarefasService: TarefasService,
     public modalService: ModalService,
     public projetoService: projetoService,
-    private perfilService: PerfilService
-  ) { }
-
+    private perfilService: PerfilService,
+    private injector: Injector // Injete o Injector
+  ) {}
+  
   ngOnInit() {
     this.infoProjeto = this.projetoService.getInfoProjeto();
+  
     this.perfilService.getDadosUsuario().subscribe({
-      next: (usuario) => this.usuario = usuario,
+      next: (usuario) => (this.usuario = usuario),
       error: (err) => console.error('Erro ao carregar usuário:', err)
     });
-
+  
     this.tarefasService.listaTarefasPorProjeto();
-    this.tarefasService.tarefas$.subscribe({
-      next: (tarefas) => {
-        this.tarefas = tarefas;
-        this.separarTarefasPorStatus();
-      },
-      error: (err) => console.error('Erro ao carregar tarefas:', err)
+  
+    runInInjectionContext(this.injector, () => {
+      effect(() => {
+        const tarefasAtuais = this.tarefasService.tarefas();
+        this.separarTarefasPorStatus(tarefasAtuais);
+      });
     });
   }
 
-  separarTarefasPorStatus() {
+  separarTarefasPorStatus(tarefasAtuais: Tarefa[]) {
     this.quadroTarefas.colunas.forEach(coluna => {
-      coluna.tarefas = this.tarefas.filter(tarefa => tarefa.status === coluna.nome);
+      coluna.tarefas = tarefasAtuais.filter(tarefa => tarefa.status === coluna.nome);
     });
   }
 
   drop(event: CdkDragDrop<Tarefa[]>): void {
-
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -80,16 +79,15 @@ export class QuadroDemandasComponent implements OnInit {
       const tarefaMovida = event.container.data[event.currentIndex];
   
       tarefaMovida.status = this.quadroTarefas.colunas.find(coluna => coluna.id === event.container.id)!.nome;
-      tarefaMovida.ultimaAtualizacao = new Date().toLocaleString('sv-SE');
+      tarefaMovida.ultimaAtualizacaoEm = new Date().toLocaleString('sv-SE');
   
       this.tarefasService.atualizarTarefa(tarefaMovida);
   
-      event.container.data.sort((a, b) => new Date(a.ultimaAtualizacao).getTime() - new Date(b.ultimaAtualizacao).getTime());
+      event.container.data.sort((a, b) => new Date(a.ultimaAtualizacaoEm).getTime() - new Date(b.ultimaAtualizacaoEm).getTime());
     }
   }
 
   abrirTarefa(tarefa: Tarefa) {
-    console.log(tarefa.ultimaAtualizacao)
     this.tarefasService.selecionarTarefa(tarefa);
     this.modalService.abrir('modalTarefa');
   }

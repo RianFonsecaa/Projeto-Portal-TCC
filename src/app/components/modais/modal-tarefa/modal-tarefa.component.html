@@ -1,5 +1,5 @@
 <section
-  class="absolute inset-0 flex justify-center items-center z-50 bg-opacity-50 transition-all duration-300 ease-in-out"
+  class="absolute inset-0 flex justify-center items-center z-50 bg-opacity-50 transition-all duration-300 ease-in-out font-popp"
   [ngClass]="{ 'opacity-0 pointer-events-none': !modalService.isVisivel('modalTarefa'), 'opacity-100': modalService.isVisivel('modalTarefa') }">
 
   <!-- Modal background (overlay) -->
@@ -7,186 +7,105 @@
 
   <!-- Modal content -->
   <div
-    class="bg-white overflow-hidden rounded-lg shadow-lg z-20 flex flex-col space-y-6 w-[1000px] h-[560px] p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
+    class="bg-white rounded-lg shadow-lg z-20 flex flex-col space-y-2 w-[850px] h-auto p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
     <div class="flex justify-between items-center border-b pb-2">
-      <h2 *ngIf="this.alterar" class="text-lg font-semibold">Detalhes da Tarefa</h2>
-      <h2 *ngIf="!this.alterar" class="text-lg font-semibold">Nova Tarefa</h2>
+      <span class="text-[16px] font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="this.alterar">Detalhes da Tarefa</span>
+      <span class="text-[16px] font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="!this.alterar">Nova Tarefa</span>
       <button (click)="fecharModal()">
         <svg width="16" height="16" viewBox="0 0 12 13" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 11.1541L10.95 1M11 11.1541L1.05 1" [attr.stroke]="themeService.darkMode() ? 'white' : '#515151'"
             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-
       </button>
     </div>
+    
     <!-- Div principal flex horizontal -->
-    <form [formGroup]="tarefaForm" class="flex h-full space-x-6 mt-4">
-      <!-- Título e Descrição em blocos verticais -->
-      <div class="flex flex-col h-full space-y-4 w-1/2">
-        <div>
-          <div class="flex flex-row items-center gap-1">
-            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1 2.02857V1H9.55556V2.02857M4.88889 1V13M2.55556 13H7.22222M8.77778 7.17143V6.14286H15V7.17143M11.8889 6.14286V13M10.7222 13H13.0556"
-                stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <label class="block text-lg font-medium text-gray-700">Título</label>
-          </div>
-          <input name="nomeTarefa" formControlName="nomeTarefa" type="text" class="w-full border h-12 border-gray-300 rounded-lg p-2 focus:border-blue-500"
-            placeholder="Digite o título">
-        </div>
+    <form [formGroup]="tarefaForm" class="flex flex-col space-y-2 h-full">
 
-        <div class="flex flex-col h-full">
-          <div class="flex flex-row items-center gap-1">
-            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1H9M1 4.33333H13M1 7.66667H9M1 11H13" stroke="#828282" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            <label class="block text-lg font-medium text-gray-700">Descrição</label>
-          </div>
-          <textarea
-            formControlName="descricao"
-            class="w-full flex-grow border border-gray-300 rounded-lg p-2 mt-1 resize-none focus:border-blue-500"
-            placeholder="Digite a descrição"></textarea>
+      <div *ngIf="alterar" class="flex flex-row items-start p-3 bg-[#e9eeff]"> 
+        <div class="w-1/2 pl-4 flex flex-col">
+          <span class="text-[12px] text-[#7e7e7e] font-medium">Criado Por</span>
+          <span class="text-[#515151] font-medium">{{tarefaSelecionada?.criacaoPor }}<span class="text-[12px] text-[#7e7e7e] mx-2">em</span>{{tarefaSelecionada?.criacaoEm | date:'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="w-1/2 pl-4 flex flex-col border-l border-gray-300">
+          <span class="text-[12px] text-[#7e7e7e] font-medium">Última Atualização</span>
+          <span class="text-[#515151] font-medium">{{tarefaSelecionada?.ultimaAtualizacaoPor}}<span class="text-[12px] text-[#7e7e7e] mx-2">em</span>{{tarefaSelecionada?.ultimaAtualizacaoEm | date:'dd/MM/yyyy'}}</span>
         </div>
       </div>
 
-      <!-- Campos Prioridade, Status, Classificação e Prazo em flexbox (lado a lado) -->
-      <div class="flex flex-col h-full justify-between w-2/3">
-        <!-- Prioridade -->
-        <div>
+      <div class="flex flex-row space-x-6 h-full min-h-0">
+        <!-- TITULO E DESCRIÇÃO -->
+        <div class="flex flex-col space-y-2 h-full w-[60%] min-h-0">
           <div class="flex flex-col">
-            <div class="flex flex-row space-x-2 items-center">
-              <svg class="mb-1" width="16" height="16" viewBox="0 0 16 19" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M14.1222 14.645C13.466 15.6911 12.5512 16.5504 11.4662 17.14C10.387 17.7256 9.17374 18.0196 7.9462 17.993C6.8006 18.0442 5.66136 17.7968 4.6402 17.275C3.61335 16.7498 2.7387 15.9695 2.1002 15.009C-0.571804 10.439 2.3872 6.163 2.9872 5.341C3.52014 4.77075 3.89365 4.07029 4.0702 3.31C4.24785 2.54682 4.22268 1.75044 3.9972 1C5.2812 1.965 10.4272 4.258 9.5222 11.631C11.0182 10.495 12.2222 8.585 12.3682 5.415C13.7982 6.476 16.3532 10.877 14.1222 14.645Z"
-                  stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <span class="text-[12px] text-[#7e7e7e] font-medium">Título</span>
+            <input name="titulo" formControlName="titulo" type="text" maxlength="70"
+              class="w-full text-[24px] p-0 font-medium border-0 overflow-hidden text-ellipsis"
+              placeholder="Digite o título" autocomplete="off">
+          </div>
+  
+          <!-- Container flexível para descrição e div azul -->
+           <div class="h-[500px]">
+             <div class="flex flex-col h-[65%]">
+               <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
+               <textarea
+                 formControlName="descricao" maxlength="400"
+                 class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify min-h-[100px]"
+                 placeholder="Digite a descrição..."></textarea>
+             </div>
+           
+            <div class="h-[25%] bg-[#e9eeff] w-full mt-2 rounded-lg"></div>
+            <button class="flex flex-row justify-center items-center w-fit h-[10%] mt-2 px-4 py-2 bg-gray-100 rounded-lg border border-blue-700 text-blue-700">
+              <span>Anexar</span>
+              <svg class="w-6 h-6 text-blue-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8"/>
               </svg>
-              <label class="block text-md font-medium text-gray-700">Prioridade</label>
-            </div>
-            <div class="flex flex-row justify-between space-x-3 items-center align-middle w-full p-1 text-[14px]">
-              <div class="flex space-x-2 items-center mb-4 w-full">
-                <input name="prioridade" formControlName="prioridade" id="default-radio-1" type="radio" value="BAIXA"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-yellow-400"></span>
-                  <span>Baixa</span>
-                </div>
-              </div>
-              <div class="flex space-x-2 items-center mb-4 w-full">
-                <input name="prioridade" formControlName="prioridade" id="default-radio-2" type="radio" value="MEDIA"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-orange-500"></span>
-                  <span>Média</span>
-                </div>
-              </div>
-              <div class="flex space-x-2 items-center mb-4 w-full">
-                <input name="prioridade" formControlName="prioridade" id="default-radio-3" type="radio" value="ALTA"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-red-500"></span>
-                  <span>Alta</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            </button>
+
+
+           </div>
         </div>
-
-        <!-- Status -->
-        <div>
-          <div class="flex flex-col">
-            <div class="flex flex-row space-x-2 items-center">
-              <svg width="14" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M1 1V13.5C1 13.721 1.0878 13.933 1.24408 14.0893C1.40036 14.2455 1.61232 14.3333 1.83333 14.3333H14.3333M4.33333 11L6.41667 6.41667L8.91667 8.91667L12.0608 3.5L14.3333 5.7225"
-                  stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <label class="block text-md font-medium text-gray-700">Status</label>
-            </div>
-
-            <div class="flex flex-row justify-between space-x-3 items-center align-middle w-full p-1 text-[14px]">
-              <div class="flex space-x-2 items-center mb-4 w-full">
-                <input name="status" formControlName="status" id="default-radio-2" type="radio" value="PENDENTE"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-blue-500"></span>
-                  <span>Pendente</span>
-                </div>
-              </div>
-              <div class="flex space-x-2 items-center mb-4 w-full text-[14px]">
-                <input name="status" formControlName="status" id="default-radio-3" type="radio" value="ANDAMENTO"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-orange-300"></span>
-                  <span>Andamento</span>
-                </div>
-              </div>
-              <div class="flex space-x-2 items-center mb-4 w-full">
-                <input name="status" formControlName="status" id="default-radio-3" type="radio" value="CONCLUIDA"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <div class="flex flex-row w-full space-x-2 px-4 py-1 items-center bg-gray-200 rounded-md font-medium">
-                  <span class="h-[15px] w-[5px] align-middle rounded-md bg-green-600"></span>
-                  <span>Concluído</span>
-                </div>
-              </div>
-            </div>
+  
+        <!-- Campos Prioridade, Status, Classificação e Prazo em flexbox (lado a lado) -->
+        <div class="flex flex-col h-full w-[40%] min-h-0">
+  
+          <div class="flex flex-col w-full relative">
+            <app-dropdown-classificacao></app-dropdown-classificacao>
+            <app-dropdown-etapa></app-dropdown-etapa>
+            <app-dropdown-prioridade></app-dropdown-prioridade>
+            <app-dropdown-status></app-dropdown-status>
           </div>
-        </div>
-
-<!-- Classificação -->
-<div class="flex flex-col w-full">
-  <div class="flex items-center gap-2">
-    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4.4408 1H13M4.4408 6H13M4.4408 11H13M1.00856 1H1.01712M1 6H1.00856M1.00856 11H1.01712"
-        stroke="#828282" stroke-width="2" stroke-linecap="round" />
-    </svg>
-    <label class="block text-md font-medium text-gray-700">Classificação</label>
-  </div>
-
-<!-- Select para Classificação com FormControl -->
-<div class="flex flex-row">
-  <select
-    formControlName="classificacao"
-    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-  >
-    <option value="" disabled selected class="text-gray-400">Escolha a classificação</option>
-    <option *ngFor="let classificacao of classificacoes" [value]="classificacao[1]">
-      {{ classificacao[1] }}
-    </option>
-  </select>
-</div>
-</div>
-
-
-        <!-- Prazo -->
-        <div class="flex flex-col w-full">
-          <div class="flex items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1 6.25H15M8 3.625V1M3.625 3.625V1M12.375 3.625V1M1.875 15H14.125C14.3571 15 14.5796 14.9078 14.7437 14.7437C14.9078 14.5796 15 14.3571 15 14.125V3.625C15 3.39294 14.9078 3.17038 14.7437 3.00628C14.5796 2.84219 14.3571 2.75 14.125 2.75H1.875C1.64294 2.75 1.42038 2.84219 1.25628 3.00628C1.09219 3.17038 1 3.39294 1 3.625V14.125C1 14.3571 1.09219 14.5796 1.25628 14.7437C1.42038 14.9078 1.64294 15 1.875 15ZM4.5 8.875H4.50875V8.88375H4.5V8.875ZM8 8.875H8.00875V8.88375H8V8.875ZM11.5 8.875H11.5088V8.88375H11.5V8.875ZM4.5 12.375H4.50875V12.3838H4.5V12.375ZM8 12.375H8.00875V12.3838H8V12.375ZM11.5 12.375H11.5088V12.3838H11.5V12.375Z"
-                stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <label class="block text-md font-medium text-gray-700">Prazo</label>
+          
+          <!-- Data Inicio -->
+          <div class="flex flex-col w-full py-4 border-b border-gray-300">
+            <span class="text-[12px] text-[#7e7e7e] font-medium">Data Inicio</span>
+            <input name="dataInicio" formControlName="dataInicio" type="date"
+              class="w-full border border-gray-300 h-12 rounded-lg p-2 text-[16px] font-semibold
+                     focus:border-blue-600 focus:outline-none">
           </div>
-          <input name="prazo" formControlName="prazo" type="date" class="w-full border border-gray-200 h-12 rounded-lg p-2 text-[14px]">
+          
+          <!-- Prazo -->
+          <div class="flex flex-col w-full py-4">
+            <span class="text-[12px] text-[#7e7e7e] font-medium">Data Fim</span>
+            <input name="dataFim" formControlName="dataFim" type="date"
+              class="w-full border border-gray-300 h-12 rounded-lg p-2 text-[16px] font-semibold
+                     focus:border-blue-600 focus:outline-none">
+          </div>
         </div>
       </div>
     </form>
 
     <!-- Botões de ação -->
     <div class="flex justify-between items-center border-t border-gray-200 pt-4 mt-6">
-      <button class="flex flex-row gap-1 px-4 py-2 bg-gray-100 rounded-lg border border-red-600 text-red-600" (click)="deletarTarefa()">
+      <button class="flex flex-row gap-1 px-4 py-2 bg-gray-100 rounded-lg border border-red-600 text-red-600" (click)="deletarTarefa()" *ngIf="this.alterar">
         <span>Deletar</span>
         <svg class="w-5 h-5 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
         </svg>
       </button>
 
-      <div class="flex gap-2">
-        <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400"  (click)="fecharModal()">Cancelar</button>
-        <button class="px-4 py-2 bg-green-500 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
+      <div class="w-full flex justify-end items-end gap-2">
+        <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400" (click)="fecharModal()">Cancelar</button>
+        <button class="px-4 py-2 bg-green-600 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
       </div>
     </div>
   </div>

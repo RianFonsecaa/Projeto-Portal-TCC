@@ -153,15 +153,11 @@
             
             <!-- Tarefas dentro da coluna -->
             <app-tarefas-conteudo *ngFor="let tarefa of coluna.tarefas"
-                                  [titulo]="tarefa.nomeTarefa"
-                                  [prioridade]="tarefa.prioridade"
-                                  [descricao]="tarefa.descricao"
-                                  [status]="tarefa.status"
-                                  imgSource=""
+                                  [tarefa]="tarefa"
                                   cdkDrag
                                   [cdkDragData]="tarefa"
                                   (click)="abrirTarefa(tarefa)"
-                                  class="task bg-white p-4 mb-3 rounded-lg shadow-md cursor-move">
+                                  class="task rounded-lg cursor-move">
             </app-tarefas-conteudo>
           </div>
         </div>
@@ -169,4 +165,4 @@
       
 </section>
 
-<app-modal-tarefa></app-modal-tarefa>
+<app-modal-tarefa *ngIf="modalService.isVisivel('modalTarefa')" ></app-modal-tarefa>

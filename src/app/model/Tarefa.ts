@@ -1,11 +1,21 @@
 export interface Tarefa {
   id: number;
   projetoId: number;
-  nomeTarefa: string;
+
+  titulo: string;
   descricao: string;
   status: string;
   prioridade: string;
+  etapa:string;
   classificacao: string;
-  prazo: string;
-  ultimaAtualizacao: string;
+
+  ultimaAtualizacaoEm: string;
+  ultimaAtualizacaoPor: string;
+
+  criacaoEm: string;
+  criacaoPor: string;
+  
+  dataFim: Date;
+  dataInicio: Date;
+
 }

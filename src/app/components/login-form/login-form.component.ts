@@ -68,8 +68,6 @@ export class LoginFormComponent {
           localStorage.setItem('jwtToken', response.jwtToken);
           localStorage.setItem('idUsuario', response.usuarioId);
 
-          console.log(localStorage.getItem('idUsuario'))
-
           switch (response.tipoUsuario) {
             case 'COORDENADOR':
             case 'ORIENTANDO':

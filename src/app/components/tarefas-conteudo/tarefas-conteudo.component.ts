@@ -1,7 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
-import { Demanda } from '../../model/AlunoDemanda';
+import { Tarefa } from '../../model/Tarefa';
+import { TarefaClassificacaoService } from '../modais/modal-tarefa/model/TarefaClassificacoes.service';
+import { TarefaEtapaService } from '../modais/modal-tarefa/model/TarefaEtapa.service';
+import { TarefaPrioridadeService } from '../modais/modal-tarefa/model/TarefaPrioridade.service';
+import { TarefaStatusService } from '../modais/modal-tarefa/model/TarefaStatus.service';
 
 
 
@@ -11,37 +15,47 @@ import { Demanda } from '../../model/AlunoDemanda';
   imports :[CommonModule, NgClass],
   templateUrl: './tarefas-conteudo.component.html'
 })
-export class TarefasConteudoComponent {
-  @Input() titulo: string = ''; 
-  @Input() descricao: string = '';
-  @Input() status: string ='';
-  @Input() imgSource: string = ''; 
-  @Input() prioridade: string ='';
-  @Input() dataCriacao : Date = new Date()
+export class TarefasConteudoComponent implements OnInit {
+  @Input() tarefa: Tarefa = {} as Tarefa;
 
-  @Input() tarefa: Demanda = {
-    id: 0,
-    nomeTarefa: '',
-    descricao: '',
-    prazo: new Date,
-    prioridade: 'BAIXA',
-    status: 'BACKLOG'
-  };
+  classificacao: string = '';
+  etapa: string = '';
+  status: string = '';
+  prioridade: string = '';
 
-  constructor(){
-    this.tarefa;
+  constructor(
+    private classificacaoService: TarefaClassificacaoService,
+    private etapaService: TarefaEtapaService,
+    private statusService: TarefaStatusService,
+    private prioridadeService: TarefaPrioridadeService
+  ) {}
+
+  ngOnInit() {
+    if (this.tarefa) {
+      this.classificacao = this.classificacaoService.getClassificacoes()
+        .find(([key, _]) => key === this.tarefa.classificacao)?.[1] || '';
+
+      this.etapa = this.etapaService.getEtapas()
+        .find(([key, _]) => key === this.tarefa.etapa)?.[1] || '';
+
+      this.status = this.statusService.getStatus()
+        .find(([key, _]) => key === this.tarefa.status)?.[1] || '';
+
+      this.prioridade = this.prioridadeService.getPrioridades()
+        .find(([key, _]) => key === this.tarefa.prioridade)?.[1] || '';
+    }
   }
 
-  get prazoColor(): string {
-    switch ((this.tarefa.status ?? '').toLowerCase()) { 
-      case 'concluida':
-        return 'text-green-600';
-      case 'andamento': 
-        return 'text-yellow-600';
-      case 'pendente':
-        return 'text-red-300';
+  getPrioridadeClasses(): string {
+    switch (this.tarefa.prioridade) {
+      case 'ALTA':
+        return 'text-red-600 border-red-500 bg-red-200';
+      case 'MEDIA':
+        return 'text-yellow-600 border-yellow-500 bg-yellow-200';
+      case 'BAIXA':
+        return 'text-blue-600 border-blue-500 bg-blue-200';
       default:
-        return 'text-gray-600';
+        return 'text-gray-600 border-gray-500 bg-gray-200';
     }
   }
 }

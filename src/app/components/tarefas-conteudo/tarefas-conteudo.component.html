@@ -1,20 +1,43 @@
 
-    <div class="mt-2 space-y-4 hover:bg-yellow-600 dark:bg-[#2c2828] dark:text-white my-2 rounded-lg">
-      <div class="bg-gray-100 p-4 rounded-lg border-solid shadow dark:bg-[#2c2828] dark:text-white">
-        <h4 class="font-bold ">{{ titulo }}</h4>
-        <img [src]="imgSource" alt="" class="mt-2">
-        <p class="text-sm text-gray-600 mt-2">
-          {{ descricao }}
-        </p>
-        <p class="text-green-600 text-sm font-medium hover:text-gray-600 py-1">
-          {{prioridade}}
-        </p>
-        <div class="flex justify-between items-center mt-2">
-          <p>Criado em {{dataCriacao | date:'dd/MM/yyyy'}}</p>  
-          <button [ngClass]="prazoColor" class="text-sm font-medium">
-            {{status}}
-          </button>
-          
-        </div>
-      </div>
+<div class="space-y-4 p-3 text-[#515151] bg-white dark:bg-[#2c2828] dark:text-white my-2 shadow-md rounded-sm">
+
+  <div class="flex flex-row justify-between">
+    <span class="text-[10px] text-[#7e7e7e] font-medium">{{ tarefa.dataInicio| date:'dd/MM/yyyy' }} - {{ tarefa.dataFim| date:'dd/MM/yyyy' }}</span>
+    <div class="flex flex-row items-center rounded-md bg-[#e9eeff] px-2 space-x-1">
+      <svg class="w-4 h-4 text-[#61B668] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M13.09 3.294c1.924.95 3.422 1.69 5.472.692a1 1 0 0 1 1.438.9v9.54a1 1 0 0 1-.562.9c-2.981 1.45-5.382.24-7.25-.701a38.739 38.739 0 0 0-.622-.31c-1.033-.497-1.887-.812-2.756-.77-.76.036-1.672.357-2.81 1.396V21a1 1 0 1 1-2 0V4.971a1 1 0 0 1 .297-.71c1.522-1.506 2.967-2.185 4.417-2.255 1.407-.068 2.653.453 3.72.967.225.108.443.216.655.32Z"/>
+      </svg>
+      <span class="text-[#61B668] text-[13px] font-semibold">{{etapa}}</span>
     </div>
+  </div>
+
+  <div class="flex flex-col space-y-1">
+    <h4 class="font-bold">{{ tarefa.titulo }}</h4>
+    <p class="text-sm text-gray-600 mt-2 overflow-hidden break-all text-ellipsis line-clamp-2">
+      {{ tarefa.descricao }}
+    </p>
+  </div>
+
+  <p class="flex flex-row items-center w-fit border rounded-md px-2 text-sm font-medium py-1">
+    <svg class="w-5 h-5 text-[#515151] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 .087.586l2.977-7.937A1 1 0 0 1 6 10h12V9a2 2 0 0 0-2-2h-4.532l-1.9-2.28A2 2 0 0 0 8.032 4H4Zm2.693 8H6.5l-3 8H18l3-8H6.693Z" clip-rule="evenodd"/>
+    </svg>
+    
+  <span>{{classificacao}}</span>
+  </p>
+
+  <p class="w-fit border rounded-md px-2 text-sm font-medium py-1"
+  [ngClass]="getPrioridadeClasses()">
+  {{ prioridade }}
+  </p>
+
+  <div class="flex justify-between items-center mt-2 ">
+      <div class="flex flex-row items-center space-x-1">
+        <svg class="w-5 h-5 text-[#515151] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8"/>
+        </svg>
+        <span>0</span>        
+      </div>
+      <p class="text-[12px] font-semibold"><span class="text-[10px] text-[#7e7e7e] font-medium">Por</span> {{ tarefa.criacaoPor}} <span class="text-[10px] text-[#7e7e7e] font-medium">em</span> {{ tarefa.criacaoEm| date:'dd/MM/yyyy' }} </p>
+  </div>
+</div>
