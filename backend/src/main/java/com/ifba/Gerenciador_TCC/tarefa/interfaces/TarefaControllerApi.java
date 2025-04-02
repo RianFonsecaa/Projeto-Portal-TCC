@@ -2,6 +2,7 @@ package com.ifba.Gerenciador_TCC.tarefa.interfaces;
 
 import java.util.List;
 
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaAgendaDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

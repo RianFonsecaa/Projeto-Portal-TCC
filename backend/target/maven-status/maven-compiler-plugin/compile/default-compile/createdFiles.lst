@@ -15,6 +15,7 @@ com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.class
 com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapperImpl.class
 com\ifba\Gerenciador_TCC\tarefa\domain\enums\Classificacao.class
 com\ifba\Gerenciador_TCC\projeto\repository\ProjetoRepository.class
+com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaAgendaDTO$TarefaAgendaDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientadorBuilder.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO$UsuarioDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.class
@@ -42,6 +43,7 @@ com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.class
 com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa.class
 com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa$TarefaBuilder.class
 com\ifba\Gerenciador_TCC\email\service\EmailService.class
+com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaAgendaDTO.class
 com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.class
 com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.class
 com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa$TipoTarefa.class

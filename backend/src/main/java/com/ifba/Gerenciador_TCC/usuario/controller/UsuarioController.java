@@ -1,5 +1,7 @@
 package com.ifba.Gerenciador_TCC.usuario.controller;
 
+import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaAgendaDTO;
+import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 import com.ifba.Gerenciador_TCC.usuario.domain.dto.UsuarioDTO;
 import com.ifba.Gerenciador_TCC.usuario.interfaces.UsuarioControllerApi;
 import com.ifba.Gerenciador_TCC.usuario.domain.entity.Usuario;
@@ -19,6 +21,9 @@ public class UsuarioController implements UsuarioControllerApi {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private TarefaService tarefaService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -55,5 +60,15 @@ public class UsuarioController implements UsuarioControllerApi {
     @GetMapping("/dados/{id}")
     public ResponseEntity<?> findAllDataById(@PathVariable Long id){
         return usuarioService.findAllDataById(id);
+    }
+
+    @GetMapping("/agenda/orientador/{orientadorId}")
+    public ResponseEntity<List<TarefaAgendaDTO>> listarTarefaAgendaPorOrientador(@PathVariable Long orientadorId) {
+        return ResponseEntity.ok(tarefaService.listarAgendaPorOrientador(orientadorId));
+    }
+
+    @GetMapping("/agenda/orientando/{orientandoId}")
+    public ResponseEntity<List<TarefaAgendaDTO>> listarTarefaAgendaPorOrientando(@PathVariable Long orientandoId) {
+        return ResponseEntity.ok(tarefaService.listarAgendaPorOrientando(orientandoId));
     }
 }
