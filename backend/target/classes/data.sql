@@ -41,13 +41,12 @@ orientador_id) VALUES
 'Segurança em Redes sem Fio', '2024-02-23', 27, 99, 'assets/img/adem-ay-Tk9m_HP4rgQ-unsplash.jpg', 'REDES', 'ARTIGO', 7, 1)
 ON CONFLICT (id) DO NOTHING;
 
-
-INSERT INTO public.notificacoes (id, data, mensagem, remetente, visualizado) 
+INSERT INTO public.notificacoes (id, data, mensagem, remetente, destinatario, visualizado) 
 VALUES 
-(1, '2025-02-26T18:59:26.193+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Alex@gmail.com', 'Alex@gmail.com', false),
-(2, '2025-02-26T18:59:36.755+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Leandro@gmail.com', 'Leandro@gmail.com', false),
-(3, '2025-02-26T18:59:44.541+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Rian@gmail.com', 'Rian@gmail.com', false),
-(4, '2025-02-26T18:59:50.804+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Lauro@gmail.com', 'Lauro@gmail.com', false),
-(5, '2025-02-26T18:59:57.484+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 15:59  Atenciosamente, Pedro@gmail.com', 'Pedro@gmail.com', false),
-(6, '2025-02-26T19:00:06.010+00:00', '📢 Você recebeu uma nova notificação!    📅 Data: 26/02/2025 16:00  Atenciosamente, Gabriel@gmail.com', 'Gabriel@gmail.com', false)
+(1, '2025-02-26T18:59:26.193+00:00', '📢 Você recebeu uma nova notificação!', 'Alex@gmail.com', 'Leandro@gmail.com', false),
+(2, '2025-02-26T18:59:36.755+00:00', '📢 Sua tarefa foi atualizada.', 'Leandro@gmail.com', 'rian@gmail.com', false),
+(3, '2025-02-26T18:59:44.541+00:00', '📢 Novo prazo adicionado ao seu projeto.', 'Rian@gmail.com', 'pedro@gmail.com', false),
+(4, '2025-02-26T18:59:50.804+00:00', '📢 Você recebeu um feedback do orientador.', 'Lauro@gmail.com', 'guilherme@gmail.com', false),
+(5, '2025-02-26T18:59:57.484+00:00', '📢 Novo evento acadêmico adicionado.', 'Pedro@gmail.com', 'gabriel@gmail.com', false),
+(6, '2025-02-26T19:00:06.010+00:00', '📢 Reunião marcada para sexta-feira.', 'Gabriel@gmail.com', 'pepeyuri2003@gmail.com', false)
 ON CONFLICT (id) DO NOTHING;

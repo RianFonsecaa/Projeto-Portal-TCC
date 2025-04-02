@@ -1,13 +1,9 @@
 package com.ifba.Gerenciador_TCC.tarefa.controller;
 
 import java.util.List;
-
-import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaAgendaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaControllerApi;
@@ -15,27 +11,31 @@ import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/tarefa")
 public class TarefaController implements TarefaControllerApi {
 
     @Autowired
     private TarefaService tarefaService;
 
-    public ResponseEntity<Void> deletarTarefa(Long id) {
-        tarefaService.deletarTarefa(id);
+    @Override
+    public ResponseEntity<Void> deletarTarefa(@PathVariable Long id, @RequestParam Long idUsuario) {
+        tarefaService.deletarTarefa(id, idUsuario);
         return ResponseEntity.noContent().build();
     }
-    
-    public ResponseEntity<TarefaDTO> criarTarefa(TarefaDTO novaTarefa) {
-        return ResponseEntity.ok(tarefaService.criarTarefa(novaTarefa));
+
+    @Override
+    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO novaTarefa, @RequestParam Long idUsuario) {
+        return ResponseEntity.ok(tarefaService.criarTarefa(novaTarefa, idUsuario));
     }
 
-    public ResponseEntity<TarefaDTO> editarTarefa(Long id, TarefaDTO tarefa) {
+    @Override
+    public ResponseEntity<TarefaDTO> editarTarefa(@PathVariable Long id, @RequestBody TarefaDTO tarefa, @RequestParam Long idUsuario) {
         tarefa.setId(id);
-        return ResponseEntity.ok(tarefaService.editarTarefa(tarefa));
+        return ResponseEntity.ok(tarefaService.editarTarefa(tarefa, idUsuario));
     }
 
+    @Override
     public ResponseEntity<List<TarefaDTO>> listarTarefasPorProjeto(@PathVariable Long projetoId) {
         return ResponseEntity.ok(tarefaService.listarTarefasPorProjeto(projetoId));
     }
-
 }

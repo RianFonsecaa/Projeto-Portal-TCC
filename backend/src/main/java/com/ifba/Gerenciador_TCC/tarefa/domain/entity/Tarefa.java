@@ -79,4 +79,6 @@ public class Tarefa {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "data_fim", nullable = false)
     private LocalDate dataFim;
+
+   
 }
