@@ -7,10 +7,6 @@ import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaAgendaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ifba.Gerenciador_TCC.email.service.EmailService;
-import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagem;
-import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagemTarefa;
-import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagemTarefa.TipoTarefa;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.builder.TarefaDTOBuilder;
@@ -33,9 +29,6 @@ public class TarefaService implements TarefaServiceApi {
     @Autowired
     private ProjetoService projetoService;
 
-    @Autowired
-    private EmailService emailService;
-
 
 
 
@@ -50,11 +43,6 @@ public class TarefaService implements TarefaServiceApi {
 
         Projeto projeto = tarefa.getProjeto();
 
-
-
-        TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.DELETAR_TAREFA, tarefa);
-        enviarEmailsProjeto(projeto, mensagem);
-
         tarefaRepository.deleteById(id);
     }
 
@@ -64,11 +52,6 @@ public class TarefaService implements TarefaServiceApi {
         Tarefa tarefaSalva = tarefaRepository.save(tarefa);
 
         Projeto projeto = tarefaSalva.getProjeto();
-
-
-        TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.CRIAR_TAREFA, tarefaSalva);
-        enviarEmailsProjeto(projeto, mensagem);
-
 
         return TarefaDTOBuilder.buildTarefaDTO(tarefaSalva);
     }
@@ -80,13 +63,7 @@ public class TarefaService implements TarefaServiceApi {
         if (!tarefaRepository.existsById(tarefa.getId())) {
             throw new RuntimeException("Tarefa não encontrada com o ID: " + tarefa.getId());
         }
-
         Projeto projeto = projetoService.findById(tarefa.getProjetoId());
-
-
-        TipoMensagemTarefa mensagem = new TipoMensagemTarefa(TipoTarefa.EDITAR_TAREFA, tarefa);
-        enviarEmailsProjeto(projeto, mensagem);
-
 
         return criarTarefa(tarefa);
     }
@@ -103,16 +80,6 @@ public class TarefaService implements TarefaServiceApi {
     }
 
     @Override
-    public List<TarefaAgendaDTO> listarAgendaPorOrientador(Long orientadorId) {
-        return tarefaRepository.findAgendaByOrientador(orientadorId);
-    }
-
-    @Override
-    public List<TarefaAgendaDTO> listarAgendaPorOrientando(Long orientandoId) {
-        return tarefaRepository.findAgendaByOrientando(orientandoId);
-    }
-
-    @Override
     public List<TarefaDTO> listarTarefaPorStatus(StatusTarefa statusTarefa){
         List<Tarefa> tarefas = tarefaRepository.findByStatus(statusTarefa);
 
@@ -120,20 +87,6 @@ public class TarefaService implements TarefaServiceApi {
         return tarefas.stream()
                 .map(TarefaDTOBuilder::buildTarefaDTO)
                 .collect(Collectors.toList());
-    }
-
-    private void enviarEmailsProjeto(Projeto projeto, TipoMensagem tipoMensagem) {
-        emailService.enviarEmail(
-                projeto.getOrientadorId().getEmail(),
-                tipoMensagem,
-                projeto.getOrientandoId().getNome()
-        );
-
-        emailService.enviarEmail(
-                projeto.getOrientandoId().getEmail(),
-                tipoMensagem,
-                projeto.getOrientadorId().getNome()
-        );
     }
 
 }

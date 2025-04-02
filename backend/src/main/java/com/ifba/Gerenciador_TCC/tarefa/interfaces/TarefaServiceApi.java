@@ -17,8 +17,4 @@ public interface TarefaServiceApi {
     TarefaDTO editarTarefa(TarefaDTO tarefa);
 
     List<TarefaDTO> listarTarefasPorProjeto(Long projetoId);
-
-    List<TarefaAgendaDTO> listarAgendaPorOrientador(Long orientadorId);
-
-    List<TarefaAgendaDTO> listarAgendaPorOrientando(Long orientandoId);
 }

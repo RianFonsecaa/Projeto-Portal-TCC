@@ -61,14 +61,4 @@ public class UsuarioController implements UsuarioControllerApi {
     public ResponseEntity<?> findAllDataById(@PathVariable Long id){
         return usuarioService.findAllDataById(id);
     }
-
-    @GetMapping("/agenda/orientador/{orientadorId}")
-    public ResponseEntity<List<TarefaAgendaDTO>> listarTarefaAgendaPorOrientador(@PathVariable Long orientadorId) {
-        return ResponseEntity.ok(tarefaService.listarAgendaPorOrientador(orientadorId));
-    }
-
-    @GetMapping("/agenda/orientando/{orientandoId}")
-    public ResponseEntity<List<TarefaAgendaDTO>> listarTarefaAgendaPorOrientando(@PathVariable Long orientandoId) {
-        return ResponseEntity.ok(tarefaService.listarAgendaPorOrientando(orientandoId));
-    }
 }

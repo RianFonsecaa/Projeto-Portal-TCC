@@ -1,62 +1,57 @@
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaControllerApi.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\service\NotificacaoService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientandoDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\Classificacao.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\repository\NotificacaoRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\service\EmailService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientandoBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\NotificacaoController.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\Prioridade.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientadorBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientandoRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\builder\TarefaDTOBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\SecurityConfig.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaAgendaDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientando.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\login\domain\LoginRequest.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\builder\NotificacaoDTOBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\dto\NotificacaoDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtRequestFilter.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\controller\ProjetoControllerImpl.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientadorRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\repository\ProjetoRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\GerenciadorTccApplication.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\InfoProjetoDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\InfoProjetoDTOBuilder.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptions\NotFoundException.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtTokenUtil.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapper.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\controller\TarefaController.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\UsuarioRepository.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemComum.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\email\controller\EmailController.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.java
-C:\Users\Gabriel\Desktop\PPT\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\exceptions\NotFoundException.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\StatusTarefa.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientandoBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\builder\NotificacaoDTOBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\mapper\ProjetoMapper.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioControllerApi.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientadorRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\dto\NotificacaoDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaAgendaDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtRequestFilter.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\UsuarioRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\InfoProjetoDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\controller\TarefaController.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\controller\ProjetoControllerImpl.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\Classificacao.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\mapper\UsuarioMapper.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\InfoProjetoDTOBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\service\TarefaService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\repository\NotificacaoRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\service\NotificacaoService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientando.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\builder\UsuarioOrientadorBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\NotificacaoController.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\GerenciadorTccApplication.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtTokenUtil.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\login\domain\LoginRequest.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientandoRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\service\UsuarioService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaServiceApi.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\interfaces\TarefaControllerApi.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoCurso.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientandoDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\entity\Notificacao.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\repository\ProjetoRepository.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\controller\UsuarioController.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\service\ProjetoServiceImpl.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\SecurityConfig.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\enums\Prioridade.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\builder\TarefaDTOBuilder.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\entity\Tarefa.java
