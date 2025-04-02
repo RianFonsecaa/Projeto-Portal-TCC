@@ -12,6 +12,7 @@ import { PerfilService } from '../../services/Requisicoes/perfil.service';
 import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Coluna } from '../../model/Coluna';
 import { Quadro } from '../../model/Quadro';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quadro-demandas',
@@ -38,7 +39,8 @@ export class QuadroDemandasComponent implements OnInit {
     public modalService: ModalService,
     public projetoService: projetoService,
     private perfilService: PerfilService,
-    private injector: Injector // Injete o Injector
+    private injector: Injector,
+    public router : Router
   ) {}
   
   ngOnInit() {
@@ -94,5 +96,17 @@ export class QuadroDemandasComponent implements OnInit {
 
   selectTab(tab: string) {
     this.selectedTab = tab;
+  }
+
+  abrirBancoDocumentos() {
+    this.router.navigate(['/home', { outlets: { dashboard: ['bancoDocumentos'] } }]);
+    this.selectTab('Banco de Documentos');
+  }
+
+  isBancoDocumentosAtivo(): boolean {
+    return this.router.isActive(
+      this.router.createUrlTree([{ outlets: { dashboard: ['bancoDocumentos'] } }]),
+      { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored' }
+    );
   }
 }
