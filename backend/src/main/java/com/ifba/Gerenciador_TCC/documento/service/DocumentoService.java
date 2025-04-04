@@ -30,7 +30,7 @@ public class DocumentoService implements IDocumentoService {
     
         if (dto.getArquivo() != null && !dto.getArquivo().isEmpty()) {
             String urlArquivo = cloudinaryService.uploadFile(dto.getArquivo());
-            entity.setCaminhoArquivo(urlArquivo); // deve ter esse campo na entity
+            entity.setCaminhoArquivo(urlArquivo); 
         }
     
         documentoRepository.save(entity);

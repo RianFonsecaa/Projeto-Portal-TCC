@@ -29,6 +29,9 @@ public class DocumentoController {
     dto.setTitulo(titulo);
     dto.setTipoDocumento(tipo);
     dto.setArquivo(file);
+
+    double tamanhoEmMb = Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0;
+    dto.setTamanho(tamanhoEmMb);
     DocumentoDTO salvo = documentoService.salvar(dto);
     return ResponseEntity.ok(salvo);
     }

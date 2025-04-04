@@ -4,7 +4,10 @@ import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "documento")
@@ -28,5 +31,12 @@ public class DocumentoEntity {
 
     @Column(name = "caminho_arquivo")
     private String caminhoArquivo;
+
+    @CreationTimestamp
+    @Column(name = "data_upload", updatable = false, nullable = false)
+    private LocalDateTime dataUpload;
+
+    @Column(name = "tamanho")
+    private Double tamanho;
 
 }

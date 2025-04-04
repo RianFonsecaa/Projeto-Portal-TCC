@@ -11,6 +11,8 @@ public class DocumentoBuilder {
                 .titulo(entity.getTitulo())
                 .tipoDocumento(entity.getTipoDocumento())
                 .caminhoArquivo(entity.getCaminhoArquivo())
+                .dataUpload(entity.getDataUpload())
+                .tamanho(entity.getTamanho())
                 .build();
     }
 
@@ -20,6 +22,7 @@ public class DocumentoBuilder {
                 .titulo(dto.getTitulo())
                 .tipoDocumento(dto.getTipoDocumento())
                 .caminhoArquivo(dto.getCaminhoArquivo())
+                .tamanho(dto.getTamanho())
                 .build();
     }
 }

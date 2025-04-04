@@ -57,6 +57,7 @@ ON CONFLICT (id) DO NOTHING;
 
 ALTER SEQUENCE notificacoes_id_seq RESTART WITH 7;
 
+/*
 INSERT INTO public.documento (id, titulo, tipo_documento, caminho_arquivo)
 VALUES (
   gen_random_uuid(),
@@ -65,3 +66,4 @@ VALUES (
   'https://res.cloudinary.com/dtbg0qjwd/image/upload/v1743783467/C%C3%B3digo_de_%C3%89tica_fx3gmp.pdf'
 )
 ON CONFLICT (id) DO NOTHING;
+*/
