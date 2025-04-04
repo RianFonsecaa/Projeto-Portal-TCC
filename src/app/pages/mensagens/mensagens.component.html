@@ -1,1 +1,122 @@
-<p>mensagens works!</p>
+<div class="flex h-screen w-full bg-gray-50 dark:bg-gray-900">
+  <!-- Left panel - Notifications list -->
+  <div class="bg-white w-96 flex flex-col border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <!-- Header -->
+    <div class="flex flex-row justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+      <span class="text-lg font-semibold dark:text-white">Notificações</span>
+      <button (click)="atualizarNotificacoes()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-200 dark:border-gray-700">
+      <button
+        class="flex-1 py-3 text-sm font-medium"
+        [ngClass]="{
+          'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400': selectedTab === 'Tudo',
+          'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300': selectedTab !== 'Tudo'
+        }"
+        (click)="selectTab('Tudo')">
+        Tudo
+      </button>
+      <button
+        class="flex-1 py-3 text-sm font-medium"
+        [ngClass]="{
+          'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400': selectedTab === 'Não lidas',
+          'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300': selectedTab !== 'Não lidas'
+        }"
+        (click)="selectTab('Não lidas')">
+        Não lidas
+      </button>
+    </div>
+
+    <!-- Notifications List Container -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="p-4 text-center text-sm text-gray-500 dark:text-gray-400">
+        Carregando notificações...
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="errorMessage" class="p-4 text-center text-sm text-red-500 dark:text-red-400">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Scrollable Notifications Area -->
+      <div class="flex-1 overflow-y-auto pb-2" #notificationsContainer>
+        <!-- Empty State -->
+        <div *ngIf="!isLoading && filteredNotificacoes.length === 0" class="p-4 text-center text-sm text-gray-500 dark:text-gray-400">
+          Nenhuma notificação encontrada
+        </div>
+
+        <!-- Notifications List -->
+        <div *ngFor="let notificacao of filteredNotificacoes"
+             class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+             [ngClass]="{ 'bg-gray-100 dark:bg-gray-700': notificacaoSelecionada?.id === notificacao.id }"
+             (click)="selecionarNotificacao(notificacao)">
+          <div class="p-3">
+            <div class="flex items-start space-x-3">
+              <!-- Unread indicator -->
+              <div class="pt-1">
+                <svg *ngIf="!notificacao.visualizado" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="4" cy="4" r="4" fill="#3B82F6" />
+                </svg>
+              </div>
+
+              <!-- Notification content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between">
+                  <p class="text-sm font-semibold truncate dark:text-white">{{notificacao.remetente}}</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ formatarHora(notificacao.data) }}</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white mt-1">{{notificacao.assunto}}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{{notificacao.mensagem}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacer to ensure last item is visible -->
+        <div class="h-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel - Notification details -->
+  <div class="flex-1 bg-white dark:bg-gray-800" *ngIf="notificacaoSelecionada">
+    <div class="h-full flex flex-col">
+      <!-- Header -->
+      <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex justify-between items-center">
+          <h2 class="text-lg font-semibold dark:text-white">{{notificacaoSelecionada.assunto}}</h2>
+        </div>
+        <div class="flex items-center mt-2">
+          <span class="text-sm text-gray-500 dark:text-gray-400">{{notificacaoSelecionada.remetente}}</span>
+          <span class="mx-2 text-gray-400">•</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400">{{ formatarData(notificacaoSelecionada.data) }} às {{ formatarHora(notificacaoSelecionada.data) }}</span>
+        </div>
+      </div>
+
+      <!-- Notification body -->
+      <div class="flex-1 p-6 overflow-y-auto">
+        <div class="prose dark:prose-invert max-w-none">
+          <p class="whitespace-pre-line dark:text-gray-300">{{notificacaoSelecionada.mensagem}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state for right panel -->
+  <div *ngIf="!notificacaoSelecionada && !isLoading" class="flex-1 flex items-center justify-center bg-white dark:bg-gray-800">
+    <div class="text-center p-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-300">Selecione uma notificação</h3>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Escolha uma notificação da lista para visualizar</p>
+    </div>
+  </div>
+</div>

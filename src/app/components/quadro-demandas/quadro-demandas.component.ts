@@ -42,17 +42,17 @@ export class QuadroDemandasComponent implements OnInit {
     private injector: Injector,
     public router : Router
   ) {}
-  
+
   ngOnInit() {
     this.infoProjeto = this.projetoService.getInfoProjeto();
-  
+
     this.perfilService.getDadosUsuario().subscribe({
       next: (usuario) => (this.usuario = usuario),
       error: (err) => console.error('Erro ao carregar usuário:', err)
     });
-  
+
     this.tarefasService.listaTarefasPorProjeto();
-  
+
     runInInjectionContext(this.injector, () => {
       effect(() => {
         const tarefasAtuais = this.tarefasService.tarefas();
@@ -77,14 +77,14 @@ export class QuadroDemandasComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-  
+
       const tarefaMovida = event.container.data[event.currentIndex];
-  
+
       tarefaMovida.status = this.quadroTarefas.colunas.find(coluna => coluna.id === event.container.id)!.nome;
       tarefaMovida.ultimaAtualizacaoEm = new Date().toLocaleString('sv-SE');
-  
+
       this.tarefasService.atualizarTarefa(tarefaMovida);
-  
+
       event.container.data.sort((a, b) => new Date(a.ultimaAtualizacaoEm).getTime() - new Date(b.ultimaAtualizacaoEm).getTime());
     }
   }

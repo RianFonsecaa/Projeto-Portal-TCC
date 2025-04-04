@@ -1,6 +1,9 @@
-<section class="absolute inset-0 flex justify-end items-start m-[80px] z-50 bg-opacity-50 
-            transition-all duration-300 ease-in-out" *ngIf="this.modalService.isVisivel('modalNotificacao')"
-  [ngClass]="{ 'opacity-0 pointer-events-none': !modalService.isVisivel('modalNotificacao'), 'opacity-100': modalService.isVisivel('modalNotificacao') }">
+<section class="absolute inset-0 flex justify-end items-start m-[80px] z-50 bg-opacity-50 transition-all duration-300 ease-in-out"
+          *ngIf="modalService.isVisivel('modalNotificacao')"
+          [ngClass]="{
+            'opacity-0 pointer-events-none': !modalService.isVisivel('modalNotificacao'),
+            'opacity-100': modalService.isVisivel('modalNotificacao')
+          }">
 
   <!-- Modal background (overlay) -->
   <div class="fixed inset-0 bg-black bg-opacity-30 z-10" (click)="modalService.fechar('modalNotificacao')"></div>
@@ -8,6 +11,7 @@
   <!-- Modal content -->
   <div class="bg-white overflow-hidden rounded-lg shadow-lg z-20 w-auto dark:bg-[#201e1e] dark:text-white">
     <div class="flex flex-col h-[600px] w-[400px] bg-white text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
+      <!-- Header -->
       <div class="flex flex-row justify-between w-full p-3">
         <span class="text-[18px] font-semibold">Notificações</span>
         <button (click)="modalService.fechar('modalNotificacao')">
@@ -15,77 +19,95 @@
             <path d="M1 11.1541L10.95 1M11 11.1541L1.05 1" [attr.stroke]="themeService.darkMode() ? 'white' : '#515151'"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-
         </button>
       </div>
 
+      <!-- Tabs -->
       <div class="flex flex-col w-full text-gray-500 dark:text-gray-200">
         <div class="text-sm font-medium text-center">
           <ul class="flex flex-row px-3">
             <li>
               <button
                 class="inline-block text-[12px] p-2 border-b-2 rounded-t-lg transition-all duration-300 ease-in-out"
-                [ngClass]="{ 
-                    'text-green-600 border-green-600': selectedTab === 'Profile', 
-                    'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-300': selectedTab !== 'Profile' 
-                  }" (click)="selectTab('Profile')">
+                [ngClass]="{
+                  'text-green-600 border-green-600': selectedTab === 'Tudo',
+                  'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-300': selectedTab !== 'Tudo'
+                }"
+                (click)="selecionarAba('Tudo')">
                 Tudo
               </button>
             </li>
             <li>
               <button
                 class="inline-block text-[12px] p-2 border-b-2 rounded-t-lg transition-all duration-300 ease-in-out"
-                [ngClass]="{ 
-                    'text-green-600 border-green-600': selectedTab === 'Dashboard', 
-                    'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-300': selectedTab !== 'Dashboard' 
-                  }" (click)="selectTab('Dashboard')">
+                [ngClass]="{
+                  'text-green-600 border-green-600': selectedTab === 'Não lidas',
+                  'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-300': selectedTab !== 'Não lidas'
+                }"
+                (click)="selecionarAba('Não lidas')">
                 Não lidas
               </button>
             </li>
           </ul>
         </div>
 
-        <div class="flex flex-col w-full max-h-[450px] overflow-auto  border-y border-gray-300 dark:border-gray-600">
-          <button *ngFor="let notificacao of notificacoes"
-            class="flex flex-row items-center space-x-2 p-2 w-full hover:bg-slate-50 dark:hover:bg-[#3a3a3a]">
+        <!-- Loading/Error States -->
+        <div *ngIf="isLoading" class="p-4 text-center text-sm">Carregando notificações...</div>
+        <div *ngIf="errorMessage" class="p-4 text-center text-sm text-red-500">{{ errorMessage }}</div>
 
+        <!-- Notifications List -->
+        <div class="flex flex-col w-full max-h-[450px] overflow-auto border-y border-gray-300 dark:border-gray-600">
+          <!-- Empty State -->
+          <div *ngIf="!isLoading && filteredNotificacoes.length === 0" class="p-4 text-center text-sm text-gray-500">
+            Nenhuma notificação encontrada
+          </div>
+
+          <!-- Notifications -->
+          <button *ngFor="let notificacao of filteredNotificacoes"
+            class="flex flex-row items-center space-x-2 p-2 w-full hover:bg-slate-50 dark:hover:bg-[#3a3a3a]"
+            (click)="abrirNotificacao(notificacao)">
+
+            <!-- Unread indicator -->
             <div class="w-2">
-              <svg *ngIf="!notificacao.visualizado" width="9" height="9" viewBox="0 0 9 9" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+              <svg *ngIf="!notificacao.visualizado" width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="4.5" cy="4.5" r="4.5" fill="#FF3333" />
               </svg>
             </div>
 
+            <!-- Avatar -->
             <div class="flex justify-centerh-full items-center">
-              <div class="h-[40px] w-[40px] rounded-full p-1 bg-[#E2E8F0] flex items-center justify-center ">
+              <div class="h-[40px] w-[40px] rounded-full p-1 bg-[#E2E8F0] flex items-center justify-center dark:bg-[#3a3a3a]">
                 <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M20 7C18.2319 7 16.5362 7.70238 15.286 8.95262C14.0357 10.2029 13.3333 11.8986 13.3333 13.6667C13.3333 15.4348 14.0357 17.1305 15.286 18.3807C16.5362 19.631 18.2319 20.3333 20 20.3333C21.7681 20.3333 23.4638 19.631 24.714 18.3807C25.9643 17.1305 26.6667 15.4348 26.6667 13.6667C26.6667 11.8986 25.9643 10.2029 24.714 8.95262C23.4638 7.70238 21.7681 7 20 7ZM16.6667 22C14.8986 22 13.2029 22.7024 11.9526 23.9526C10.7024 25.2029 10 26.8986 10 28.6667V30.3333C10 31.2174 10.3512 32.0652 10.9763 32.6904C11.6014 33.3155 12.4493 33.6667 13.3333 33.6667H26.6667C27.5507 33.6667 28.3986 33.3155 29.0237 32.6904C29.6488 32.0652 30 31.2174 30 30.3333V28.6667C30 26.8986 29.2976 25.2029 28.0474 23.9526C26.7971 22.7024 25.1014 22 23.3333 22H16.6667Z"
-                    fill="#515151" />
+                    [attr.fill]="themeService.darkMode() ? 'white' : '#515151'" />
                 </svg>
               </div>
             </div>
 
+            <!-- Notification content -->
             <div class="flex flex-col w-full truncate text-[#6A6A6A] dark:text-white">
-              <div class="w-full truncate -mt-1 ">
+              <div class="w-full truncate -mt-1">
                 <span class="text-[11px] w-full dark:text-gray-200">
                   <span class="font-semibold w-full text-[#313131] dark:text-gray-400">{{notificacao.remetente}}</span>
                   {{notificacao.mensagem}}
                 </span>
               </div>
               <div class="flex flex-row justify-between w-full text-[11px] font-medium">
-                <span>18/02/2025</span>
-                <span>13:30</span>
+                <span>{{ formatarData(notificacao.data) }}</span>
+                <span>{{ FormatarHora(notificacao.data) }}</span>
               </div>
             </div>
           </button>
         </div>
       </div>
 
-      <div class="flex justify-end flex-grow p-2">
+      <!-- Footer -->
+      <div class="flex justify-end mt-auto p-2">
         <button
-          class="rounded-md px-4 bg-[#47924F] font-medium text-white text-[12px] transition-colors duration-150 hover:bg-green-500">Ver
-          mais</button>
+          class="w-full rounded-md px-4 py-2 bg-[#47924F] font-medium text-white text-[12px] transition-colors duration-150 hover:bg-green-500">
+          Ver mais
+        </button>
       </div>
     </div>
   </div>

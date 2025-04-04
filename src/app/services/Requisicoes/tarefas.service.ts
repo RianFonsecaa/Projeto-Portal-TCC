@@ -3,18 +3,20 @@ import { computed, Injectable, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { projetoService } from './projetoService';
+import { MensagensService } from './mensagens.service';
 
 @Injectable({ providedIn: 'root' })
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
-
+  private  idUsuario = localStorage.getItem('idUsuario');
   private _tarefas = signal<Tarefa[]>([]);
   public tarefas = this._tarefas.asReadonly();
 
   private _tarefaSelecionada = signal<Tarefa | null>(null);
   public tarefaSelecionada = this._tarefaSelecionada.asReadonly();
 
-  constructor(private http: HttpClient, private projetoService: projetoService) {}
+  constructor(private http: HttpClient, private projetoService: projetoService, private mensagensService: MensagensService
+  ) {}
 
   listaTarefasPorProjeto() {
     const infoProjeto = this.projetoService.getInfoProjeto();
@@ -22,8 +24,7 @@ export class TarefasService {
       console.error('Projeto não encontrado');
       return;
     }
-
-    this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
+    this.http.get<Tarefa[]>(`${this.baseUrl}/projeto/${infoProjeto.id}`).subscribe({
       next: (tarefas) => {
         this.ordenarTarefasPorData(tarefas);
       },
@@ -34,16 +35,17 @@ export class TarefasService {
   }
 
   private ordenarTarefasPorData(tarefas: Tarefa[]) {
-    const tarefasOrdenadas = tarefas.sort((a, b) => 
+    const tarefasOrdenadas = tarefas.sort((a, b) =>
       new Date(b.ultimaAtualizacaoEm).getTime() - new Date(a.ultimaAtualizacaoEm).getTime()
     );
     this._tarefas.set(tarefasOrdenadas);
   }
 
   adicionarTarefa(novaTarefa: Tarefa): void {
-    this.http.post<Tarefa>(`${this.baseUrl}`, novaTarefa).subscribe({
+    this.http.post<Tarefa>(`${this.baseUrl}?idUsuario=${this.idUsuario}`, novaTarefa).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
+        this.mensagensService.atualizarNotificacoes();
       },
       error: (err) => {
         console.error('Erro ao cadastrar tarefa:', err);
@@ -51,10 +53,12 @@ export class TarefasService {
     });
   }
 
+
   atualizarTarefa(tarefaModificada: Tarefa): void {
-    this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}`, tarefaModificada).subscribe({
+    this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${this.idUsuario}`, tarefaModificada).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
+        this.mensagensService.atualizarNotificacoes();
       },
       error: (err) => {
         console.error('Erro ao atualizar tarefa', err);
@@ -66,6 +70,8 @@ export class TarefasService {
     this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada()?.id}`).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
+        this.mensagensService.atualizarNotificacoes();
+
       },
     });
   }

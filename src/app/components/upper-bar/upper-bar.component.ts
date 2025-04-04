@@ -1,95 +1,66 @@
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from './../../model/Usuario';
-import { DatePipe, NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { NgClass, NgIf, CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
-import { Notificacao } from '../../model/Notificacao';
 import { ModalService } from '../../services/modal.service';
 import { ModalNotificacaoComponent } from '../modais/modal-notificacao/modal-notificacao.component';
 import { ModalPerfilOrientadorComponent } from "../modais/modal-perfil-orientador/modal-perfil-orientador.component";
-import { HttpClient } from '@angular/common/http';
 import { PerfilService } from '../../services/Requisicoes/perfil.service';
 import { ModalPerfilOrientandoComponent } from '../modais/modal-perfil-orientando/modal-perfil-orientando.component';
 import { DropdownComponent } from "../dropdown/dropdown.component";
-
+import { MensagensService } from '../../services/Requisicoes/mensagens.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-upper-bar',
   standalone: true,
-  imports: [RouterLink, NgClass, ModalNotificacaoComponent, ModalPerfilOrientadorComponent, ModalPerfilOrientandoComponent, NgIf, DropdownComponent],
-  templateUrl: './upper-bar.component.html',
+  imports: [
+    RouterLink,
+    NgClass,
+    ModalNotificacaoComponent,
+    ModalPerfilOrientadorComponent,
+    ModalPerfilOrientandoComponent,
+    NgIf,
+    DropdownComponent
+  ],
+  templateUrl: './upper-bar.component.html'
 })
-export class UpperBarComponent {
-  darkLogo: String = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
-  lightLogo: String = '../../../assets/img/Portal TCC Logo- LightMode.png';
+export class UpperBarComponent implements OnInit, OnDestroy {
+  darkLogo = '../../../assets/img/Portal TCC Logo- DarkMode (1).png';
+  lightLogo = '../../../assets/img/Portal TCC Logo- LightMode.png';
 
-  iconBellWhite: String = '../../../assets/img/icons8-bell-50.png';
-  iconBellGrey: String = '../../../assets/img/icons8-bell-50-grey.png';
+  iconBellWhite = '../../../assets/img/icons8-bell-50.png';
+  iconBellGrey = '../../../assets/img/icons8-bell-50-grey.png';
 
   usuario: Usuario = {} as Usuario;
-  tipoPerfilModal: string = '';
-  notificacoes: Notificacao[] = [
-    {
-      remetente: 'Jhon Doe',
-      mensagem: 'Atualizou o status da tarefa “Pesquisa de referencial teórico e metodologia”. Confira no quadro Kanban.',
-      data: new Date('2024-11-26T14:30:00'),
-      visualizado: false
-    },
-    {
-      remetente: 'Clark Kent',
-      mensagem: 'Enviou a primeira versão do TCC "Implementação de Assistentes Virtuais com IA" para revisão.',
-      data: new Date('2024-11-26T09:15:00'),
-      visualizado: true
-    },
-    {
-      remetente: 'Bruce Wayne',
-      mensagem: 'Atualizou o status da tarefa “Análise de ferramentas para plataforma gamificada”. Verifique no Kanban.',
-      data: new Date('2024-11-24T18:45:00'),
-      visualizado: true
-    },
-    {
-      remetente: 'Diana Prince',
-      mensagem: 'Atualizou o progresso da tarefa “Introdução e Objetivos” do TCC "Desenvolvimento de Sistemas de Saúde".',
-      data: new Date('2024-11-24T18:45:00'),
-      visualizado: false
-    },
-    {
-      remetente: 'Gabriel Moreira',
-      mensagem: 'Enviou a versão 2 do TCC “Desenvolvimento de Sistemas de Saúde” para revisão.',
-      data: new Date('2024-11-24T18:45:00'),
-      visualizado: true
-    },
-    {
-      remetente: 'Jhon Doe',
-      mensagem: 'Solicitou reunião para discutir o progresso do TCC “Pesquisa de referencial teórico e metodologia”.',
-      data: new Date('2024-11-24T18:45:00'),
-      visualizado: false
-    },
-    {
-      remetente: 'Gabriel Moreira',
-      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
-      data: new Date('2024-11-24T18:10:00'),
-      visualizado: false
-    },
-    {
-      remetente: 'Gabriel Moreira',
-      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
-      data: new Date('2024-11-24T18:10:00'),
-      visualizado: false
-    },
-    {
-      remetente: 'Gabriel Moreira',
-      mensagem: 'Atualizou o status da tarefa “Pesquisa e Desenvolvimento de novas funcionalidades” do TCC "Desenvolvimento de Sistemas de Saúde".',
-      data: new Date('2024-11-24T18:10:00'),
-      visualizado: false
-    }
-  ];
+  tipoPerfilModal = '';
+  quantidadeNaoLidas = 0;
+  private notificacoesSubscription!: Subscription;
 
-  @ViewChild(DropdownComponent) dropdown: DropdownComponent = {} as DropdownComponent;
+  @ViewChild(DropdownComponent) dropdown!: DropdownComponent;
 
-  constructor(public themeService: ThemeService, public modalService: ModalService, private perfilService: PerfilService, private router: Router) { }
+  constructor(
+    public themeService: ThemeService,
+    public modalService: ModalService,
+    private perfilService: PerfilService,
+    private router: Router,
+    private mensagensService: MensagensService
+  ) {}
 
   ngOnInit(): void {
+    this.carregarDadosUsuario();
+    this.inscreverParaAtualizacoes();
+    this.atualizarNotificacoes();
+  }
+
+  ngOnDestroy(): void {
+    if (this.notificacoesSubscription) {
+      this.notificacoesSubscription.unsubscribe();
+    }
+  }
+
+  private carregarDadosUsuario(): void {
     this.perfilService.getDadosUsuario().subscribe({
       next: (usuario) => {
         this.usuario = usuario;
@@ -101,17 +72,39 @@ export class UpperBarComponent {
     });
   }
 
+  private inscreverParaAtualizacoes(): void {
+    this.notificacoesSubscription = this.mensagensService.notificacoesAtualizadas$.subscribe({
+      next: () => this.atualizarContador(),
+      error: (err) => console.error('Erro ao receber atualizações:', err)
+    });
+  }
+
+  atualizarNotificacoes(): void {
+    this.mensagensService.atualizarNotificacoes();
+    this.atualizarContador();
+  }
+
+  private atualizarContador(): void {
+    this.mensagensService.buscarQuantidadeNaoVisualizadas().subscribe({
+      next: (quantidade) => {
+        this.quantidadeNaoLidas = quantidade;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar quantidade de não lidas:', err);
+        this.quantidadeNaoLidas = 0;
+      }
+    });
+  }
+
   toggleDarkMode(): void {
     this.themeService.toggleDarkMode();
   }
 
-  abrirDropdown(){
+  abrirDropdown(): void {
     this.dropdown.abrir();
   }
-
   navegarParaDashboard(): void {
     const rota = this.usuario.tipoUsuario === 'ORIENTADOR' ? 'dashboardOrientador' : 'dashboardOrientando';
     this.router.navigate(['/home', { outlets: { dashboard: [rota]} } ]);
   }
-
 }

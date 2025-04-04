@@ -67,6 +67,7 @@ export class LoginFormComponent {
           localStorage.clear;
           localStorage.setItem('jwtToken', response.jwtToken);
           localStorage.setItem('idUsuario', response.usuarioId);
+          localStorage.setItem('email', this.loginForm.get('email')?.value);
 
           switch (response.tipoUsuario) {
             case 'COORDENADOR':
