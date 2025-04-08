@@ -56,6 +56,7 @@ com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO$TarefaDTOBuilder.class
 com\ifba\Gerenciador_TCC\projeto\domain\dto\ProjetoDTO$ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.class
 com\ifba\Gerenciador_TCC\usuario\controller\JwtResponse.class
+com\ifba\Gerenciador_TCC\tarefa\service\TarefaService$1.class
 com\ifba\Gerenciador_TCC\projeto\domain\entity\Projeto$ProjetoBuilder.class
 com\ifba\Gerenciador_TCC\tipoenum\TipoProjeto.class
 com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.class

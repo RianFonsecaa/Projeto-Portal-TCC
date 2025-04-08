@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Data
 @AllArgsConstructor
@@ -31,6 +32,9 @@ public class Tarefa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "codigo", nullable = false, length = 5)
+    private String codigo;
 
     @ManyToOne
     @JoinColumn(name = "projeto_id", nullable = false)
@@ -80,5 +84,16 @@ public class Tarefa {
     @Column(name = "data_fim", nullable = false)
     private LocalDate dataFim;
 
-   
+    @PrePersist
+    public void gerarCodigo() {
+        if (codigo == null) {
+            this.codigo = gerarCodigoAleatorio();
+        }
+    }
+
+    private String gerarCodigoAleatorio() {
+        char letra = (char) ('A' + new Random().nextInt(26));
+        int numero = 1000 + new Random().nextInt(9000); // 1000 a 9999
+        return String.format("%c%d", letra, numero);
+    }
 }
