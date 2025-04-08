@@ -1,16 +1,18 @@
 <section
-  class="absolute inset-0 flex justify-center items-center z-50 bg-opacity-50 transition-all duration-300 ease-in-out font-popp"
+  class="absolute inset-0 flex justify-end z-50 bg-opacity-50 transition-all duration-300 ease-in-out font-popp text-sm"
   [ngClass]="{ 'opacity-0 pointer-events-none': !modalService.isVisivel('modalTarefa'), 'opacity-100': modalService.isVisivel('modalTarefa') }">
 
-  <!-- Modal background (overlay) -->
+  <!-- Overlay -->
   <div class="fixed inset-0 bg-black bg-opacity-30 z-10" (click)="fecharModal()"></div>
 
-  <!-- Modal content -->
+  <!-- Modal -->
   <div
-    class="bg-white rounded-lg shadow-lg z-20 flex flex-col space-y-2 w-[850px] h-auto p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
+    class="bg-white rounded-lg shadow-lg z-20 flex flex-col space-y-2 w-[600px] h-auto p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
+    
+    <!-- Header -->
     <div class="flex justify-between items-center border-b pb-2">
-      <span class="text-[16px] font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="this.alterar">Detalhes da Tarefa</span>
-      <span class="text-[16px] font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="!this.alterar">Nova Tarefa</span>
+      <span class="font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="alterar">Detalhes da Tarefa</span>
+      <span class="font-semibold text-white bg-green-600 px-3 rounded-md" *ngIf="!alterar">Nova Tarefa</span>
       <button (click)="fecharModal()">
         <svg width="16" height="16" viewBox="0 0 12 13" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 11.1541L10.95 1M11 11.1541L1.05 1" [attr.stroke]="themeService.darkMode() ? 'white' : '#515151'"
@@ -18,95 +20,120 @@
         </svg>
       </button>
     </div>
-    
-    <!-- Div principal flex horizontal -->
-    <form [formGroup]="tarefaForm" class="flex flex-col space-y-2 h-full">
 
-      <div *ngIf="alterar" class="flex flex-row items-start p-3 bg-[#e9eeff]"> 
-        <div class="w-1/2 pl-4 flex flex-col">
-          <span class="text-[12px] text-[#7e7e7e] font-medium">Criado Por</span>
-          <span class="text-[#515151] font-medium">{{tarefaSelecionada?.criacaoPor }}<span class="text-[12px] text-[#7e7e7e] mx-2">em</span>{{tarefaSelecionada?.criacaoEm | date:'dd/MM/yyyy'}}</span>
-        </div>
-        <div class="w-1/2 pl-4 flex flex-col border-l border-gray-300">
-          <span class="text-[12px] text-[#7e7e7e] font-medium">Última Atualização</span>
-          <span class="text-[#515151] font-medium">{{tarefaSelecionada?.ultimaAtualizacaoPor}}<span class="text-[12px] text-[#7e7e7e] mx-2">em</span>{{tarefaSelecionada?.ultimaAtualizacaoEm | date:'dd/MM/yyyy'}}</span>
-        </div>
-      </div>
+    <!-- Form -->
+    <form [formGroup]="tarefaForm" class="flex flex-col justify-between space-y-2 h-full pb-[30px]">
 
-      <div class="flex flex-row space-x-6 h-full min-h-0">
-        <!-- TITULO E DESCRIÇÃO -->
-        <div class="flex flex-col space-y-2 h-full w-[60%] min-h-0">
+      <!-- Conteúdo -->
+      <div class="flex flex-col overflow-y-scroll overflow-x-hidden">
+        
+        <!-- Título -->
+        <div class="flex flex-col">
+          <span class="text-[#7e7e7e] font-medium">Título</span>
+          <input name="titulo" formControlName="titulo" type="text" maxlength="70"
+            class="w-full p-0 font-medium border-0 overflow-hidden text-ellipsis"
+            placeholder="Digite o título" autocomplete="off">
+        </div>
+
+        <!-- Descrição e Anexo -->
+        <div class="mt-2">
           <div class="flex flex-col">
-            <span class="text-[12px] text-[#7e7e7e] font-medium">Título</span>
-            <input name="titulo" formControlName="titulo" type="text" maxlength="70"
-              class="w-full text-[24px] p-0 font-medium border-0 overflow-hidden text-ellipsis"
-              placeholder="Digite o título" autocomplete="off">
+            <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
+            <textarea
+              formControlName="descricao" maxlength="400"
+              class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify"
+              placeholder="Digite a descrição..."></textarea>
           </div>
-  
-          <!-- Container flexível para descrição e div azul -->
-           <div class="h-[500px]">
-             <div class="flex flex-col h-[65%]">
-               <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
-               <textarea
-                 formControlName="descricao" maxlength="400"
-                 class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify min-h-[100px]"
-                 placeholder="Digite a descrição..."></textarea>
-             </div>
-           
-            <div class="h-[25%] bg-[#e9eeff] w-full mt-2 rounded-lg"></div>
-            <button class="flex flex-row justify-center items-center w-fit h-[10%] mt-2 px-4 py-2 bg-gray-100 rounded-lg border border-blue-700 text-blue-700">
-              <span>Anexar</span>
-              <svg class="w-6 h-6 text-blue-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8"/>
-              </svg>
-            </button>
-
-
-           </div>
         </div>
-  
-        <!-- Campos Prioridade, Status, Classificação e Prazo em flexbox (lado a lado) -->
-        <div class="flex flex-col h-full w-[40%] min-h-0">
-  
+
+        <!-- Dropdowns + Datas -->
+        <div class="flex flex-col h-full min-h-0">
           <div class="flex flex-col w-full relative">
             <app-dropdown-classificacao></app-dropdown-classificacao>
             <app-dropdown-etapa></app-dropdown-etapa>
             <app-dropdown-prioridade></app-dropdown-prioridade>
             <app-dropdown-status></app-dropdown-status>
           </div>
+
           
-          <!-- Data Inicio -->
-          <div class="flex flex-col w-full py-4 border-b border-gray-300">
-            <span class="text-[12px] text-[#7e7e7e] font-medium">Data Inicio</span>
+          <!-- Data Início -->
+          <div class="flex flex-row items-center space-x-2 w-full py-4">
+            <span class="text-[#7e7e7e] font-medium text-nowrap">Data Início</span>
             <input name="dataInicio" formControlName="dataInicio" type="date"
-              class="w-full border border-gray-300 h-12 rounded-lg p-2 text-[16px] font-semibold
-                     focus:border-blue-600 focus:outline-none">
+              class="w-full border flex justify-end border-gray-200 h-10 rounded-lg p-2 font-medium focus:border-blue-600 focus:outline-none">
           </div>
-          
-          <!-- Prazo -->
-          <div class="flex flex-col w-full py-4">
-            <span class="text-[12px] text-[#7e7e7e] font-medium">Data Fim</span>
+
+          <!-- Data Fim -->
+          <div class="flex flex-row items-center space-x-2 w-full py-4">
+            <span class="text-[#7e7e7e] font-medium text-nowrap">Data Fim</span>
             <input name="dataFim" formControlName="dataFim" type="date"
-              class="w-full border border-gray-300 h-12 rounded-lg p-2 text-[16px] font-semibold
-                     focus:border-blue-600 focus:outline-none">
+              class="w-full border flex justify-end border-gray-200 h-10 rounded-lg p-2 font-medium focus:border-blue-600 focus:outline-none">
+          </div>
+          <!-- Infos -->
+          <div *ngIf="alterar" class="w-full mt-4">
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Criado Por -->
+              <div class="flex flex-row items-center gap-2">
+                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Por</label>
+                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                  {{ tarefaSelecionada?.criacaoPor }}
+                </div>
+              </div>
+
+              <!-- Criado Em -->
+              <div class="flex flex-row items-center gap-2">
+                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Em</label>
+                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                  {{ tarefaSelecionada?.criacaoEm | date:'dd/MM/yyyy' }}
+                </div>
+              </div>
+
+              <!-- Atualizado Por -->
+              <div class="flex flex-row items-center gap-2">
+                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Por</label>
+                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                  {{ tarefaSelecionada?.ultimaAtualizacaoPor }}
+                </div>
+              </div>
+
+              <!-- Atualizado Em -->
+              <div class="flex flex-row items-center gap-2">
+                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Em</label>
+                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                  {{ tarefaSelecionada?.ultimaAtualizacaoEm | date:'dd/MM/yyyy' }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col space-y-2">
+            <button class="flex w-fit items-center gap-2 mt-2 px-4 py-2 bg-gray-100 rounded-lg border border-blue-700 text-blue-700">
+              <span>Anexar</span>
+              <svg class="w-6 h-6 text-blue-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+              </svg>
+            </button>
+
+            <div class="p-2 bg-[#e9eeff] h-[150px]"></div>
           </div>
         </div>
       </div>
-    </form>
+         <!-- Botões de ação -->
+      <div class="flex justify-between items-center border-t border-gray-200 pt-4">
+        <button class="flex flex-row gap-1 px-4 py-2 bg-gray-100 rounded-lg border border-red-600 text-red-600" (click)="deletarTarefa()" *ngIf="this.alterar">
+          <span>Deletar</span>
+          <svg class="w-5 h-5 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+          </svg>
+        </button>
 
-    <!-- Botões de ação -->
-    <div class="flex justify-between items-center border-t border-gray-200 pt-4 mt-6">
-      <button class="flex flex-row gap-1 px-4 py-2 bg-gray-100 rounded-lg border border-red-600 text-red-600" (click)="deletarTarefa()" *ngIf="this.alterar">
-        <span>Deletar</span>
-        <svg class="w-5 h-5 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-        </svg>
-      </button>
-
-      <div class="w-full flex justify-end items-end gap-2">
-        <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400" (click)="fecharModal()">Cancelar</button>
-        <button class="px-4 py-2 bg-green-600 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
+        <div class="w-full flex justify-end items-end gap-2">
+          <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400" (click)="fecharModal()">Cancelar</button>
+          <button class="px-4 py-2 bg-green-600 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </section>

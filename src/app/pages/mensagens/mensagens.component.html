@@ -1,6 +1,6 @@
-<div class="flex h-screen w-full bg-gray-50 dark:bg-gray-900">
+<div class="flex justify-between space-x-2 h-screen w-full bg-[#e9eeff] p-6 dark:bg-gray-900">
   <!-- Left panel - Notifications list -->
-  <div class="bg-white w-96 flex flex-col border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+  <div class="bg-white w-[30%] flex flex-col border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <!-- Header -->
     <div class="flex flex-row justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
       <span class="text-lg font-semibold dark:text-white">Notificações</span>
@@ -54,7 +54,7 @@
 
         <!-- Notifications List -->
         <div *ngFor="let notificacao of filteredNotificacoes"
-             class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+             class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
              [ngClass]="{ 'bg-gray-100 dark:bg-gray-700': notificacaoSelecionada?.id === notificacao.id }"
              (click)="selecionarNotificacao(notificacao)">
           <div class="p-3">
@@ -86,7 +86,7 @@
   </div>
 
   <!-- Right panel - Notification details -->
-  <div class="flex-1 bg-white dark:bg-gray-800" *ngIf="notificacaoSelecionada">
+  <div class=" w-[70%] bg-white border-gray-200 border dark:bg-gray-800" *ngIf="notificacaoSelecionada">
     <div class="h-full flex flex-col">
       <!-- Header -->
       <div class="p-4 border-b border-gray-200 dark:border-gray-700">

@@ -24,7 +24,7 @@ export class TarefasService {
       console.error('Projeto não encontrado');
       return;
     }
-    this.http.get<Tarefa[]>(`${this.baseUrl}/projeto/${infoProjeto.id}`).subscribe({
+    this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
       next: (tarefas) => {
         this.ordenarTarefasPorData(tarefas);
       },
@@ -67,7 +67,7 @@ export class TarefasService {
   }
 
   deletarTarefa() {
-    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada()?.id}`).subscribe({
+    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada()?.id}?idUsuario=${this.idUsuario}`).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();

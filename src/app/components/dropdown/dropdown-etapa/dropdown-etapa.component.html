@@ -1,33 +1,32 @@
 <section class="relative">
-    <div class="py-4 border-b border-gray-300">
-        <span class="text-[12px] text-[#7e7e7e] font-medium">Etapa</span>
-        <button (click)="dropdownService.toggle('dropdown-etapa')" 
-                class="w-full text-[#515151] font-semibold text-left flex justify-between items-center">
-          
-          <div class="flex flex-col" *ngIf="getEtapaSelecionada(); else semPrioridade">
-            <span class="bg-[#e9eeff] p-2 text-sm rounded-lg flex flex-row space-x-2">
-              <span class="bg-[#61B668] p-[3px] rounded-lg"></span>
-              <span>{{ getEtapaSelecionada() }}</span>
-            </span>
-          </div>
-          
-          <ng-template #semPrioridade>
-            <span class="py-[6px]">Selecione uma etapa</span>
-          </ng-template>
-          <svg class="transform transition duration-200" [ngClass]="{'rotate-180': dropdownService.isVisivel('dropdown-etapa')}" 
-          width="42" height="40" viewBox="0 0 49 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-       <path d="M16.3335 19.5833L24.5002 27.4167L32.6668 19.5833" 
-             stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-     </svg>
-        </button>
-    </div>
+  <div class="flex flex-row space-x-2 items-center py-4">
+    <span class="text-[#7e7e7e] font-medium">Etapa</span>
+    <button (click)="dropdownService.toggle('dropdown-etapa')" 
+            class="w-full border rounded-md text-[#515151] font-semibold text-left flex justify-end items-center">
+      
+      <div class="flex flex-col" *ngIf="getEtapaSelecionada(); else semPrioridade">
+        <span class="bg-[#e9eeff] p-2 text-sm rounded-lg flex flex-row space-x-2">
+          <span>{{ getEtapaSelecionada() }}</span>
+        </span>
+      </div>
 
-    <ul class="absolute top-full left-0 mt-1 w-full max-h-[200px] overflow-y-auto z-10 bg-white border border-gray-300 rounded-md shadow-md" 
-        *ngIf="dropdownService.isVisivel('dropdown-etapa')">
-      <li *ngFor="let etapa of etapas" 
-          (click)="selecionarEtapa(etapa[0])"
-          class="p-2 hover:bg-gray-100 cursor-pointer">
-        {{ etapa[1] }}
-      </li>
-    </ul>
+      <ng-template #semPrioridade>
+        <span class="py-[6px]">Selecione uma etapa</span>
+      </ng-template>
+      <svg class="transform transition duration-200" [ngClass]="{'rotate-180': dropdownService.isVisivel('dropdown-etapa')}" 
+        width="42" height="40" viewBox="0 0 49 47" fill="none">
+        <path d="M16.3335 19.5833L24.5002 27.4167L32.6668 19.5833" 
+              stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul class="absolute top-full left-0 mt-1 w-full max-h-[200px] overflow-y-auto z-10 bg-white border border-gray-300 rounded-md shadow-md" 
+      *ngIf="dropdownService.isVisivel('dropdown-etapa')">
+    <li *ngFor="let etapa of etapas" 
+        (click)="selecionarEtapa(etapa[0])"
+        class="p-2 w-full hover:bg-gray-100 cursor-pointer">
+      {{ etapa[1] }}
+    </li>
+  </ul>
 </section>

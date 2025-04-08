@@ -1,12 +1,11 @@
 <section class="relative">
-  <div class="py-4 border-b border-gray-300">
-    <span class="text-[12px] text-[#7e7e7e] font-medium">Classificação</span>
+  <div class="flex flex-row space-x-2 items-center py-4 ">
+    <span class="text-[#7e7e7e] font-medium">Classificação</span>
     <button (click)="dropdownService.toggle('dropdown-classificacao')" 
-            class="w-full text-[#515151] font-semibold text-left flex justify-between items-center">
+            class="w-full border rounded-md text-[#515151] font-semibold text-left flex justify-end items-center">
       
       <div class="flex flex-col" *ngIf="getClassificacaoSelecionada(); else semPrioridade">
         <span class="bg-[#e9eeff] p-2 text-sm rounded-lg flex flex-row space-x-2">
-          <span class="bg-[#61B668] p-[3px] rounded-lg"></span>
           <span>{{ getClassificacaoSelecionada() }}</span>
         </span>
       </div>
