@@ -1,9 +1,9 @@
 import { Component, computed, effect, Inject, Injector, OnInit, runInInjectionContext, Signal, ViewChild } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
-import { ModalTarefa } from '../modais/modal-tarefa/modal-tarefa.component';
+import { ModalTarefa } from '../../components/modais/modal-tarefa/modal-tarefa.component';
 import { TarefasService } from '../../services/Requisicoes/tarefas.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { TarefasConteudoComponent } from '../tarefas-conteudo/tarefas-conteudo.component';
+import { TarefasConteudoComponent } from '../../components/tarefas-conteudo/tarefas-conteudo.component';
 import { Tarefa } from '../../model/Tarefa';
 import { projetoService } from '../../services/Requisicoes/projetoService';
 import { infoProjeto } from '../../model/infoProjeto';
@@ -15,13 +15,13 @@ import { Quadro } from '../../model/Quadro';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-quadro-demandas',
+  selector: 'app-quadro-tarefas',
   standalone: true,
   imports: [ModalTarefa, NgClass, TarefasConteudoComponent, NgFor, NgIf, DragDropModule],
-  templateUrl: './quadro-demandas.component.html',
-  styleUrl: './quadro-demandas.component.css'
+  templateUrl: './quadro-tarefas.component.html',
+  styleUrl: './quadro-tarefas.component.css'
 })
-export class QuadroDemandasComponent implements OnInit {
+export class QuadroTarefasComponent {
   quadroTarefas: Quadro = new Quadro('Quadro de Tarefas', [
     new Coluna('PENDENTE', '1', []),
     new Coluna('ANDAMENTO', '2', []),
@@ -39,7 +39,6 @@ export class QuadroDemandasComponent implements OnInit {
     public modalService: ModalService,
     public projetoService: projetoService,
     private perfilService: PerfilService,
-    private injector: Injector,
     public router : Router
   ) {}
 
@@ -53,11 +52,10 @@ export class QuadroDemandasComponent implements OnInit {
 
     this.tarefasService.listaTarefasPorProjeto();
 
-    runInInjectionContext(this.injector, () => {
-      effect(() => {
-        const tarefasAtuais = this.tarefasService.tarefas();
-        this.separarTarefasPorStatus(tarefasAtuais);
-      });
+    this.tarefasService.listaTarefasPorProjeto();
+
+    this.tarefasService.tarefas$.subscribe({
+      next: (tarefas) => this.separarTarefasPorStatus(tarefas)
     });
   }
 
@@ -92,21 +90,5 @@ export class QuadroDemandasComponent implements OnInit {
   abrirTarefa(tarefa: Tarefa) {
     this.tarefasService.selecionarTarefa(tarefa);
     this.modalService.abrir('modalTarefa');
-  }
-
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
-  abrirBancoDocumentos() {
-    this.router.navigate(['/home', { outlets: { dashboard: ['bancoDocumentos'] } }]);
-    this.selectTab('Banco de Documentos');
-  }
-
-  isBancoDocumentosAtivo(): boolean {
-    return this.router.isActive(
-      this.router.createUrlTree([{ outlets: { dashboard: ['bancoDocumentos'] } }]),
-      { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored' }
-    );
   }
 }

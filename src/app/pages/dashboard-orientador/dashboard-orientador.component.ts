@@ -1,7 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { infoProjeto } from '../../model/infoProjeto';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { tap, mergeMap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { projetoService } from '../../services/Requisicoes/projetoService';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NgFor, RouterLink],
+  imports: [CommonModule, NgFor, RouterLink, RouterOutlet],
   templateUrl: './dashboard-orientador.component.html',
 })
 export class DashboardOrientadorComponent {
@@ -34,7 +34,7 @@ export class DashboardOrientadorComponent {
 
   navegaParaProjeto(projeto: infoProjeto){
     this.projetoService.setInfoProjeto(projeto);
-    this.router.navigate(['/home', { outlets: { dashboard: ['projeto', projeto.id ] } }]);
+    this.router.navigate(['/home', { outlets: { dashboard: 'gestaoProjeto' } }]);
   }
 
   toggleProjetoInfo(projetoInfoDiv: HTMLElement) {

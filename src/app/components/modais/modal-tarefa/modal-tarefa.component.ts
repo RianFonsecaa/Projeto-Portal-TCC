@@ -1,5 +1,5 @@
 import { Tarefa } from './../../../model/Tarefa';
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { ThemeService } from '../../../services/theme.service';
 import { FormBuilder, ReactiveFormsModule, FormsModule, FormGroup, Validators } from '@angular/forms';
@@ -25,10 +25,10 @@ import { Usuario } from '../../../model/Usuario';
   templateUrl: './modal-tarefa.component.html',
 })
 
-export class ModalTarefa {
+export class ModalTarefa implements OnInit {
   tarefaForm: FormGroup;
   alterar: boolean = false;
-  tarefaSelecionada = this.tarefaService.getTarefaSelecionada()();
+  tarefaSelecionada: Tarefa | null = null;
   usuarioAtual!: Usuario;
 
   constructor(
@@ -62,11 +62,13 @@ export class ModalTarefa {
   }
 
   ngOnInit() {
-    this.patchForm();
+    this.tarefaService.tarefaSelecionada$.subscribe((tarefa) => {
+      this.tarefaSelecionada = tarefa;
+      this.patchForm();
+    });
+
     this.perfilService.getDadosUsuario().subscribe(usuario => {
-      if (usuario){
-        this.usuarioAtual = usuario;
-      }
+      if (usuario) this.usuarioAtual = usuario;
     });
   }
 
@@ -90,7 +92,7 @@ export class ModalTarefa {
     tarefa.etapa = this.etapaService.getEtapaSelecionada()();
     tarefa.status = this.statusService.getStatusSelecionado()();
     tarefa.prioridade = this.prioridadeService.getPrioridadeSelecionada()();
-    
+
     tarefa.ultimaAtualizacaoEm = new Date().toLocaleString('sv-SE');
     tarefa.ultimaAtualizacaoPor = this.usuarioAtual.nome;
 

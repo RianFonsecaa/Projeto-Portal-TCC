@@ -4,18 +4,23 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { projetoService } from './projetoService';
 import { MensagensService } from './mensagens.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
-  private  idUsuario = localStorage.getItem('idUsuario');
-  private _tarefas = signal<Tarefa[]>([]);
-  public tarefas = this._tarefas.asReadonly();
+  private idUsuario = localStorage.getItem('idUsuario');
 
-  private _tarefaSelecionada = signal<Tarefa | null>(null);
-  public tarefaSelecionada = this._tarefaSelecionada.asReadonly();
+  private _tarefas$ = new BehaviorSubject<Tarefa[]>([]);
+  public tarefas$ = this._tarefas$.asObservable();
 
-  constructor(private http: HttpClient, private projetoService: projetoService, private mensagensService: MensagensService
+  private _tarefaSelecionada$ = new BehaviorSubject<Tarefa | null>(null);
+  public tarefaSelecionada$ = this._tarefaSelecionada$.asObservable();
+
+  constructor(
+    private http: HttpClient,
+    private projetoService: projetoService,
+    private mensagensService: MensagensService
   ) {}
 
   listaTarefasPorProjeto() {
@@ -24,6 +29,7 @@ export class TarefasService {
       console.error('Projeto não encontrado');
       return;
     }
+
     this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
       next: (tarefas) => {
         this.ordenarTarefasPorData(tarefas);
@@ -38,7 +44,7 @@ export class TarefasService {
     const tarefasOrdenadas = tarefas.sort((a, b) =>
       new Date(b.ultimaAtualizacaoEm).getTime() - new Date(a.ultimaAtualizacaoEm).getTime()
     );
-    this._tarefas.set(tarefasOrdenadas);
+    this._tarefas$.next(tarefasOrdenadas);
   }
 
   adicionarTarefa(novaTarefa: Tarefa): void {
@@ -53,7 +59,6 @@ export class TarefasService {
     });
   }
 
-
   atualizarTarefa(tarefaModificada: Tarefa): void {
     this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${this.idUsuario}`, tarefaModificada).subscribe({
       next: () => {
@@ -67,24 +72,26 @@ export class TarefasService {
   }
 
   deletarTarefa() {
-    this.http.delete(`${this.baseUrl}/${this.tarefaSelecionada()?.id}?idUsuario=${this.idUsuario}`).subscribe({
+    const tarefaSelecionada = this._tarefaSelecionada$.getValue();
+    if (!tarefaSelecionada) return;
+
+    this.http.delete(`${this.baseUrl}/${tarefaSelecionada.id}?idUsuario=${this.idUsuario}`).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();
-
-      },
+      }
     });
   }
 
-  getTarefaSelecionada(){
-    return this._tarefaSelecionada.asReadonly();
+  getTarefaSelecionada() {
+    return this.tarefaSelecionada$;
   }
 
   selecionarTarefa(tarefa: Tarefa | null) {
-    this._tarefaSelecionada.set(tarefa);
+    this._tarefaSelecionada$.next(tarefa);
   }
 
-  removerSelecaoTarefa(){
-    this._tarefaSelecionada.set(null);
+  removerSelecaoTarefa() {
+    this._tarefaSelecionada$.next(null);
   }
 }
