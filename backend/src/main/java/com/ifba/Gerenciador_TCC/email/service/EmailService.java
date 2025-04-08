@@ -1,15 +1,17 @@
 package com.ifba.Gerenciador_TCC.email.service;
 
-import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagem;
-import com.ifba.Gerenciador_TCC.notificacao.service.NotificacaoService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.ifba.Gerenciador_TCC.email.tipoenum.TipoMensagem;
+import com.ifba.Gerenciador_TCC.notificacao.service.NotificacaoService;
 
 @Service
 public class EmailService {
@@ -27,8 +29,9 @@ public class EmailService {
         String dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
         return tipo.gerarMensagem() + "\n\n📅 Data: " + dataAtual + "\n\nAtenciosamente,\n" + remetenteNotificacao;
     }
-
-    public String enviarEmail(String destinatario, TipoMensagem tipo, String remetenteNotificacao) {
+    
+    @Async
+    public void enviarEmail(String destinatario, TipoMensagem tipo, String remetenteNotificacao) {
         try {
             String mensagem = construirMensagem(tipo, remetenteNotificacao);
             String assunto = tipo.getAssunto(); 
@@ -42,10 +45,8 @@ public class EmailService {
             mailSender.send(simpleMailMessage);
             notificacaoService.criarNotificacao(remetenteNotificacao, destinatario, assunto, mensagem);
     
-            return "E-mail enviado com sucesso!";
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Erro ao enviar e-mail: " + e.getMessage();
+            e.printStackTrace(); // você pode logar isso em um logger se preferir
         }
     }
 }

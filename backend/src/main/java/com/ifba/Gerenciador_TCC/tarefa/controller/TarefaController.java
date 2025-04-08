@@ -1,17 +1,19 @@
 package com.ifba.Gerenciador_TCC.tarefa.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
 import com.ifba.Gerenciador_TCC.tarefa.interfaces.TarefaControllerApi;
 import com.ifba.Gerenciador_TCC.tarefa.service.TarefaService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/tarefa")
 public class TarefaController implements TarefaControllerApi {
 
     @Autowired

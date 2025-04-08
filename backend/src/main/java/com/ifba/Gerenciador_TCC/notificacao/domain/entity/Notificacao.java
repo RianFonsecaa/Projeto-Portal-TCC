@@ -19,13 +19,16 @@ public class Notificacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 400)
     private String remetente;
 
+    @Column(length = 400)
     private String destinatario;
 
     @Column(columnDefinition = "TEXT") 
     private String mensagem;
 
+    @Column(length = 500)
     private String assunto;
 
     @Temporal(TemporalType.TIMESTAMP)
