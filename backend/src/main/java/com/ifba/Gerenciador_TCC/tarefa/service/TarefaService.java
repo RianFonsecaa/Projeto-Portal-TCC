@@ -51,15 +51,20 @@ public class TarefaService implements TarefaServiceApi {
     }
 
     @Override
-    public TarefaDTO editarTarefa(TarefaDTO tarefa, Long idUsuario) {
-        if (!tarefaRepository.existsById(tarefa.getId()))
-            throw new RuntimeException("Tarefa não encontrada com o ID: " + tarefa.getId());
-
-        enviarEmailsProjeto(projetoService.findById(tarefa.getProjetoId()), usuarioService.findById(idUsuario),
-            new TipoMensagemTarefa(TipoTarefa.EDITAR_TAREFA, tarefa));
-
-        return criarTarefa(tarefa, idUsuario);
+    public TarefaDTO editarTarefa(TarefaDTO tarefaDTO, Long idUsuario) {
+        if (!tarefaRepository.existsById(tarefaDTO.getId()))
+            throw new RuntimeException("Tarefa não encontrada com o ID: " + tarefaDTO.getId());
+    
+        Tarefa tarefaConvertida = TarefaDTOBuilder.buildTarefa(tarefaDTO, usuarioService, projetoService);
+    
+        Tarefa tarefaSalva = tarefaRepository.save(tarefaConvertida);
+    
+        enviarEmailsProjeto(tarefaSalva.getProjeto(), usuarioService.findById(idUsuario),
+            new TipoMensagemTarefa(TipoTarefa.EDITAR_TAREFA, tarefaDTO));
+    
+        return TarefaDTOBuilder.buildTarefaDTO(tarefaSalva);
     }
+    
 
     @Override
     public List<TarefaDTO> listarTarefasPorProjeto(Long projetoId) {
