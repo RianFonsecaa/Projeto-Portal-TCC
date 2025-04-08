@@ -13,16 +13,18 @@ import java.util.Date;
 @ToString
 @Builder 
 public class NotificacaoDTO {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String remetente;
-    
-    private String destinatario; 
-    
+
+    private String destinatario;
+
+    @Column(columnDefinition = "TEXT") 
     private String mensagem;
+
+    private String assunto;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
