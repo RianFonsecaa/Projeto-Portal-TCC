@@ -24,29 +24,46 @@ public class TarefaDTO {
 
     private Long id;
 
-    @NotNull(message = "O ID do orientando não pode estar vazio")
+    @NotNull(message = "O ID do projeto não pode estar vazio")
     private Long projetoId;
 
-    @NotEmpty(message = "O nome da tarefa não pode estar vazio")
-    private String nomeTarefa;
+    @NotEmpty(message = "O título da tarefa não pode estar vazio")
+    private String titulo;
 
     @NotEmpty(message = "A descrição da tarefa não pode estar vazia")
     private String descricao;
 
     @NotNull(message = "O status da tarefa é obrigatório")
-    private StatusTarefa status;
+    private String status;
 
     @NotNull(message = "A prioridade é obrigatória")
-    private Prioridade prioridade;
+    private String prioridade;
+
+    @NotEmpty(message = "A etapa da tarefa não pode estar vazia")
+    private String etapa;
 
     @NotNull(message = "A classificação é obrigatória")
-    private Classificacao classificacao;
-
-    @NotNull(message = "O prazo da tarefa é obrigatório")
-    private LocalDate prazo;
+    private String classificacao;
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd' 'HH:mm:ss")
-    private LocalDateTime  ultimaAtualizacao;
-    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime ultimaAtualizacaoEm;
+
+    @NotEmpty
+    private String ultimaAtualizacaoPor;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime criacaoEm;
+
+    @NotEmpty
+    private String criacaoPor;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate dataInicio;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate dataFim;
 }

@@ -2,6 +2,7 @@
 package com.ifba.Gerenciador_TCC.tarefa.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Prioridade;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Data
 @AllArgsConstructor
@@ -28,35 +30,70 @@ import java.util.List;
 public class Tarefa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "codigo", nullable = false, length = 5)
+    private String codigo;
 
     @ManyToOne
     @JoinColumn(name = "projeto_id", nullable = false)
     private Projeto projeto;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private StatusTarefa status;
-
-    @NotEmpty(message = "O nome da tarefa não pode estar vazio")
-    @Column(name = "nome_tarefa", nullable = false, length = 200)
-    private String nomeTarefa;
+    @NotEmpty(message = "O título da tarefa não pode estar vazio")
+    @Column(name = "titulo", nullable = false, length = 200)
+    private String titulo;
 
     @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusTarefa status;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "prioridade", nullable = false)
     private Prioridade prioridade;
+
+    @Column(name = "etapa", nullable = false)
+    private String etapa;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "classificacao", nullable = false)
     private Classificacao classificacao;
 
-    @Column(name = "prazo", nullable = true)
-    private LocalDate prazo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "ultima_atualizacao_em", nullable = false)
+    private LocalDateTime ultimaAtualizacaoEm;
 
-    @Column(name = "ultimaAtualizacao", nullable = true)
-    private LocalDateTime ultimaAtualizacao;
+    @Column(name = "ultima_atualizacao_por", nullable = false)
+    private String ultimaAtualizacaoPor;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "criacao_em", nullable = false, updatable = false)
+    private LocalDateTime criacaoEm;
+
+    @Column(name = "criacao_por", nullable = false, updatable = false)
+    private String criacaoPor;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "data_inicio", nullable = false)
+    private LocalDate dataInicio;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "data_fim", nullable = false)
+    private LocalDate dataFim;
+
+    @PrePersist
+    public void gerarCodigo() {
+        if (codigo == null) {
+            this.codigo = gerarCodigoAleatorio();
+        }
+    }
+
+    private String gerarCodigoAleatorio() {
+        char letra = (char) ('A' + new Random().nextInt(26));
+        int numero = 1000 + new Random().nextInt(9000); // 1000 a 9999
+        return String.format("%c%d", letra, numero);
+    }
 }
