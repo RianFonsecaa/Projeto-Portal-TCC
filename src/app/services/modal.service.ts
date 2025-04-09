@@ -14,14 +14,12 @@ export class ModalService {
       this.modais.set(modalId, new BehaviorSubject<boolean>(false));
     }
     this.modais.get(modalId)?.next(true);
-    document.body.style.overflow = 'hidden'; // Impede o scroll
   }
 
   fechar(modalId: string) {
     if (this.modais.has(modalId)) {
       this.modais.get(modalId)?.next(false);
     }
-    document.body.style.overflow = ''; // Libera o scroll
   }
 
   isVisivel(modalId: string): boolean {

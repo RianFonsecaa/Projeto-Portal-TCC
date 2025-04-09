@@ -1,5 +1,5 @@
 <section
-  class="absolute inset-0 flex justify-end z-50 bg-opacity-50 transition-all duration-300 ease-in-out font-popp text-sm"
+  class="absolute inset-0 flex justify-center items-center z-50 bg-opacity-50 transition-all duration-300 ease-in-out text-sm"
   [ngClass]="{ 'opacity-0 pointer-events-none': !modalService.isVisivel('modalTarefa'), 'opacity-100': modalService.isVisivel('modalTarefa') }">
 
   <!-- Overlay -->
@@ -7,7 +7,7 @@
 
   <!-- Modal -->
   <div
-    class="bg-white rounded-lg shadow-lg z-20 flex flex-col space-y-2 w-[600px] h-auto p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
+    class="bg-white rounded-lg shadow-lg z-20 flex flex-col space-y-2 w-[830px] h-fit p-6 text-[#313131] dark:bg-[#2b2b2b] dark:text-white">
     
     <!-- Header -->
     <div class="flex justify-between items-center border-b pb-2">
@@ -22,32 +22,83 @@
     </div>
 
     <!-- Form -->
-    <form [formGroup]="tarefaForm" class="flex flex-col justify-between space-y-2 h-full pb-[30px]">
+    <form [formGroup]="tarefaForm" class="flex flex-col justify-between space-y-2 h-fit">
 
       <!-- Conteúdo -->
-      <div class="flex flex-col overflow-y-scroll overflow-x-hidden">
+      <div class="flex flex-row space-x-4 overflow-x-hidden">
         
-        <!-- Título -->
-        <div class="flex flex-col">
-          <span class="text-[#7e7e7e] font-medium">Título</span>
-          <input name="titulo" formControlName="titulo" type="text" maxlength="70"
-            class="w-full p-0 font-medium border-0 overflow-hidden text-ellipsis"
-            placeholder="Digite o título" autocomplete="off">
-        </div>
-
-        <!-- Descrição e Anexo -->
-        <div class="mt-2">
+        <div class="w-1/2 flex flex-col">
+          <!-- Título -->
           <div class="flex flex-col">
-            <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
-            <textarea
-              formControlName="descricao" maxlength="400"
-              class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify"
-              placeholder="Digite a descrição..."></textarea>
+            <span class="text-[#7e7e7e] font-medium">Título</span>
+            <input name="titulo" formControlName="titulo" type="text" maxlength="70"
+              class="w-full p-0 font-medium border-0 overflow-hidden text-ellipsis"
+              placeholder="Digite o título" autocomplete="off">
           </div>
-        </div>
+  
+<!-- Descrição e Anexo -->
+<div class="mt-2 flex flex-col h-full">
+  <div class="flex flex-col flex-1">
+    <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
+    <textarea
+      formControlName="descricao" maxlength="400"
+      class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify"
+      placeholder="Digite a descrição..."></textarea>
+  </div>
 
+  <div class="flex flex-col space-y-2 mt-2">
+    <button class="flex w-fit items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md shadow-gray-400">
+      <span>Anexar</span>
+      <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+      </svg>
+    </button>
+
+    <div class="p-2 bg-[#e9eeff] h-[100px]"></div>
+  </div>
+</div>
+
+                    <!-- Infos -->
+                    <div *ngIf="alterar" class="w-full mt-4">
+                      <div class="grid grid-cols-2 gap-4">
+                        <!-- Criado Por -->
+                        <div class="flex flex-col gap-2">
+                          <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Por</label>
+                          <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                            {{ tarefaSelecionada?.criacaoPor }}
+                          </div>
+                        </div>
+          
+                        <!-- Criado Em -->
+                        <div class="flex flex-col gap-2">
+                          <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Em</label>
+                          <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                            {{ tarefaSelecionada?.criacaoEm | date:'dd/MM/yyyy' }}
+                          </div>
+                        </div>
+          
+                        <!-- Atualizado Por -->
+                        <div class="flex flex-col gap-2">
+                          <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Por</label>
+                          <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                            {{ tarefaSelecionada?.ultimaAtualizacaoPor }}
+                          </div>
+                        </div>
+          
+                        <!-- Atualizado Em -->
+                        <div class="flex flex-col gap-2">
+                          <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Em</label>
+                          <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
+                            {{ tarefaSelecionada?.ultimaAtualizacaoEm | date:'dd/MM/yyyy' }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        </div>
         <!-- Dropdowns + Datas -->
-        <div class="flex flex-col h-full min-h-0">
+        <div class="w-1/2 flex flex-col justify-between">
           <div class="flex flex-col w-full relative">
             <app-dropdown-classificacao></app-dropdown-classificacao>
             <app-dropdown-etapa></app-dropdown-etapa>
@@ -57,81 +108,34 @@
 
           
           <!-- Data Início -->
-          <div class="flex flex-row items-center space-x-2 w-full py-4">
+          <div class="flex flex-col border-b space-x-2 w-full py-1">
             <span class="text-[#7e7e7e] font-medium text-nowrap">Data Início</span>
             <input name="dataInicio" formControlName="dataInicio" type="date"
-              class="w-full border flex justify-end border-gray-200 h-10 rounded-lg p-2 font-medium focus:border-blue-600 focus:outline-none">
+              class="w-fit border-0 flex self-end text-sm rounded-lg bg-[#e9eeff] p-2 font-medium focus:border-blue-600 focus:outline-none">
           </div>
 
           <!-- Data Fim -->
-          <div class="flex flex-row items-center space-x-2 w-full py-4">
+          <div class="flex flex-col border-b space-x-2 w-full py-1">
             <span class="text-[#7e7e7e] font-medium text-nowrap">Data Fim</span>
             <input name="dataFim" formControlName="dataFim" type="date"
-              class="w-full border flex justify-end border-gray-200 h-10 rounded-lg p-2 font-medium focus:border-blue-600 focus:outline-none">
-          </div>
-          <!-- Infos -->
-          <div *ngIf="alterar" class="w-full mt-4">
-            <div class="grid grid-cols-2 gap-4">
-              <!-- Criado Por -->
-              <div class="flex flex-row items-center gap-2">
-                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Por</label>
-                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
-                  {{ tarefaSelecionada?.criacaoPor }}
-                </div>
-              </div>
-
-              <!-- Criado Em -->
-              <div class="flex flex-row items-center gap-2">
-                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Criado Em</label>
-                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
-                  {{ tarefaSelecionada?.criacaoEm | date:'dd/MM/yyyy' }}
-                </div>
-              </div>
-
-              <!-- Atualizado Por -->
-              <div class="flex flex-row items-center gap-2">
-                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Por</label>
-                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
-                  {{ tarefaSelecionada?.ultimaAtualizacaoPor }}
-                </div>
-              </div>
-
-              <!-- Atualizado Em -->
-              <div class="flex flex-row items-center gap-2">
-                <label class="text-[12px] text-[#7e7e7e] font-medium w-[100px] text-nowrap">Atualizado Em</label>
-                <div class="flex-1 h-[40px] px-3 py-2 rounded-lg border border-gray-300 bg-gray-100 flex items-center text-sm font-medium text-[#515151]">
-                  {{ tarefaSelecionada?.ultimaAtualizacaoEm | date:'dd/MM/yyyy' }}
-                </div>
-              </div>
-            </div>
+              class="w-fit border-0 flex self-end text-sm rounded-lg bg-[#e9eeff] p-2 font-medium focus:border-blue-600 focus:outline-none">
           </div>
 
-          <div class="flex flex-col space-y-2">
-            <button class="flex w-fit items-center gap-2 mt-2 px-4 py-2 bg-gray-100 rounded-lg border border-blue-700 text-blue-700">
-              <span>Anexar</span>
-              <svg class="w-6 h-6 text-blue-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
-              </svg>
-            </button>
-
-            <div class="p-2 bg-[#e9eeff] h-[150px]"></div>
-          </div>
-        </div>
-      </div>
-         <!-- Botões de ação -->
-      <div class="flex justify-between items-center border-t border-gray-200 pt-4">
-        <button class="flex flex-row gap-1 px-4 py-2 bg-gray-100 rounded-lg border border-red-600 text-red-600" (click)="deletarTarefa()" *ngIf="this.alterar">
+            <!-- Botões de ação -->
+      <div class="flex justify-between items-center py-2">
+        <button class="flex flex-row gap-1 px-4 py-2 bg-[#ff5454] text-white rounded-lg shadow-md shadow-gray-400" (click)="deletarTarefa()" *ngIf="this.alterar">
           <span>Deletar</span>
-          <svg class="w-5 h-5 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
           </svg>
         </button>
 
         <div class="w-full flex justify-end items-end gap-2">
-          <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400" (click)="fecharModal()">Cancelar</button>
-          <button class="px-4 py-2 bg-green-600 text-white rounded-lg" (click)="salvarTarefa()">Salvar</button>
+          <button class="px-4 py-2 bg-gray-100 rounded-lg border border-gray-400 shadow-md" (click)="fecharModal()">Cancelar</button>
+          <button type="button" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md shadow-gray-400" (click)="salvarTarefa()">Salvar</button>
+        </div>
+      </div>
+
         </div>
       </div>
     </form>

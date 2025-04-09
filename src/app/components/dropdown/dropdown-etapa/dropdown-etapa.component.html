@@ -1,8 +1,8 @@
 <section class="relative">
-  <div class="flex flex-row space-x-2 items-center py-4">
+  <div class="flex flex-col border-b space-x-2 py-1">
     <span class="text-[#7e7e7e] font-medium">Etapa</span>
     <button (click)="dropdownService.toggle('dropdown-etapa')" 
-            class="w-full border rounded-md text-[#515151] font-semibold text-left flex justify-end items-center">
+            class="w-full rounded-md text-[#515151] font-semibold text-left flex justify-end items-center">
       
       <div class="flex flex-col" *ngIf="getEtapaSelecionada(); else semPrioridade">
         <span class="bg-[#e9eeff] p-2 text-sm rounded-lg flex flex-row space-x-2">
