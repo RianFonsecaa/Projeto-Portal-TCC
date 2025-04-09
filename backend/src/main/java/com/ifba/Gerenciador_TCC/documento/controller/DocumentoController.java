@@ -16,6 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/documentos")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DocumentoController {
 
     private final IDocumentoService documentoService;
@@ -23,7 +24,8 @@ public class DocumentoController {
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
     public ResponseEntity<DocumentoDTO> uploadDocumento(
     @RequestParam("titulo") String titulo,
-    @RequestParam("tipo") EscopoDocumentoEnum tipo,
+    @RequestParam("escopo") EscopoDocumentoEnum escopo,
+    @RequestParam("tipo") String tipo,
     @RequestParam("tarefaid") Long tarefaid,
     @RequestParam("projetoid") Long projetoid,
     @RequestParam("arquivo") MultipartFile file
@@ -32,13 +34,14 @@ public class DocumentoController {
         
     DocumentoDTO dto = new DocumentoDTO();
     dto.setTitulo(titulo);
-    dto.setEscopoDocumento(tipo);
+    dto.setEscopoDocumento(escopo);
     dto.setArquivo(file);
+    dto.setTipoDocumento(tipo);
     dto.setTarefaId(tarefaid);
     dto.setProjetoId(projetoid);
     dto.setTamanho(Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0);
-    dto.setTarefaId(tarefaid);
-
+    System.out.println("CHEGOU");
+    
     DocumentoDTO salvo = documentoService.salvar(dto);
     return ResponseEntity.ok(salvo);
     }
