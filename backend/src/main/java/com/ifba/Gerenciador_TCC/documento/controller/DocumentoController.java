@@ -1,6 +1,7 @@
 package com.ifba.Gerenciador_TCC.documento.controller;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
+import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoTarefaDTO;
 import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
 import com.ifba.Gerenciador_TCC.documento.interfaces.IDocumentoService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class DocumentoController {
     public ResponseEntity<DocumentoDTO> uploadDocumento(
     @RequestParam("titulo") String titulo,
     @RequestParam("tipo") TipoDocumentoEnum tipo,
-    @RequestParam(value = "codigoTarefa", required = false) Long codigoTarefa,
+    @RequestParam("tarefaid") Long tarefaid,
     @RequestParam("arquivo") MultipartFile file
 
     ) throws IOException {
@@ -31,9 +32,11 @@ public class DocumentoController {
     dto.setTitulo(titulo);
     dto.setTipoDocumento(tipo);
     dto.setArquivo(file);
+    dto.setTarefaId(tarefaid);
 
     double tamanhoEmMb = Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0;
     dto.setTamanho(tamanhoEmMb);
+    dto.setTarefaId(tarefaid);
     DocumentoDTO salvo = documentoService.salvar(dto);
     return ResponseEntity.ok(salvo);
     }
@@ -55,6 +58,9 @@ public class DocumentoController {
         return ResponseEntity.noContent().build();
     }
 
-    
+    @GetMapping("/tarefa/{id}")
+    public ResponseEntity<List<DocumentoTarefaDTO>> getDocumentoByTarefa(@PathVariable Long id) {
+        return ResponseEntity.ok(documentoService.getDocumentoByTarefa(id));
+    }
 
 }

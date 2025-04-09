@@ -20,17 +20,13 @@ public class DocumentoDTO {
     private String titulo;
     private TipoDocumentoEnum tipoDocumento;
     private String caminhoArquivo;
-
     @JsonIgnore
-    private MultipartFile arquivo; 
-
+    private MultipartFile arquivo;
     public void setArquivo(MultipartFile arquivo) {
         this.arquivo = arquivo;
     }
-
-    
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataUpload;
-
     private Double tamanho;
+    private Long tarefaId;
 }
