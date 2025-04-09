@@ -9,6 +9,8 @@ import com.ifba.Gerenciador_TCC.documento.domain.entity.DocumentoTarefa;
 import com.ifba.Gerenciador_TCC.documento.interfaces.IDocumentoService;
 import com.ifba.Gerenciador_TCC.documento.repository.DocumentoRepository;
 import com.ifba.Gerenciador_TCC.documento.repository.DocumentoTarefaRepository;
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
+import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import com.ifba.Gerenciador_TCC.tarefa.repository.TarefaRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +37,13 @@ public class DocumentoService implements IDocumentoService {
     private TarefaRepository tarefaRepository;
     @Autowired
     private DocumentoTarefaRepository documentoTarefaRepository;
+    @Autowired
+    private ProjetoService projetoService;
 
     public DocumentoDTO salvar(DocumentoDTO dto) throws IOException {
-        DocumentoEntity entity = DocumentoBuilder.toEntity(dto);
+        Projeto projeto = projetoService.findById(dto.getProjetoId());
+
+        DocumentoEntity entity = DocumentoBuilder.toEntity(dto, projeto);
     
         if (dto.getArquivo() != null && !dto.getArquivo().isEmpty()) {
             String urlArquivo = cloudinaryService.uploadFile(dto.getArquivo());
@@ -81,4 +87,10 @@ public class DocumentoService implements IDocumentoService {
     public List<DocumentoTarefaDTO> getDocumentoByTarefa(Long id){
         return documentoRepository.findDocumentosByTarefaId(id);
     };
+    @Override
+    public List<DocumentoDTO> getDocumentoByProjeto(Long id){
+        return documentoRepository.findByProjetoId(id).stream()
+                .map(DocumentoBuilder::toDTO)
+                .collect(Collectors.toList());
+    }
 }

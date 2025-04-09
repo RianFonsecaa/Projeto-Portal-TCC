@@ -1,7 +1,6 @@
 package com.ifba.Gerenciador_TCC.documento.domain.dto;
 
-import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
-import lombok.AllArgsConstructor;
+import com.ifba.Gerenciador_TCC.documento.domain.enums.EscopoDocumentoEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,21 +12,23 @@ import java.util.UUID;
 public class DocumentoTarefaDTO {
     private UUID documentoId;
     private String titulo;
-    private TipoDocumentoEnum tipoDocumento;
+    private EscopoDocumentoEnum escopoDocumento;
     private String caminhoArquivo;
     private LocalDateTime dataUpload;
     private Double tamanho;
+    private String tipoDocumento;
     private Long tarefaId;
 
-    public DocumentoTarefaDTO(UUID documentoId, String titulo, TipoDocumentoEnum tipoDocumento,
+    public DocumentoTarefaDTO(UUID documentoId, String titulo, EscopoDocumentoEnum escopoDocumento,
                               String caminhoArquivo, LocalDateTime dataUpload, Double tamanho,
-                              Long tarefaId) {
+                              String tipoDocumento,Long tarefaId) {
         this.documentoId = documentoId;
         this.titulo = titulo;
-        this.tipoDocumento = tipoDocumento;
+        this.escopoDocumento = escopoDocumento;
         this.caminhoArquivo = caminhoArquivo;
         this.dataUpload = dataUpload;
         this.tamanho = tamanho;
+        this.tipoDocumento = tipoDocumento;
         this.tarefaId = tarefaId;
     }
 }

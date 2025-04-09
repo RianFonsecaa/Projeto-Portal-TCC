@@ -1,7 +1,9 @@
 package com.ifba.Gerenciador_TCC.documento.domain.entity;
 
-import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
+import com.ifba.Gerenciador_TCC.documento.domain.enums.EscopoDocumentoEnum;
+import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -26,8 +28,8 @@ public class DocumentoEntity {
     private String titulo;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TipoDocumentoEnum tipoDocumento;
+    @Column(name = "escopo_documento",nullable = false)
+    private EscopoDocumentoEnum escopoDocumento;
 
     @Column(name = "caminho_arquivo")
     private String caminhoArquivo;
@@ -38,5 +40,13 @@ public class DocumentoEntity {
 
     @Column(name = "tamanho")
     private Double tamanho;
+
+    @Column(name = "tipo_documento")
+    private String tipoDocumento;
+
+    @ManyToOne
+    @NotNull(message = "O id do projeto não pode estar vazio")
+    @JoinColumn(name = "projeto_id", nullable = false)
+    private Projeto projeto;
 
 }

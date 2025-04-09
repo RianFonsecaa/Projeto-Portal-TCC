@@ -2,7 +2,8 @@ package com.ifba.Gerenciador_TCC.documento.controller;
 
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoDTO;
 import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoTarefaDTO;
-import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
+import com.ifba.Gerenciador_TCC.documento.domain.entity.DocumentoEntity;
+import com.ifba.Gerenciador_TCC.documento.domain.enums.EscopoDocumentoEnum;
 import com.ifba.Gerenciador_TCC.documento.interfaces.IDocumentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,21 +23,22 @@ public class DocumentoController {
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
     public ResponseEntity<DocumentoDTO> uploadDocumento(
     @RequestParam("titulo") String titulo,
-    @RequestParam("tipo") TipoDocumentoEnum tipo,
+    @RequestParam("tipo") EscopoDocumentoEnum tipo,
     @RequestParam("tarefaid") Long tarefaid,
+    @RequestParam("projetoid") Long projetoid,
     @RequestParam("arquivo") MultipartFile file
 
     ) throws IOException {
         
     DocumentoDTO dto = new DocumentoDTO();
     dto.setTitulo(titulo);
-    dto.setTipoDocumento(tipo);
+    dto.setEscopoDocumento(tipo);
     dto.setArquivo(file);
     dto.setTarefaId(tarefaid);
-
-    double tamanhoEmMb = Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0;
-    dto.setTamanho(tamanhoEmMb);
+    dto.setProjetoId(projetoid);
+    dto.setTamanho(Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0);
     dto.setTarefaId(tarefaid);
+
     DocumentoDTO salvo = documentoService.salvar(dto);
     return ResponseEntity.ok(salvo);
     }
@@ -61,6 +63,11 @@ public class DocumentoController {
     @GetMapping("/tarefa/{id}")
     public ResponseEntity<List<DocumentoTarefaDTO>> getDocumentoByTarefa(@PathVariable Long id) {
         return ResponseEntity.ok(documentoService.getDocumentoByTarefa(id));
+    }
+
+    @GetMapping("/projeto/{id}")
+    public ResponseEntity<List<DocumentoDTO>> getDocumentoByProjeto(@PathVariable Long id) {
+        return ResponseEntity.ok(documentoService.getDocumentoByProjeto(id));
     }
 
 }

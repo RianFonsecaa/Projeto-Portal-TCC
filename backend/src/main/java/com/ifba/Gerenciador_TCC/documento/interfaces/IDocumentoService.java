@@ -16,4 +16,6 @@ public interface IDocumentoService {
     void deletar(UUID id);
     void salvarDocumentoTarefa(DocumentoDTO dto, DocumentoEntity documentoEntity);
     public List<DocumentoTarefaDTO> getDocumentoByTarefa(Long id);
+
+    public List<DocumentoDTO> getDocumentoByProjeto(Long id);
 }

@@ -2,9 +2,9 @@ package com.ifba.Gerenciador_TCC.documento.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ifba.Gerenciador_TCC.documento.domain.enums.TipoDocumentoEnum;
+import com.ifba.Gerenciador_TCC.documento.domain.enums.EscopoDocumentoEnum;
 import lombok.*;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class DocumentoDTO {
     private UUID id;
     private String titulo;
-    private TipoDocumentoEnum tipoDocumento;
+    private EscopoDocumentoEnum escopoDocumento;
     private String caminhoArquivo;
     @JsonIgnore
     private MultipartFile arquivo;
@@ -29,4 +29,6 @@ public class DocumentoDTO {
     private LocalDateTime dataUpload;
     private Double tamanho;
     private Long tarefaId;
+    private String tipoDocumento;
+    private Long projetoId;
 }
