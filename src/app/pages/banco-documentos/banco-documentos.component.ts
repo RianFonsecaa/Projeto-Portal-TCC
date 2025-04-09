@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Documento } from '../../model/Documentos';
+import { Documento } from '../../model/Documento';
 import { DocumentoService } from '../../services/documento.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { DocumentoService } from '../../services/documento.service';
 export class BancoDocumentosComponent {
   documents: Document[] = [];
 
-  documento: Documento[] = [];
+  documentos: Documento[] = [];
   filtrosDocumentos: Documento[] = [];
   opcoes: string[] = ['Nome do Arquivo', 'Código da Tarefa'];
   palavraChave = '';
@@ -22,30 +22,30 @@ export class BancoDocumentosComponent {
   mostrarPrimeiroCampo = true;
 
   constructor(private documentoService: DocumentoService) {
-    this.documento = this.documentoService.getDocuments();  
+    this.documentos = this.documentoService.getDocumentos();  
   }
 
   ngOnInit(): void {
    // this.carregaDocumentos();
-    this.filtrosDocumentos = [...this.documento];
+    this.filtrosDocumentos = [...this.documentos];
     this.preencherIcone();
   }
 
   pesquisar() {
     if (!this.palavraChave) {
-      this.filtrosDocumentos = [...this.documento];
+      this.filtrosDocumentos = [...this.documentos];
       return;
     }
 
-    this.filtrosDocumentos = this.documento.filter(doc => 
-      doc.nome.toLowerCase().includes(this.palavraChave.toLowerCase()) ||
-      doc.codigoTarefa.toLowerCase().includes(this.palavraChave.toLowerCase())
+    this.filtrosDocumentos = this.documentos.filter(doc => 
+      doc.titulo.toLowerCase().includes(this.palavraChave.toLowerCase()) ||
+      doc.tarefaId.toLowerCase().includes(this.palavraChave.toLowerCase())
     );
   }
 
   preencherIcone(){
-    this.documento.forEach(doc => {
-      doc.tipoDoc = this.getIcon(doc.nome);
+    this.documentos.forEach(doc => {
+      doc.tipoDocumento = this.getIcon(doc.titulo);
     });
   }
 
@@ -65,14 +65,7 @@ export class BancoDocumentosComponent {
   }
 
   private carregaDocumentos(): void {
-    this.documentoService.getDocumentos().subscribe({
-      next: (docs: Documento[]) => {
-        this.documento = docs; 
-      },
-      error: (err) => {
-        console.error('Erro ao carregar documentos:', err);
-      }
-    });
+   this.documentos = this.documentoService.getDocumentos()
   }
 
   removerCampo(){

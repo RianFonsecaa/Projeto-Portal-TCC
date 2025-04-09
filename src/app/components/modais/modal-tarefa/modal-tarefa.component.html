@@ -36,27 +36,63 @@
               placeholder="Digite o título" autocomplete="off">
           </div>
   
-<!-- Descrição e Anexo -->
+<!-- Descrição  -->
 <div class="mt-2 flex flex-col h-full">
   <div class="flex flex-col flex-1">
-    <span class="text-[12px] text-[#7e7e7e] font-medium">Descrição</span>
+    <span class=" text-[#7e7e7e] font-medium">Descrição</span>
     <textarea
       formControlName="descricao" maxlength="400"
       class="w-full flex-1 bg-[#e9eeff] border-0 rounded-lg p-4 mt-1 resize-none text-justify"
       placeholder="Digite a descrição..."></textarea>
   </div>
 
+  <!-- Anexos -->
   <div class="flex flex-col space-y-2 mt-2">
-    <button class="flex w-fit items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md shadow-gray-400">
-      <span>Anexar</span>
-      <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg"
-        fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
-      </svg>
-    </button>
+    <input type="file" #fileInput multiple hidden (change)="onFileSelected($event)">
+    <button type="button" (click)="fileInput.click()"
+    class="flex w-fit items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md shadow-gray-400">
+    <span>Anexar</span>
+    <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+    </svg>
+  </button>
 
-    <div class="p-2 bg-[#e9eeff] h-[100px]"></div>
+    <div class="bg-[#e9eeff] p-1 h-[130px] overflow-auto">
+      <ul class="flex flex-col space-y-1">
+        <!-- Documentos já salvos no banco -->
+        <li *ngFor="let doc of documentos">
+          <div class="flex flex-row justify-between rounded-md border bg-gray-100 p-2">
+            <div class="flex flex-row items-center">
+              <img [src]="getIconePorExtensao(getExtensaoArquivo(doc.tipoDocumento))" class="w-9 h-9 mr-2" />
+              <div class="flex flex-col">
+                <span class="truncate max-w-[250px]">{{ doc.titulo }}</span>
+                <span class="text-[#7e7e7e] font-medium">
+                  {{ doc.tamanho / 1024 | number:'1.2-2' }} KB
+                </span>
+              </div>
+            </div>
+            <!-- Ex: botão de download ou exclusão -->
+          </div>
+        </li>
+
+        <!-- Novos arquivos a enviar -->
+        <li *ngFor="let arquivo of arquivos">
+          <div class="flex flex-row justify-between rounded-md border bg-white p-2">
+            <div class="flex flex-row items-center">
+              <img [src]="getIconePorExtensao(getExtensaoArquivo(arquivo.name))" class="w-9 h-9 mr-2" />
+              <div class="flex flex-col">
+                <span class="truncate max-w-[250px]">{{ arquivo.name }}</span>
+                <span class="text-[#7e7e7e] font-medium">
+                  {{ arquivo.size / 1024 | number:'1.2-2' }} KB
+                </span>
+              </div>
+            </div>
+            <button (click)="removerArquivo(arquivo)">X</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 

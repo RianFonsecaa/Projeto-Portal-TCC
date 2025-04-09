@@ -70,12 +70,11 @@
     <div class="divide-y divide-gray-100">
       <div *ngFor="let documento of filtrosDocumentos" class="document-row grid grid-cols-5 py-3 font-sans">
         <div class="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer flex">
-          <img [src]="documento?.tipoDoc || '../../../assets/svg/pdf.svg'" width="40" height="40" class="file-icon pr-2">
-          {{ documento.nome }}
+          <img [src]="documento?.tipoDocumento" width="40" height="40" class="file-icon pr-2">
+          {{ documento.titulo }}
         </div>
-        <div class="text-gray-600 px-20">{{ documento.data }}</div>
+        <div class="text-gray-600 px-20">{{ documento.dataUpload }}</div>
         <div class="text-gray-600 px-20">{{ documento.tamanho }}</div>
-        <div class="text-gray-600 px-20">{{ documento.codigoTarefa }}</div>
         <button class="px-48">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  class="transition-transform transform hover:scale-125 duration-300">
             <rect width="25.2819" height="25.2819" fill="url(#pattern0_556_74)"/>

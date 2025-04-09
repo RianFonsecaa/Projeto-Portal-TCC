@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { projetoService } from './projetoService';
 import { MensagensService } from './mensagens.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { Documento } from '../../model/Documento';
 
 @Injectable({ providedIn: 'root' })
 export class TarefasService {
@@ -47,28 +48,30 @@ export class TarefasService {
     this._tarefas$.next(tarefasOrdenadas);
   }
 
-  adicionarTarefa(novaTarefa: Tarefa): void {
-    this.http.post<Tarefa>(`${this.baseUrl}?idUsuario=${this.idUsuario}`, novaTarefa).subscribe({
-      next: () => {
+  adicionarTarefa(novaTarefa: Tarefa): Observable<Tarefa> {
+    return this.http.post<Tarefa>(`${this.baseUrl}?idUsuario=${this.idUsuario}`, novaTarefa).pipe(
+      tap(() => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();
-      },
-      error: (err) => {
+      }),
+      catchError((err) => {
         console.error('Erro ao cadastrar tarefa:', err);
-      }
-    });
+        return throwError(() => err);
+      })
+    );
   }
-
-  atualizarTarefa(tarefaModificada: Tarefa): void {
-    this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${this.idUsuario}`, tarefaModificada).subscribe({
-      next: () => {
+  
+  atualizarTarefa(tarefaModificada: Tarefa): Observable<Tarefa> {
+    return this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${this.idUsuario}`, tarefaModificada).pipe(
+      tap(() => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();
-      },
-      error: (err) => {
+      }),
+      catchError((err) => {
         console.error('Erro ao atualizar tarefa', err);
-      }
-    });
+        return throwError(() => err);
+      })
+    );
   }
 
   deletarTarefa() {

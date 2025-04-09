@@ -21,7 +21,6 @@ import { QuadroTarefasComponent } from "../quadro-tarefas/quadro-tarefas.compone
   standalone: true,
   imports: [ModalTarefa, NgClass, TarefasConteudoComponent, NgFor, NgIf, DragDropModule, RouterLink, RouterOutlet, BancoDocumentosComponent, QuadroTarefasComponent, NgSwitchCase, NgSwitch],
   templateUrl: './gestao-projeto.component.html',
-  styleUrl: './gestao-projeto.component.css'
 })
 export class GestaoProjetoComponent implements OnInit {
 
@@ -34,7 +33,6 @@ export class GestaoProjetoComponent implements OnInit {
     public projetoService: projetoService,
     private perfilService: PerfilService,
     public router: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
