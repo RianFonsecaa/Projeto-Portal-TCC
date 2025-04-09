@@ -1,91 +1,137 @@
-<main class="mx-auto m-2">
+<main class="mx-auto m-2 overflow-y-auto overflow-x-hidden">
 
-    <div class="flex space-x-2">
-        
-        <div class="flex flex-row">
-          <div>
-            <div class="flex">
-              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform transform hover:scale-125 duration-300">
-                <rect width="17" height="17" fill="url(#pattern0_553_27)"/>
-                <defs>
-                  <pattern id="pattern0_553_27" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_553_27" transform="scale(0.0416667)"/>
-                  </pattern>
-                  <image id="image0_553_27" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABB0lEQVR4nO2UTU7DMBCFcwkopdcKrFDxUCkzAbFtWNP2QBWdicodEIiLkEBYsChBdoVo3DTE7rIZaTb+eZ/9POMg6OKw4mJJx4ppCoLPwFQooU8QegXBWZRG/b3EVRqfKaF3ECrrUjFlsMBzb3Fg+t4lDr8QwZVe625Lw8nBTsZ8NB/12p/eeF4R+QLG8dXjzalOJXFixqo3uXcBvFQ3x8nWGjGQ0icDxfixOVBXLZeL6xN/gOW/tsUGDB9w4A0wNf+PRSB05w9gnNiPrCGujwy2sG+ZKqZM72kNWE9i2LbRQDCsq8ZGwB8E890AfHPu4m3I7ZH2F5ieTPkyFeuPDydO3dvFYcUP2Kvofiq34V4AAAAASUVORK5CYII="/>
-                </defs>
-              </svg>      
-            
-              <p class="text-green-400 hover:text-green-500 px-2 font-sans">PALAVRA-CHAVE</p>
-            </div>
-
-            <div class="flex-grow">
-              <input 
-                type="text" 
-                [(ngModel)]="palavraChave" 
-                (input)="pesquisar()"
-                placeholder="Digite a palavra-chave..."
-                class="w-[498px] border border-gray-300 rounded-md shadow-sm placeholder:text-gray-400">
-            </div>
-          </div>
-              
-      <div class="pb-6 px-3">
-            <div class="flex">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  class="transition-transform transform hover:scale-125 duration-300">
-                <rect width="20" height="20" fill="url(#pattern0_553_28)"/>
-                <defs>
-                <pattern id="pattern0_553_28" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_553_28" transform="scale(0.0416667)"/>
+  <div class="flex space-x-2">
+      
+      <div class="flex flex-row">
+        <div>
+          <div class="flex">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform transform hover:scale-125 duration-300">
+              <rect width="17" height="17" fill="url(#pattern0_553_27)"/>
+              <defs>
+                <pattern id="pattern0_553_27" patternContentUnits="objectBoundingBox" width="1" height="1">
+                  <use xlink:href="#image0_553_27" transform="scale(0.0416667)"/>
                 </pattern>
-                <image id="image0_553_28" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAa0lEQVR4nGNgGBEgcVv60cRtGf8TtmYcppEFGf9hmCqG4MMMRKqnvwU0DyJ8IGFrxmGwBVvTDzEMG5A46JJuIpGpKJHIlEV/C0gFiSM36SYOuuRHLKCkYEsktzSlqgXYDCPa+8Mj+TEMEAAAL/ZkDumiQ/wAAAAASUVORK5CYII="/>
-                </defs>
-                </svg>
-                           
-              <p class="text-green-400 hover:text-green-500 px-2">CAMPO</p>
-            </div>        
-            <select 
-              [(ngModel)]="campoSelecionado" 
-              (click)="removerCampo()"
-              (change)="pesquisar()"
-              class="border border-gray-300 rounded-md shadow-sm w-52">
-              <option  class="text-gray-400" *ngIf="mostrarPrimeiroCampo" value=""  disabled selected>Selecione o campo</option>
-              <option value=""></option>
-              <option value="nome">Nome do Arquivo</option>
-              <option value="codigoTarefa">Código da Tarefa</option>
-            </select>
+                <image id="image0_553_27" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABB0lEQVR4nO2UTU7DMBCFcwkopdcKrFDxUCkzAbFtWNP2QBWdicodEIiLkEBYsChBdoVo3DTE7rIZaTb+eZ/9POMg6OKw4mJJx4ppCoLPwFQooU8QegXBWZRG/b3EVRqfKaF3ECrrUjFlsMBzb3Fg+t4lDr8QwZVe625Lw8nBTsZ8NB/12p/eeF4R+QLG8dXjzalOJXFixqo3uXcBvFQ3x8nWGjGQ0icDxfixOVBXLZeL6xN/gOW/tsUGDB9w4A0wNf+PRSB05w9gnNiPrCGujwy2sG+ZKqZM72kNWE9i2LbRQDCsq8ZGwB8E890AfHPu4m3I7ZH2F5ieTPkyFeuPDydO3dvFYcUP2Kvofiq34V4AAAAASUVORK5CYII="/>
+              </defs>
+            </svg>      
+          
+            <p class="text-green-400 hover:text-green-500 px-2 font-sans">PALAVRA-CHAVE</p>
+          </div>
+
+          <div class="flex-grow">
+            <input 
+              type="text" 
+              [(ngModel)]="palavraChave" 
+              (input)="pesquisar()"
+              placeholder="Digite a palavra-chave..."
+              class="w-[498px] border border-gray-300 rounded-md shadow-sm placeholder:text-gray-400">
           </div>
         </div>
-    </div>
-   
-     <!-- Lista de Documentos -->
-    <div class="border-b-2 border-gray-200 pb-2 mb-2">
-      <div class="grid grid-cols-5 font-semibold text-gray-800">
-        <span>Nome</span>
-        <span class="px-20">Data de upload</span>
-        <span class="px-16">Tamanho</span>
-        <span class="px-16">Código da Tarefa</span>
-        <span class="px-40">Download</span>
-      </div>
-    </div>
-    
-    <div class="divide-y divide-gray-100">
-      <div *ngFor="let documento of filtrosDocumentos" class="document-row grid grid-cols-5 py-3 font-sans">
-        <div class="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer flex">
-          <img [src]="documento?.tipoDocumento" width="40" height="40" class="file-icon pr-2">
-          {{ documento.titulo }}
+            
+    <div class="pb-6 px-3">
+          <div class="flex">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  class="transition-transform transform hover:scale-125 duration-300">
+              <rect width="20" height="20" fill="url(#pattern0_553_28)"/>
+              <defs>
+              <pattern id="pattern0_553_28" patternContentUnits="objectBoundingBox" width="1" height="1">
+              <use xlink:href="#image0_553_28" transform="scale(0.0416667)"/>
+              </pattern>
+              <image id="image0_553_28" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAa0lEQVR4nGNgGBEgcVv60cRtGf8TtmYcppEFGf9hmCqG4MMMRKqnvwU0DyJ8IGFrxmGwBVvTDzEMG5A46JJuIpGpKJHIlEV/C0gFiSM36SYOuuRHLKCkYEsktzSlqgXYDCPa+8Mj+TEMEAAAL/ZkDumiQ/wAAAAASUVORK5CYII="/>
+              </defs>
+              </svg>
+                         
+            <p class="text-green-400 hover:text-green-500 px-2">CAMPO</p>
+          </div>        
+          <select 
+            [(ngModel)]="campoSelecionado" 
+            (click)="removerCampo()"
+            (change)="pesquisar()"
+            class="border border-gray-300 rounded-md shadow-sm w-52">
+            <option  class="text-gray-400" *ngIf="mostrarPrimeiroCampo" value="" disabled selected>Selecione o campo</option>
+            <option value=""></option>
+            <option value="nome">Nome do Arquivo</option>
+            <option value="escopo">Escopo</option>
+          </select>
         </div>
-        <div class="text-gray-600 px-20">{{ documento.dataUpload }}</div>
-        <div class="text-gray-600 px-20">{{ documento.tamanho }}</div>
-        <button class="px-48">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  class="transition-transform transform hover:scale-125 duration-300">
-            <rect width="25.2819" height="25.2819" fill="url(#pattern0_556_74)"/>
-            <defs>
-            <pattern id="pattern0_556_74" patternContentUnits="objectBoundingBox" width="1" height="1">
-            <use xlink:href="#image0_556_74" transform="scale(0.0384615)"/>
-            </pattern>
-            <image id="image0_556_74" width="26" height="26" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAElEQVR4nO2WOwoCMRCGFxUfd9JTiMewsNqkcSaVWlh4AxsbK0HwUXkJK5lBENRLCJEsW6yuj2SzgqADfxf+j3+GCRMEbwq2UBaMA0F4kqz0jUgdJau+eRP4ljFKATilvjfoYRJOJTvnkUjbKPiD7uvfuh9tXciqKQkvtuby6QLjxXg9BYGGgiQ19QYxzlp6WnyZyjwQjJOsEMG4aO9GFasWesCWsIeq07wywJbOEFeYIFxlhtjCRB6QtzBSa2uI7cIZmGQ1TkDmncOwZu3vstlmzwRhKEl1YQMlpyC5/VXfA6LoZNIhQ/0DkEY8z6PtOeUlwdiLDsQIFifLVYkD8wqznlNCjmbLjQAAAABJRU5ErkJggg=="/>
-            </defs>
-            </svg>            
-        </button>
       </div>
+  </div>
+ 
+   <!-- Lista de Documentos -->
+  <div class="border-b-2 border-gray-200 pb-2 mb-2">
+    <div class="grid grid-cols-5 font-semibold text-gray-800">
+      <div class="flex items-center space-x-1 cursor-pointer" (click)="ordenar('nome')">
+        <span>Nome</span>
+        <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="12" height="12" fill="url(#pattern0_555_55)" />
+          <defs>
+            <pattern id="pattern0_555_55" patternContentUnits="objectBoundingBox" width="1" height="1">
+              <use xlink:href="#image0_555_55" transform="scale(0.0625)" />
+            </pattern>
+            <image id="image0_555_55" width="16" height="16" preserveAspectRatio="none"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAV0lEQVR4nGNgwAMaGxsbGhsbO/Cpwau5qanpPwiTbEgjkmayDGlC0wzDJLkCBMjWOHgMGHjQNOBh0ERp/DeRm5CamprKsRhQT6orkA0hTTMMQLNzAz5FAJFncunMjDUsAAAAAElFTkSuQmCC" />
+          </defs>
+        </svg>
+      </div> 
+    
+        <div class="flex items-center px-2 space-x-1 cursor-pointer" (click)="ordenar('data')">
+          <span>Data de upload</span>
+          <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="12" height="12" fill="url(#pattern0_555_55)" />
+            <defs>
+              <pattern id="pattern0_555_55" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_555_55" transform="scale(0.0625)" />
+              </pattern>
+              <image id="image0_555_55" width="16" height="16" preserveAspectRatio="none"
+                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAV0lEQVR4nGNgwAMaGxsbGhsbO/Cpwau5qanpPwiTbEgjkmayDGlC0wzDJLkCBMjWOHgMGHjQNOBh0ERp/DeRm5CamprKsRhQT6orkA0hTTMMQLNzAz5FAJFncunMjDUsAAAAAElFTkSuQmCC" />
+            </defs>
+          </svg>
+        </div>
+      
+        <div class="flex items-center px-10 space-x-1 cursor-pointer" (click)="ordenar('tamanho')">
+          <span>Tamanho</span>
+          <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="12" height="12" fill="url(#pattern0_555_55)" />
+          </svg>
+        </div>
+      
+        <div class="flex items-center px-20 space-x-1">
+          <span>Escopo</span>
+          <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="12" height="12" fill="url(#pattern0_555_55)" />
+          </svg>
+        </div>
+      
+        <div class="flex items-center px-40 space-x-1">
+          <span>Download</span>
+          <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="12" height="12" fill="url(#pattern0_555_55)" />
+          </svg>
+        </div>
+      </div>
+      
     </div>
+
+  
+  <div class="divide-y divide-gray-100">
+    <div *ngFor="let documento of filtrosDocumentos" class="document-row grid grid-cols-5 py-3 font-sans">
+      <div class="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer flex" (click)="abrirDocumento(documento.caminhoArquivo!)">
+        <img [src]="documento?.extensao || '../../../assets/svg/pdf.svg'" width="35" height="35" class="file-icon pr-2">
+        {{ documento.titulo }}
+      </div>
+      <div class="text-gray-600 px-27">{{ documento.dataUpload }}</div>
+      <div class="text-gray-600 px-20">{{ documento.tamanho }}</div>
+      <div class="text-gray-600 px-20">{{ documento.escopoDocumento }}</div>
+      <button class="px-48" (click)="abrir(documento.caminhoArquivo!)">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  class="transition-transform transform hover:scale-125 duration-300">
+          <rect width="25.2819" height="25.2819" fill="url(#pattern0_556_74)"/>
+          <defs>
+          <pattern id="pattern0_556_74" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlink:href="#image0_556_74" transform="scale(0.0384615)"/>
+          </pattern>
+          <image id="image0_556_74" width="26" height="26" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAElEQVR4nO2WOwoCMRCGFxUfd9JTiMewsNqkcSaVWlh4AxsbK0HwUXkJK5lBENRLCJEsW6yuj2SzgqADfxf+j3+GCRMEbwq2UBaMA0F4kqz0jUgdJau+eRP4ljFKATilvjfoYRJOJTvnkUjbKPiD7uvfuh9tXciqKQkvtuby6QLjxXg9BYGGgiQ19QYxzlp6WnyZyjwQjJOsEMG4aO9GFasWesCWsIeq07wywJbOEFeYIFxlhtjCRB6QtzBSa2uI7cIZmGQ1TkDmncOwZu3vstlmzwRhKEl1YQMlpyC5/VXfA6LoZNIhQ/0DkEY8z6PtOeUlwdiLDsQIFifLVYkD8wqznlNCjmbLjQAAAABJRU5ErkJggg=="/>
+          </defs>
+          </svg>            
+      </button>
+    </div>
+  </div>
 </main>

@@ -41,4 +41,14 @@ export class DocumentoService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  listaDocumentosPorProjeto(idProjeto: string): Observable<Documento[]> {
+    return this.http.get<Documento[]>(`${this.apiUrl}/projeto/${idProjeto}`);
+  }
+
+  downloadDocumento(caminho: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/download?caminho=${encodeURIComponent(caminho)}`, {
+      responseType: 'blob'
+    });
+  }
+
 }
