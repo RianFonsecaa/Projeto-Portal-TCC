@@ -1,0 +1,54 @@
+<div class="overflow-x-auto font-sans text-gray-800">
+  <!-- Cabeçalho de Meses -->
+  <div class="flex sticky top-0 bg-white z-20 shadow-sm border-b border-gray-200">
+    <div class="w-[220px] min-w-[220px] p-2 bg-gray-100 border-r border-gray-300"></div>
+    <div class="flex flex-1">
+      <div *ngFor="let month of timelineMonths"
+           class="h-12 flex items-center justify-center font-semibold text-sm text-gray-700 border-r border-gray-300 bg-white"
+           [style.width]="getMonthWidth(month)">
+        {{ month.month }} {{ month.year }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho de Dias -->
+  <div class="flex sticky top-[48px] bg-gray-50 z-10 border-b border-gray-200">
+    <div class="w-[220px] min-w-[220px] bg-gray-100 border-r border-gray-300"></div>
+    <div class="flex flex-1">
+      <div *ngFor="let day of timelineDays"
+           class="h-10 flex items-center justify-center text-xs border-r border-gray-200 transition-all duration-200"
+           [ngClass]="{
+             'bg-gray-100 text-gray-500': isWeekend(day),
+             'bg-yellow-200 text-yellow-900 font-semibold border-yellow-400': isToday(day)
+           }"
+           style="width: 32px">
+        {{ day.getDate() }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Corpo do Gantt -->
+  <div>
+    <div *ngFor="let item of getAllItemsToRender()" class="flex border-b border-gray-100 h-[44px] hover:bg-gray-50 transition-all duration-150">
+      <!-- Nome da Tarefa ou Etapa -->
+      <div class="w-[220px] min-w-[220px] flex items-center border-r border-gray-200 px-3"
+           [ngStyle]="{ 'padding-left': getTaskIndent(item) }">
+        <span *ngIf="temSubtarefas(item)" class="mr-1 text-blue-600 cursor-pointer select-none" (click)="toggleExpand(item)">
+          {{ isExpanded(item) ? '−' : '+' }}
+        </span>
+        <span class="truncate text-sm font-medium">
+          {{ getNomeTarefaOuEtapa(item) }}
+        </span>
+      </div>
+
+      <!-- Linha de tempo -->
+      <div class="flex-1 relative">
+        <div class="absolute top-[12px] h-[20px] rounded-md bg-blue-500 shadow-sm"
+             [style.left]="getTaskPosition(item).left"
+             [style.width]="getTaskPosition(item).width"
+             [title]="getNomeTarefaOuEtapa(item)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
