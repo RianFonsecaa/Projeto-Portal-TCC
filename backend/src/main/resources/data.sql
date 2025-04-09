@@ -10,6 +10,9 @@ VALUES
 (8, 'Yuri Pepe', 'pepeyuri2003@gmail.com', '75998678901', '$2y$10$Zi2DIVYzxXYmmNvtGJE9WOd7HtWMUz4jXAFz5UUTY4XAiOrnT7uue', 'ORIENTANDO')
 ON CONFLICT (id) DO NOTHING;
 
+ALTER SEQUENCE IF EXISTS usuario_id_seq RESTART WITH 9;
+
+
 INSERT INTO orientador (area_pesquisa, cargo, orientador_disponivel, projetos_em_orientacao, id, resumo)
 VALUES ('Machine Learning', 'Professor', false,6, 2, 'Professor e Doutor pela Universidade Federal da Bahia, com especialização em Inteligência Artificial e Machine Learning.')
 ON CONFLICT (id) DO NOTHING;
@@ -41,3 +44,4 @@ orientador_id) VALUES
 'Segurança em Redes sem Fio', '2024-02-23', 27, 99, 'assets/img/adem-ay-Tk9m_HP4rgQ-unsplash.jpg', 'REDES', 'ARTIGO', 7, 1)
 ON CONFLICT (id) DO NOTHING;
 
+ALTER SEQUENCE IF EXISTS projeto_id_seq RESTART WITH 7;

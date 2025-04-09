@@ -1,0 +1,19 @@
+[
+  "test_Get.py::test_get[/api/notifica\\xe7\\xf5es/rian@gmail.com]",
+  "test_Get.py::test_get[/api/notificacoes/nao-visualizadas/quantidade/rian@gmail.com]",
+  "test_Get.py::test_get[/api/notificacoes/rian@gmail.com]",
+  "test_Get.py::test_get[/api/notificacoes]",
+  "test_Get.py::test_get[/api/projetos/1]",
+  "test_Get.py::test_get[/api/projetos/info-projeto-orientador/1]",
+  "test_Get.py::test_get[/api/projetos/info-projeto-orientando/3]",
+  "test_Get.py::test_get[/api/projetos/orientador/1]",
+  "test_Get.py::test_get[/api/usuarios/1]",
+  "test_Get.py::test_get[/api/usuarios/dados/1]",
+  "test_Get.py::test_get[/api/usuarios]",
+  "test_Get.py::test_get[/documentos/1]",
+  "test_Get.py::test_get[/documentos]",
+  "test_PostData.py::test_post_data[/api/email/enviar-email]",
+  "test_PostEmail.py::test_post_data[/api/email/enviar-email]",
+  "test_PostJson.py::test_post_json[/api/notificacoes-notificacao]",
+  "test_PostJson.py::test_post_json[/api/usuarios-usuario]"
+]
