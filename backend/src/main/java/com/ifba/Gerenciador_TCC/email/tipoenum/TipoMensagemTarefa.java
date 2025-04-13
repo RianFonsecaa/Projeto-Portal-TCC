@@ -41,7 +41,7 @@ public class TipoMensagemTarefa extends TipoMensagem {
     }
 
     try {
-        this.tarefa.setClassificacao(Classificacao.fromString(tarefaDTO.getClassificacao()));
+        this.tarefa.setClassificacao(Classificacao.valueOf(tarefaDTO.getClassificacao()));
     } catch (IllegalArgumentException e) {
         throw new RuntimeException("Classificação inválida: " + tarefaDTO.getClassificacao());
     }

@@ -1,6 +1,8 @@
 package com.ifba.Gerenciador_TCC.tarefa.domain.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
@@ -23,6 +26,8 @@ import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
 public class TarefaDTO {
 
     private Long id;
+
+    private String codigo;
 
     @NotNull(message = "O ID do projeto não pode estar vazio")
     private Long projetoId;
@@ -66,4 +71,16 @@ public class TarefaDTO {
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dataFim;
+
+    public void gerarCodigo() {
+        if (this.codigo == null) {
+            this.codigo = gerarCodigoAleatorio();
+        }
+    }
+
+    private String gerarCodigoAleatorio() {
+        char letra = (char) ('A' + new Random().nextInt(26));
+        int numero = 1000 + new Random().nextInt(9000); // 1000 a 9999
+        return String.format("%c%d", letra, numero);
+    }
 }

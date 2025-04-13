@@ -83,17 +83,4 @@ public class Tarefa {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "data_fim", nullable = false)
     private LocalDate dataFim;
-
-    @PrePersist
-    public void gerarCodigo() {
-        if (codigo == null) {
-            this.codigo = gerarCodigoAleatorio();
-        }
-    }
-
-    private String gerarCodigoAleatorio() {
-        char letra = (char) ('A' + new Random().nextInt(26));
-        int numero = 1000 + new Random().nextInt(9000); // 1000 a 9999
-        return String.format("%c%d", letra, numero);
-    }
 }
