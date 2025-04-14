@@ -1,5 +1,6 @@
 package com.ifba.Gerenciador_TCC.tarefa.domain.enums;
 
+
 public enum Classificacao {
     BIBLIOGRAFIA,
     REDACAO,

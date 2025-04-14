@@ -1,4 +1,5 @@
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tipoenum\TipoUsuario.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\dto\DocumentoTarefaDTO.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagemTarefa.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\service\DocumentoService.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\email\tipoenum\TipoMensagem.java
@@ -11,7 +12,6 @@ C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\repository\OrientadorRepository.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoController.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Orientador.java
-C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\enums\TipoDocumentoEnum.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\entity\Usuario.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\domain\dto\NotificacaoDTO.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\login\domain\RedirecionarRequest.java
@@ -32,6 +32,7 @@ C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\interfaces\UsuarioServiceApi.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\interfaces\ProjetoService.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\usuario\domain\dto\UsuarioOrientadorDTO.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\enums\EscopoDocumentoEnum.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\repository\NotificacaoRepository.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\repository\TarefaRepository.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\projeto\builder\ProjetoDTOBuilder.java
@@ -42,6 +43,8 @@ C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\notificacao\controller\NotificacaoController.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\GerenciadorTccApplication.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\service\CloudinaryService.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\domain\entity\DocumentoTarefa.java
+C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\documento\repository\DocumentoTarefaRepository.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\CustomUserDetailsService.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\security\JwtTokenUtil.java
 C:\Users\Administrador\Desktop\Projeto-Portal-TCC - Copia\backend\src\main\java\com\ifba\Gerenciador_TCC\tarefa\domain\dto\TarefaDTO.java
