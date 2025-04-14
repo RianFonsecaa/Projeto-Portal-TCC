@@ -10,7 +10,6 @@ import { Documento } from '../../model/Documento';
 @Injectable({ providedIn: 'root' })
 export class TarefasService {
   private baseUrl = environment.tarefasURL;
-  private idUsuario = localStorage.getItem('idUsuario');
 
   private _tarefas$ = new BehaviorSubject<Tarefa[]>([]);
   public tarefas$ = this._tarefas$.asObservable();
@@ -49,7 +48,7 @@ export class TarefasService {
   }
 
   adicionarTarefa(novaTarefa: Tarefa): Observable<Tarefa> {
-    return this.http.post<Tarefa>(`${this.baseUrl}?idUsuario=${this.idUsuario}`, novaTarefa).pipe(
+    return this.http.post<Tarefa>(`${this.baseUrl}?idUsuario=${localStorage.getItem('idUsuario')}`, novaTarefa).pipe(
       tap(() => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();
@@ -62,8 +61,10 @@ export class TarefasService {
   }
   
   atualizarTarefa(tarefaModificada: Tarefa): Observable<Tarefa> {
-    return this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${this.idUsuario}`, tarefaModificada).pipe(
+    console.log(tarefaModificada)
+    return this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${localStorage.getItem('idUsuario')}`, tarefaModificada).pipe(
       tap(() => {
+        console.log("ATUALIZANDO")  
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();
       }),
@@ -78,7 +79,7 @@ export class TarefasService {
     const tarefaSelecionada = this._tarefaSelecionada$.getValue();
     if (!tarefaSelecionada) return;
 
-    this.http.delete(`${this.baseUrl}/${tarefaSelecionada.id}?idUsuario=${this.idUsuario}`).subscribe({
+    this.http.delete(`${this.baseUrl}/${tarefaSelecionada.id}?idUsuario=${localStorage.getItem('idUsuario')}`).subscribe({
       next: () => {
         this.listaTarefasPorProjeto();
         this.mensagensService.atualizarNotificacoes();

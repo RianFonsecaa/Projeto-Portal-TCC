@@ -1,5 +1,6 @@
 export interface Tarefa {
   id: number;
+  codigo: string;
   projetoId: number;
 
   titulo: string;

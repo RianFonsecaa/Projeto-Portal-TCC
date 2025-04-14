@@ -80,8 +80,8 @@ export class QuadroTarefasComponent {
 
       tarefaMovida.status = this.quadroTarefas.colunas.find(coluna => coluna.id === event.container.id)!.nome;
       tarefaMovida.ultimaAtualizacaoEm = new Date().toLocaleString('sv-SE');
-
-      this.tarefasService.atualizarTarefa(tarefaMovida);
+      console.log(tarefaMovida)
+      this.tarefasService.atualizarTarefa(tarefaMovida).subscribe();
 
       event.container.data.sort((a, b) => new Date(a.ultimaAtualizacaoEm).getTime() - new Date(b.ultimaAtualizacaoEm).getTime());
     }

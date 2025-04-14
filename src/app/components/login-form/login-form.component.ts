@@ -62,8 +62,7 @@ export class LoginFormComponent {
 
       this.loginService.login(loginInfo).subscribe({
         next: (response) => {
-
-          console.log(response);
+          
           localStorage.clear;
           localStorage.setItem('jwtToken', response.jwtToken);
           localStorage.setItem('idUsuario', response.usuarioId);

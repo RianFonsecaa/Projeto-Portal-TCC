@@ -68,8 +68,12 @@ export class ModalTarefa implements OnInit {
 
   ngOnInit() {
     this.tarefaService.tarefaSelecionada$.subscribe((tarefa) => {
-      this.tarefaSelecionada = tarefa;
-      this.patchForm();
+      if (tarefa){
+        this.alterar = true;
+        this.tarefaSelecionada = tarefa;
+        this.patchForm();
+        console.log(this.tarefaSelecionada)
+      }
     });
 
     this.perfilService.getDadosUsuario().subscribe(usuario => {
@@ -106,8 +110,14 @@ export class ModalTarefa implements OnInit {
     tarefa.ultimaAtualizacaoPor = this.usuarioAtual.nome;
   
     if (this.alterar) {
+      if(this.tarefaSelecionada){
+        tarefa.codigo = this.tarefaSelecionada.codigo
+      }
       this.tarefaService.atualizarTarefa(tarefa).subscribe({
-        next: () => this.fecharModal(),
+        next: (tarefa) => {
+          this.fecharModal(),
+          console.log(tarefa.codigo)
+        }, 
         error: (err) => console.error('Erro ao atualizar tarefa:', err)
       });
     } else {
@@ -135,14 +145,6 @@ export class ModalTarefa implements OnInit {
       formData.append('tarefaid', tarefaId.toString());
       formData.append('projetoid', infoProjeto.id);
       formData.append('arquivo', arquivo);
-  
-      console.log('Enviando arquivo:', {
-        nome: arquivo.name,
-        tipo: arquivo.type,
-        tarefaId,
-        projetoId: infoProjeto.id,
-        formDataEntries: Array.from((formData as any).entries())
-      });
   
       this.documentoService.uploadDocumento(formData).subscribe({
         next: (res) => console.log('Arquivo salvo com sucesso:', res),

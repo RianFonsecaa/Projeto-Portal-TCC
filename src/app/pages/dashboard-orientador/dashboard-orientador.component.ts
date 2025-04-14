@@ -21,6 +21,7 @@ export class DashboardOrientadorComponent {
   }
 
   ngOnInit() {
+
     this.projetoService.buscarInfoProjetoPorOrientador().subscribe({
       next: (response: infoProjeto[]) => {
         this.infoProjetos = response;
