@@ -1,0 +1,32 @@
+.gantt-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.task-name-column {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+}
+
+.task-name-cell {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.task-bar {
+  transition: all 0.2s ease;
+}
+
+.task-bar:hover {
+  transform: scaleY(1.2);
+}
+
+.month-column {
+  min-width: 0;
+}
+
+.day-cell {
+  min-width: 0;
+}

@@ -8,4 +8,5 @@ export interface Documento {
     dataUpload?: string;     
     tamanho: number;
     tarefaId: string;
+    extensao : string
   }

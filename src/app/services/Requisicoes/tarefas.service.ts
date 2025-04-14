@@ -1,5 +1,5 @@
 import { Tarefa } from './../../model/Tarefa';
-import { computed, Injectable, signal, Signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { projetoService } from './projetoService';
@@ -23,7 +23,8 @@ export class TarefasService {
     private mensagensService: MensagensService
   ) {}
 
-  listaTarefasPorProjeto() {
+  // 🔁 Atualiza o observable interno com as tarefas do projeto
+  listaTarefasPorProjeto(): void {
     const infoProjeto = this.projetoService.getInfoProjeto();
     if (!infoProjeto.id) {
       console.error('Projeto não encontrado');
@@ -31,16 +32,23 @@ export class TarefasService {
     }
 
     this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`).subscribe({
-      next: (tarefas) => {
-        this.ordenarTarefasPorData(tarefas);
-      },
-      error: (err) => {
-        console.error('Erro ao buscar tarefas:', err);
-      }
+      next: (tarefas) => this.ordenarTarefasPorData(tarefas),
+      error: (err) => console.error('Erro ao buscar tarefas:', err)
     });
   }
 
-  private ordenarTarefasPorData(tarefas: Tarefa[]) {
+  // ✅ Novo método: retorna Observable com as tarefas (sem inscrever direto)
+  buscarTarefasPorProjeto(): Observable<Tarefa[]> {
+    const infoProjeto = this.projetoService.getInfoProjeto();
+    if (!infoProjeto.id) {
+      throw new Error('Projeto não encontrado');
+    }
+
+    return this.http.get<Tarefa[]>(`${this.baseUrl}/${infoProjeto.id}`);
+  }
+
+  // 🔁 Ordena por data de atualização e atualiza o BehaviorSubject
+  private ordenarTarefasPorData(tarefas: Tarefa[]): void {
     const tarefasOrdenadas = tarefas.sort((a, b) =>
       new Date(b.ultimaAtualizacaoEm).getTime() - new Date(a.ultimaAtualizacaoEm).getTime()
     );
@@ -58,8 +66,9 @@ export class TarefasService {
         return throwError(() => err);
       })
     );
+
   }
-  
+
   atualizarTarefa(tarefaModificada: Tarefa): Observable<Tarefa> {
     console.log(tarefaModificada)
     return this.http.put<Tarefa>(`${this.baseUrl}/${tarefaModificada.id}?idUsuario=${localStorage.getItem('idUsuario')}`, tarefaModificada).pipe(
@@ -73,9 +82,10 @@ export class TarefasService {
         return throwError(() => err);
       })
     );
+
   }
 
-  deletarTarefa() {
+  deletarTarefa(): void {
     const tarefaSelecionada = this._tarefaSelecionada$.getValue();
     if (!tarefaSelecionada) return;
 
@@ -87,15 +97,15 @@ export class TarefasService {
     });
   }
 
-  getTarefaSelecionada() {
+  getTarefaSelecionada(): Observable<Tarefa | null> {
     return this.tarefaSelecionada$;
   }
 
-  selecionarTarefa(tarefa: Tarefa | null) {
+  selecionarTarefa(tarefa: Tarefa | null): void {
     this._tarefaSelecionada$.next(tarefa);
   }
 
-  removerSelecaoTarefa() {
+  removerSelecaoTarefa(): void {
     this._tarefaSelecionada$.next(null);
   }
 }

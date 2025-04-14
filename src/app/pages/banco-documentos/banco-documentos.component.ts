@@ -1,8 +1,9 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Documento } from '../../model/Documento';
 import { DocumentoService } from '../../services/documento.service';
+import { projetoService } from '../../services/Requisicoes/projetoService';
 
 @Component({
   selector: 'app-banco-documentos',
@@ -11,24 +12,25 @@ import { DocumentoService } from '../../services/documento.service';
   templateUrl: './banco-documentos.component.html'
 })
 export class BancoDocumentosComponent {
-  documents: Document[] = [];
+  documentoUrl: string | null = null;
 
   documentos: Documento[] = [];
   filtrosDocumentos: Documento[] = [];
-  opcoes: string[] = ['Nome do Arquivo', 'Código da Tarefa'];
+  opcoes: string[] = ['Nome do Arquivo', 'Escopo'];
   palavraChave = '';
   campoSelecionado = '';
 
   mostrarPrimeiroCampo = true;
 
-  constructor(private documentoService: DocumentoService) {
-    this.documentos = this.documentoService.getDocumentos();  
+  constructor(private documentoService: DocumentoService ,
+    private projetoService: projetoService
+  ) {
+    
+  
   }
 
   ngOnInit(): void {
-   // this.carregaDocumentos();
-    this.filtrosDocumentos = [...this.documentos];
-    this.preencherIcone();
+    this.carregarDocumentosPorId();
   }
 
   pesquisar() {
@@ -37,15 +39,28 @@ export class BancoDocumentosComponent {
       return;
     }
 
+    if (this.campoSelecionado.toLowerCase() == 'escopo'){
+      this.filtrosDocumentos = this.documentos.filter(doc =>
+        doc.escopoDocumento.toLowerCase().includes(this.palavraChave.toLowerCase())
+      )
+    }
+
+    else if (this.campoSelecionado.toLowerCase() == 'nome'){
     this.filtrosDocumentos = this.documentos.filter(doc => 
-      doc.titulo.toLowerCase().includes(this.palavraChave.toLowerCase()) ||
-      doc.tarefaId.toLowerCase().includes(this.palavraChave.toLowerCase())
-    );
+      doc.titulo.toLowerCase().includes(this.palavraChave.toLowerCase())
+    )
+  }
+  else if(this.campoSelecionado == ''){
+    this.filtrosDocumentos = this.documentos.filter(doc => 
+      doc.titulo.toLowerCase().includes(this.palavraChave.toLowerCase())
+    )
+  }
+ 
   }
 
   preencherIcone(){
     this.documentos.forEach(doc => {
-      doc.tipoDocumento = this.getIcon(doc.titulo);
+      doc.extensao = this.getIcon(doc.titulo);
     });
   }
 
@@ -64,16 +79,67 @@ export class BancoDocumentosComponent {
     }
   }
 
-  private carregaDocumentos(): void {
-   this.documentos = this.documentoService.getDocumentos()
-  }
-
   removerCampo(){
     this.mostrarPrimeiroCampo = false;
   }
 
   restaurarCampo() {
       this.mostrarPrimeiroCampo = true;
+  }
+
+  carregarDocumentosPorId() {
+    const infoProjeto = this.projetoService.getInfoProjeto();
+    if (!infoProjeto.id) {
+      console.error('Projeto não encontrado');
+      return;
+    }
+  
+    this.documentoService.listaDocumentosPorProjeto(infoProjeto.id.toString()).subscribe({
+      next: (documentos) => {
+        this.documentos = documentos;
+        this.filtrosDocumentos = [...documentos]; 
+        this.preencherIcone(); 
+      },
+      error: (err) => {
+        console.error('Erro ao buscar documentos:', err);
+      }
+    });
+  }
+
+  
+  abrir(url: string): void {
+    window.open(url, '_blank');
+  }
+  
+  
+
+  abrirDocumento(url: string): void {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      window.open(url, '_blank');
+    } else {
+      console.error('URL inválida:', url);
+    }
+  }
+  
+
+  ngOnDestroy(): void {
+    if (this.documentoUrl) {
+      URL.revokeObjectURL(this.documentoUrl);
+    }
+  }
+
+  ordenar(tipo : string){
+    if (tipo == 'nome'){
+      this.filtrosDocumentos.sort((a,b) => a.titulo.localeCompare(b.titulo))
+    }
+    else if(tipo == 'data'){
+      this.filtrosDocumentos.sort((a, b) => {
+        return new Date(a.dataUpload!).getTime() - new Date(b.dataUpload!).getTime();
+      });     
+    }
+    else if (tipo =='tamanho'){
+      this.filtrosDocumentos.sort((a,b) => b.tamanho - a.tamanho)
+    }
   }
 
 }

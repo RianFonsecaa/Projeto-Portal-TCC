@@ -1,3 +1,4 @@
+
 import { Component, computed, effect, Inject, Injector, OnInit, runInInjectionContext, Signal, ViewChild } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { ModalTarefa } from '../../components/modais/modal-tarefa/modal-tarefa.component';
@@ -15,11 +16,12 @@ import { Quadro } from '../../model/Quadro';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { BancoDocumentosComponent } from "../banco-documentos/banco-documentos.component";
 import { QuadroTarefasComponent } from "../quadro-tarefas/quadro-tarefas.component";
+import { EtapasComponent } from './../etapas/etapas.component';
 
 @Component({
   selector: 'app-gestao-projeto',
   standalone: true,
-  imports: [ModalTarefa, NgClass, TarefasConteudoComponent, NgFor, NgIf, DragDropModule, RouterLink, RouterOutlet, BancoDocumentosComponent, QuadroTarefasComponent, NgSwitchCase, NgSwitch],
+  imports: [ModalTarefa, NgClass, TarefasConteudoComponent, NgFor, NgIf, DragDropModule, RouterLink, RouterOutlet, BancoDocumentosComponent, QuadroTarefasComponent, NgSwitchCase, NgSwitch, EtapasComponent],
   templateUrl: './gestao-projeto.component.html',
 })
 export class GestaoProjetoComponent implements OnInit {
@@ -37,7 +39,7 @@ export class GestaoProjetoComponent implements OnInit {
 
   ngOnInit() {
     this.infoProjeto = this.projetoService.getInfoProjeto();
-  
+
     this.perfilService.getDadosUsuario().subscribe({
       next: (usuario) => (this.usuario = usuario),
       error: (err) => console.error('Erro ao carregar usuário:', err)

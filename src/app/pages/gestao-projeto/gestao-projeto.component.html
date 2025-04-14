@@ -11,10 +11,10 @@
                 <image id="image0_632_4" width="48" height="48" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABxUlEQVR4nO2ZTUoDMRhAA2q1YpcqdaseQKm36M9hRMEKFt3rLUr1CoI7xRMI0trqNYQpT0KzCNImmTFtUszbzCKTb/KSSb6PGSESiUQi4RtgE7gBPoCMcGRqDNdAOc/gX4mPFycJNfOx0nERkEsWKwMXgZDvvI3MRcDGGOgCdaAKlNS1AfRU+9wQfxQYAkeW/sfAyBLnQoqL6f3lhLTnISAHv20NMImxY5HYsvSv+BYY6zMPrKpZfDfEqRlep7ZlBS59C3S19jXgySUgcI9nREGButZ+7hoQaMYiUNXahzkE9mLZxCWt/TuHwHosm7iaI1O/OazAwjdxQ2uXlaGJM+3eFp4RBQV6WntZVYbTeARWtHsfYhEYywz7S6Ijiyu1J/rAqcwP2j0nhjwQJBOPZIa1BpjE2AW+DLEWvol1iZqlv5z5T8wsfBPrjFXV2VSnTEldW+qdj7oaDY5IAu7IE+pWXZdyBfZVvMMYBC5mnRouOD/cIReIggLGc9s1Zs4+FZ8CM8/teQhgyAVFBYpwEGoPZJ6eJU+fO88fyrJl/zLXdxGw1fshuXIRMNX7IXkGNqwCU+r90P8HBnLmnQefSCQSiX/FD1eCuJwJG2lKAAAAAElFTkSuQmCC"/>
                 </defs>
             </svg>
-                
+
             <div class="flex flex-col h-auto w-full text-white dark:text-[#515151]">
                 <h1 class="text-[21px] font-bold align-top">Dashboard do Aluno</h1>
-            </div>      
+            </div>
         </div>
 
     </div>
@@ -29,7 +29,7 @@
         </p>
       </div>
     </div>
-  
+
     <!-- Botões de Abas -->
     <div class="flex flex-col w-full text-gray-500 border-y border-gray-200 dark:text-gray-200">
       <ul class="flex flex-row space-x-2 text-sm font-medium text-center">
@@ -45,7 +45,7 @@
             <span>Quadro de Demandas</span>
           </button>
         </li>
-  
+
         <li>
           <button
             class="flex flex-row space-x-2 text-[12px] p-2 border-b-2 rounded-t-lg transition-all duration-300 ease-in-out"
@@ -58,7 +58,7 @@
             <span>Etapas do TCC</span>
           </button>
         </li>
-  
+
         <li>
           <button
             class="flex flex-row space-x-2 text-[12px] p-2 border-b-2 rounded-t-lg transition-all duration-300 ease-in-out"
@@ -71,7 +71,7 @@
             <span>Linha do Tempo</span>
           </button>
         </li>
-  
+
         <li>
           <button
             class="flex flex-row space-x-2 text-[12px] p-2 border-b-2 rounded-t-lg transition-all duration-300 ease-in-out"
@@ -86,10 +86,14 @@
         </li>
       </ul>
     </div>
-  
+
     <!-- Conteúdo das Abas -->
     <div [ngSwitch]="selectedTab" class="flex-1">
       <app-quadro-tarefas *ngSwitchCase="'Quadro de Demandas'"></app-quadro-tarefas>
       <app-banco-documentos *ngSwitchCase="'Banco de Documentos'"></app-banco-documentos>
+      <app-etapas *ngSwitchCase="'Etapas do TCC'"></app-etapas>
     </div>
   </section>
+
+
+
