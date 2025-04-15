@@ -9,6 +9,7 @@ import com.ifba.Gerenciador_TCC.documento.domain.entity.DocumentoTarefa;
 import com.ifba.Gerenciador_TCC.documento.interfaces.IDocumentoService;
 import com.ifba.Gerenciador_TCC.documento.repository.DocumentoRepository;
 import com.ifba.Gerenciador_TCC.documento.repository.DocumentoTarefaRepository;
+import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
@@ -43,6 +44,10 @@ public class DocumentoService implements IDocumentoService {
     public DocumentoDTO salvar(DocumentoDTO dto) throws IOException {
         Projeto projeto = projetoService.findById(dto.getProjetoId());
 
+        if (projeto == null){
+            throw new NotFoundException("Projeto não encontrado");
+        }
+
         DocumentoEntity entity = DocumentoBuilder.toEntity(dto, projeto);
     
         if (dto.getArquivo() != null && !dto.getArquivo().isEmpty()) {
@@ -64,7 +69,7 @@ public class DocumentoService implements IDocumentoService {
     @Override
     public DocumentoDTO buscarPorId(UUID id) {
         DocumentoEntity entity = documentoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Documento não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Documento não encontrado"));
         return DocumentoBuilder.toDTO(entity);
     }
 
@@ -76,6 +81,9 @@ public class DocumentoService implements IDocumentoService {
     @Override
     public void salvarDocumentoTarefa(DocumentoDTO dto, DocumentoEntity documentoEntity) {
         Optional<Tarefa> tarefaOptional = tarefaRepository.findById(dto.getTarefaId());
+        if (!tarefaOptional.isPresent()){
+            throw new NotFoundException("Tarefa não encontrado");
+        }
         Tarefa tarefa = tarefaOptional.get();
         documentoTarefaRepository.save(DocumentoTarefa.builder()
                 .documento(documentoEntity)
@@ -85,11 +93,19 @@ public class DocumentoService implements IDocumentoService {
 
     @Override
     public List<DocumentoTarefaDTO> getDocumentoByTarefa(Long id){
-        return documentoRepository.findDocumentosByTarefaId(id);
+        List<DocumentoTarefaDTO> documentoTarefaDTOs = documentoRepository.findDocumentosByTarefaId(id);
+        if (documentoTarefaDTOs == null){
+            throw new NotFoundException("Documentos vinvulados a essa tarefa não encontrados");
+        }
+        return documentoTarefaDTOs;
     };
     @Override
     public List<DocumentoDTO> getDocumentoByProjeto(Long id){
-        return documentoRepository.findByProjetoId(id).stream()
+        List<DocumentoEntity> documentoEntities = documentoRepository.findByProjetoId(id);
+        if (documentoEntities == null){
+            throw new NotFoundException("Documentos vinvulados a esse projeto não encontrados");
+        }
+        return documentoEntities.stream()
                 .map(DocumentoBuilder::toDTO)
                 .collect(Collectors.toList());
     }

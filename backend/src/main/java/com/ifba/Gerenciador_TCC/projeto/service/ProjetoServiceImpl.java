@@ -34,14 +34,19 @@ public class ProjetoServiceImpl implements ProjetoService {
     @Override
     public InfoProjetoDTO buscarInfoProjetoPorOrientando(Long idOrientando){
         Projeto projeto = projetoRepository.findByOrientandoId(usuarioService.findById(idOrientando));
+        if (projeto == null){
+            throw new NotFoundException("Projeto Não Encontrado");
+        }
         return InfoProjetoDTOBuilder.buildInfoProjetoDTO(projeto, tarefaService);
     }
 
 
     @Override
     public List<InfoProjetoDTO> buscarInfoProjetoPorOrientador(Long idOrientador){
-        System.out.println(usuarioService.findById(idOrientador));
         List<Projeto> projetos = projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
+        if (projetos == null){
+            throw new NotFoundException("Projeto Não Encontrado");
+        }
         return projetos.stream()
             .map(projeto -> InfoProjetoDTOBuilder.buildInfoProjetoDTO(projeto, tarefaService))
             .collect(Collectors.toList());
@@ -51,6 +56,9 @@ public class ProjetoServiceImpl implements ProjetoService {
     @Override
     public List<ProjetoDTO> listarProjetosPorOrientador(Long idOrientador) {
         List<Projeto> projetos = projetoRepository.findByOrientadorId(usuarioService.findById(idOrientador));
+        if (projetos == null){
+            throw new NotFoundException("Projeto Não Encontrado");
+        }
         return projetos.stream()
                 .map(ProjetoDTOBuilder::buildProjetoDTO)
                 .collect(Collectors.toList());
