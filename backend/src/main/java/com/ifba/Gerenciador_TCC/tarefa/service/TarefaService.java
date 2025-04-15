@@ -3,6 +3,8 @@ package com.ifba.Gerenciador_TCC.tarefa.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ifba.Gerenciador_TCC.documento.domain.dto.DocumentoTarefaDTO;
+import com.ifba.Gerenciador_TCC.documento.service.DocumentoService;
 import com.ifba.Gerenciador_TCC.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +31,19 @@ public class TarefaService implements TarefaServiceApi {
     @Autowired private UsuarioService usuarioService;
     @Autowired private ProjetoService projetoService;
     @Autowired private EmailService emailService;
+    @Autowired
+    private DocumentoService documentoService;
 
     @Override
     public void deletarTarefa(Long id, Long idUsuario) {
+
+        try {
+            List<DocumentoTarefaDTO> documentoTarefaDTOS = documentoService.getDocumentoByTarefa(id);
+            documentoTarefaDTOS.forEach(documentoTarefaDTO -> documentoService.deletar(documentoTarefaDTO.getDocumentoId()));
+
+
+        }catch (NotFoundException ignored){}
+
         Tarefa tarefa = tarefaRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Tarefa não encontrada com o ID: " + id));
         tarefaRepository.deleteById(id);

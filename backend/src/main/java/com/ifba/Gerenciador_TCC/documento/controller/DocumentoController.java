@@ -39,8 +39,7 @@ public class DocumentoController {
     dto.setTipoDocumento(tipo);
     dto.setTarefaId(tarefaid);
     dto.setProjetoId(projetoid);
-    dto.setTamanho(Math.round((file.getSize() / (1024.0 * 1024.0)) * 100.0) / 100.0);
-    System.out.println("CHEGOU");
+    dto.setTamanho(Math.round((file.getSize() / 1024.0) * 100.0) / 100.0);
     
     DocumentoDTO salvo = documentoService.salvar(dto);
     return ResponseEntity.ok(salvo);

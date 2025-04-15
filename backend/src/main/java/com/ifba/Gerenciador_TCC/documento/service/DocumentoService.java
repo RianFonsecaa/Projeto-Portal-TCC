@@ -14,6 +14,7 @@ import com.ifba.Gerenciador_TCC.projeto.domain.entity.Projeto;
 import com.ifba.Gerenciador_TCC.projeto.interfaces.ProjetoService;
 import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import com.ifba.Gerenciador_TCC.tarefa.repository.TarefaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,10 @@ public class DocumentoService implements IDocumentoService {
     }
 
     @Override
+    @Transactional
     public void deletar(UUID id) {
+        Optional<DocumentoEntity> optionalDocumentoEntity = documentoRepository.findById(id);
+        documentoTarefaRepository.deleteByDocumento(optionalDocumentoEntity.get());
         documentoRepository.deleteById(id);
     }
 
