@@ -1,10 +1,10 @@
 <div class="overflow-x-auto font-sans text-gray-800">
   <!-- Cabeçalho de Meses -->
   <div class="flex sticky top-0 bg-white z-20 shadow-sm border-b border-gray-200">
-    <div class="w-[220px] min-w-[220px] p-2 bg-gray-100 border-r border-gray-300"></div>
-    <div class="flex flex-1">
+    <div class=" bg-green-500 w-[220px] min-w-[220px] p-2 border-r border-gray-300"></div>
+    <div class=" bg-green-500 flex flex-1">
       <div *ngFor="let month of timelineMonths"
-           class="h-12 flex items-center justify-center font-semibold text-sm text-gray-700 border-r border-gray-300 bg-white"
+           class="h-12 bg-green-500 flex items-center justify-center font-semibold text-sm text-white border-r border-gray-300"
            [style.width]="getMonthWidth(month)">
         {{ month.month }} {{ month.year }}
       </div>
@@ -13,12 +13,12 @@
 
   <!-- Cabeçalho de Dias -->
   <div class="flex sticky top-[48px] bg-gray-50 z-10 border-b border-gray-200">
-    <div class="w-[220px] min-w-[220px] bg-gray-100 border-r border-gray-300"></div>
-    <div class="flex flex-1">
+    <div class="w-[220px] bg-green-500 min-w-[220px] bg-gray-100 border-r border-gray-300"></div>
+    <div class=" bg-green-500 text-white flex flex-1">
       <div *ngFor="let day of timelineDays"
-           class="h-10 flex items-center justify-center text-xs border-r border-gray-200 transition-all duration-200"
+           class="h-10  flex items-center justify-center text-xs border-r border-gray-200 transition-all duration-200"
            [ngClass]="{
-             'bg-gray-100 text-gray-500': isWeekend(day),
+             ' text-white': isWeekend(day),
              'bg-yellow-200 text-yellow-900 font-semibold border-yellow-400': isToday(day)
            }"
            style="width: 32px">
@@ -29,21 +29,28 @@
 
   <!-- Corpo do Gantt -->
   <div>
-    <div *ngFor="let item of getAllItemsToRender()" class="flex border-b border-gray-100 h-[44px] hover:bg-gray-50 transition-all duration-150">
+    <div *ngFor="let item of getPlaceholderItems()"
+         class="flex border-b border-gray-100 h-[44px] hover:bg-gray-50 transition-all duration-150">
+
       <!-- Nome da Tarefa ou Etapa -->
-      <div class="w-[220px] min-w-[220px] flex items-center border-r border-gray-200 px-3"
+      <div class="w-[220px] min-w-[220px] flex items-center border-r  border-gray-200 px-3"
            [ngStyle]="{ 'padding-left': getTaskIndent(item) }">
-        <span *ngIf="temSubtarefas(item)" class="mr-1 text-blue-600 cursor-pointer select-none" (click)="toggleExpand(item)">
+        <span *ngIf="!item.placeholder && temSubtarefas(item)"
+              class="mr-1 text-blue-600 cursor-pointer select-none"
+              (click)="toggleExpand(item)">
           {{ isExpanded(item) ? '−' : '+' }}
         </span>
-        <span class="truncate text-sm font-medium">
-          {{ getNomeTarefaOuEtapa(item) }}
+        <span class="truncate text-sm font-medium text-black"
+              [ngClass]="{ 'italic text-gray-300': item.placeholder }">
+          {{ item.placeholder ? '' : getNomeTarefaOuEtapa(item) }}
         </span>
       </div>
 
       <!-- Linha de tempo -->
       <div class="flex-1 relative">
-        <div class="absolute top-[12px] h-[20px] rounded-md bg-blue-500 shadow-sm"
+        <div *ngIf="!item.placeholder"
+             class="absolute top-[12px] h-[20px] rounded-md shadow-sm"
+              [class]="getTaskColorByDate(item)"
              [style.left]="getTaskPosition(item).left"
              [style.width]="getTaskPosition(item).width"
              [title]="getNomeTarefaOuEtapa(item)">
@@ -51,4 +58,53 @@
       </div>
     </div>
   </div>
+
+  <button
+*ngIf="!showLegend"
+(click)="toggleLegend()"
+class="fixed bottom-4 right-4 bg-gray-700 text-white px-3 py-2 rounded-full shadow-md hover:bg-gray-800 transition">
+Mostrar Legenda
+</button>
+
+<div
+*ngIf="showLegend"
+class="fixed bottom-4 right-4 bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-64 z-50">
+
+<button
+  (click)="toggleLegend()"
+  class="absolute -top-2 -right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-gray-300 transition">
+  ×
+</button>
+
+<div class="font-semibold mb-3 text-gray-800">Legenda de Cores:</div>
+
+<div class="legend-item flex items-center mb-2">
+  <div class="w-4 h-4 bg-gray-700 rounded mr-2"></div>
+  <span class="text-sm">Tarefa vencida</span>
+</div>
+
+<div class="legend-item flex items-center mb-2">
+  <div class="w-4 h-4 bg-red-700 rounded mr-2"></div>
+  <span class="text-sm">Vence hoje</span>
+</div>
+
+<div class="legend-item flex items-center mb-2">
+  <div class="w-4 h-4 bg-red-500 rounded mr-2"></div>
+  <span class="text-sm">Faltam 1 a 3 dias</span>
+</div>
+
+<div class="legend-item flex items-center mb-2">
+  <div class="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
+  <span class="text-sm">Faltam 4 a 7 dias</span>
+</div>
+
+<div class="legend-item flex items-center mb-2">
+  <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
+  <span class="text-sm">Mais de 7 dias</span>
+</div>
+
+<div class="legend-item flex items-center">
+  <div class="w-4 h-4 bg-blue-500 rounded mr-2"></div>
+  <span class="text-sm">Etapas (sem prazo)</span>
+</div>
 </div>

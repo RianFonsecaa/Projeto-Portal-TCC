@@ -31,22 +31,91 @@ constructor(private tarefasService: TarefasService) {
   this.definirIntervaloDoGrafico();
 }
 
+getPlaceholderItems(): any[] {
+  const atuais = this.getAllItemsToRender();
+  const minLinhas = 30;
+  const falta = Math.max(minLinhas - atuais.length, 0);
+  return [...atuais, ...Array(falta).fill({ placeholder: true })];
+}
+showLegend = true;
+
+toggleLegend() {
+  this.showLegend = !this.showLegend;
+}
 private definirIntervaloDoGrafico(): void {
   this.tarefasService.tarefas$.subscribe(tarefas => {
-    if (tarefas.length > 0) {
-      // Encontrar a tarefa com a maior dataFim
-      const ultimaDataFim = tarefas
-        .map(t => new Date(t.dataFim))
-        .reduce((max, curr) => (curr > max ? curr : max));
+    if (tarefas && tarefas.length > 0) {
+      let primeiraDataInicio: Date = new Date(tarefas[0].dataInicio);
+      let ultimaDataFim: Date = new Date(tarefas[0].dataFim);
 
-      this.chartEndDate = new Date(ultimaDataFim);
-      this.chartEndDate.setMonth(this.chartEndDate.getMonth() + 1); // opcional, para garantir fim do mês
+      tarefas.forEach(t => {
+        const dataInicio = new Date(t.dataInicio);
+        const dataFim = new Date(t.dataFim);
+
+        if (dataInicio < primeiraDataInicio) {
+          primeiraDataInicio = dataInicio;
+        }
+
+        if (dataFim > ultimaDataFim) {
+          ultimaDataFim = dataFim;
+        }
+      });
+
+      if (isNaN(primeiraDataInicio.getTime()) || isNaN(ultimaDataFim.getTime())) {
+        console.error('Datas inválidas encontradas');
+        this.setDefaultDateRange();
+        return;
+      }
+
+      this.chartStartDate = new Date(
+        primeiraDataInicio.getFullYear(),
+        primeiraDataInicio.getMonth(),
+        primeiraDataInicio.getDate()
+      );
+
+      this.chartEndDate = new Date(
+        ultimaDataFim.getFullYear(),
+        ultimaDataFim.getMonth(),
+        ultimaDataFim.getDate() + 15
+      );
     } else {
-      // fallback se não houver tarefas
-      this.chartEndDate = new Date();
-      this.chartEndDate.setMonth(this.chartEndDate.getMonth() + 3);
+      this.setDefaultDateRange();
     }
+
+    this.generateTimeline();
   });
+}
+
+getTaskColorByDate(item: Etapa | Tarefa): string {
+  // Se for uma etapa (sem datas específicas), retorna a cor padrão
+  if (!('dataFim' in item)) return 'bg-blue-500';
+
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0); // Normaliza a data atual
+
+  const dataFim = new Date(item.dataFim);
+  dataFim.setHours(0, 0, 0, 0);
+
+  dataFim.setDate(dataFim.getDate() + 1);
+
+  const diffDias = this.getDaysDiff(hoje, dataFim);
+
+  console.log('Hoje:', hoje, 'Data Fim:', dataFim, 'Dias restantes:', diffDias);
+
+  if (diffDias < 0) return 'bg-gray-700';
+
+  if (diffDias === 0) return 'bg-red-700';
+
+  if (diffDias <= 3) return 'bg-red-500';
+
+  if (diffDias <= 7) return 'bg-yellow-500';
+
+  return 'bg-green-500';
+}
+private setDefaultDateRange(): void {
+  const hoje = new Date();
+  this.chartStartDate = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+  this.chartEndDate = new Date(hoje.getFullYear(), hoje.getMonth() + 3, 0);
 }
   ngOnInit(): void {
     this.fetchDataFromBackend();
@@ -151,7 +220,7 @@ private definirIntervaloDoGrafico(): void {
   }
 
   private getDaysDiff(start: Date, end: Date): number {
-    const diffTime = Math.max(0, end.getTime() - start.getTime());
+    const diffTime = end.getTime() - start.getTime();
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
 
