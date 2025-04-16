@@ -81,7 +81,7 @@ public class UsuarioService implements UsuarioServiceApi {
     public Usuario findById(Long id) {
         Optional<Usuario> usuario = this.usuarioRepository.findById(id);
         if (!usuario.isPresent())
-            return null;
+            throw new NotFoundException("Usuario não encontrado");
         return usuario.get();
     }
 
@@ -95,7 +95,7 @@ public class UsuarioService implements UsuarioServiceApi {
     }
 
     public Optional<Usuario> findByEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return Optional.of(usuarioRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Usuário não encontrado")));
     }
 
     public Optional<Usuario> findByTipoUsuario(TipoUsuario tipoUsuario) {

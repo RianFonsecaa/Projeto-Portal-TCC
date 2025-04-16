@@ -1,7 +1,7 @@
 package com.ifba.Gerenciador_TCC.email.tipoenum;
 
-import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import com.ifba.Gerenciador_TCC.tarefa.domain.dto.TarefaDTO;
+import com.ifba.Gerenciador_TCC.tarefa.domain.entity.Tarefa;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Classificacao;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.Prioridade;
 import com.ifba.Gerenciador_TCC.tarefa.domain.enums.StatusTarefa;
@@ -41,7 +41,7 @@ public class TipoMensagemTarefa extends TipoMensagem {
     }
 
     try {
-        this.tarefa.setClassificacao(Classificacao.fromString(tarefaDTO.getClassificacao()));
+        this.tarefa.setClassificacao(Classificacao.valueOf(tarefaDTO.getClassificacao()));
     } catch (IllegalArgumentException e) {
         throw new RuntimeException("Classificação inválida: " + tarefaDTO.getClassificacao());
     }

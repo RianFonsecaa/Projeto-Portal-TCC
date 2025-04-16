@@ -13,38 +13,40 @@ public class TarefaDTOBuilder {
     public static Tarefa buildTarefa(TarefaDTO tarefaDTO, UsuarioServiceApi usuarioService, ProjetoService projetoService) {
         return Tarefa.builder()
                     .id(tarefaDTO.getId())
+                    .codigo(tarefaDTO.getCodigo())
                     .projeto(projetoService.findById(tarefaDTO.getProjetoId()))
-                    .titulo(tarefaDTO.getTitulo()) // Nome corrigido
+                    .titulo(tarefaDTO.getTitulo()) 
                     .descricao(tarefaDTO.getDescricao())
                     .status(StatusTarefa.valueOf(tarefaDTO.getStatus()))
                     .prioridade(Prioridade.valueOf(tarefaDTO.getPrioridade()))
-                    .etapa(tarefaDTO.getEtapa()) // Adicionado
+                    .etapa(tarefaDTO.getEtapa()) 
                     .classificacao(Classificacao.valueOf(tarefaDTO.getClassificacao()))
-                    .ultimaAtualizacaoEm(tarefaDTO.getUltimaAtualizacaoEm()) // Nome corrigido
-                    .ultimaAtualizacaoPor(tarefaDTO.getUltimaAtualizacaoPor()) // Adicionado
-                    .criacaoEm(tarefaDTO.getCriacaoEm()) // Adicionado
-                    .criacaoPor(tarefaDTO.getCriacaoPor()) // Adicionado
-                    .dataInicio(tarefaDTO.getDataInicio()) // Adicionado
-                    .dataFim(tarefaDTO.getDataFim()) // Adicionado
+                    .ultimaAtualizacaoEm(tarefaDTO.getUltimaAtualizacaoEm()) 
+                    .ultimaAtualizacaoPor(tarefaDTO.getUltimaAtualizacaoPor()) 
+                    .criacaoEm(tarefaDTO.getCriacaoEm()) 
+                    .criacaoPor(tarefaDTO.getCriacaoPor())
+                    .dataInicio(tarefaDTO.getDataInicio()) 
+                    .dataFim(tarefaDTO.getDataFim()) 
                     .build();
     }
 
     public static TarefaDTO buildTarefaDTO(Tarefa tarefa){
         return TarefaDTO.builder()
                 .id(tarefa.getId())
+                .codigo(tarefa.getCodigo())
                 .projetoId(tarefa.getProjeto().getId())
-                .titulo(tarefa.getTitulo()) // Nome corrigido
+                .titulo(tarefa.getTitulo())
                 .descricao(tarefa.getDescricao())
-                .status(tarefa.getStatus().name()) // Convertendo enum para string
+                .status(tarefa.getStatus().name())
                 .prioridade(tarefa.getPrioridade().name())
                 .etapa(tarefa.getEtapa()) // Adicionado
                 .classificacao(tarefa.getClassificacao().name())
-                .ultimaAtualizacaoEm(tarefa.getUltimaAtualizacaoEm()) // Nome corrigido
-                .ultimaAtualizacaoPor(tarefa.getUltimaAtualizacaoPor()) // Adicionado
-                .criacaoEm(tarefa.getCriacaoEm()) // Adicionado
-                .criacaoPor(tarefa.getCriacaoPor()) // Adicionado
-                .dataInicio(tarefa.getDataInicio()) // Adicionado
-                .dataFim(tarefa.getDataFim()) // Adicionado
+                .ultimaAtualizacaoEm(tarefa.getUltimaAtualizacaoEm())
+                .ultimaAtualizacaoPor(tarefa.getUltimaAtualizacaoPor())
+                .criacaoEm(tarefa.getCriacaoEm()) 
+                .criacaoPor(tarefa.getCriacaoPor())
+                .dataInicio(tarefa.getDataInicio())
+                .dataFim(tarefa.getDataFim()) 
                 .build();
     }
 }

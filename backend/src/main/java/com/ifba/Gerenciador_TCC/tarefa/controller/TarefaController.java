@@ -32,6 +32,7 @@ public class TarefaController implements TarefaControllerApi {
 
     @Override
     public ResponseEntity<TarefaDTO> editarTarefa(@PathVariable Long id, @RequestBody TarefaDTO tarefa, @RequestParam Long idUsuario) {
+        System.out.println("1");
         tarefa.setId(id);
         return ResponseEntity.ok(tarefaService.editarTarefa(tarefa, idUsuario));
     }
